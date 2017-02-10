@@ -1,5 +1,8 @@
 # README
 
+This project is for me to learn ruby on rails and oauth api's the aim is to create a oauth provider 
+with doorkeeper and connect clients using device, omniauth
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
