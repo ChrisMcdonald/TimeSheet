@@ -3,16 +3,20 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 
   def all
-    @user = User.from_omniauth(request.env["omniauth.auth"])
+    user = User.from_omniauth(request.env["omniauth.auth"] )
+    # sign_in(:user, @user)#, :event => :authentication #this will throw if @user is not activated
 
-    if @user.present?
-      sign_in_and_redirect @user, notice: "Signed In"
+    if user.present?
+      sign_in_and_redirect user, notice: "Signed In"
     else
-      session['devices.user_attributes'] = @user.attributes
+      session['devices.user_attributes'] = user.attributes
       redirect_to new_user_registration_url
     end
   end
   alias_method :twitter, :all
+  alias_method :google, :all
+  alias_method :facebook, :all
+
 
 
   # def user_params

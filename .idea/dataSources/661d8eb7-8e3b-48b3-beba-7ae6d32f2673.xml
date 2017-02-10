@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-02-10.08:50:52.888</IntrospectionTimestamp>
-      <IntrospectionStateNumber>11153</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-02-10.23:18:37.251</IntrospectionTimestamp>
+      <IntrospectionStateNumber>11172</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -53,7 +53,7 @@
     </table>
     <table id="14" parent="3" name="users">
       <ObjectId>41693</ObjectId>
-      <StateNumber>11153</StateNumber>
+      <StateNumber>11172</StateNumber>
     </table>
     <column id="15" parent="11" name="key">
       <Position>1</Position>
@@ -241,22 +241,27 @@
       <DataType>varchar|0</DataType>
       <StateNumber>11153</StateNumber>
     </column>
-    <index id="48" parent="14" name="users_pkey">
+    <column id="48" parent="14" name="oauth_token">
+      <Position>17</Position>
+      <DataType>varchar|0</DataType>
+      <StateNumber>11172</StateNumber>
+    </column>
+    <column id="49" parent="14" name="oauth_expires_at">
+      <Position>18</Position>
+      <DataType>timestamp|0</DataType>
+      <StateNumber>11172</StateNumber>
+    </column>
+    <index id="50" parent="14" name="users_pkey">
       <ObjectId>41703</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="49" parent="14" name="index_users_on_email">
-      <ObjectId>41705</ObjectId>
-      <ColNames>email</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <index id="50" parent="14" name="index_users_on_reset_password_token">
+    <index id="51" parent="14" name="index_users_on_reset_password_token">
       <ObjectId>41706</ObjectId>
       <ColNames>reset_password_token</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="51" parent="14" name="users_pkey">
+    <key id="52" parent="14" name="users_pkey">
       <ObjectId>41704</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>

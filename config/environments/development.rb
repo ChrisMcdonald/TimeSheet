@@ -1,8 +1,15 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 8000 }
   ENV['TWITTER_CONSUMER_KEY'] = 'xpsbbGEmwsA3OoHYp6MfbkG8p'
   ENV['TWITTER_CONSUMER_SECRET'] = 'Q8BzxCVd8AduSBRFx7QuirpkP48IR66TXtvgpYRJGg07APm5uc'
+  ENV['FACEBOOK_CONSUMER_KEY'] = '161592784336395'
+  ENV['FACEBOOK_CONSUMER_SECRET'] ='85fb6dd9c3f1e262133726d171e8cde5'
+  ENV['GOOGLE_CONSUMER_KEY'] = '536781353623-c9ktfkho5qde96u55jb7l98pbddacu0s.apps.googleusercontent.com'
+  ENV['GOOGLE_CONSUMER_SECRET'] = '6cyZjue1s0GmNT_Bc7--0kts'
+
+
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
