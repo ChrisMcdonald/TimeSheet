@@ -31,3 +31,4 @@
 .idea/workspace.xml
 app/views/omniauth_callbacks/
 public/uploads/tmp/
+/config/environments/development.rb
