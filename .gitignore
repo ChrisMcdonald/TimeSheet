@@ -16,7 +16,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 /config/secrets.yml
-/config/environments/
+/config/environments/**/*
 /config/database.yml
 
 /tmp/
@@ -31,4 +31,6 @@
 .idea/workspace.xml
 app/views/omniauth_callbacks/
 public/uploads/tmp/
-/config/environments/development.rb
+
+.idea/dataSources/661d8eb7-8e3b-48b3-beba-7ae6d32f2673/_metadata_/metadata.values.at
+db/migrate/20170210081929_add_colums_to_user.rb
