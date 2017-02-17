@@ -34,3 +34,6 @@ public/uploads/tmp/
 
 .idea/dataSources/661d8eb7-8e3b-48b3-beba-7ae6d32f2673/_metadata_/metadata.values.at
 db/migrate/20170210081929_add_colums_to_user.rb
+
+# Ignore application configuration
+/config/application.yml

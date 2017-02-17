@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210081929) do
+ActiveRecord::Schema.define(version: 20170216054851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "full_name"
+    t.string   "email_address"
+    t.string   "options"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "ideas", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +29,35 @@ ActiveRecord::Schema.define(version: 20170210081929) do
     t.string   "picture"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "identities", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "token"
+    t.string   "secrect"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "profile_page"
+    t.string   "username"
+    t.string   "image"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "from"
+    t.string   "subject"
+    t.text     "message"
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,7 +78,6 @@ ActiveRecord::Schema.define(version: 20170210081929) do
     t.string   "username"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
