@@ -12,7 +12,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       else
         flash[:notice] = "Account Added"
       end
-      redirect_to user_identities_path
+      redirect_to user_identities_path(current_user)
 
 
     elsif identity.user.present?
