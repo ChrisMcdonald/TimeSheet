@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Provider:</strong>
+  <%= @identity.provider %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @identity.username %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @identity.image ,size: 30 %>
+</p>
+
+<%= link_to 'Edit', edit_user_identity_path(@identity) %> |
+<%= link_to 'Back', user_identities_path(current_user) %>

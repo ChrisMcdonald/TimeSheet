@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Identities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>Username</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @identities.each do |iden| %>
+      <tr>
+        <td><%= iden.provider %></td>
+        <td><%= iden.username %></td>
+        <td><%= image_tag iden.image, size: 30 %></td>
+        <td><%= link_to 'Show', iden %></td>
+        <td><%= link_to 'Edit', edit_identity_path(iden) %></td>
+        <td><%= link_to 'Destroy', iden, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Google', '/users/auth/google' %>
+<%= link_to 'New facebook', '/users/auth/facebook' %>
