@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="devise3@localhost">
-  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.0">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.1">
     <root id="1"/>
     <database id="2" parent="1" name="devise3">
       <ObjectId>41663</ObjectId>
@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-02-16.15:49:43.248</IntrospectionTimestamp>
-      <IntrospectionStateNumber>11522</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-05-04.08:09:38.928</IntrospectionTimestamp>
+      <IntrospectionStateNumber>20752</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -73,7 +73,7 @@
     </table>
     <table id="18" parent="3" name="identities">
       <ObjectId>41738</ObjectId>
-      <StateNumber>11392</StateNumber>
+      <StateNumber>20752</StateNumber>
     </table>
     <table id="19" parent="3" name="messages">
       <ObjectId>41836</ObjectId>

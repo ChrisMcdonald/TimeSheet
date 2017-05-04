@@ -4,16 +4,27 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 
   def all
-    user = User.from_omniauth(request.env["omniauth.auth"] ,current_user)
-    # sign_in(:user, @user)#, :event => :authentication #this will throw if @user is not activated
+    auth = request.env["omniauth.auth"]
+    identity = User.from_omniauth(auth ,current_user)
+    if user_signed_in?
+      if current_user != identity.user
+        flash[:notice] = "Account is registered to another user"
+      else
+        flash[:notice] = "Account Added"
+      end
+      redirect_to user_identities_path
 
-    if user.present?
-      sign_in_and_redirect user, notice: "Signed In"
+
+    elsif identity.user.present?
+      sign_in_and_redirect identity.user
+      flash[:notice] = "Signed in as #{identity.user.username} "
+
     else
-      redirect_to new_user_registration_url
+      # session['user'] = user.id
+      redirect_to new_user_session_path
+      flash[:notice] = "Account Not Found"
     end
   end
-  alias_method :twitter, :all
   alias_method :facebook, :all
   alias_method :google, :all
 

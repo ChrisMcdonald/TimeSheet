@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :customers
   resources :messages
-  resources :projects
+  resources :identities
+  # resources :projects
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"}
   get 'pages/info'
   resources :ideas ,:profile
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   # end
   resources :users do
     resources :projects
+    resources :identities
   end
   authenticate(:user) do
     resources :users

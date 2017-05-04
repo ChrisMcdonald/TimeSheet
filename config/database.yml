@@ -27,7 +27,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: devise3
+  database: HappyShare
   pool: 5
   username: postgres
   password: monster
