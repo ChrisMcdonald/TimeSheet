@@ -17,7 +17,6 @@ class IdentitiesController < ApplicationController
 
   # GET /identities/new
   def new
-    # @identity = Identity.new
     user = User.from_omniauth(request.env["omniauth.auth"] ,current_user)
   end
 
@@ -33,10 +32,8 @@ class IdentitiesController < ApplicationController
     respond_to do |format|
       if @identity.save
         format.html { redirect_to @identity, notice: 'Identity was successfully created.' }
-        format.json { render :show, status: :created, location: @identity }
       else
         format.html { render :new }
-        format.json { render json: @identity.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,10 +44,8 @@ class IdentitiesController < ApplicationController
     respond_to do |format|
       if @identity.update(identity_params)
         format.html { redirect_to @identity, notice: 'Identity was successfully updated.' }
-        format.json { render :show, status: :ok, location: @identity }
       else
         format.html { render :edit }
-        format.json { render json: @identity.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,7 +56,6 @@ class IdentitiesController < ApplicationController
     @identity.destroy
     respond_to do |format|
       format.html { redirect_to identities_url, notice: 'Identity was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -69,7 +63,6 @@ class IdentitiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_identity
       @identity = Identity.find_by(user_id: current_user.id)
-
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

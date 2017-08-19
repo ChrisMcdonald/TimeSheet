@@ -27,7 +27,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: HappyShare
+  database: loggintracker
   pool: 5
   username: postgres
   password: monster

@@ -1,6 +1,3 @@
 class Project < ApplicationRecord
-
-  belongs_to :user
-  has_many :messages
-  has_many :customers
+	# has_many :invoices
 end

@@ -1,12 +1,12 @@
 class User < ApplicationRecord
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :identities
-  has_many :projects
+  has_many :invoices
+
 
   def self.from_omniauth(auth, current_user)
 
@@ -18,16 +18,32 @@ class User < ApplicationRecord
     identity.username = auth.info.name
     identity.image = auth.info.image
     identity.email = auth.info.email
+	# identity.user.avatar = auth.info.image
     identity.save
+
+
 
     if identity.user.blank?
       user = current_user
       identity.user = user
       identity.save
+
     end
 
     identity
   end
+  def bar
+    puts 'class method'
+  end
+
+  def user_image
+    self.identities.first.image
+      end
+
+
+
+
+
   # def fetch_details(auth)
   #   self.email = auth.info.email
   #   self.provider = auth.provider

@@ -1,30 +1,19 @@
 Rails.application.routes.draw do
-  resources :customers
-  resources :messages
+  mount ActionCable.server => '/cable'
   resources :identities
-  # resources :projects
+  resources :projects
+  resources :invoices
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"}
-  get 'pages/info'
-  resources :ideas ,:profile
-  # resources :users do
-  #   resources :identities
-  # end
-  resources :users do
+    resources :users do
     resources :projects
     resources :identities
   end
   authenticate(:user) do
     resources :users
-
   end
-  resources :projects do
-    resources :customers, :messages
 
-  end
-  root to: redirect('/ideas')
+  root to: redirect('/invoices')
   get 'auth/:provider/callback', to: 'ideas#create'
-
-  post 'profile/send_email'
 
 end
 

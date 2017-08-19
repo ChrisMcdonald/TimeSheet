@@ -1,0 +1,30 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//.message-form {
+//  display: none;
+//}
+div.test {
+  display: none;
+}
+
+.new-project {
+  display: none;
+}
+li.shadow {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 19px;
+}
+
+li.darkShadow {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: grey;
+;
+}
+li.background {
+  //background-color: grey;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.6), 6px 12px 30px 0 rgba(0, 0, 0, 0.19);
+  //font-size: 150%;
+
+
+}

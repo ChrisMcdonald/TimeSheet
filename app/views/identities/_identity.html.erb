@@ -1,0 +1,8 @@
+<li class="shadow row >">
+
+  <div class="col-sm-12"><strong><%= identity.username %></strong>
+  <%= image_tag identity.image,size: 30 %>
+
+<%= link_to 'Start Project', new_project_path(@identity), class: "btn btn-primary " %>
+  </div>
+</li>

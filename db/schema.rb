@@ -10,26 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503220900) do
+ActiveRecord::Schema.define(version: 20170814060535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "customers", force: :cascade do |t|
-    t.string   "full_name"
-    t.string   "email_address"
-    t.string   "options"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  create_table "ideas", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "picture"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
 
   create_table "identities", force: :cascade do |t|
     t.string   "user_id"
@@ -40,25 +24,24 @@ ActiveRecord::Schema.define(version: 20170503220900) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "profile_page"
-    t.string   "username"
-    t.string   "image"
-    t.string   "email"
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.string   "from"
-    t.string   "subject"
-    t.text     "message"
-    t.string   "attachment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "invoices", force: :cascade do |t|
+    t.string   "name"
+    t.date     "endOfFortnight"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["project_id"], name: "index_invoices_on_project_id", using: :btree
+    t.index ["user_id"], name: "index_invoices_on_user_id", using: :btree
   end
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
+    t.float    "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|

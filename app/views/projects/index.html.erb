@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Projects</h1>
+
+<NewProject id="NewProject " class="new-project">
+  <%= render 'form' %>
+</NewProject>
+
+<p class='pull-right '  >
+  <button  id="new-project" class="btn btn-primary">New Project</button>
+</p>
+
+
+<%= will_paginate @projects %>
+<ul >
+<%= render @projects %>
+</ul>
+<%= will_paginate @projects %>
+
+
+<br>
