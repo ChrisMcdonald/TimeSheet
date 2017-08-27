@@ -23,7 +23,7 @@
 
         <div class="field">
           <%= builder.label :project_id %>
-          <%= builder.select(:project_id, options_for_select([['first', 1], ['second', 2]])) %>
+          <%= builder.select(:project_id, options_for_select(Project.select_attributes)) %>
         </div>
         <div>
           <%= builder.label :rate %>
