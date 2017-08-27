@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
     respond_to do |format|
-		authorize @project
+		# authorize @project
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
       else
