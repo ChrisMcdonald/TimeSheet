@@ -12,6 +12,7 @@
   <% end %>
 
     <div class="field">
+
       <%= f.label :name %>
       <%= f.text_field :name, class:'form-control '%>
 
@@ -20,16 +21,20 @@
     </div>
 
     <%= f.fields_for :invoice_rows do |builder| %>
+      <div class="row">
+        <div class="col-sm-3 ">
 
-        <div class="field">
           <%= builder.label :project_id %>
           <%= builder.select(:project_id, options_for_select(Project.select_attributes)) %>
         </div>
-        <div>
+        <div class="col-sm-3">
+
           <%= builder.label :rate %>
-          <%= builder.text_field :rate %></div>
+          <%= builder.text_field :rate %>
+        </div>
+        </div>
 
-    <%= f.submit class: 'btn btn-primary' %>
+
         <%end %>
-
+    <%= f.submit class: 'btn btn-primary' %>
 <% end %>
