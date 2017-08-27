@@ -1,4 +1,4 @@
-<%= form_for(@invoice,remote: true ) do |f| %>
+<%= form_for(setup_invoice(@invoice) ) do |f| %>
   <% if @invoice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
@@ -14,13 +14,22 @@
     <div class="field">
       <%= f.label :name %>
       <%= f.text_field :name, class:'form-control '%>
-    </div>
 
-    <div class="field">
       <%= f.label :endOfFortnight %>
       <%= f.date_field :endOfFortnight, class:'form-control ' %>
     </div>
 
+    <%= f.fields_for :invoice_rows do |builder| %>
+
+        <div class="field">
+          <%= builder.label :project_id %>
+          <%= builder.select(:project_id, options_for_select([['first', 1], ['second', 2]])) %>
+        </div>
+        <div>
+          <%= builder.label :rate %>
+          <%= builder.text_field :rate %></div>
+
     <%= f.submit class: 'btn btn-primary' %>
+        <%end %>
 
 <% end %>

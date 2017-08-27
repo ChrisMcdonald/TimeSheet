@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814060535) do
+ActiveRecord::Schema.define(version: 20170819050059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20170814060535) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "profile_page"
+  end
+
+  create_table "invoice_rows", force: :cascade do |t|
+    t.float    "rate"
+    t.float    "hours"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "invoice_id"
+    t.index ["invoice_id"], name: "index_invoice_rows_on_invoice_id", using: :btree
+    t.index ["project_id"], name: "index_invoice_rows_on_project_id", using: :btree
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -64,4 +75,5 @@ ActiveRecord::Schema.define(version: 20170814060535) do
     t.datetime "oauth_expires_at"
   end
 
+  add_foreign_key "invoice_rows", "invoices"
 end
