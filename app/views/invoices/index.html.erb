@@ -9,10 +9,11 @@
 <div class="pull-right">
   <button id="new-invoice" class="btn btn-primary">New Invoice</button>
 </div>
-
+<%= will_paginate @invoices %>
 <ul>
   <%= render @invoices %>
 </ul>
+<%= will_paginate @invoices %>
 
 
 
