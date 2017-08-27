@@ -26,7 +26,6 @@ footer {
 table, td, th ,tr,td{
     vertical-align: center;
     border: none;
-    padding: 100px;
 }
 
 th {
