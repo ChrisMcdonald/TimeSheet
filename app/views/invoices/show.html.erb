@@ -1,18 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<div> <%= @invoice.name %>
-  end of fortnight<%= @invoice.endOfFortnight %>
-  username<%= @invoice.user.username %>
+<div class="form-group"> <%= @invoice.name %>
   <table class="table-striped">
     <tr>
       <th>Project id:</th>
       <th>Hourly Rate:</th>
       <th> Number Of Hours</th>
     </tr>
+  end of fortnight<%= @invoice.endOfFortnight %>
+  username<%= @invoice.user.username %>
+
   <% @invoice.invoice_rows.each do |i| %>
 
         <tr>
-          <td><%= i.project_id %></td>
+         <td><%= i.project_id %></td>
           <td><%= i.rate %></td>
           <td><%= i.hours %></td>
   <% end %>

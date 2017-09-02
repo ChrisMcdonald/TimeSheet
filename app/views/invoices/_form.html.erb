@@ -1,40 +1,94 @@
-<%= form_for(setup_invoice(@invoice) ) do |f| %>
-  <% if @invoice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+<div class="container-fluid">
+  <div class="row">
+    <hr class="style2">
+    <div class="col-sm-1"></div>
 
-      <ul>
-      <% @invoice.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <div class="col-sm-3">
+    <%= form_for(setup_invoice(@invoice)) do |f| %>
+        <% if @invoice.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 
-    <div class="field">
+              <ul>
+                <% @invoice.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <label for=""><%= @user.username %></label><br>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, class:'form-control '%>
+        <label><%= @user.email %></label><br>
+        <label>ABN: 54757877</label><br>
+        <label> 1 street</label><br>
+        <label>town state</label><br>
+        <label>country 4000</label><br>
 
-      <%= f.label :endOfFortnight %>
-      <%= f.date_field :endOfFortnight, class:'form-control ' %>
-    </div>
-
-    <%= f.fields_for :invoice_rows do |builder| %>
-      <div class="row">
-        <div class="col-sm-3 ">
-
-          <%= builder.label :project_id %>
-          <%= builder.select(:project_id, options_for_select(Project.select_attributes)) %>
         </div>
         <div class="col-sm-3">
-
-          <%= builder.label :rate %>
-          <%= builder.text_field :rate %>
+        </div>
+        <div class="col-sm-3">
+          <h1>Tax Invoice</h1>
+          <%= f.label :endOfFortnight %>
+          <%= f.date_field :endOfFortnight, class: 'form-control ' %>
         </div>
         </div>
+          <hr class="style2">
+
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-3">
+
+            <label>Bill To:</label><br>
+            <label>full name</label><br>
+            <label>ABN: 54757877</label><br>
+            <label> 1 street</label><br>
+            <label>town state</label><br>
+            <label>country 4000</label><br>
+          </div>
+          <div class="col-sm-3">
+            <p>col3</p>
+          </div>
+          <div class="col-sm-3">
+            <label for="">Invoice Number</label><br>
+            <label for="">Date</label><br>
+            <label for="">Due Date</label><br>
+          </div>
+
+        </div>
+          </div>
+
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-11">
+            <hr>
+          <table class="outline" >
+              <tr style="background-color: #f0f0f0;" >
+                <th> Project </th>
+                <th> Hourly Rate</th>
+                <th> Hours </th>
+                <th>Description</th>
+                <th>Sub Total</th>
+              </tr>
+            <%= f.fields_for :invoice_rows do |builder| %>
+                  <tr>
+               <td><%= builder.select(:project_id, options_for_select(Project.select_attributes,)) %></td>
+
+               <td><%= builder.text_field :rate %></td>
+               <td><%= builder.text_field :hours  %></td>
+               <td><%= builder.text_field :hours  %></td>
+               <td><%= builder.text_field :hours  %></td>
+            <% end %>
+            <tr><td></td><td></td><td></td><td></td><td>total</td></tr>
+              </tr>
 
 
-        <%end %>
-    <%= f.submit class: 'btn btn-primary' %>
-<% end %>
+
+      </table>
+      <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+      </div>
+      </div>
+<hr class="style2">
+    </div>
+    </div>

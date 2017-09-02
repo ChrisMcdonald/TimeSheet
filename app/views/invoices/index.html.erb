@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Invoices</h1>
-<NewInvoice id="NewInvoice" class="new-invoice">
+<div class="new-invoice container-fluid" id="NewInvoice" class="new-invoice">
   <%= render 'form' %>
-</NewInvoice>
+</div>
 
 
 <div class="pull-right">
@@ -12,7 +12,9 @@
 <%= will_paginate @invoices %>
 <ul>
   <%= render @invoices %>
+
 </ul>
+
 <%= will_paginate @invoices %>
 
 
