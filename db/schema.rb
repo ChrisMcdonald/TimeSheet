@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170819050059) do
+ActiveRecord::Schema.define(version: 20170910071605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street_no"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "post_code"
+    t.string   "abn"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "identities", force: :cascade do |t|
     t.string   "user_id"
@@ -42,8 +56,28 @@ ActiveRecord::Schema.define(version: 20170819050059) do
     t.date     "endOfFortnight"
     t.integer  "user_id"
     t.integer  "project_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "customer_id"
+    t.string   "owner_first_name"
+    t.string   "owner_last_name"
+    t.string   "owner_email"
+    t.string   "owner_street_no"
+    t.string   "owner_street"
+    t.string   "owner_city"
+    t.string   "owner_country"
+    t.string   "owner_post_code"
+    t.string   "owner_abn"
+    t.string   "customer_first_name"
+    t.string   "customer_last_name"
+    t.string   "customer_email"
+    t.string   "customer_street_no"
+    t.string   "customer_street"
+    t.string   "customer_city"
+    t.string   "customer_country"
+    t.string   "customer_post_code"
+    t.string   "customer_abn"
+    t.index ["customer_id"], name: "index_invoices_on_customer_id", using: :btree
     t.index ["project_id"], name: "index_invoices_on_project_id", using: :btree
     t.index ["user_id"], name: "index_invoices_on_user_id", using: :btree
   end
@@ -73,7 +107,17 @@ ActiveRecord::Schema.define(version: 20170819050059) do
     t.string   "username"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street_no"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "post_code"
+    t.string   "abn"
   end
 
   add_foreign_key "invoice_rows", "invoices"
+  add_foreign_key "invoices", "customers"
 end

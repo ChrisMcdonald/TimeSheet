@@ -18,7 +18,7 @@ function myFunction() {
 
 $(document).on('turbolinks:load', function () {
     $('#new-invoice').click(function () {
-        $('NewInvoice').slideToggle();
+        $('.new-invoice').slideToggle();
 
     });
 });

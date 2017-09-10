@@ -26,6 +26,8 @@
             <ul class="nav navbar-nav">
               <li><%= link_to 'My Invoices', invoices_path(current_user)%></li>
               <li><%= link_to 'My Projects', projects_path%></li>
+              <li><%= link_to 'My Customers', customers_path%></li>
+              <li><%= link_to 'My Profile', users_path%></li>
               <!--<li><a href="/identities">Identities</a></li>-->
             </ul>
             <p class="navbar-text pull-right">
@@ -42,16 +44,15 @@
               <% end %>
           </div>
         </div>
-
+      </nav>
       </nav>
 
   </head>
   <body>
 
-<div class="container">
 
     <%= yield %>
-</div>
+
   </body>   <!-- Copyright Start  -->
     <!-- Footer Section Start -->
 

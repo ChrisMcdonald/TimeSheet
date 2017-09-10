@@ -14,6 +14,7 @@
  *= require_self
  */
 body {
+;
     padding-top: 100px;
     background-color: #c0d1d0;
 }
@@ -30,4 +31,10 @@ table, td, th ,tr,td{
 
 th {
     border-bottom: 1px solid #DDD;
+}
+/*div {*/
+    /*outline: 2px solid #ccc;*/
+/*}*/
+.outline {
+    outline: 2px solid #ccc;
 }

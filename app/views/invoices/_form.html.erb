@@ -16,13 +16,14 @@
               </ul>
             </div>
         <% end %>
-        <label for=""><%= @user.username %></label><br>
+        <label for=""><%= @user.first_name %></label><br>
+        <label for=""><%= @user.last_name %></label><br>
 
         <label><%= @user.email %></label><br>
-        <label>ABN: 54757877</label><br>
-        <label> 1 street</label><br>
-        <label>town state</label><br>
-        <label>country 4000</label><br>
+        <label>ABN: <%= @user.abn %></label><br>
+        <label> <%= @user.street_no %> <%= @user.street %></label><br>
+        <label><%= @user.city  %> <%=@user.state %></label><br>
+        <label><%= @user.country %> <%= @user.post_code %></label><br>
 
         </div>
         <div class="col-sm-3">
@@ -38,8 +39,8 @@
         <div class="row">
           <div class="col-sm-1"></div>
           <div class="col-sm-3">
-
-            <label>Bill To:</label><br>
+            <%= select_tag :customer, options_from_collection_for_select(Customer.all.order(:id),:id, :first_name,:last_name),prompt: "select Customer" %>
+            <label>Bill To: </label><br>
             <label>full name</label><br>
             <label>ABN: 54757877</label><br>
             <label> 1 street</label><br>
