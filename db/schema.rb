@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910071605) do
+ActiveRecord::Schema.define(version: 20170916232537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 20170910071605) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "time_sheets", force: :cascade do |t|
+    t.date     "time_period"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "works_id"
+    t.index ["user_id"], name: "index_time_sheets_on_user_id", using: :btree
+    t.index ["works_id"], name: "index_time_sheets_on_works_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -118,6 +128,22 @@ ActiveRecord::Schema.define(version: 20170910071605) do
     t.string   "abn"
   end
 
+  create_table "works", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "hour"
+    t.string   "description"
+    t.integer  "project_id"
+    t.integer  "time_sheet_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["project_id"], name: "index_works_on_project_id", using: :btree
+    t.index ["time_sheet_id"], name: "index_works_on_time_sheet_id", using: :btree
+  end
+
   add_foreign_key "invoice_rows", "invoices"
   add_foreign_key "invoices", "customers"
+  add_foreign_key "time_sheets", "users"
+  add_foreign_key "time_sheets", "works", column: "works_id"
+  add_foreign_key "works", "projects"
+  add_foreign_key "works", "time_sheets"
 end

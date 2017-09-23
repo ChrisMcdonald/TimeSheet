@@ -11,5 +11,14 @@ module Devise3
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+	  class UnauthorizedActionException < StandardError
+		  attr :message
+
+		  def initialize(message)
+			  @message = message
+		  end
+	  end
+
   end
 end

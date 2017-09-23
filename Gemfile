@@ -14,6 +14,7 @@ gem 'devise'
 gem 'redis', '~> 3.2'
 gem 'carrierwave'
 gem "pundit"
+gem "breadcrumbs_on_rails"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

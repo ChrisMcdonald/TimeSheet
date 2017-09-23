@@ -6,6 +6,7 @@ class InvoicesController < ApplicationController
 	def index
 		@invoices = Invoice.where("user_id = '?'", current_user.id).paginate(:page => params[:page], :per_page => 10).reverse_order
 		@invoice = Invoice.new
+		@customer = Customer.first
 		@user = current_user
 	end
 
@@ -72,6 +73,8 @@ class InvoicesController < ApplicationController
 	def set_invoice
 		@invoice = Invoice.find(params[:id])
 	end
+
+
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def invoice_params

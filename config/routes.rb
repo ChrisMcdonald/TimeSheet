@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :works
+  resources :time_sheets do
+	  get 'days', to: 'time_sheets#add_day'
+  end
+  resources :customers
   get 'invoice_row/create'
 
   get 'invoice_row/new'
@@ -19,7 +24,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  root to: redirect('/invoices')
+  root to: redirect('/time_sheets')
   get 'auth/:provider/callback', to: 'ideas#create'
 
 end

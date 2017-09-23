@@ -1,0 +1,35 @@
+<%= f.fields_for :works do |w| %>
+    <tr>
+
+      <td>
+        <div class="field">
+          <%= w.select(:project_id, options_for_select(Project.select_attributes,)) %>
+        </div>
+      </td>
+
+      <td>
+        <div class="field">
+          <%= w.date_field :date ,:value => Time.now.strftime('%Y-%m-%d') %>
+        </div>
+      </td>
+
+      <td>
+        <div class="field">
+          <%= w.number_field :hour %>
+        </div>
+      </td>
+
+      <td>
+        <div class="field">
+          <%= w.text_area :description %>
+        </div>
+      </td>
+
+      <td>
+        <div class="field">
+          <input type="text" value="">
+        </div>
+      </td>
+
+
+<% end %>
