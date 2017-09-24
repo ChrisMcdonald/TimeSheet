@@ -1,27 +1,27 @@
-<%= f.fields_for :works do |w| %>
-    <tr>
+<tr>
+
 
       <td>
         <div class="field">
-          <%= w.select(:project_id, options_for_select(Project.select_attributes,)) %>
+          <%= f.select(:project_id, options_for_select(Project.select_attributes,)) %>
         </div>
       </td>
 
       <td>
         <div class="field">
-          <%= w.date_field :date ,:value => Time.now.strftime('%Y-%m-%d') %>
+          <%= f.date_field :date ,:value => Time.now.strftime('%Y-%m-%d') %>
         </div>
       </td>
 
       <td>
         <div class="field">
-          <%= w.number_field :hour %>
+          <%= f.number_field :hour %>
         </div>
       </td>
 
       <td>
         <div class="field">
-          <%= w.text_area :description %>
+          <%= f.text_area :description %>
         </div>
       </td>
 
@@ -30,6 +30,12 @@
           <input type="text" value="">
         </div>
       </td>
+       <td>
+        <div class="field">
+          <%= f.hidden_field :_destroy %>
+          <%= link_to "remove", '#', class: "remove_fields" %>
+        </div>
+      </td>
 
 
-<% end %>
+</tr>

@@ -17,21 +17,33 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "Add Day", class: 'btn btn-default' %>
+      <%= f.submit "Save", class: 'btn btn-default' %>
 
     </div>
-    <table class="outline">
+    <table class="outline add_fields">
       <tr style="background-color: #f0f0f0;">
         <th>Project</th>
         <th>Date</th>
         <th>Hours</th>
         <th>Description</th>
         <th>SubTotal</th>
+        <th> </th>
+        <th> </th>
       </tr>
-      <%= render 'works', f: f %>
-      <tr><td></td><td></td><td></td><td></td><td>total <br> <input type="text"></td></tr>
+      <%= f.fields_for :works do |builder| %>
 
+
+      <%= render 'works', f: builder %>
+
+
+          </tr><tr>
+
+      <% end %>
+      <%= link_to_add_fields "Add field", f, :works%>
+
+      <tr><td></td><td></td><td></td><td></td><td>total <br> <input type="text"></td></tr>
       </tr>
     </table>
+
 <% end %>
 <%= @time_sheet.id %>
