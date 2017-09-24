@@ -24,6 +24,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_median (0.1.4)
+      activerecord
     activejob (5.0.1)
       activesupport (= 5.0.1)
       globalid (>= 0.3.6)
@@ -52,6 +54,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chartkick (2.2.4)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.2.1)
@@ -80,6 +83,8 @@ GEM
     ffi (1.9.17)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     hashie (3.5.1)
     i18n (0.8.0)
     ice_nine (0.11.2)
@@ -227,12 +232,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_median
   awesome_print
   breadcrumbs_on_rails
   byebug
   carrierwave
+  chartkick
   coffee-rails (~> 4.2)
   devise
+  groupdate
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

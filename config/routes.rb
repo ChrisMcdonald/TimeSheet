@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   get 'invoice_row/create'
 
   get 'invoice_row/new'
+  resources :projects do
+	  collection do
+		  get :all_work_for_project
+	  end
+  end
+
+
 
   mount ActionCable.server => '/cable'
   resources :identities

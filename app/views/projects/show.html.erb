@@ -5,8 +5,15 @@
     <strong>Name:</strong>
     <%= @project.name %>
   </p>
-  <p>
+  <p><%= @project.id %>
+  <p>total hours for project <%= Work.total_hours_for_project(@project.id) %></p>
+    <table>
+      <h1>Hours By Day</h1>
+    <%= column_chart @chat ,remote: true %>
 
+      <h1>Chart by User</h1>
+      <%= pie_chart @pie_chat %>
+    </table>
 
 
 

@@ -9,9 +9,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    # @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
-
-
+    @chat = Work.where(project_id: @project.id).group(:date).sum(:hour)
+	  @pie_chat = TimeSheet.select(:user_id).group(:user_id).joins(:works).where(works: {project_id: 1}).select(:hour).sum(:hour)
   end
 
   # GET /projects/new
@@ -57,6 +56,10 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
     end
   end
+
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

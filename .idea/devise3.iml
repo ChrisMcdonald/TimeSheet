@@ -181,6 +181,7 @@
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v5.0.1, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v5.0.1, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionview (v5.0.1, rbenv: 2.2.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="active_median (v0.1.4, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activejob (v5.0.1, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v5.0.1, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v5.0.1, rbenv: 2.2.5) [gem]" level="application" />
@@ -194,6 +195,7 @@
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.15.3, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="byebug (v9.0.6, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="carrierwave (v1.0.0, rbenv: 2.2.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="chartkick (v2.2.4, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coercible (v1.0.0, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v4.2.1, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.4.1, rbenv: 2.2.5) [gem]" level="application" />
@@ -209,6 +211,7 @@
     <orderEntry type="library" scope="PROVIDED" name="faraday (v0.10.1, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.17, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v0.3.7, rbenv: 2.2.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="groupdate (v3.2.0, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hashie (v3.5.1, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.8.0, rbenv: 2.2.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ice_nine (v0.11.2, rbenv: 2.2.5) [gem]" level="application" />
