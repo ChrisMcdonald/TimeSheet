@@ -18,6 +18,7 @@ gem "breadcrumbs_on_rails"
 gem 'groupdate'
 gem "chartkick"
 gem 'active_median'
+gem "simple_calendar"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

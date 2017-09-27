@@ -3,15 +3,10 @@
 
       <td>
         <div class="field">
-          <%= f.select(:project_id, options_for_select(Project.select_attributes,)) %>
+          <%= f.select(:project_id, options_for_select(Project.select_attributes,f.object.project_id)) %>
         </div>
       </td>
 
-      <td>
-        <div class="field">
-          <%= f.date_field :date ,:value => Time.now.strftime('%Y-%m-%d') %>
-        </div>
-      </td>
 
       <td>
         <div class="field">

@@ -6,4 +6,13 @@ class TimeSheet < ApplicationRecord
 
   validates_presence_of :time_period
 
+
+	def self.hours_by_day
+		self.joins(:works).group(:time_period).sum(:hour)
+	end
+
+	def self.hours_by_user_by_project(project_id)
+		TimeSheet.select(:user_id).group(:user_id).joins(:works).where(works: {project_id: project_id}).select(:hour).sum(:hour)
+	end
+
 end

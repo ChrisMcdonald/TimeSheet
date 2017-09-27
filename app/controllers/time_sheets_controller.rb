@@ -1,6 +1,7 @@
 class TimeSheetsController < ApplicationController
-  before_action :set_time_sheet, only: [:show, :edit, :update, :destroy]
+  before_action :set_time_sheet, only: [ :show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+  before_action :set_calender, only: :index
   # GET /time_sheets
   # GET /time_sheets.json
 
@@ -9,7 +10,7 @@ class TimeSheetsController < ApplicationController
 
   def index
   add_breadcrumb "my", :time_sheets_path
-    @time_sheets = TimeSheet.all
+    @time_sheets = TimeSheet.where(user: current_user)
 	@user = current_user
 
   end
@@ -18,6 +19,17 @@ class TimeSheetsController < ApplicationController
   # GET /time_sheets/1
   # GET /time_sheets/1.json
   def show
+
+  end
+
+  def current_day
+	  @time_sheet = TimeSheet.find_or_create_by(time_period: params[:time_period],user: current_user)
+	  if @time_sheet.id.nil?
+		  @time_sheet.time_period = params[:time_period]
+		  @time_sheet.user = current_user
+		  @time_sheet.save!
+	  end
+	 redirect_to time_sheet_path(@time_sheet)
   end
 
   # GET /time_sheets/new
@@ -75,9 +87,20 @@ class TimeSheetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def hours_for_day
+		@hours =  TimeSheet.where(date: params[:date]).joins(:works).select(:hour)
+	  respond_to do |format|
+		  format.js
+	  end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+  	def set_calender
+		config.beginning_of_week = :monday
+	end
+
     def set_time_sheet
       @time_sheet = TimeSheet.find(params[:id])
     end

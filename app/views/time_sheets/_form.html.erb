@@ -12,8 +12,7 @@
     <% end %>
     <h1>  <%= @time_sheet.user.first_name %>&nbsp<%= @time_sheet.user.last_name %></h1>
     <div class="field">
-      <%= f.label :time_period %>
-      <%= f.date_field :time_period , :value => Time.now.strftime('%Y-%m-%d') %>
+      <%= @time_sheet.time_period%>
     </div>
 
     <div class="actions">
@@ -23,7 +22,6 @@
     <table class="outline add_fields">
       <tr style="background-color: #f0f0f0;">
         <th>Project</th>
-        <th>Date</th>
         <th>Hours</th>
         <th>Description</th>
         <th>SubTotal</th>

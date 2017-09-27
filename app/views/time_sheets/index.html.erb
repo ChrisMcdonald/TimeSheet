@@ -2,27 +2,12 @@
 
 <h1>Time Sheets</h1>
 
-<table class="outline" style="width: 100%">
 
-    <tr class="grey_backgound">
-      <th>Time period</th>
-      <th>User Name</th>
-      <th colspan="3"></th>
-    </tr>
+<%=week_calendar number_of_weeks: 2 do |date| %>
+    <%= date %>
+    <%= link_to 'TimeSheet', current_day_path(date) %>
+    <%= hidden_field :date, params[:date],  :id => 'curren_date'  %>
+<div id="hours" class="hours"></div>
+<% end %>
 
-  <tbody>
-    <% @time_sheets.each do |time_sheet| %>
-      <tr>
-        <td><%= time_sheet.time_period %></td>
-        <td><%= time_sheet.user.first_name %> <%= time_sheet.user.last_name %></td>
-        <td><%= link_to 'Show', time_sheet %></td>
-        <td><%= link_to 'Edit', edit_time_sheet_path(time_sheet) %></td>
-        <td><%= link_to 'Destroy', time_sheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Time Sheet', new_time_sheet_path %>

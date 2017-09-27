@@ -1,17 +1,14 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
 
-  <p>
-    <strong>Name:</strong>
-    <%= @project.name %>
-  </p>
-  <p><%= @project.id %>
+ <h1>    <%= @project.name.capitalize %>
+ </h1>
   <p>total hours for project <%= Work.total_hours_for_project(@project.id) %></p>
     <table>
       <h1>Hours By Day</h1>
-    <%= column_chart @chat ,remote: true %>
+    <%= column_chart @chat  %>
 
-      <h1>Chart by User</h1>
+      <h1>Users Hours For This Project</h1>
       <%= pie_chart @pie_chat %>
     </table>
 

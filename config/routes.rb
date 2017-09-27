@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   resources :works
+
   resources :time_sheets do
-	  get 'days', to: 'time_sheets#add_day'
+	  collection do
+		  post 'hours_for_day/:date', to: "time_sheets#hours_for_day", as: '_hours'
+	  end
   end
+
+  get '/current_day/:time_period',to: "time_sheets#current_day", as: :current_day
   resources :customers
   get 'invoice_row/create'
 
@@ -33,6 +38,8 @@ Rails.application.routes.draw do
 
   root to: redirect('/time_sheets')
   get 'auth/:provider/callback', to: 'ideas#create'
+
+
 
 end
 

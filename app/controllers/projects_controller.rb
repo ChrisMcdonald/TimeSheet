@@ -9,8 +9,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    @chat = Work.where(project_id: @project.id).group(:date).sum(:hour)
-	  @pie_chat = TimeSheet.select(:user_id).group(:user_id).joins(:works).where(works: {project_id: 1}).select(:hour).sum(:hour)
+    @chat =  TimeSheet.hours_by_day
+	  @pie_chat = TimeSheet.hours_by_user_by_project(@project.id)
   end
 
   # GET /projects/new
