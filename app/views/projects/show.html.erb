@@ -2,21 +2,55 @@
   <p id="notice"><%= notice %></p>
 
  <h1>    <%= @project.name.capitalize %>
- </h1>
+ </h1><%= Time.now.beginning_of_week %>
+   <p> Time sheet for week ending  <%= Time.now.end_of_week %></p>
+  <table class="outline" style="width: 100%">
+    <tr class=" grey_backgound">
+      <th>UserName</th>
+      <th>Date worked</th>
+      <th>Hours</th>
+    </tr>
+    <% @time_sheets.each do |time| %>
+        <tr>
+          <td><%= time.user.first_name %></td>
+          <td><%= time.time_period %></td>
+
+          <td>
+
+            <% time.works.each do |w| %>
+                <%= w.hour %></td>
+                <% w.hour  %>
+            <% end %></tr>
+            </tr>
+<%= time.works.sum(:hour) %>
+  <% end %>
+    <td></td><td></td><td><% %>
+
+
+
+  </td>
+
+    <tr>
+    </tr>
+  </table>
+
+
+
+
+
+
   <p>total hours for project <%= Work.total_hours_for_project(@project.id) %></p>
-    <table>
-      <h1>Hours By Day</h1>
-    <%= column_chart @chat  %>
 
-      <h1>Users Hours For This Project</h1>
-      <%= pie_chart @pie_chat %>
-    </table>
+  <h1>Hours By Day</h1>
+  <%= column_chart @chat %>
 
+  <h1>Users Hours For This Project</h1>
+  <%= pie_chart @pie_chat %>
 
 
-    <%= link_to 'Edit', edit_project_path(@project) %> |
-    <%= link_to 'Back', projects_path %>
+  <%= link_to 'Edit', edit_project_path(@project) %> |
+  <%= link_to 'Back', projects_path %>
 
 
-  </div>
+</div>
 </div>

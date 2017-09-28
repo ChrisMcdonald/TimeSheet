@@ -7,11 +7,13 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-  # GET /projects/1
-  def show
-    @chat =  TimeSheet.hours_by_day
-	  @pie_chat = TimeSheet.hours_by_user_by_project(@project.id)
-  end
+	# GET /projects/1
+	def show
+		@time_sheets = TimeSheet.time_sheets_for_week(@project.id)
+		@chat = TimeSheet.hours_by_day
+		@pie_chat = TimeSheet.hours_by_user_by_project(@project.id)
+
+	end
 
   # GET /projects/new
   def new
