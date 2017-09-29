@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
 		@time_sheets = TimeSheet.time_sheets_for_week(@project.id)
 		@chat = TimeSheet.hours_by_day
 		@pie_chat = TimeSheet.hours_by_user_by_project(@project.id)
+		@sum = sum_time_sheet(@time_sheets)
 
 	end
 
@@ -64,6 +65,17 @@ class ProjectsController < ApplicationController
 
 
   private
+  def sum_time_sheet( time_sheet)
+	  sum = 0
+	  time_sheet.each do |t|
+		  t.works.each do |w|
+			  sum +=w.hour
+		  end
+
+	  end
+	sum
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
