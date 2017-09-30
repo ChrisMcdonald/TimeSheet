@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
-
+<div class='pull-right '  >
+  <button  id="new-project" class="btn btn-primary">New Project</button>
+</div>
 <h1>Projects</h1>
 
-<NewProject id="NewProject " class="new-project">
+<div>
+<NewProject id="NewProject" class="new-project">
   <%= render 'form' %>
 </NewProject>
 
-<p class='pull-right '  >
-  <button  id="new-project" class="btn btn-primary">New Project</button>
-</p>
-
+</div>
 
 <%= will_paginate @projects %>
 <ul >

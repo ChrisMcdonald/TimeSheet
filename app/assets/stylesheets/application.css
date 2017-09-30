@@ -25,11 +25,12 @@ footer {
     margin-top: 100px;
     padding:0px;
 }
-
+table{
+    width: 100%;
+}
 table, td, th ,tr,td{
     vertical-align: center;
     border: none;
-
 }
 .grey_backgound {
     background-color: #f0f0f0;

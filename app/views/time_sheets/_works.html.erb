@@ -1,30 +1,26 @@
 <tr>
 
 
-      <td>
-        <div class="field">
-          <%= f.select(:project_id, options_for_select(Project.select_attributes,f.object.project_id)) %>
+      <td >
+        <div class="field dropdown">
+          <%= f.select(:project_id, options_for_select(Project.select_attributes,f.object.project_id),{},class: ' btn btn-default form-control') %>
         </div>
       </td>
 
 
       <td>
         <div class="field">
-          <%= f.number_field :hour %>
+          <%= f.number_field :hour,min: 0,class: 'form-control' %>
         </div>
       </td>
 
       <td>
         <div class="field">
-          <%= f.text_area :description %>
+          <%= f.text_area :description, cols: "60", rows: "1" ,class: 'form-control'%>
         </div>
       </td>
 
-      <td>
-        <div class="field">
-          <input type="text" value="">
-        </div>
-      </td>
+
        <td>
         <div class="field">
           <%= f.hidden_field :_destroy %>

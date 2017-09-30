@@ -20,7 +20,6 @@
 /config/database.yml
 
 /tmp/
-/test/
 /log/
 .idea/dataSources.local.xml
 .idea/dataSources/661d8eb7-8e3b-48b3-beba-7ae6d32f2673/_src_/
@@ -33,7 +32,17 @@ app/views/omniauth_callbacks/
 public/uploads/tmp/
 
 .idea/dataSources/661d8eb7-8e3b-48b3-beba-7ae6d32f2673/_metadata_/metadata.values.at
-db/migrate/20170210081929_add_colums_to_user.rb
 
 # Ignore application configuration
 /config/application.yml
+.idea/dataSources/96072602-8808-4585-9e5c-96dc008e10fb/_src_/
+.idea/dataSources/96072602-8808-4585-9e5c-96dc008e10fb/_staging_/
+.idea/dataSources/b52cd25d-d5f9-447b-b9a4-c80c45ea1e80/_src_/
+.idea/dataSources/b52cd25d-d5f9-447b-b9a4-c80c45ea1e80/_staging_/
+.idea/dataSources/e44c21f2-c444-4568-915a-3b93a71617c2/_src_/
+.idea/dataSources/e44c21f2-c444-4568-915a-3b93a71617c2/_staging_/
+.idea/dataSources/fdbd4d28-c914-4cb9-87f5-38766079ffeb/_staging_/
+app/images/
+app/views/simple_calendar/
+config/environments/
+db/migrate/20170927063746_remove_works_from_time_sheets.rb

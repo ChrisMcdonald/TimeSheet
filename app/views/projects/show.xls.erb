@@ -1,0 +1,27 @@
+<table class="outline" style="width: 100%">
+  <tr class=" grey_backgound">
+    <th>UserName</th>
+    <th>Date worked</th>
+    <th>Hours</th>
+  </tr>
+  <% @time_sheets.each do |time| %>
+      <tr>
+        <td><%= time.user.full_name %></td>
+        <td><%= time.time_period %></td>
+
+        <td>
+
+          <% time.works.each do |w| %>
+              <%= w.hour %></td>
+              <% w.hour %>
+          <% end %></tr>
+      </tr>
+
+  <% end %>
+  <td></td>
+  <td></td>
+  <td>total <%= 	 @project.sum_time_sheet(@time_sheets)  %>  </td>
+
+  <tr>
+  </tr>
+</table>

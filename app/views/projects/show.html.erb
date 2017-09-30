@@ -1,47 +1,27 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
 
- <h1>    <%= @project.name.capitalize %>
- </h1><%= Time.now.beginning_of_week %>
-   <p> Time sheet for week ending  <%= Time.now.end_of_week %></p>
-  <table class="outline" style="width: 100%">
-    <tr class=" grey_backgound">
-      <th>UserName</th>
-      <th>Date worked</th>
-      <th>Hours</th>
-    </tr>
-    <% @time_sheets.each do |time| %>
-        <tr>
-          <td><%= time.user.first_name %></td>
-          <td><%= time.time_period %></td>
+  <h1>    <%= @project.name.capitalize %>
+  </h1><%= Time.now.beginning_of_week %>
 
-          <td>
+  <p> Time sheet for week ending  <%= Time.now.end_of_week %></p>
+  <div id="target-for-change" class="target-for-change"></div>
 
-            <% time.works.each do |w| %>
-                <%= w.hour %></td>
-                <% w.hour  %>
-            <% end %></tr>
-            </tr>
+<p>total hours for project <%= Work.total_hours_for_project(@project.id) %></p>
 
-  <% end %>
-    <td></td><td></td><td>total <%= @sum %>  </td>
+  <%= link_to "CSV", project_path(@project, format: "csv") %>
+  <%= link_to "Excel", project_path(@project, format: "xls") %>
 
-    <tr>
-    </tr>
-  </table>
+  <div id="">
+    <%= render 'shared/time_sheets_for_week' %>
+  </div>
 
-
-
-
-
-
-  <p>total hours for project <%= Work.total_hours_for_project(@project.id) %></p>
 
   <h1>Hours By Day</h1>
-  <%= column_chart @chat %>
+  <%= column_chart hours_by_day_projects_path(@project) %>
 
   <h1>Users Hours For This Project</h1>
-  <%= pie_chart @pie_chat %>
+  <%= pie_chart hours_by_user_projects_path(@project) %>
 
 
   <%= link_to 'Edit', edit_project_path(@project) %> |

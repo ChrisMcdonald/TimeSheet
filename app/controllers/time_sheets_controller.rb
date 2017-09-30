@@ -29,7 +29,7 @@ class TimeSheetsController < ApplicationController
 		  @time_sheet.user = current_user
 		  @time_sheet.save!
 	  end
-	 redirect_to time_sheet_path(@time_sheet)
+	 redirect_to edit_time_sheet_path(@time_sheet)
   end
 
   # GET /time_sheets/new

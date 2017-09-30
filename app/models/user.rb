@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :identities
   has_many :invoices
-
+	validates_presence_of :email
 
   def self.from_omniauth(auth, current_user)
 
@@ -41,7 +41,9 @@ class User < ApplicationRecord
       end
 
 
-
+	def full_name
+		self.first_name + " "+ self.last_name
+	end
 
 
   # def fetch_details(auth)

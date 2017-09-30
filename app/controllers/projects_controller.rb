@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy,:hours_by_day,:hours_by_user,:time_sheets_for_week]
   before_filter :authenticate_user!
 
   def index
@@ -9,10 +9,13 @@ class ProjectsController < ApplicationController
 
 	# GET /projects/1
 	def show
-		@time_sheets = TimeSheet.time_sheets_for_week(@project.id)
-		@chat = TimeSheet.hours_by_day
-		@pie_chat = TimeSheet.hours_by_user_by_project(@project.id)
-		@sum = sum_time_sheet(@time_sheets)
+		# @chat = @project.hours_by_day
+		@time_sheets = @project.time_sheets_for_week
+		respond_to do |format|
+			format.html
+			format.csv {send_data @time_sheets.to_csv}
+			format.xls # {send_data @time_sheets.to_csv(col_sep: "\t")}
+		end
 
 	end
 
@@ -60,21 +63,22 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def hours_by_day
+	  render json: @project.hours_by_day
+  end
+  def hours_by_user
+	  render json: @project.hours_by_user_by_project
+  end
+
+  def time_sheets_for_week
 
 
+  end
 
 
   private
-  def sum_time_sheet( time_sheet)
-	  sum = 0
-	  time_sheet.each do |t|
-		  t.works.each do |w|
-			  sum +=w.hour
-		  end
 
-	  end
-	sum
-  end
+
 
     # Use callbacks to share common setup or constraints between actions.
     def set_project

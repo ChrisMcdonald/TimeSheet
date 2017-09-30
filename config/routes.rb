@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :projects do
+    get 'time_sheet_for_week/show'
+  end
+
   resources :works
 
   resources :time_sheets do
@@ -15,6 +19,10 @@ Rails.application.routes.draw do
   resources :projects do
 	  collection do
 		  get :all_work_for_project
+		  get '/hours_by_day/:id' , to: 'projects#hours_by_day', as: :hours_by_day
+		  get '/hours_by_user_by/:id' ,  to: 'projects#hours_by_user', as: :hours_by_user
+		  get '/:id/time_sheets_for_week(.:format)', to: 'projects#time_sheets_for_week', as: :time_sheets_for_week
+		  # resources :time_sheets_for_week
 	  end
   end
 

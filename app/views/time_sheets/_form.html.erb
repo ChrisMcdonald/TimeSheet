@@ -17,14 +17,16 @@
 
     <div class="actions">
       <%= f.submit "Save", class: 'btn btn-default' %>
-
+      <div  class= 'btn btn-default'>
+      <%= link_to_add_fields "Add field", f, :works%>
     </div>
-    <table class="outline add_fields">
-      <tr style="background-color: #f0f0f0;">
+    </div>
+    <div class="table-responsive">
+    <table class="outline table table-striped table-hover">
+      <tr style="background-color: #f0f0f0;" id="hours">
         <th>Project</th>
         <th>Hours</th>
         <th>Description</th>
-        <th>SubTotal</th>
         <th> </th>
         <th> </th>
       </tr>
@@ -34,14 +36,13 @@
       <%= render 'works', f: builder %>
 
 
-          </tr><tr>
 
       <% end %>
-      <%= link_to_add_fields "Add field", f, :works%>
 
-      <tr><td></td><td></td><td></td><td></td><td>total <br> <input type="text"></td></tr>
+
       </tr>
-    </table>
+    </table >
+    </div>
 
 <% end %>
 <%= @time_sheet.id %>
