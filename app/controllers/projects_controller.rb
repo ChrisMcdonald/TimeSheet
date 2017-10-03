@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy,:hours_by_day,:hours_by_user,:time_sheets_for_week]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     @projects = Project.all.paginate(:page => params[:page], :per_page => 10).reverse_order
@@ -10,11 +10,16 @@ class ProjectsController < ApplicationController
 	# GET /projects/1
 	def show
 		# @chat = @project.hours_by_day
-		@time_sheets = @project.time_sheets_for_week
+		if params[:start_date] && params[:end_date]
+			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
+		else
+			@time =@project.all_time_sheets
+		end
 		respond_to do |format|
 			format.html
-			format.csv {send_data @time_sheets.to_csv}
+			format.csv {send_data @time.to_csv}
 			format.xls # {send_data @time_sheets.to_csv(col_sep: "\t")}
+			format.js
 		end
 
 	end
@@ -56,7 +61,6 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1
   def destroy
-    authorize @project
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
@@ -68,11 +72,6 @@ class ProjectsController < ApplicationController
   end
   def hours_by_user
 	  render json: @project.hours_by_user_by_project
-  end
-
-  def time_sheets_for_week
-
-
   end
 
 
@@ -87,13 +86,13 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name)
+      params.require(:project).permit(:name,:start_date, :end_date)
 	end
 
-  def user_not_authorized(exception)
-	  policy_name = exception.policy.class.to_s.underscore
-
-	  flash[:error] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
-	  redirect_to(request.referrer || root_path)
-  end
+  # def user_not_authorized(exception)
+	#   policy_name = exception.policy.class.to_s.underscore
+  #
+	#   flash[:error] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+	#   redirect_to(request.referrer || root_path)
+  # end
 end

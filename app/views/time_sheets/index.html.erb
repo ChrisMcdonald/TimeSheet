@@ -4,10 +4,13 @@
 
 
 <%=week_calendar number_of_weeks: 2 do |date| %>
-    <%= date %>
-    <%= link_to 'TimeSheet', current_day_path(date) %>
+
+
+    <%= date.strftime("%d %a %b ") %>
     <%= hidden_field :date, params[:date],  :id => 'curren_date'  %>
-<div id="hours" class="hours"></div>
+    <div id="hours" class="hours"></div>
+
+
 <% end %>
 
 

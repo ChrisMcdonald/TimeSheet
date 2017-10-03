@@ -4,22 +4,17 @@
     <th>Date worked</th>
     <th>Hours</th>
   </tr>
-  <% @time_sheets.each do |time| %>
+  <% @time.each do |time| %>
       <tr>
         <td><%= time.user.full_name %></td>
         <td><%= time.time_period %></td>
-
-        <td>
-
-          <% time.works.each do |w| %>
-              <%= w.hour %>
-          <% end %></td></tr>
+        <td><%= time.hour %></td>
       </tr>
 
   <% end %>
   <td></td>
   <td></td>
-  <td>total <%= 	 @project.sum_time_sheet(@time_sheets)  %>  </td>
+  <td>total <%= 	 @project.sum_time_sheet(@time)  %>  </td>
 
   <tr>
   </tr>

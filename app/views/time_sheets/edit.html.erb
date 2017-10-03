@@ -1,4 +1,4 @@
-
+<h1>  <%= @time_sheet.user.first_name %>&nbsp<%= @time_sheet.user.last_name %>   <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h1>
 <%= render 'form', time_sheet: @time_sheet %>
 
 <%= link_to 'Show', @time_sheet %> |

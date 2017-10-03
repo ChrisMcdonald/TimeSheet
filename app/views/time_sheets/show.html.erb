@@ -1,17 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Time period:</strong>
-  <%= @time_sheet.time_period %>
+  <h1>Time Sheet for  <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h1>
 </p>
-<h1><%= @time_sheet.id %></h1>
 <p>
   <strong>User:</strong>
-  <%= @time_sheet.user.first_name %>
+  <%= @time_sheet.user.full_name %>
 </p>
 <table class="outline" style="width: 100%">
   <tr class="grey_backgound">
-    <th>id</th>
     <th>description</th>
     <th>hours</th>
     <th>project</th>
@@ -19,7 +16,6 @@
   </tr>
   <% @time_sheet.works.each do |w| %>
   <tr>
-    <td><%= w.id %></td>
     <td><%= w.description %></td>
     <td><%= w.hour %></td>
     <td><%= w.project_id %></td>

@@ -1,5 +1,6 @@
 class InvoiceRowsController < ApplicationController
   before_action :set_invoice_row, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /invoice_rows
   # GET /invoice_rows.json

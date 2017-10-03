@@ -8,7 +8,7 @@
       <th> Number Of Hours</th>
     </tr>
   end of fortnight<%= @invoice.endOfFortnight %>
-  username<%= @invoice.user.username %>
+  username<%= @invoice.user.full_name %>
 
   <% @invoice.invoice_rows.each do |i| %>
 

@@ -13,10 +13,11 @@ Rails.application.routes.draw do
 
   get '/current_day/:time_period',to: "time_sheets#current_day", as: :current_day
   resources :customers
-  get 'invoice_row/create'
+  resources :invoice_rows
 
   get 'invoice_row/new'
   resources :projects do
+
 	  collection do
 		  get :all_work_for_project
 		  get '/hours_by_day/:id' , to: 'projects#hours_by_day', as: :hours_by_day

@@ -1,4 +1,4 @@
-W, [2017-09-29T17:38:34.539750 #2107]  WARN -- : You are setting a key that conflicts with a built-in method OmniAuth::AuthHash::InfoHash#name defined at /home/chris/.rbenv/versions/2.2.5/lib/ruby/gems/2.2.0/gems/omniauth-1.3.2/lib/omniauth/auth_hash.rb:34. This can cause unexpected behavior when accessing the key via as a property. You can still access the key via the #[] method.
+W, [2017-10-03T17:42:28.958210 #24612]  WARN -- : You are setting a key that conflicts with a built-in method OmniAuth::AuthHash::InfoHash#name defined at /home/chris/.rbenv/versions/2.2.5/lib/ruby/gems/2.2.0/gems/omniauth-1.3.2/lib/omniauth/auth_hash.rb:34. This can cause unexpected behavior when accessing the key via as a property. You can still access the key via the #[] method.
                            Prefix Verb     URI Pattern                                           Controller#Action
 projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:format)          projects/time_sheet_for_week#show
                             works GET      /works(.:format)                                      works#index
@@ -27,12 +27,19 @@ projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:
                                   PATCH    /customers/:id(.:format)                              customers#update
                                   PUT      /customers/:id(.:format)                              customers#update
                                   DELETE   /customers/:id(.:format)                              customers#destroy
-               invoice_row_create GET      /invoice_row/create(.:format)                         invoice_row#create
+                     invoice_rows GET      /invoice_rows(.:format)                               invoice_rows#index
+                                  POST     /invoice_rows(.:format)                               invoice_rows#create
+                  new_invoice_row GET      /invoice_rows/new(.:format)                           invoice_rows#new
+                 edit_invoice_row GET      /invoice_rows/:id/edit(.:format)                      invoice_rows#edit
+                      invoice_row GET      /invoice_rows/:id(.:format)                           invoice_rows#show
+                                  PATCH    /invoice_rows/:id(.:format)                           invoice_rows#update
+                                  PUT      /invoice_rows/:id(.:format)                           invoice_rows#update
+                                  DELETE   /invoice_rows/:id(.:format)                           invoice_rows#destroy
                   invoice_row_new GET      /invoice_row/new(.:format)                            invoice_row#new
     all_work_for_project_projects GET      /projects/all_work_for_project(.:format)              projects#all_work_for_project
             hours_by_day_projects GET      /projects/hours_by_day/:id(.:format)                  projects#hours_by_day
            hours_by_user_projects GET      /projects/hours_by_user_by/:id(.:format)              projects#hours_by_user
-                                  GET      /projects/:id/time_sheets_for_week(.:format)          projects#time_sheets_for_week
+    time_sheets_for_week_projects GET      /projects/:id/time_sheets_for_week(.:format)          projects#time_sheets_for_week
                          projects GET      /projects(.:format)                                   projects#index
                                   POST     /projects(.:format)                                   projects#create
                       new_project GET      /projects/new(.:format)                               projects#new
@@ -41,7 +48,7 @@ projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:
                                   PATCH    /projects/:id(.:format)                               projects#update
                                   PUT      /projects/:id(.:format)                               projects#update
                                   DELETE   /projects/:id(.:format)                               projects#destroy
-                                           /cable                                                #<ActionCable::Server::Base:0x0055c8310515a0 @mutex=#<Monitor:0x0055c8310514b0 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Mutex:0x0055c831051348>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
+                                           /cable                                                #<ActionCable::Server::Base:0x005607d9b37068 @mutex=#<Monitor:0x005607d9b37018 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Mutex:0x005607d9b36f28>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
                        identities GET      /identities(.:format)                                 identities#index
                                   POST     /identities(.:format)                                 identities#create
                      new_identity GET      /identities/new(.:format)                             identities#new
@@ -58,11 +65,11 @@ projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:
                                   PATCH    /projects/:id(.:format)                               projects#update
                                   PUT      /projects/:id(.:format)                               projects#update
                                   DELETE   /projects/:id(.:format)                               projects#destroy
-                     invoice_rows GET      /invoice_rows(.:format)                               invoice_rows#index
+                                  GET      /invoice_rows(.:format)                               invoice_rows#index
                                   POST     /invoice_rows(.:format)                               invoice_rows#create
-                  new_invoice_row GET      /invoice_rows/new(.:format)                           invoice_rows#new
-                 edit_invoice_row GET      /invoice_rows/:id/edit(.:format)                      invoice_rows#edit
-                      invoice_row GET      /invoice_rows/:id(.:format)                           invoice_rows#show
+                                  GET      /invoice_rows/new(.:format)                           invoice_rows#new
+                                  GET      /invoice_rows/:id/edit(.:format)                      invoice_rows#edit
+                                  GET      /invoice_rows/:id(.:format)                           invoice_rows#show
                                   PATCH    /invoice_rows/:id(.:format)                           invoice_rows#update
                                   PUT      /invoice_rows/:id(.:format)                           invoice_rows#update
                                   DELETE   /invoice_rows/:id(.:format)                           invoice_rows#destroy

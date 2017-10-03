@@ -14,8 +14,7 @@
   <tbody>
     <% @invoice_rows.each do |invoice_row| %>
       <tr>
-        <td><%= invoice_row.new %></td>
-        <td><%= invoice_row.create %></td>
+
         <td><%= link_to 'Show', invoice_row %></td>
         <td><%= link_to 'Edit', edit_invoice_row_path(invoice_row) %></td>
         <td><%= link_to 'Destroy', invoice_row, method: :delete, data: { confirm: 'Are you sure?' } %></td>

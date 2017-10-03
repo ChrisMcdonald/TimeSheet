@@ -1,6 +1,6 @@
 class TimeSheetsController < ApplicationController
   before_action :set_time_sheet, only: [ :show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_calender, only: :index
   # GET /time_sheets
   # GET /time_sheets.json

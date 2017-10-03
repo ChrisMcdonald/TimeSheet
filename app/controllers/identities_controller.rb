@@ -1,6 +1,7 @@
 class IdentitiesController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_identity, only: [:index, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /identities
   # GET /identities.json
@@ -17,7 +18,7 @@ class IdentitiesController < ApplicationController
 
   # GET /identities/new
   def new
-    user = User.from_omniauth(request.env["omniauth.auth"] ,current_user)
+    @user = User.from_omniauth(request.env["omniauth.auth"] ,current_user)
   end
 
   # GET /identities/1/edit
@@ -62,7 +63,7 @@ class IdentitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_identity
-      @identity = Identity.find_by(user_id: current_user.id)
+      @identity = Identity.find_by(user_id: current_user)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

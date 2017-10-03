@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :identities
-  has_many :invoices
+  has_many :identities, dependent: :destroy
+  has_many :invoices, dependent: :destroy
 	validates_presence_of :email
 
   def self.from_omniauth(auth, current_user)
