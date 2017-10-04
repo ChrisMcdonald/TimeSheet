@@ -12,13 +12,13 @@
  *
  *= require_tree .
  *= require_self
- *= require simple_calendar
  */
 
 
 body, html, .container-fluid, .sidebar, .body {
     height: 100%;
     min-height: 100%;
+
 }
 
 footer {
@@ -59,4 +59,10 @@ th {
 .navbar{
     margin-bottom: 0px !important;
     position: absolute;
+}
+.has-time-sheet {
+    background:  url('redcross.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
 }

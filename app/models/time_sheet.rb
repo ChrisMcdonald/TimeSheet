@@ -14,4 +14,8 @@ class TimeSheet < ApplicationRecord
 	  end
   end
 
+	def self.has_time_sheet(day)
+		Work.joins(:time_sheet).where('time_sheets.time_period = ?',day).exists?
+	end
+
 end

@@ -72,6 +72,7 @@ group :test do
 	gem 'faker'
 	gem 'sqlite3'
 	gem 'rspec'
+	gem 'simplecov'
 
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

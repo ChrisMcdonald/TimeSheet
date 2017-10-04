@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
 		if params[:start_date] && params[:end_date]
 			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
 		else
-			@time =@project.all_time_sheets
+			@time = @project.all_time_sheets
 		end
 		respond_to do |format|
 			format.html

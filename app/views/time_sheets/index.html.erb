@@ -2,15 +2,13 @@
 
 <h1>Time Sheets</h1>
 
+<%=month_calendar  do |date| %>
 
-<%=week_calendar number_of_weeks: 2 do |date| %>
+ <%= date.strftime("%d %a %b ") %>
+    <% if TimeSheet.has_time_sheet(date) %>
+        <div class="has-time-sheet">
 
-
-    <%= date.strftime("%d %a %b ") %>
-    <%= hidden_field :date, params[:date],  :id => 'curren_date'  %>
-    <div id="hours" class="hours"></div>
-
-
+        </div>
 <% end %>
 
-
+<%end %>

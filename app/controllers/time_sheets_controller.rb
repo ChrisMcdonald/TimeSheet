@@ -54,8 +54,8 @@ class TimeSheetsController < ApplicationController
 
 	respond_to do |format|
       if @time_sheet.save
-        format.html { redirect_to edit_time_sheet_path @time_sheet, notice: 'Time sheet was successfully created.' }
-        format.json { render :edit, status: :created, location: @time_sheet }
+        format.html { redirect_to time_sheets_path @time_sheet, notice: 'Time sheet was successfully created.' }
+        format.json { render :index, status: :created, location: @time_sheet }
 	  	format.js
       else
         format.html { render :new }
@@ -69,8 +69,8 @@ class TimeSheetsController < ApplicationController
   def update
     respond_to do |format|
       if @time_sheet.update(time_sheet_params)
-       format.html { redirect_to edit_time_sheet_path @time_sheet, notice: 'Time sheet was successfully updated.' }
-        format.json { render :edit, status: :ok, location: @time_sheet }
+       format.html { redirect_to time_sheets_path @time_sheet, notice: 'Time sheet was successfully updated.' }
+        format.json { render :show, status: :ok, location: @time_sheet }
       else
         format.html { render :edit }
         format.json { render json: @time_sheet.errors, status: :unprocessable_entity }
@@ -99,6 +99,8 @@ class TimeSheetsController < ApplicationController
 
   	def set_calender
 		config.beginning_of_week = :monday
+		Time.zone = "Australia/Brisbane"
+
 	end
 
     def set_time_sheet
