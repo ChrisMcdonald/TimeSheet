@@ -16,7 +16,7 @@
   <p>total hours for project <%= Work.total_hours_for_project(@project.id) %></p>
   <%= submit_tag( 'CSV', :value => 'csv', :name => 'format', :class =>"btn btn-default" ) %>
   <%= submit_tag( 'Excel', :value => 'xls', :name => 'format', class: "btn btn-default" ) %>
-  <% end %>
+
 
   <div id="">
     <%= render 'shared/time_sheets_for_week' %>
@@ -24,7 +24,7 @@
 
 
   <h1>Hours By Day</h1>
-  <%= column_chart hours_by_day_projects_path(@project) %>
+  <%= column_chart @column_chart %>
 
   <h1>Users Hours For This Project</h1>
   <%= pie_chart hours_by_user_projects_path(@project) %>
@@ -33,6 +33,6 @@
   <%= link_to 'Edit', edit_project_path(@project) %> |
   <%= link_to 'Back', projects_path %>
 
-
+  <% end %>
 </div>
 </div>

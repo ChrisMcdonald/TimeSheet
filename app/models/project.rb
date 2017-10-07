@@ -11,11 +11,12 @@ class Project < ApplicationRecord
 			end
 		end
 	end
+
 	def self.select_attributes
 		result = Array.new
-		Project.all.select(:id,:name).each do |p|
+		Project.all.select(:id, :name).each do |p|
 
-			result.append([p.name,p.id])
+			result.append([p.name, p.id])
 		end
 		result
 	end
@@ -23,11 +24,11 @@ class Project < ApplicationRecord
 
 	def time_sheets_for_week(start_time, end_time)
 		TimeSheet.where(time_period: start_time..end_time)
-			.joins(:works).select('works.hour', :user_id,:time_period, :id)
+			.joins(:works).select('works.hour', :user_id, :time_period, :id)
 			.where('works.project_id = ?', self.id)
 	end
 
-	def sum_time_sheet( time_sheet)
+	def sum_time_sheet(time_sheet)
 		time_sheet.sum(:hour)
 	end
 
@@ -36,12 +37,17 @@ class Project < ApplicationRecord
 		TimeSheet.select(:id, :user_id).group(:user_id).joins(:works).where(works: {project_id: self.id}).select(:hour).sum(:hour)
 	end
 
-	def hours_by_day
-		 TimeSheet.joins(:works).group(:time_period).where('works.project_id = ?', self.id).sum(:hour)
+	def hours_by_date_range(start_time, end_time)
+		TimeSheet.where(time_period: start_time..end_time).joins(:works).group(:time_period).where('works.project_id = ?', self.id).sum(:hour)
 	end
 
+	def hours_by_day
+		TimeSheet.joins(:works).group(:time_period).where('works.project_id = ?', self.id).sum(:hour)
+	end
+
+
 	def all_time_sheets
-		TimeSheet.joins(:works).select('works.hour', :id, :user_id,:time_period)
+		TimeSheet.joins(:works).select('works.hour', :id, :user_id, :time_period)
 			.where('works.project_id = ?', self.id)
 	end
 

@@ -13,6 +13,7 @@ module Devise3
     # -- all .rb files in that directory are automatically loaded.
 
 	  config.assets.paths << Rails.root.join('images')
+	  config.beginning_of_week = :sunday
 
 
 	  class UnauthorizedActionException < StandardError

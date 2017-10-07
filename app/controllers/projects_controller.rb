@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy,:hours_by_day,:hours_by_user,:time_sheets_for_week]
+  before_action :set_project, only: [:show, :edit, :update, :destroy,:hours_by_day, :hours_by_date_range,:hours_by_user,:time_sheets_for_week]
   before_action :authenticate_user!
 
   def index
@@ -12,8 +12,11 @@ class ProjectsController < ApplicationController
 		# @chat = @project.hours_by_day
 		if !params[:start_date].blank? && !params[:end_date].blank?
 			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
+			@column_chart =  @project.hours_by_date_range(params[:start_date], params[:end_date])
 		else
 			@time = @project.all_time_sheets
+			@column_chart =  @project.hours_by_day
+
 		end
 		respond_to do |format|
 			format.html
@@ -68,8 +71,13 @@ class ProjectsController < ApplicationController
   end
 
   def hours_by_day
-	  render json: @project.hours_by_day
+	  if params[:start_date].blank? && params[:end_date]
+		render json: @project.hours_by_date_range(params[:start_date], params[:end_date])
+	  else
+		render json: @project.hours_by_day
+	  end
   end
+
   def hours_by_user
 	  render json: @project.hours_by_user_by_project
   end

@@ -12,7 +12,6 @@ class TimeSheetsController < ApplicationController
   add_breadcrumb "my", :time_sheets_path
     @time_sheets = TimeSheet.where(user: current_user)
 	@user = current_user
-
   end
 
 
@@ -98,7 +97,7 @@ class TimeSheetsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
   	def set_calender
-		config.beginning_of_week = :monday
+		config.beginning_of_week = :sunday
 		Time.zone = "Australia/Brisbane"
 
 	end
