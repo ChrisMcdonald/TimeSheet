@@ -15,6 +15,7 @@ module Devise3
 	  config.assets.paths << Rails.root.join('images')
 	  config.beginning_of_week = :sunday
 
+	  config.time_zone = "Australia/Brisbane"
 
 	  class UnauthorizedActionException < StandardError
 		  attr :message
