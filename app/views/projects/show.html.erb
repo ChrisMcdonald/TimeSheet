@@ -10,13 +10,13 @@
   <%= form_tag project_path(@project),method: :get  do %>
     <%= date_field_tag :start_date, params[:start_date] %>
       <%= date_field_tag :end_date, params[:end_date] %>
-      <%= submit_tag "search" %>
-      <% end %>
+      <%= submit_tag "search" , class: "btn btn-default" %>
+
 
   <p>total hours for project <%= Work.total_hours_for_project(@project.id) %></p>
-
-  <%= link_to "CSV", project_path(@project, format: "csv") %>
-  <%= link_to "Excel", project_path(@project, format: "xls") %>
+  <%= submit_tag( 'CSV', :value => 'csv', :name => 'format', :class =>"btn btn-default" ) %>
+  <%= submit_tag( 'Excel', :value => 'xls', :name => 'format', class: "btn btn-default" ) %>
+  <% end %>
 
   <div id="">
     <%= render 'shared/time_sheets_for_week' %>

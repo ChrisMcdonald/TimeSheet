@@ -42,7 +42,19 @@ class User < ApplicationRecord
 
 
 	def full_name
-		self.first_name + " "+ self.last_name
+
+		if self.first_name
+			first = self.first_name
+		else
+			first = 'No First Name'
+		end
+
+		if self.last_name
+			last = self.last_name
+		else
+			last = 'No Last Name'
+		end
+		first + " "+ last
 	end
 
 

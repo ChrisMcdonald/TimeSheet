@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 	# GET /projects/1
 	def show
 		# @chat = @project.hours_by_day
-		if params[:start_date] && params[:end_date]
+		if !params[:start_date].blank? && !params[:end_date].blank?
 			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
 		else
 			@time = @project.all_time_sheets
