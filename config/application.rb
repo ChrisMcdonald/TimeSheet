@@ -16,6 +16,7 @@ module Devise3
 	  config.beginning_of_week = :sunday
 
 	  config.time_zone = "Australia/Brisbane"
+	  config.assets.paths << "#{Rails}/vendor/assets/fonts"
 
 	  class UnauthorizedActionException < StandardError
 		  attr :message

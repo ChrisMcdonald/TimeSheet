@@ -54,9 +54,13 @@ class User < ApplicationRecord
 		else
 			last = 'No Last Name'
 		end
-		first + " "+ last
+		first.humanize  + " "+ last.humanize
 	end
+  def address
 
+	  address = "#{self.street_no.humanize }   #{self.street}<br>#{self.city.humanize }  #{self.state.humanize }  <br>	#{self.country.humanize } #{self.post_code.humanize  }".html_safe
+
+  end
 
   # def fetch_details(auth)
   #   self.email = auth.info.email

@@ -17,6 +17,8 @@
 //= require cable
 //= require chartkick
 //= require Chart.bundle
+//= require bootstrap-sprockets
+
 
 //
 // $(document).ready( function() {

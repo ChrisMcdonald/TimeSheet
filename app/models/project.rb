@@ -2,6 +2,7 @@ class Project < ApplicationRecord
 	# has_many :invoices belongs_to :time_sheet
 	attr_accessor :start_date, :end_date
 	has_many :works, dependent: :destroy
+	belongs_to :customer
 
 	def self.to_csv(options={})
 		CSV.generate(options) do |csv|

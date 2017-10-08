@@ -16,6 +16,11 @@
     <%= f.text_field :name %>
   </div>
 
+    <div class="field">
+    <%= f.label :customer %>
+    <%= f.select(:customer_id,  Customer.all.collect {|c| [c.full_name, c.id ]}) %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -19,6 +19,12 @@ gem 'groupdate'
 gem "chartkick"
 gem 'active_median'
 gem "simple_calendar"
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'autoprefixer-rails'
+
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

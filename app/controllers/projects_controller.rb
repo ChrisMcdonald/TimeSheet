@@ -22,6 +22,9 @@ class ProjectsController < ApplicationController
 			format.html
 			format.csv {send_data @time.to_csv}
 			format.xls # {send_data @time_sheets.to_csv(col_sep: "\t")}
+			format.pdf do
+				render pdf: "Invoice" , header: { right: '[page] of [topage]' }
+			end
 			format.js
 		end
 
@@ -94,7 +97,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name,:start_date, :end_date)
+      params.require(:project).permit(:name,:start_date, :end_date,:customer_id)
 	end
 
   # def user_not_authorized(exception)
