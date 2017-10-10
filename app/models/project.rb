@@ -3,6 +3,7 @@ class Project < ApplicationRecord
 	attr_accessor :start_date, :end_date
 	has_many :works, dependent: :destroy
 	belongs_to :customer
+	belongs_to :user
 
 	def self.to_csv(options={})
 		CSV.generate(options) do |csv|
@@ -53,18 +54,15 @@ class Project < ApplicationRecord
 	end
 
 	def info_for_invoice
-		time = TimeSheet.joins(:works).select(:id, )
+		time = TimeSheet.joins(:works).select(:id )
 			.where('works.project_id = ?', self.id)
-		@time.each do |t|
-			work = Work.find_by(time_sheet_id: t.id)
-			puts t.id
-			ap work
-			ap work.project
-		end
 	end
 
 	def info_for_invoice_range(start_time, end_time)
-		TimeSheet.where(time_period: start_time..end_time).joins(:works).group(:time_period).where('works.project_id = ?', self.id).sum(:hour)
+		TimeSheet.where(time_period: start_time..end_time)
+			.joins(:works).group(:time_period)
+			.where('works.project_id = ?', self.id)
+			.sum(:hour)
 	end
 
 

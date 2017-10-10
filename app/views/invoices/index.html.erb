@@ -1,14 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Invoices</h1>
-<div class="new-invoice container-fluid" id="NewInvoice" class="new-invoice">
-  <%= render 'form' %>
-</div>
 
 
-<div class="pull-right">
-  <button id="new-invoice" class="btn btn-primary">New Invoice</button>
-</div>
 <%= will_paginate @invoices %>
 <ul>
   <%= render @invoices %>

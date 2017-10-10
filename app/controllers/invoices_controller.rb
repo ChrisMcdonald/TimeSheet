@@ -4,10 +4,7 @@ class InvoicesController < ApplicationController
 	# GET /invoices
 	# GET /invoices.json
 	def index
-		@invoices = Invoice.where("user_id = '?'", current_user.id).paginate(:page => params[:page], :per_page => 10).reverse_order
-		@invoice = Invoice.new
-		@customer = Customer.first
-		@user = current_user
+		@invoices = Invoice.all.paginate(:page => params[:page], :per_page => 10).reverse_order #where("user_id = '?'", current_user.id).paginate(:page => params[:page], :per_page => 10).reverse_order
 	end
 
 	# GET /invoices/1

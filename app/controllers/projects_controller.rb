@@ -15,17 +15,10 @@ class ProjectsController < ApplicationController
 				@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
 			else
 				@time = @project.info_for_invoice
-				 @time.each do |t|
-					 work = Work.find_by(time_sheet_id: t.id)
-					 puts t.id
-					 ap work
-					 ap work.project
-
-				 end
-
+				Invoice.save_invoice(@time)
 			end
-
 		end
+
 		if !params[:start_date].blank? && !params[:end_date].blank? && !params[:save] =='true'
 			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
 			@column_chart =  @project.hours_by_date_range(params[:start_date], params[:end_date])
@@ -58,7 +51,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
-    # @project.user = current_user
+    @project.user = current_user
     respond_to do |format|
       if @project.save
         format.html { redirect_to project_path(@project), notice: 'Project was successfully created.' }
