@@ -1,0 +1,8 @@
+$('.user-list').prepend('<%=j render  @user.full_name %>');
+$("#show-form").trigger('reset');
+$(".message-form").slideUp();
+
+
+$('.user-list').prepend('<%=j render  @user %>');
+$("#form ").trigger('reset');
+$(".new-project").slideUp();

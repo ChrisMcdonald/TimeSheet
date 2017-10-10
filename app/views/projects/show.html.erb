@@ -3,14 +3,18 @@
 
   <h1>    <%= @project.name.capitalize %></h1>
   <h2>Total hours for project <%= Work.total_hours_for_project(@project.id) %></h2>
+
   <%= form_tag project_path(@project), method: :get do %>
       <div class="row padding_bottom">
-        <div class="col-xs-2">
-          <%= submit_tag('CSV', :value => 'csv', :name => 'format', :class => "btn btn-default") %>
-          <%= submit_tag('Excel', :value => 'xls', :name => 'format', class: "btn btn-default") %>
-          <%= submit_tag('Invoice', :value => 'pdf', :name => 'format', class: "btn btn-default") %>
+        <div class="col-xs-4">
+         <button formaction=" <%= project_path(@project, format: 'csv')%>" ,type="submit", class= "btn btn-default">Csv</button>
+         <button formaction=" <%= project_path(@project, format: 'xls')%>" ,type="submit", class= "btn btn-default">Excel</button>
+         <button formaction=" <%= project_path(@project, format: 'pdf')%>" ,type="submit", class= "btn btn-default">View Invoice</button>
+         <%=link_to 'Save Invoice', project_path(@project, save:'true' , start_date: params[:start_date], end_date: params[:end_date]),class: "btn btn-default"%>
 
         </div>
+
+
         <div class="col-xs-2">
           <%= date_field_tag :start_date, params[:start_date], class: "form-control" %>
         </div>
@@ -21,7 +25,7 @@
           <%= submit_tag "search", class: "btn btn-default form-control" %>
         </div>
       </div>
-
+      </div>
 
 
 

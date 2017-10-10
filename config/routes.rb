@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  root to: redirect('/time_sheets')
+  root to: 'time_sheets#index'
   get 'auth/:provider/callback', to: 'ideas#create'
 
 

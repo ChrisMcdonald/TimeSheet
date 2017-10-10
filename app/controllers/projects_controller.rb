@@ -10,7 +10,23 @@ class ProjectsController < ApplicationController
 	# GET /projects/1
 	def show
 		# @chat = @project.hours_by_day
-		if !params[:start_date].blank? && !params[:end_date].blank?
+		if params[:save] == 'true'
+			if !params[:start_date].blank? && !params[:end_date].blank?
+				@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
+			else
+				@time = @project.info_for_invoice
+				 @time.each do |t|
+					 work = Work.find_by(time_sheet_id: t.id)
+					 puts t.id
+					 ap work
+					 ap work.project
+
+				 end
+
+			end
+
+		end
+		if !params[:start_date].blank? && !params[:end_date].blank? && !params[:save] =='true'
 			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
 			@column_chart =  @project.hours_by_date_range(params[:start_date], params[:end_date])
 		else

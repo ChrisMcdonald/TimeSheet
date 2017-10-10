@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :identities, dependent: :destroy
   has_many :invoices, dependent: :destroy
-	validates_presence_of :email
+	validates_presence_of :email ,:first_name, :last_name,
 
   def self.from_omniauth(auth, current_user)
 

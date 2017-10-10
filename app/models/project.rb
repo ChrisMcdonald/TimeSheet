@@ -52,5 +52,20 @@ class Project < ApplicationRecord
 			.where('works.project_id = ?', self.id)
 	end
 
+	def info_for_invoice
+		time = TimeSheet.joins(:works).select(:id, )
+			.where('works.project_id = ?', self.id)
+		@time.each do |t|
+			work = Work.find_by(time_sheet_id: t.id)
+			puts t.id
+			ap work
+			ap work.project
+		end
+	end
+
+	def info_for_invoice_range(start_time, end_time)
+		TimeSheet.where(time_period: start_time..end_time).joins(:works).group(:time_period).where('works.project_id = ?', self.id).sum(:hour)
+	end
+
 
 end
