@@ -16,7 +16,6 @@
 # Ignore Byebug command history file.
 .byebug_history
 /config/secrets.yml
-/config/environments/**/*
 /config/database.yml
 
 /tmp/
@@ -28,7 +27,6 @@
 .idea/dataSources/aa8f73d1-0ca9-4d9f-890a-5d3aeae4ea8e/_staging_/
 .idea/vcs.xml
 .idea/workspace.xml
-app/views/omniauth_callbacks/
 public/uploads/tmp/
 
 .idea/dataSources/661d8eb7-8e3b-48b3-beba-7ae6d32f2673/_metadata_/metadata.values.at
@@ -42,7 +40,4 @@ public/uploads/tmp/
 .idea/dataSources/e44c21f2-c444-4568-915a-3b93a71617c2/_src_/
 .idea/dataSources/e44c21f2-c444-4568-915a-3b93a71617c2/_staging_/
 .idea/dataSources/fdbd4d28-c914-4cb9-87f5-38766079ffeb/_staging_/
-app/assets/images/
-app/views/simple_calendar/
-config/environments/
-db/migrate/20170927063746_remove_works_from_time_sheets.rb
+

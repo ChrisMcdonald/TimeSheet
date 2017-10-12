@@ -5,11 +5,11 @@ class Invoice < ApplicationRecord
 	# belongs_to :project
 
 	def self.save_invoice(time)
-			t = time.first
-			works = Work.find_by(time_sheet_id: t.id)
+			time_time_sheet_var = time.first
+			works = Work.find_by(time_sheet_id: time_time_sheet_var.id)
 			project = works.project
 			customer = project.customer
-			time_sheet = TimeSheet.find(t.id)
+			time_sheet = TimeSheet.find(time_time_sheet_var.id)
 			owner = project.user
 			invoice = Invoice.new(user_id: owner.id,
 								  project_id: project.id,
@@ -19,6 +19,7 @@ class Invoice < ApplicationRecord
 								  owner_street_no: owner.street_no,
 								  owner_street: owner.street,
 								  owner_city: owner.city,
+								  owner_state: owner.state,
 								  owner_country: owner.country,
 								  owner_post_code: owner.post_code,
 								  owner_abn: owner.abn,
@@ -27,13 +28,67 @@ class Invoice < ApplicationRecord
 								  customer_street_no: customer.street_no,
 								  customer_street: customer.street,
 								  customer_city: customer.city,
+								  customer_state: customer.state,
 								  customer_country: customer.country,
 								  customer_post_code: customer.post_code,
 								  customer_abn: customer.abn,
+								  invoice_date: Date.today,
 
 
 									)
+			time.each do |time_work_var|
+				work = Work.find_by(time_sheet_id: time_work_var.id)
+				invoice.invoice_rows << InvoiceRow.new(
+											invoice_id: time_work_var.id,
+											hours: work.hour,
+											date: work.time_sheet.time_period,
+											username: work.time_sheet.user.full_name,
+											rate: work.time_sheet.user.rate
+				)
+
+			end
+
+
 			invoice.save!
-		end
 	end
+	def owner_fullname
+		if self.owner_first_name
+			first = self.owner_first_name
+		else
+			first = 'No First Name'
+		end
+
+		if self.owner_last_name
+			last = self.owner_last_name
+		else
+			last = 'No Last Name'
+		end
+		first.humanize  + ' '+ last.humanize
+	end
+	def customer_fullname
+		if self.customer_first_name
+			first = self.customer_first_name
+		else
+			first = 'No First Name'
+		end
+
+		if self.customer_last_name
+			last = self.customer_last_name
+		else
+			last = 'No Last Name'
+		end
+		first.humanize  + ' '+ last.humanize
+	end
+	def owner_address
+
+		address = "#{self.owner_street_no.humanize }   #{self.owner_street}<br>#{self.owner_city.humanize }  #{self.owner_state.humanize }  <br>	#{self.owner_country.humanize } #{self.owner_post_code.humanize  }".html_safe
+
+	end
+
+	def customer_address
+
+		address = "#{self.customer_street_no.humanize }   #{self.customer_street}<br>#{self.customer_city.humanize }  #{self.customer_state.humanize }  <br>	#{self.customer_country.humanize } #{self.customer_post_code.humanize  }".html_safe
+
+	end
+end
 

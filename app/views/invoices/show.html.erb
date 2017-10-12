@@ -7,18 +7,76 @@
       <th>Hourly Rate:</th>
       <th> Number Of Hours</th>
     </tr>
-  end of fortnight<%= @invoice.endOfFortnight %>
-  username<%= @invoice.user.full_name %>
+    end of fortnight<%= @invoice.endOfFortnight %>
+    username<%= @invoice.user.full_name %>
 
-  <% @invoice.invoice_rows.each do |i| %>
+    <html>
+    <head>
 
+
+    <body class="pdf-background">
+    <div class="alwaysbreak">
+      <table style="width: 100%; ">
+        <tr class="pdf-tr ">
+          <td><h1>Tax Invoice</h1>
+          </td>
+          <td pdf-tr>
+            <div align="right" style="padding: 10">
+              <h3>For time period</h3>
+              <%= @invoice.invoice_date.strftime("%A %b %d") %>
+            </div>
+          </td>
+        </tr>
         <tr>
-         <td><%= i.project_id %></td>
-          <td><%= i.rate %></td>
-          <td><%= i.hours %></td>
-  <% end %>
-  </tr>
+          <td colspan="2">
+            <h2>to: <%= @invoice.customer_fullname %></h2>
+            <p><%= @invoice.customer_address %> <br>
+              ABN: <%= @invoice.customer_abn %></p>
+
+            <p>
+              <h2><%= @invoice.owner_fullname %> </h2>
+              <%= @invoice.owner_address %> <br>
+              ABN: <%= @invoice.owner_abn %>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2  ">
+            <table class="table table-bordered table-striped" style="width: 100%">
+              <tr class="grey_backgound">
+                <th>Employee</th>
+                <th>Date worked</th>
+                <th>Hours</th>
+                <th>Rate</th>
+
+              </tr>
+              <% @invoice.invoice_rows.each do |time| %>
+                  <tr>
+                    <td><%= time.username %></td>
+                    <td><%= time.date.strftime("%A %b %d ") %></td>
+                    <td><%= time.hours %></td>
+                    <td><%= time.rate %></td>
+                  </tr>
+
+              <% end %>
+              <td></td>
+              <td></td>
+              <td>total  </td>
+
+              <tr>
+              </tr>
+              </td>
+              </tr>
+            </table>
+        <tr>
+          <td>Please pay you invoice with in 2 week or men with guns will come to you house and take possession of you
+            dog
+          </td>
+        </tr>
+    </div>
   </table>
+  </body>
+  </html>
   <%= link_to 'Edit', edit_invoice_path(@invoice) %> |
   <%= link_to 'Back', invoices_path %>
 </div>

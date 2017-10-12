@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010233418) do
+ActiveRecord::Schema.define(version: 20171012042328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20171010233418) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "invoice_id"
+    t.string   "username"
+    t.date     "date"
     t.index ["invoice_id"], name: "index_invoice_rows_on_invoice_id", using: :btree
     t.index ["project_id"], name: "index_invoice_rows_on_project_id", using: :btree
   end
@@ -78,6 +80,9 @@ ActiveRecord::Schema.define(version: 20171010233418) do
     t.string   "customer_country"
     t.string   "customer_post_code"
     t.string   "customer_abn"
+    t.date     "invoice_date"
+    t.string   "customer_state"
+    t.string   "owner_state"
     t.index ["customer_id"], name: "index_invoices_on_customer_id", using: :btree
     t.index ["project_id"], name: "index_invoices_on_project_id", using: :btree
     t.index ["user_id"], name: "index_invoices_on_user_id", using: :btree
@@ -129,6 +134,7 @@ ActiveRecord::Schema.define(version: 20171010233418) do
     t.string   "country"
     t.string   "post_code"
     t.string   "abn"
+    t.string   "rate"
   end
 
   create_table "works", force: :cascade do |t|
