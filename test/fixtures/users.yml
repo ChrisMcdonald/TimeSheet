@@ -11,9 +11,11 @@ one:
     first_name:  <%= Faker::Name.first_name %>
     last_name: <%= Faker::Name.last_name %>
 #    email: Faker::Internet.email
+    rate: 20
 two:
     id: 2
     email: <%= Faker::Internet.email %>
     encrypted_password: <%= User.new.send(:password_digest, 'Passw0rd') %>
     first_name: <%=Faker::Name.first_name  %>
     last_name: <%= Faker::Name.last_name %>
+    rate: 20
