@@ -1,21 +1,3 @@
-<table class="outline" style="width: 100%">
-  <tr class=" grey_backgound">
-    <th>UserName</th>
-    <th>Date worked</th>
-    <th>Hours</th>
-  </tr>
-  <% @time.each do |time| %>
-      <tr>
-        <td><%= time.user.full_name %></td>
-        <td><%= time.time_period %></td>
-        <td><%= time.hour %></td>
-      </tr>
-
-  <% end %>
-  <td></td>
-  <td></td>
-  <td>total <%= 	 @project.sum_time_sheet(@time)  %>  </td>
-
-  <tr>
-  </tr>
-</table>
+<div id="">
+  <%= render 'shared/time_sheets_for_week.html.erb' %>
+</div>

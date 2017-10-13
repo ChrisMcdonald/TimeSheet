@@ -7,9 +7,9 @@ class TimeSheet < ApplicationRecord
 
   def self.to_csv(options={})
 	  CSV.generate(options) do |csv|
-		  csv << ['user_name' ,'date Worked' , 'hours']
+		  csv << ['user_name' ,'date Worked' , 'hours','rate']
 		  all.each do |p|
-			  csv << [p.user.full_name , p.time_period, p.hour ]
+			  csv << [p.user.full_name , p.time_period, p.hour ,p.user.rate,]
 		  end
 	  end
   end

@@ -52,7 +52,6 @@ class ProjectTest < ActiveSupport::TestCase
 		project = Project.first
 		time = project.all_time_sheets
 		time_array =  project.total_for_users(time)
-		puts time_array
 		total = project.total(time_array)
 		assert_equal 40 , total
 	end
