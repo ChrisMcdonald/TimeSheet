@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012042328) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20171012231625) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
@@ -30,8 +27,8 @@ ActiveRecord::Schema.define(version: 20171012042328) do
   end
 
   create_table "identities", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "uid"
+    t.integer  "user_id"
+    t.integer  "uid"
     t.string   "provider"
     t.string   "token"
     t.string   "secrect"
@@ -47,11 +44,11 @@ ActiveRecord::Schema.define(version: 20171012042328) do
     t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "invoice_id"
     t.string   "username"
     t.date     "date"
-    t.index ["invoice_id"], name: "index_invoice_rows_on_invoice_id", using: :btree
-    t.index ["project_id"], name: "index_invoice_rows_on_project_id", using: :btree
+    t.integer  "invoice_id"
+    t.index ["invoice_id"], name: "index_invoice_rows_on_invoice_id"
+    t.index ["project_id"], name: "index_invoice_rows_on_project_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -83,9 +80,9 @@ ActiveRecord::Schema.define(version: 20171012042328) do
     t.date     "invoice_date"
     t.string   "customer_state"
     t.string   "owner_state"
-    t.index ["customer_id"], name: "index_invoices_on_customer_id", using: :btree
-    t.index ["project_id"], name: "index_invoices_on_project_id", using: :btree
-    t.index ["user_id"], name: "index_invoices_on_user_id", using: :btree
+    t.index ["customer_id"], name: "index_invoices_on_customer_id"
+    t.index ["project_id"], name: "index_invoices_on_project_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -95,8 +92,8 @@ ActiveRecord::Schema.define(version: 20171012042328) do
     t.datetime "updated_at",  null: false
     t.integer  "customer_id"
     t.integer  "user_id"
-    t.index ["customer_id"], name: "index_projects_on_customer_id", using: :btree
-    t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
+    t.index ["customer_id"], name: "index_projects_on_customer_id"
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "time_sheets", force: :cascade do |t|
@@ -104,7 +101,7 @@ ActiveRecord::Schema.define(version: 20171012042328) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["user_id"], name: "index_time_sheets_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_time_sheets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -116,8 +113,8 @@ ActiveRecord::Schema.define(version: 20171012042328) do
     t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "provider"
@@ -145,15 +142,8 @@ ActiveRecord::Schema.define(version: 20171012042328) do
     t.integer  "time_sheet_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["project_id"], name: "index_works_on_project_id", using: :btree
-    t.index ["time_sheet_id"], name: "index_works_on_time_sheet_id", using: :btree
+    t.index ["project_id"], name: "index_works_on_project_id"
+    t.index ["time_sheet_id"], name: "index_works_on_time_sheet_id"
   end
 
-  add_foreign_key "invoice_rows", "invoices"
-  add_foreign_key "invoices", "customers"
-  add_foreign_key "projects", "customers"
-  add_foreign_key "projects", "users"
-  add_foreign_key "time_sheets", "users"
-  add_foreign_key "works", "projects"
-  add_foreign_key "works", "time_sheets"
 end
