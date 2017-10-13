@@ -7,12 +7,12 @@
       <th>Hours</th>
       <th>Sub Total</th>
     </tr>
-    <% @time.each_with_index do |time, i| %>
+    <% @time.each_with_index do |time, i | %>
 
         <tr>
         <span>
         <td><%= link_to "#{time.user.full_name}", time_sheet_path(time) %></td>
-        <td><%= time.time_period.strftime("%A %b %d ") %></td>
+        <td><%= time.time_period %></td>
         <td><%= time.user.rate %></td>
         <td>  <%= time.hour %> </td>
         <td>$<%= @total_for_user[i] %></td></span></tr>
@@ -24,7 +24,7 @@
     <td>total hours <%= @project.sum_time_sheet(@time) %>
     </td>
 
-    <td>total cost $<%= @total %></td>
+    <td>total cost <%= @total %></td>
     <tr>
     </tr>
   </table>

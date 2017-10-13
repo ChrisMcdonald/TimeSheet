@@ -46,32 +46,10 @@
   </tr>
   <tr >
     <td colspan="2  ">
-      <table class="table table-bordered table-striped" style="width: 100%">
-        <tr class="grey_backgound">
-          <th>Employee</th>
-          <th>Date worked</th>
-          <th>Hours</th>
-          <th>Rate</th>
+      <div id="">
+        <%= render 'shared/time_sheets_for_week.html.erb',:formats => [:html] %>
+      </div>
 
-        </tr>
-        <% @time.each do |time| %>
-            <tr>
-              <td><%= time.user.full_name %></td>
-              <td><%= time.time_period.strftime("%A %b %d ") %></td>
-              <td><%= time.hour %></td>
-              <td></td>
-            </tr>
-
-        <% end %>
-        <td></td>
-        <td></td>
-        <td>total <%= @project.sum_time_sheet(@time) %>  </td>
-
-        <tr>
-        </tr>
-        </td>
-        </tr>
-      </table>
   <tr><td>Please pay you invoice with in 2 week or men with guns will come to you house and take possession of you dog</td></tr>
 </div>
 </table>

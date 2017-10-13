@@ -7,38 +7,38 @@ class User < ApplicationRecord
   has_many :identities, dependent: :destroy
   has_many :invoices, dependent: :destroy
 	validates_presence_of :email ,:first_name, :last_name,
-
-  def self.from_omniauth(auth, current_user)
-
-    identity = Identity.find_or_initialize_by(provider: auth.provider,
-                                              uid: auth.uid.to_s,
-
-    )
-    identity.token = auth.credentials.token
-    identity.username = auth.info.name
-    identity.image = auth.info.image
-    identity.email = auth.info.email
-	# identity.user.avatar = auth.info.image
-    identity.save
-
-
-
-    if identity.user.blank?
-      user = current_user
-      identity.user = user
-      identity.save
-
-    end
-
-    identity
-  end
-  def bar
-    puts 'class method'
-  end
-
-  def user_image
-    self.identities.first.image
-      end
+  #
+  # def self.from_omniauth(auth, current_user)
+  #
+  #   identity = Identity.find_or_initialize_by(provider: auth.provider,
+  #                                             uid: auth.uid.to_s,
+  #
+  #   )
+  #   identity.token = auth.credentials.token
+  #   identity.username = auth.info.name
+  #   identity.image = auth.info.image
+  #   identity.email = auth.info.email
+	# # identity.user.avatar = auth.info.image
+  #   identity.save
+  #
+  #
+  #
+  #   if identity.user.blank?
+  #     user = current_user
+  #     identity.user = user
+  #     identity.save
+  #
+  #   end
+  #
+  #   identity
+  # end
+  # def bar
+  #   puts 'class method'
+  # end
+  #
+  # def user_image
+  #   self.identities.first.image
+  #     end
 
 
 	def full_name

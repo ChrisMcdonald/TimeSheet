@@ -64,6 +64,17 @@ class Project < ApplicationRecord
 			.where('works.project_id = ?', self.id)
 			.sum(:hour)
 	end
+	def total_for_users(time)
+		total = Array.new
+		time.each do |t |
+			total << t.user.rate.to_f * t.hour
+		end
+		total
 
+	end
+
+	def total(row_totals)
+		row_totals.inject(0){|sum,x| sum + x }
+	end
 
 end

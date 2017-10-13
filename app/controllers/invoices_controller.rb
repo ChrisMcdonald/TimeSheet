@@ -10,6 +10,8 @@ class InvoicesController < ApplicationController
 	# GET /invoices/1
 	# GET /invoices/1.json
 	def show
+		@row_total = @invoice.total_for_user
+		@total = @invoice.invoice_total(@row_total)
 	end
 
 	# GET /invoices/new

@@ -13,9 +13,11 @@ class ProjectsController < ApplicationController
 		if params[:save] == 'true'
 			if !params[:start_date].blank? && !params[:end_date].blank?
 				@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
+
 			else
 				@time = @project.info_for_invoice
 				Invoice.save_invoice(@time)
+
 			end
 		end
 
@@ -27,6 +29,9 @@ class ProjectsController < ApplicationController
 			@column_chart =  @project.hours_by_day
 
 		end
+		@total_for_user = @project.total_for_users(@time)
+		@total = @project.total(@total_for_user)
+
 		respond_to do |format|
 			format.html
 			format.csv {send_data @time.to_csv}

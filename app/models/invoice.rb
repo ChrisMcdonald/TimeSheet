@@ -90,5 +90,17 @@ class Invoice < ApplicationRecord
 		address = "#{self.customer_street_no.humanize }   #{self.customer_street}<br>#{self.customer_city.humanize }  #{self.customer_state.humanize }  <br>	#{self.customer_country.humanize } #{self.customer_post_code.humanize  }".html_safe
 
 	end
+	def total_for_user
+		total = Array.new
+		i = self.invoice_rows
+			i.each do |r|
+			total << r.rate * r.hours
+		end
+		total
+	end
+	def invoice_total(row_totals)
+		row_totals.inject(0){|sum,x| sum + x }
+	end
+
 end
 
