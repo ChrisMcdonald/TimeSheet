@@ -1,17 +1,20 @@
 <html>
 <head>
-<script>
-   function number_pages() {
-        var vars={};
-        var x=document.location.search.substring(1).split('&');
-        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = decodeURIComponent(z[1]);}
-        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
-        for(var i in x) {
-          var y = document.getElementsByClassName(x[i]);
-          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
-        }
+  <script>
+      function number_pages() {
+          var vars = {};
+          var x = document.location.search.substring(1).split('&');
+          for (var i in x) {
+              var z = x[i].split('=', 2);
+              vars[z[0]] = decodeURIComponent(z[1]);
+          }
+          var x = ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+          for (var i in x) {
+              var y = document.getElementsByClassName(x[i]);
+              for (var j = 0; j < y.length; ++j) y[j].textContent = vars[x[i]];
+          }
       }
-    </script>
+  </script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
@@ -20,38 +23,42 @@
 
 <body onload="number_pages()" class="pdf-background">
 <div class="alwaysbreak">
-<table style="width: 100%; ">
-  <tr class="pdf-tr ">
-    <td><h1>Tax Invoice</h1>
-    </td>
-    <td pdf-tr >
-      <div align="right" style="padding: 10">
-      <h3>For time period</h3>
-      <%= @time.first.time_period.strftime("%A %b %d ") %>|
-      <%= Date.today.strftime("%A %b %d")  %>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <h2>to: <%= @project.customer.full_name %></h2>
-      <p><%= @project.customer.address %> <br>
-        ABN: <%= @project.customer.abn %></p>
+  <table style="width: 100%; ">
+    <tr class="pdf-tr ">
+      <td><h1>Tax Invoice</h1>
+      </td>
+      <td pdf-tr>
+        <div align="right" style="padding: 10">
+          <h3>For time period</h3>
+          <%= @time.first.time_period.strftime("%A %b %d ") %>|
+          <%= Date.today.strftime("%A %b %d") %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <h2>to: <%= @project.customer.full_name %></h2>
+        <p><%= @project.customer.address %> <br>
+          ABN: <%= @project.customer.abn %></p>
 
-      <p>
-      <h2><%= current_user.full_name %> </h2>
-      <%= current_user.address %> <br>
-      ABN: <%= current_user.abn %></p>
-    </td>
-  </tr>
-  <tr >
-    <td colspan="2  ">
-      <div id="">
-        <%= render 'shared/time_sheets_for_week.html.erb',:formats => [:html] %>
-      </div>
+        <p>
+        <h2><%= current_user.full_name %> </h2>
+        <%= current_user.address %> <br>
+        ABN: <%= current_user.abn %></p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div id="">
+          <%= render 'shared/time_sheets_for_week.html.erb', :formats => [:html] %>
+        </div>
 
-  <tr><td>Please pay you invoice with in 2 week or men with guns will come to you house and take possession of you dog</td></tr>
+    <tr>
+      <td>Please pay you invoice with in 2 week or men with guns will come to you house and take possession of you dog
+      </td>
+    </tr>
+  </table>
+
 </div>
-</table>
 </body>
 </html>
