@@ -3,10 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  has_many :pay_rates, inverse_of: :user, dependent: :destroy
   has_many :identities, dependent: :destroy
   has_many :invoices, dependent: :destroy
-	validates_presence_of :email ,:first_name, :last_name,
+
+  accepts_nested_attributes_for :pay_rates, allow_destroy: true
+
+  validates_presence_of :email ,:first_name, :last_name
+
   #
   # def self.from_omniauth(auth, current_user)
   #
@@ -40,6 +44,15 @@ class User < ApplicationRecord
   #   self.identities.first.image
   #     end
 
+  def rate(created_at)
+	  rate = 0
+	  begin
+	  	rate = self.pay_rates.where('created_at <= ?' ,created_at).last.rate
+	  rescue
+		 rate =  self.pay_rates.where('created_at <= ?' ,Date.today).last.rate
+	  end
+	  rate
+  end
 
 	def full_name
 

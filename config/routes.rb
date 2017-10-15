@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   end
 
   resources :works
+  resources :pay_rates
+
 
   resources :time_sheets do
 	  collection do
@@ -42,7 +44,9 @@ Rails.application.routes.draw do
     resources :identities
   end
   authenticate(:user) do
-    resources :users
+    resources :users do
+
+	end
   end
 
   root to: 'time_sheets#index'

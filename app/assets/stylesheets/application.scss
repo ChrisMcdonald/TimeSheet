@@ -139,3 +139,12 @@ li.background {
   //font-size: 150%;
 
 }
+.btn-primary {
+  color: #fff;
+  background-color: #0495c9;
+  border-color: #357ebd; /*set the color you want here*/
+
+}
+.button:focus, .button.active, .button.active:focus {
+  color: white !important;
+}

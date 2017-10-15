@@ -13,7 +13,7 @@
         <span>
         <td><%= link_to "#{time.user.full_name}", time_sheet_path(time) %></td>
         <td><%= time.time_period.strftime("%A %b %d ") %></td>
-        <td><%= time.user.rate %></td>
+        <td><%= time.user.rate(time.time_period) %></td>
         <td>  <%= time.hour %> </td>
         <td>$<%= @total_for_user[i] %></td></span></tr>
     <% end %>

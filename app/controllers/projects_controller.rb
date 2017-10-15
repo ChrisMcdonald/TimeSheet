@@ -9,19 +9,7 @@ class ProjectsController < ApplicationController
 
 	# GET /projects/1
 	def show
-		# @chat = @project.hours_by_day
-		if params[:save] == 'true'
 			if !params[:start_date].blank? && !params[:end_date].blank?
-				@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
-
-			else
-				@time = @project.info_for_invoice
-				Invoice.save_invoice(@time)
-
-			end
-		end
-
-		if !params[:start_date].blank? && !params[:end_date].blank?
 			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
 			@column_chart =  @project.hours_by_date_range(params[:start_date], params[:end_date])
 		else
@@ -29,6 +17,9 @@ class ProjectsController < ApplicationController
 			@column_chart =  @project.hours_by_day
 
 		end
+		Invoice.save_invoice(@time) if params[:save] == 'true'
+
+		@chat = @project.hours_by_day
 		@total_for_user = @project.total_for_users(@time)
 		@total = @project.total(@total_for_user)
 

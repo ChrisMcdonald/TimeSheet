@@ -54,9 +54,27 @@
   <strong>Abn:</strong>
   <%= @user.abn %>
 </p><p>
-  <strong>Rate:</strong>
-  <%= @user.rate %>
+<p>
+<table>
+  <tr>
+    <th><strong>Rate:</strong></th>
+    <th><strong>Date:</strong></th>
+  </tr>
+  <% @user.pay_rates.each do |u| %>
+
+    <tr>
+      <td><%= u.rate %></td>
+      <td><%= u.created_at.strftime("%A %b %d") %></td>
+    </tr>
+  <% end %>
+  </table>
+
 </p>
+
+
+
+
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

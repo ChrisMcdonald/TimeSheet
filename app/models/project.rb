@@ -4,6 +4,8 @@ class Project < ApplicationRecord
 	has_many :works, dependent: :destroy
 	belongs_to :customer
 	belongs_to :user
+	has_many :pay_rates, dependent: :destroy
+
 
 
 	def self.select_attributes
@@ -58,7 +60,11 @@ class Project < ApplicationRecord
 	def total_for_users(time)
 		total = Array.new
 		time.each do |t|
-			total << t.user.rate.to_f * t.hour
+			puts t.time_period.to_datetime
+			rate =  t.user.rate(t.time_period.to_date)
+			puts " #{rate} here"
+			total << rate * t.hour
+			puts total
 		end
 		total
 	end

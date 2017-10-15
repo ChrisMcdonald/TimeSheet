@@ -43,7 +43,7 @@ class Invoice < ApplicationRecord
 											hours: work.hour,
 											date: work.time_sheet.time_period,
 											username: work.time_sheet.user.full_name,
-											rate: work.time_sheet.user.rate
+											rate: work.time_sheet.user.rate(time_work_var.time_period)
 				)
 
 			end
