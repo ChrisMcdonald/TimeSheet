@@ -15,4 +15,13 @@ class InvoiceTest < ActiveSupport::TestCase
 		assert_equal 400, invoice.invoice_total(invoice.total_for_user)
 	end
 
+	test ' invoice show ' do
+		invoice = Invoice.first
+		work =  invoice.works << Work.first
+		work.each do |w|
+			ap w
+		end
+		# end
+	end
+
 end

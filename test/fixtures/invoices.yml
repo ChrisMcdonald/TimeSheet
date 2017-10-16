@@ -8,8 +8,8 @@ one:
 
 two:
   id: 1
-  user_id: owner.id
-  project_id: project.id
+  user_id: 1
+  project_id: 1
   owner_first_name: owner.first_name
   owner_last_name: owner.last_name
   owner_email: owner.email

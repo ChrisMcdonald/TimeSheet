@@ -5,9 +5,10 @@
       <th>Date worked</th>
       <th>Rate</th>
       <th>Hours</th>
+      <th>Date Invoiced</th>
       <th>Sub Total</th>
     </tr>
-    <% @time.each_with_index do |time, i| %>
+    <% time.each_with_index do |time, i| %>
 
         <tr>
         <span>
@@ -15,6 +16,7 @@
         <td><%= time.time_period.strftime("%A %b %d ") %></td>
         <td><%= time.user.rate(time.time_period) %></td>
         <td>  <%= time.hour %> </td>
+        <td>   </td>
         <td>$<%= @total_for_user[i] %></td></span></tr>
     <% end %>
     <td></td>

@@ -1,7 +1,9 @@
 class Invoice < ApplicationRecord
+
+	include Calculate
 	belongs_to :user
-	has_many :invoice_rows, inverse_of: :invoice
-	accepts_nested_attributes_for :invoice_rows, allow_destroy: true
+	has_many :works, inverse_of: :invoice
+	accepts_nested_attributes_for :works
 	# belongs_to :project
 
 	def self.save_invoice(time)
@@ -37,20 +39,20 @@ class Invoice < ApplicationRecord
 
 									)
 			time.each do |time_work_var|
-				work = Work.find_by(time_sheet_id: time_work_var.id)
-				invoice.invoice_rows << InvoiceRow.new(
-											invoice_id: time_work_var.id,
-											hours: work.hour,
-											date: work.time_sheet.time_period,
-											username: work.time_sheet.user.full_name,
-											rate: work.time_sheet.user.rate(time_work_var.time_period)
-				)
-
+				invoice.works << time_work_var.works if invoice.works.blank?
 			end
 
 
-			invoice.save!
+
+
 	end
+
+	def uninvoiced_time_sheets(project_id)
+
+		TimeSheet.joins(:works).select('works.hour', :id, :user_id, :time_period)
+			.where('works.project_id = ?', project_id).where('works.invoice_id IS ?' , nil)
+	end
+
 	def owner_fullname
 		if self.owner_first_name
 			first = self.owner_first_name
@@ -92,9 +94,9 @@ class Invoice < ApplicationRecord
 	end
 	def total_for_user
 		total = Array.new
-		i = self.invoice_rows
-			i.each do |r|
-			total << r.rate * r.hours
+		works = self.works
+			works.each do |work|
+			total << work.time_sheet.user.rate(work.date) * work.hour
 		end
 		total
 	end

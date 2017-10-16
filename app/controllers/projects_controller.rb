@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
 			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
 			@column_chart =  @project.hours_by_date_range(params[:start_date], params[:end_date])
 		else
-			@time = @project.all_time_sheets
+			@time = @project.all_time_sheets(@project.id)
 			@column_chart =  @project.hours_by_day
 
 		end

@@ -5,6 +5,11 @@ class InvoicesController < ApplicationController
 	# GET /invoices.json
 	def index
 		@invoices = Invoice.all.paginate(:page => params[:page], :per_page => 10).reverse_order #where("user_id = '?'", current_user.id).paginate(:page => params[:page], :per_page => 10).reverse_order
+		@invoice = Invoice.first
+		@project = Project.find(@invoice.project_id)
+		@time = @invoice.uninvoiced_time_sheets(@invoice.project_id)
+		@total_for_user = @invoice.total_for_users(@time)
+		@total = @invoice.total(@total_for_user)
 	end
 
 	# GET /invoices/1
@@ -37,7 +42,7 @@ class InvoicesController < ApplicationController
 				format.html {redirect_to invoices_path(@invoice), notice: 'Invoice was successfully created.'}
 				# format.json { render :index, status: :created, location: @invoice }
 			else
-				format.html {render :new}
+				format.html {render :show}
 				format.json {render json: @invoice.errors, status: :unprocessable_entity}
 			end
 		end

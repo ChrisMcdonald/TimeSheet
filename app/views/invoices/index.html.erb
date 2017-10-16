@@ -1,7 +1,23 @@
 <p id="notice"><%= notice %></p>
 
+
+<div class='pull-right '  >
+  <button  id="new-project" class="btn btn-primary">New Invoice</button>
+</div>
 <h1>Invoices</h1>
 
+<div>
+  <NewProject id="NewProject" class="new-project">
+    <%= link_to 'Save Invoice', invoice_path(@invoice, save: 'true', start_date: params[:start_date], end_date: params[:end_date]), class: "btn btn-default " %>
+<h1>Uninvoiced work for <%= @project.name.humanize %></h1>
+    <h4>Customer: <%= @invoice.customer_fullname.humanize %></h4>
+    <div id="">
+      <%= render 'shared/time_sheets_for_week', time: @time %>
+    </div>
+
+  </NewProject>
+
+</div>
 
 <%= will_paginate @invoices %>
 <ul>

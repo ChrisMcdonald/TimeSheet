@@ -1,0 +1,31 @@
+<table class="table table-bordered table-striped" style="width: 100%">
+  <tr class="grey_backgound">
+    <th>Employee</th>
+    <th>Date worked</th>
+    <th>Hours</th>
+    <th>Rate</th>
+    <th>Sub Total</th>
+
+
+  </tr>
+  <% @invoice.works.each_with_index do |work, i| %>
+      <tr>
+        <td><%= work.time_sheet.user.username %></td>
+        <td><%= work.time_sheet.time_period.strftime("%A %b %d ") %></td>
+        <td><%= work.hour %></td>
+        <td><%= work.time_sheet.user.rate(work.time_sheet.time_period) %></td>
+        <td><%= @row_total[i] %></td>
+      </tr>
+
+  <% end %>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td>total <%= @total %> </td>
+
+  <tr>
+  </tr>
+  </td>
+  </tr>
+</table>

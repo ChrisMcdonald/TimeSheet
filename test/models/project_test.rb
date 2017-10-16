@@ -4,6 +4,7 @@ class ProjectTest < ActiveSupport::TestCase
 	test 'time sheets for week' do
 		project = Project.first
 		time = project.time_sheets_for_week(2.week.ago, Time.now)
+		ap time
 		assert_equal 1, time.first.id
 		end
 
@@ -43,6 +44,10 @@ class ProjectTest < ActiveSupport::TestCase
 	test 'total timesheet query'do
 		project = Project.first
 		time = project.all_time_sheets
+		 time.each do |w|
+			puts w.invoice_id.present?
+			 w.hour
+		 end
 		assert_equal ["20.0","20.0"] , project.total_for_users(time)
 	end
 
