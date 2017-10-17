@@ -1,17 +1,13 @@
-
 <li class="row  shadow invoice-<%= invoice.id %>">
-
-  <div class="col-sm-3">
-            <%= invoice.id %>
-        <%= invoice.customer_fullname %>
-    </div><div class="col-sm-9">
-  <div class="pull-right">
-    <%= link_to 'Show', invoice, class: 'btn btn-primary' %>
-    </div>
-    </div>
-
-
-
+  <div class="col-md-6">
+    <h5> <%= invoice.id %></h5>
+  </div>
+  <div class="col-md-6">
+    <h5>
+      <%= invoice.customer_full_name %>
+    </h5>
+    <%= link_to 'Show', invoice, class: "hidden" %>
+  </div>
 </li>
 <br>
 

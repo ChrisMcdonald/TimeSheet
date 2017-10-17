@@ -53,7 +53,7 @@ class Invoice < ApplicationRecord
 			.where('works.project_id = ?', project_id).where('works.invoice_id IS ?' , nil)
 	end
 
-	def owner_fullname
+	def owner_full_name
 		if self.owner_first_name
 			first = self.owner_first_name
 		else
@@ -67,7 +67,7 @@ class Invoice < ApplicationRecord
 		end
 		first.humanize  + ' '+ last.humanize
 	end
-	def customer_fullname
+	def customer_full_name
 		if self.customer_first_name
 			first = self.customer_first_name
 		else

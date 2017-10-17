@@ -31,6 +31,8 @@ body {
   }
 
   td {
+    color: black;
+
     padding: 6px;
     vertical-align: top;
     width: 14%;
@@ -48,6 +50,14 @@ body {
     border-left-color: rgb(221, 221, 221);
     border-left-style: solid;
     border-left-width: 1px;
+    a {
+      color: black;
+    }
+    &:hover {
+      color: white;
+      background-color: gray;
+
+    }
   }
 
   .day {

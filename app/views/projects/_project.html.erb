@@ -1,12 +1,18 @@
-
-<li class="shadow  project-<%= project.id %>">
-
-  <div class="col-sm-9 "><strong><%= project.name %></strong>
-
+<li class="row  shadow project-<%= project.id %>">
+  <div class="col-md-6">
+    <h5> <%= project.name%></h5>
   </div>
-  <%= link_to 'Open', project, class: "btn btn-primary" %>
-
-
+  <div class="col-md-6">
+    <h5>
+      <%= project.customer.full_name %>
+    </h5>
+    <%= link_to 'Show', project, class: "hidden" %>
+  </div>
 </li>
 <br>
+
+
+
+
+
 

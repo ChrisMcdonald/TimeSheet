@@ -23,12 +23,21 @@ $(document).on('turbolinks:load', function () {
     });
 });
 $(document).on('turbolinks:load',function () {
-    $('li.shadow').hover(function () {
-        $(this).toggleClass("background");
+    $('li.shadow').hover(
+        function () {
+
+            $(this).closest('div').toggleClass("background");
         // $(this).animate({height: "110"}, 50);
     }, function () {
         // $(this).animate({height: "100%"}, 50);
-        $(this).toggleClass("background");
+        $(this).closest('div').toggleClass("background");
+
+    });
+});
+$(document).on('turbolinks:load',function () {
+
+    $('li.shadow').click(function(){
+        Turbolinks.visit($(this).find("a").attr("href"))
 
     });
 });
