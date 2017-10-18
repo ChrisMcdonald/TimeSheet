@@ -36,7 +36,23 @@ $(document).on('turbolinks:load',function () {
 });
 $(document).on('turbolinks:load',function () {
 
-    $('li.shadow').click(function(){
+    var screen = window.screen.availWidth;
+    if (screen < 767) {
+        var element = document.getElementById("menuhides");
+        if (element.classList.contains('menu-large-hide')){
+
+        }else{
+            element.classList.toggle("menu-hide-large");
+
+        }
+
+
+    }
+});
+
+$(document).on('turbolinks:load',function () {
+
+    $('li').click(function(){
         Turbolinks.visit($(this).find("a").attr("href"))
 
     });

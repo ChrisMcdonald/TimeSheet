@@ -9,7 +9,7 @@
 
   <%= stylesheet_link_tag 'font-awesome.min', media: 'all' %>
 
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
@@ -46,10 +46,9 @@
           </div>
     </div>
   </nav>
-  <div id="wrapper">
 
-    <div id="sidebar-wrapper">
-      <ul class="sidebar-nav">
+<div id="menuhides" class="menu-hide-mobile col-2" style="position: fixed;top:50px;height:50px;">
+      <ul class="menu" >
 
           <li><%= link_to 'My Timesheets', time_sheets_path(current_user) %></li>
           <li><%= link_to 'My Invoices', invoices_path(current_user) %></li>
@@ -58,19 +57,28 @@
           <li><%= link_to 'My Users', users_path %></li>
         </ul>
       </div>
-  <div id="page-content-wrapper">
-    <div class="container-fluid "   >
-      <%= yield %>
-    </div>
-    </div>
-  </div>
 
+    <div id="bodysize" class="container col-10 pull-right">
+      <%= yield %>
+
+    </div>
 </body>   <!-- Copyright Start  -->
 
 <script>
     $("#menu-toggle").click( function (e){
         e.preventDefault();
-        $("#wrapper").toggleClass("menuDisplayed");
+        var x = document.getElementById('menuhides');
+        var body = document.getElementById("bodysize");
+        if (x.style.visibility === 'hidden') {
+            x.style.visibility = 'visible';
+            body.classList.remove('col-12')
+            body.classList.add('col-10')
+        } else {
+            x.style.visibility = 'hidden';
+            body.classList.add('col-12');
+            body.classList.remove('col-10');
+        }
+
     });
 </script>
 

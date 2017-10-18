@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 20171015204056) do
 
   create_table "works", force: :cascade do |t|
     t.date     "date"
-    t.integer  "hour"
+    t.float    "hour"
     t.string   "description"
     t.integer  "project_id"
     t.integer  "time_sheet_id"

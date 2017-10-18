@@ -24,8 +24,8 @@
     </database>
     <schema id="8" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-10-16.06:53:43.132</IntrospectionTimestamp>
-      <IntrospectionStateNumber>26376082</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-10-18.08:24:48.427</IntrospectionTimestamp>
+      <IntrospectionStateNumber>26376118</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -106,7 +106,7 @@
     </table>
     <table id="25" parent="8" name="invoices">
       <ObjectId>32841</ObjectId>
-      <StateNumber>26376082</StateNumber>
+      <StateNumber>26376096</StateNumber>
     </table>
     <table id="26" parent="8" name="pay_rates">
       <ObjectId>610730</ObjectId>
@@ -130,7 +130,7 @@
     </table>
     <table id="31" parent="8" name="works">
       <ObjectId>582005</ObjectId>
-      <StateNumber>26376082</StateNumber>
+      <StateNumber>26376118</StateNumber>
     </table>
     <column id="32" parent="22" name="key">
       <Position>1</Position>
@@ -882,8 +882,8 @@
     </column>
     <column id="167" parent="31" name="hour">
       <Position>3</Position>
-      <DataType>integer|0</DataType>
-      <StateNumber>26372295</StateNumber>
+      <DataType>double precision|0</DataType>
+      <StateNumber>26376118</StateNumber>
     </column>
     <column id="168" parent="31" name="description">
       <Position>4</Position>
@@ -913,9 +913,9 @@
       <StateNumber>26372295</StateNumber>
     </column>
     <column id="173" parent="31" name="invoice_id">
-      <Position>15</Position>
+      <Position>16</Position>
       <DataType>integer|0</DataType>
-      <StateNumber>26376082</StateNumber>
+      <StateNumber>26376096</StateNumber>
     </column>
     <index id="174" parent="31" name="works_pkey">
       <ObjectId>582012</ObjectId>
@@ -931,7 +931,7 @@
       <ColNames>time_sheet_id</ColNames>
     </index>
     <index id="177" parent="31" name="index_works_on_invoice_id">
-      <ObjectId>618932</ObjectId>
+      <ObjectId>618938</ObjectId>
       <ColNames>invoice_id</ColNames>
     </index>
     <key id="178" parent="31" name="works_pkey">
@@ -959,7 +959,7 @@
       <RefColNames>id</RefColNames>
     </foreign-key>
     <foreign-key id="181" parent="31" name="fk_rails_0d239df36d">
-      <ObjectId>618933</ObjectId>
+      <ObjectId>618939</ObjectId>
       <ColNames>invoice_id</ColNames>
       <RefTableId>32841</RefTableId>
       <RefColPositions>1</RefColPositions>
