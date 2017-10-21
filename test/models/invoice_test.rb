@@ -24,4 +24,11 @@ class InvoiceTest < ActiveSupport::TestCase
 		# end
 	end
 
+	test 'all invoices for current user' do
+		invoices = Invoice.all.where(user: User.first) #.paginate(:page => params[:page], :per_page => 10).reverse_order
+		ap invoices
+	end
+
+
+
 end

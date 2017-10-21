@@ -4,14 +4,15 @@ class Invoice < ApplicationRecord
 	belongs_to :user
 	has_many :works, inverse_of: :invoice
 	accepts_nested_attributes_for :works
-	# belongs_to :project
+	belongs_to :project
+	validates_presence_of :works
+	def save_invoice(project_id)
 
-	def self.save_invoice(time)
-			time_time_sheet_var = time.first
-			works = Work.find_by(time_sheet_id: time_time_sheet_var.id)
-			project = works.project
+
+
+			work = Work.uninvoiced_work(project_id)
+			project = Project.find(project_id)
 			customer = project.customer
-			time_sheet = TimeSheet.find(time_time_sheet_var.id)
 			owner = project.user
 			invoice = Invoice.new(user_id: owner.id,
 								  project_id: project.id,
@@ -35,23 +36,14 @@ class Invoice < ApplicationRecord
 								  customer_post_code: customer.post_code,
 								  customer_abn: customer.abn,
 								  invoice_date: Date.today,
-
-
 									)
-			time.each do |time_work_var|
-				invoice.works << time_work_var.works if invoice.works.blank?
-			end
+				invoice.works << work
 
 
 
-
+				invoice
 	end
 
-	def uninvoiced_time_sheets(project_id)
-
-		TimeSheet.joins(:works).select('works.hour', :id, :user_id, :time_period)
-			.where('works.project_id = ?', project_id).where('works.invoice_id IS ?' , nil)
-	end
 
 	def owner_full_name
 		if self.owner_first_name

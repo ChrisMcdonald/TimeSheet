@@ -9,7 +9,7 @@
       <div class="btn-group">
         <button formaction=" <%= project_path(@project, format: 'csv') %>" ,type="submit" , class="btn btn-default">Csv</button>
         <button formaction=" <%= project_path(@project, format: 'xls') %>" ,type="submit" , class="btn btn-default">Excel</button>
-        <button formaction=" <%= project_path(@project, format: 'pdf') %>" ,type="submit" , class="btn btn-default">Pdf</button>
+
 
       </div>
 </div>
@@ -36,7 +36,7 @@
       <br>
 
       <div id="">
-        <%= render 'shared/time_sheets_for_week', time: @time %>
+        <%= render 'time_sheets_for_week'%>
       </div>
 
       <h1>Hours By Day</h1>

@@ -21,6 +21,11 @@ body, html, .container-fluid, .sidebar, .body {
   min-height: 100%;
 
 }
+.body-container {
+
+  z-index: -1;
+}
+
 body{
   padding-top: 50px;
   margin-right: 20px;
@@ -64,6 +69,7 @@ th {
   li.shadow {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 19px;
+    margin-left: 8px;
   }
 
   li.darkShadow {
@@ -104,7 +110,6 @@ th {
 }
 [class*="col-"] {
   float: left;
-  padding: 15px;
 }
 
 .header {
@@ -117,9 +122,23 @@ th {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  color: white;
+  z-index: 9;
+  visibility: visible;
+
 }
+.menu a{
+  color: white;
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+    color: white;
+  }
+}
+
 .menu li {
   padding: 8px;
+
   margin-bottom: 7px;
   background-color: #33b5e5;
   color: #ffffff;
@@ -129,9 +148,6 @@ th {
   background-color: #0099cc;
 }
 
-.menuhide {
-  visibility: visible;
-}
 .aside {
   background-color: #33b5e5;
   padding: 15px;
@@ -146,32 +162,30 @@ th {
   font-size: 12px;
   padding: 15px;
 }
+
+.menu-hide-mobile {
+  visibility: visible;
+  //margin: 10px auto 5px 20px;
+  z-index: 1;
+}
+
 /* For mobile phones: */
 [class*="col-"] {
   width: 100%;
-  #menuhide {
-    display: none !important;
-  }
+
+
 }
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 1030px) {
   .menu-hide-mobile {
     visibility: hidden;
     clear: both;
     float: left;
-    margin: 50px auto 5px 20px;
-    width: 90%;
+
     //display: none;
   }
 }
   @media only screen and (min-width: 768px) {
-    .menu-hide-mobile {
-      visibility: visible;
-      clear: both;
-      float: left;
-      //margin: 10px auto 5px 20px;
-      width: 28%;
-      display: initial;
-    }
+
     /* For desktop: */
     .col-1 {
       width: 8.33%;
@@ -215,81 +229,3 @@ th {
     width: 100%;
   }
 
-//
-//.sidebar-background {
-//  background-color: #f0f0f0;
-//  position: absolute;
-//  top: 0;
-//  bottom: 0;
-//  left: 0;
-//  width: 50px;
-//}
-//
-//#sidebar-wrapper.col-2 {
-//  z-index: 1;
-//  position: fixed;
-//
-//  height: 100%;
-//  overflow-y: hidden;
-//  background: lightgrey;
-//  opacity: 0.9;
-//  padding-top: 45px;
-//
-//}
-//
-//#page-content-wrapper.col-4 {
-//
-//  position: absolute;
-//
-//  padding-right: 10px;
-//  padding-top: 45px;
-//
-//}
-//
-//#wrapper.menuDisplayed #sidebar-wrapper {
-//  display: none;
-//
-//}
-//
-//#menu.menuDisplayed #page-content-wrapper {
-//  display: none;
-//
-//}
-//
-//.sidebar-nav.col-2 {
-//  padding: 0;
-//  list-style: none;
-//
-//}
-//
-//.sidebar-nav li {
-//  text-indent: 20px;
-//  line-height: 40px;
-//  &:hover {
-//    color: white !important;
-//    background-color: gray;
-//
-//  }
-//}
-//
-//.sidebar-nav li a {
-//  display: block;
-//  text-decoration: none;
-//  color: gray;
-//  &:hover {
-//    color: white;
-//  }
-//}
-//
-//.sidebar-nav li a:hover {
-//  background: #16AO85;
-//
-//}
-//
-//.navbar.col-2 {
-//  position: fixed;
-//  min-height: 40px;
-//  max-height: 50px;
-//  margin-bottom: 0 !important;
-//  border: 1px solid transparent;
-//}

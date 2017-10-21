@@ -1,19 +1,16 @@
 module Calculate
 	extend ActiveSupport::Concern
 
-	def all_time_sheets(project_id)
-		TimeSheet.joins(:works).select('works.hour', :id, :user_id, :time_period, :invoice_id)
-			.where('works.project_id = ?', project_id)
-	end
+
 
 	def sum_time_sheet(time_sheet)
 		time_sheet.sum(:hour)
 	end
-	def total_for_users(time)
+	def total_for_users(work)
 		total = Array.new
-		time.each do |t|
-			rate =  t.user.rate(t.time_period.to_date)
-			total << rate * t.hour
+		work.each do |w|
+			rate =  w.time_sheet.user.rate(w.time_sheet.time_period.to_date)
+			total << rate * w.hour
 		end
 		total
 	end

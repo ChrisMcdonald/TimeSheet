@@ -1,4 +1,5 @@
-<li class=" row shadow user-<%= customer.id %>">
+<li class="shadow user-<%= customer.id %>">
+  <div class="row">
   <div class="col-sm-9">
     <strong>
       <%= customer.full_name %>
@@ -6,5 +7,7 @@
 
   </div>
   <%= link_to 'Open', customer, class: "hidden" %>
+  </div>
 </li>
+
 <br>

@@ -61,5 +61,32 @@ class ProjectTest < ActiveSupport::TestCase
 		assert_equal 40 , total
 	end
 
+	test 'all work for project' do
+		project = Project.first
+		work = project.works
+		 work.each do |w|
+		ap	w.time_sheet
+		end
+	end
+	test ' all work for project' do
+		work = Array.new
+
+		start_time = Date.yesterday
+		end_time = Date.today
+		project = Project.first
+		time = project.time_sheets_for_week(start_time, end_time)
+		ap time
+
+	end
+
+	test ' work week' do
+		start_time = Date.yesterday
+		end_time = Date.today
+		project = Project.first
+		time = project.all_time_sheets
+
+		ap time
+	end
+
 
 end

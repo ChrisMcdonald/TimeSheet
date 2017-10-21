@@ -1,12 +1,13 @@
+<div class="container-fluid col-xs-12">
 <p id="notice"><%= notice %></p>
-<body class="pdf-background">
+<div class=" pdf-background ">
 <div class="alwaysbreak">
   <table style="width: 100%; ">
     <tr class="pdf-tr ">
-      <td><h1>Tax Invoice</h1>
+      <td class="pdf-td"><h1>Tax Invoice</h1>
       </td>
-      <td pdf-tr>
-        <div align="right" style="padding: 10">
+      <td class="pdf-td">
+        <div align="right" >
           <h3>For time period</h3>
           <%= @invoice.invoice_date.strftime("%A %b %d") %>
           <h4>Invoice number#  <%= @invoice.id %></h4>
@@ -23,6 +24,8 @@
         <h2><%= @invoice.owner_full_name %> </h2>
         <%= @invoice.owner_address %> <br>
         ABN: <%= @invoice.owner_abn %>
+
+        <h1>For the <%= @invoice.project.name.humanize %> Project</h1>
         </p>
       </td>
     </tr>
@@ -34,10 +37,11 @@
         dog
       </td>
     </tr>
-</div>
 </table>
-</body>
-</html>
+<%= form_tag invoice_path(@invoice), method: :get do %>
+    <button formaction=" <%= invoice_path(@invoice, format: 'pdf') %>" ,type="submit" , class="btn btn-default">Download Invoice </button>
+<% end %>
 <%= link_to 'Edit', edit_invoice_path(@invoice) %> |
 <%= link_to 'Back', invoices_path %>
+</div>
 </div>

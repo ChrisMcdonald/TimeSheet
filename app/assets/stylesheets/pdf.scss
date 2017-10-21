@@ -11,6 +11,9 @@
 @import "theme.css";
 tr.pdf-tr  {
   background: lightblue;
+  padding: 10px;
+}td.pdf-td  {
+  padding: 10px;
 }
 div.alwaysbreak { page-break-before: always; }
 div.nobreak:before { clear:both; }

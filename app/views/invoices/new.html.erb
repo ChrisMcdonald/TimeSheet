@@ -1,5 +1,57 @@
-<h1>New Invoice</h1>
+  <p id="notice"><%= notice %></p>
+  <h1>New Invoice</h1>
+<div style="padding:10px">
+    <%= form_tag new_invoice_url, method: :get do %>
 
-<%= render 'form', invoice: @invoice %>
+        <%= select_tag(:search, options_for_select(Project.select_attributes, params[:search]), :onchange => "this.form.submit();", class: 'btn btn-default ') %>
 
-<%= link_to 'Back', invoices_path %>
+    <% end %>
+
+
+</div>
+    <table style="width: 100%; ">
+      <tr class="pdf-tr ">
+        <td class="pdf-td"><h1>Tax Invoice</h1>
+        </td>
+        <td class="pdf-td">
+          <div align="right" style="padding: 10px">
+            <h3>For time period</h3>
+            <%= @work.first.time_sheet.time_period.strftime("%A %b %d ") if @work.first.present? %>|
+            <%= Date.today.strftime("%A %b %d") %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <h2>TO: <%= @project.customer.full_name %></h2>
+          <p><%= @project.customer.address %> <br>
+            ABN: <%= @project.customer.abn %></p>
+
+          <p>
+          <h2><%= current_user.full_name %> </h2>
+          <%= current_user.address %> <br>
+          ABN: <%= current_user.abn %></p>
+
+          <h1>For the <%= @project.name.humanize %> Project</h1>
+        </td>
+      </tr>
+
+    </table>
+        <div id="invoice-partial">
+          <%= render 'shared/time_sheets_for_week', work: @work %>
+        </div>
+  <div class="btn-group">
+  <%= form_for Invoice.new do |f| %>
+
+
+      <%= f.hidden_field :project, value: @project.id %>
+      <%= f.submit "Save Invoice", class: 'btn btn-default' %>
+  <% end %>
+
+    <%= link_to 'Back', invoices_path, class: 'btn btn-default' %>
+
+</div>
+  </div>
+
+</div>
+</div>

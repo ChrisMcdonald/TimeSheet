@@ -34,26 +34,36 @@ $(document).on('turbolinks:load',function () {
 
     });
 });
-$(document).on('turbolinks:load',function () {
 
-    var screen = window.screen.availWidth;
-    if (screen < 767) {
-        var element = document.getElementById("menuhides");
-        if (element.classList.contains('menu-large-hide')){
-
-        }else{
-            element.classList.toggle("menu-hide-large");
-
-        }
-
-
-    }
-});
 
 $(document).on('turbolinks:load',function () {
 
     $('li').click(function(){
         Turbolinks.visit($(this).find("a").attr("href"))
+
+    });
+});
+$(document).on('turbolinks:load',function () {
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        var x = document.getElementById('menuhides');
+        var body = document.getElementById("bodysize");
+        console.log(x.style.visibility);
+        console.log(x.style.visibility);
+
+        if (x.style.visibility === '' || x.style.visibility === 'hidden') {
+            x.style.visibility = 'visible';
+            body.classList.add('col-md-10');
+            console.log('1');
+            console.log(x.style.visibility);
+
+        } else {
+            x.style.visibility = 'hidden';
+            body.classList.remove('col-md-10');
+            console.log('2');
+            console.log(x.style.visibility);
+
+        }
 
     });
 });

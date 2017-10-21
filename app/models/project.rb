@@ -7,8 +7,16 @@ class Project < ApplicationRecord
 	belongs_to :customer
 	belongs_to :user
 	has_many :pay_rates, dependent: :destroy
+	has_many :time_sheets, through: :works
 
-
+	def total_project_users(time)
+		total = Array.new
+		time.each do |t|
+			rate =  t.user.rate(t.time_period.to_date)
+			total << rate * t.hour
+		end
+		total
+	end
 
 	def self.select_attributes
 		result = Array.new
@@ -40,7 +48,10 @@ class Project < ApplicationRecord
 	end
 
 
-
+	def all_time_sheets
+		TimeSheet.joins(:works).select('works.hour', :id, :user_id, :time_period)
+			.where('works.project_id = ?', self.id)
+	end
 
 	def info_for_invoice
 		time = TimeSheet.joins(:works).select(:id)

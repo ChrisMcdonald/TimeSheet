@@ -4,12 +4,13 @@ class InvoicesController < ApplicationController
 	# GET /invoices
 	# GET /invoices.json
 	def index
-		@invoices = Invoice.all.paginate(:page => params[:page], :per_page => 10).reverse_order #where("user_id = '?'", current_user.id).paginate(:page => params[:page], :per_page => 10).reverse_order
-		@invoice = Invoice.first
-		@project = Project.find(@invoice.project_id)
-		@time = @invoice.uninvoiced_time_sheets(@invoice.project_id)
+		@invoices = Invoice.all.where(user: current_user).paginate(:page => params[:page], :per_page => 10).reverse_order
+		@project = Project.first
+		@invoice = Invoice.new
+		@time = Work.uninvoiced_work(@project.id)
 		@total_for_user = @invoice.total_for_users(@time)
 		@total = @invoice.total(@total_for_user)
+
 	end
 
 	# GET /invoices/1
@@ -17,11 +18,37 @@ class InvoicesController < ApplicationController
 	def show
 		@row_total = @invoice.total_for_user
 		@total = @invoice.invoice_total(@row_total)
+		respond_to do |format|
+			format.html
+			format.pdf do
+				render pdf: "Invoice" , header: { right: '[page] of [topage]' }
+			end
+		end
 	end
 
 	# GET /invoices/new
 	def new
 		@invoice = Invoice.new
+		if params[:search]
+			@project = Project.find(params[:search])
+			@invoice = Invoice.new
+			@work = Work.uninvoiced_work(@project.id)
+			@total_for_user = @invoice.total_for_users(@work)
+			@total = @invoice.total(@total_for_user)
+
+			respond_to do |format|
+				format.js
+				format.html
+			end
+
+
+		else
+			@project = Project.first
+			@work = Work.uninvoiced_work(@project.id)
+			@total_for_user = @invoice.total_for_users(@work)
+			@total = @invoice.total(@total_for_user)
+
+		end
 
 	end
 
@@ -33,17 +60,20 @@ class InvoicesController < ApplicationController
 	# POST /invoices
 	# POST /invoices.json
 	def create
-		@invoice = Invoice.new(invoice_params)
-		@invoice.user = current_user
-		# @invoice_rows.invoice = @invoice
+
+		@invoice = Invoice.new
+		# @invoice.user = current_user
+		@invoice = @invoice.save_invoice(invoice_params[:project])
 
 		respond_to do |format|
-			if @invoice.save
-				format.html {redirect_to invoices_path(@invoice), notice: 'Invoice was successfully created.'}
-				# format.json { render :index, status: :created, location: @invoice }
+		if 		 @invoice.save
+
+				format.html {redirect_to invoice_path(@invoice), notice: 'Invoice was successfully created.'}
+				format.js
+				format.pdf
+
 			else
-				format.html {render :show}
-				format.json {render json: @invoice.errors, status: :unprocessable_entity}
+				format.html {redirect_to new_invoice_path,notice: 'Invoice is empty so not saved.'}
 			end
 		end
 	end
@@ -83,7 +113,7 @@ class InvoicesController < ApplicationController
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def invoice_params
 		# puts params.to_yaml
-		params.require(:invoice).permit(:id, :name, :endOfFortnight, :invoice_id, :project_id, invoice_rows_attributes: [:id, :rate, :hours, :project_id, :created_at, :update_at])
+		params.require(:invoice).permit(:id,:search, :name, :endOfFortnight, :invoice_id, :project,:search, invoice_rows_attributes: [:id, :rate, :hours, :project_id, :created_at, :update_at])
 
 	end
 

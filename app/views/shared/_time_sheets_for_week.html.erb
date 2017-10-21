@@ -1,29 +1,31 @@
 <div class="table-responsive">
+
+
+
+
   <table class="table outline table-striped table-hover">
     <tr class=" grey_backgound">
       <th>Employee</th>
       <th>Date worked</th>
       <th>Rate</th>
       <th>Hours</th>
-      <th>Date Invoiced</th>
       <th>Sub Total</th>
     </tr>
-    <% time.each_with_index do |time, i| %>
+    <% work.each_with_index do |work, i| %>
 
         <tr>
         <span>
-        <td><%= link_to "#{time.user.full_name}", time_sheet_path(time) %></td>
-        <td><%= time.time_period.strftime("%A %b %d ") %></td>
-        <td><%= time.user.rate(time.time_period) %></td>
-        <td>  <%= time.hour %> </td>
-        <td>   </td>
+        <td><%= link_to "#{work.time_sheet.user.full_name}", time_sheet_path(work.time_sheet) %></td>
+        <td><%= work.time_sheet.time_period.strftime("%A %b %d ") %></td>
+        <td><%= work.time_sheet.user.rate(work.time_sheet.time_period) %></td>
+        <td>  <%= work.hour %> </td>
         <td>$<%= @total_for_user[i] %></td></span></tr>
     <% end %>
     <td></td>
     <td></td>
     <td></td>
 
-    <td>total hours <%= @project.sum_time_sheet(@time) %>
+    <td>total hours <%= @project.sum_time_sheet(@work) %>
     </td>
 
     <td>total cost $<%= @total %></td>

@@ -1,0 +1,8 @@
+$('.invoice').prepend('<%=j render  @invoices%>');
+$("#button").trigger('reset');
+$(".message-form").slideUp();
+
+
+$('.project-list').prepend('<%=j render  @invoice %>');
+$("#form ").trigger('reset');
+$(".new-project").slideUp();

@@ -3,29 +3,30 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @projects = Project.all.paginate(:page => params[:page], :per_page => 10).reverse_order
+    @projects = Project.all.where(user: current_user).paginate(:page => params[:page], :per_page => 10).reverse_order
     @project = Project.new
   end
 
 	# GET /projects/1
 	def show
-			if !params[:start_date].blank? && !params[:end_date].blank?
+		if !params[:start_date].blank? && !params[:end_date].blank?
 			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
 			@column_chart =  @project.hours_by_date_range(params[:start_date], params[:end_date])
+
 		else
-			@time = @project.all_time_sheets(@project.id)
+
+			@time = @project.all_time_sheets
 			@column_chart =  @project.hours_by_day
 
 		end
-		Invoice.save_invoice(@time) if params[:save] == 'true'
 
 		@chat = @project.hours_by_day
-		@total_for_user = @project.total_for_users(@time)
+		@total_for_user = @project.total_project_users(@time)
 		@total = @project.total(@total_for_user)
 
 		respond_to do |format|
 			format.html
-			format.csv {send_data @time.to_csv}
+			format.csv {send_data @work.to_csv}
 			format.xls # {send_data @time_sheets.to_csv(col_sep: "\t")}
 			format.pdf do
 				render pdf: "Invoice" , header: { right: '[page] of [topage]' }
@@ -33,7 +34,8 @@ class ProjectsController < ApplicationController
 			format.js
 		end
 
-	end
+
+		end
 
   # GET /projects/new
   def new
