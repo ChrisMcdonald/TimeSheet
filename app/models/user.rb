@@ -50,7 +50,7 @@ class User < ApplicationRecord
 	  begin
 	  	rate = self.pay_rates.where('created_at <= ?' ,created_at).last.rate
 	  rescue
-		 rate =  self.pay_rates.where('created_at <= ?' ,Date.today).last.rate
+		 rate =  self.pay_rates.last.rate
 	  end
 	  rate
   end
