@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+ <%= form_tag user_path(@user), method: :get, remote: true do %>
+<%= select_tag(:project_search, options_for_select(Project.select_attributes,params[:project_search]), :onchange => "this.form.submit();", class: "btn btn-default")  %>
+
+<% end %>
+<div id="user_partial">
+  <%= render 'all_user_work' %>
+</div>
 <p>
   <strong>Email:</strong>
   <%= @user.email %>

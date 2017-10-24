@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Employee") do |sheet|
+
+    sheet.add_row ["Employee" , "Date Worked", "Pay Rate", "Hours Worked"]
+  @time.each_with_index do |time, i |
+    sheet.add_row [time.user.full_name, time.time_period.strftime("%A %b %d "), time.user.rate(time.time_period),time.hour]
+  end
+  sheet.add_row [ "","","","total hours #{@project.sum_time_sheet(@time)}"]
+end
+
+
+
+

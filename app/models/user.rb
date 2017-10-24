@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+	include Calculate
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :pay_rates, inverse_of: :user, dependent: :destroy
@@ -11,38 +12,38 @@ class User < ApplicationRecord
 
   validates_presence_of :email ,:first_name, :last_name
 
-  #
-  # def self.from_omniauth(auth, current_user)
-  #
-  #   identity = Identity.find_or_initialize_by(provider: auth.provider,
-  #                                             uid: auth.uid.to_s,
-  #
-  #   )
-  #   identity.token = auth.credentials.token
-  #   identity.username = auth.info.name
-  #   identity.image = auth.info.image
-  #   identity.email = auth.info.email
-	# # identity.user.avatar = auth.info.image
-  #   identity.save
-  #
-  #
-  #
-  #   if identity.user.blank?
-  #     user = current_user
-  #     identity.user = user
-  #     identity.save
-  #
-  #   end
-  #
-  #   identity
-  # end
-  # def bar
-  #   puts 'class method'
-  # end
-  #
-  # def user_image
-  #   self.identities.first.image
-  #     end
+	attr_accessor :project_search
+
+	def pay_per_project(project_id)
+		user_arr = Array.new
+		time_sheet = TimeSheet.joins(works: :project)
+						 .select('works.hour',:project_id, :id, :user_id, :time_period)
+						 .where(works: {project_id: project_id})
+						 .where(user_id: self.id)
+		time_sheet.each do |t|
+			pay = t.hour * t.user.rate(t.time_period)
+			user_arr << { date:t.time_period,pay: pay,project: t.project_id}
+		end
+		user_arr
+	end
+
+
+  def pay_for_user
+	  pararr = Array.new
+	  time_sheet = 	TimeSheet.joins(works: :project)
+						  .select('works.hour',:project_id, :id, :user_id, :time_period)
+						  .where(user_id: self.id)
+	  time_sheet.each do |t|
+		  pay = t.hour * t.user.rate(t.time_period)
+		 pararr << { date:t.time_period,pay: pay,project: t.project_id}
+	  end
+	  pararr
+  end
+
+	def total_pay(arr)
+		arr.map {|p| p[:pay]}.sum
+	end
+
 
   def rate(created_at)
 	  rate = 0
@@ -100,4 +101,38 @@ class User < ApplicationRecord
   # def password_required?
   #   super && provider.blank?
   # end
+
+
+  #
+  # def self.from_omniauth(auth, current_user)
+  #
+  #   identity = Identity.find_or_initialize_by(provider: auth.provider,
+  #                                             uid: auth.uid.to_s,
+  #
+  #   )
+  #   identity.token = auth.credentials.token
+  #   identity.username = auth.info.name
+  #   identity.image = auth.info.image
+  #   identity.email = auth.info.email
+  # # identity.user.avatar = auth.info.image
+  #   identity.save
+  #
+  #
+  #
+  #   if identity.user.blank?
+  #     user = current_user
+  #     identity.user = user
+  #     identity.save
+  #
+  #   end
+  #
+  #   identity
+  # end
+  # def bar
+  #   puts 'class method'
+  # end
+  #
+  # def user_image
+  #   self.identities.first.image
+  #     end
 end

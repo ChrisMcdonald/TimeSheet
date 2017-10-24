@@ -18,5 +18,7 @@ module Calculate
 	def total(row_totals)
 		row_totals.inject(0) {|sum, x| sum + x}
 	end
-
+	def total_hash(row_totals)
+		row_totals.inject(0) {|sum, x| sum + x}
+	end
 end

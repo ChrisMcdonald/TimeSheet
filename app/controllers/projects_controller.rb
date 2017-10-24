@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
 		else
 
 			@time = @project.all_time_sheets
-			@column_chart =  @project.hours_by_day
+ap			@column_chart =  @project.hours_by_day
 
 		end
 
@@ -26,8 +26,8 @@ class ProjectsController < ApplicationController
 
 		respond_to do |format|
 			format.html
-			format.csv {send_data @work.to_csv}
-			format.xls # {send_data @time_sheets.to_csv(col_sep: "\t")}
+			format.csv {send_data @time.to_csv}
+			format.xlsx# {send_data @time_sheets.to_csv(col_sep: "\t")}
 			format.pdf do
 				render pdf: "Invoice" , header: { right: '[page] of [topage]' }
 			end

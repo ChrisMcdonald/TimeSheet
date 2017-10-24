@@ -6,6 +6,7 @@
       <th>Rate</th>
       <th>Hours</th>
       <th>Sub Total</th>
+      <th>project name</th>
     </tr>
     <% @time.each_with_index do |time, i | %>
 
@@ -15,6 +16,7 @@
         <td><%= time.time_period.strftime("%A %b %d ") %></td>
         <td><%= time.user.rate(time.time_period) %></td>
         <td>  <%= time.hour %> </td>
+        <td>  <%= time.project_id %> </td>
         <td>$<%= @total_for_user[i] %></td></span></tr>
     <% end %>
     <td></td>
@@ -29,3 +31,5 @@
     </tr>
   </table>
 </div>
+
+

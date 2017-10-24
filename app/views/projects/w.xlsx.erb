@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Employee</Data></Cell>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Pay rate</Data></Cell>
+        <Cell><Data ss:Type="String">Hours</Data></Cell>
+      </Row>
+      <% @time.each_with_index do |time, i | %>
+          <Row>
+            <Cell><Data ss:Type="String"><%= "#{time.user.full_name}"  %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= time.time_period.strftime("%A %b %d ") %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= time.user.rate(time.time_period) %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= time.hour %></Data></Cell>
+          </Row>
+      <% end %>
+      <Row>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">total hours <%= @project.sum_time_sheet(@time)%></Data></Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

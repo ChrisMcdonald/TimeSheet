@@ -13,6 +13,23 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+
+	  if params[:project_search]
+		  @user_table =  @user.pay_per_project(params[:project_search])
+		  @total_pay = @user.total_pay(  @user_table )
+
+		  respond_to do |format|
+			  format.html
+			  format.js
+			  end
+	  else
+		  @user_table = @user.pay_for_user
+		  @total_pay = @user.total_pay(  @user_table )
+		  respond_to do |format|
+			  format.html
+			  format.js
+		  end
+	  end
   end
 
   # GET /users/new
@@ -74,7 +91,7 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :username, :first_name, :last_name, :street_no, :street, :city, :state,
-								   :country, :post_code, :abn, pay_rates_attributes: [:id, :rate,:project_id, :_destroy])
+								   :country, :post_code, :abn,:project_search, pay_rates_attributes: [:id, :rate,:project_id, :_destroy])
 	end
 
 end

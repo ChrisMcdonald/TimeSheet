@@ -23,7 +23,9 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
-
+gem 'rubyzip', '~> 1.1.0'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
