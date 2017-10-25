@@ -4,6 +4,12 @@ class CustomersController < ApplicationController
 
   # GET /customers
   # GET /customers.json
+  def details
+	  @customer = Customer.find(params[:customer_id])
+	  respond_to do |format|
+		  format.js
+	  end
+  end
   def index
     @customers = Customer.all.where(user: current_user).paginate(:page => params[:page], :per_page => 10).reverse_order
 	  @customer = Customer.new
@@ -12,6 +18,10 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+	  respond_to do |format|
+		  format.js
+		  format.html
+	  end
   end
 
   # GET /customers/new

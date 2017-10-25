@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   end
 
   get '/current_day/:time_period',to: "time_sheets#current_day", as: :current_day
-  resources :customers
+  resources :customers do
+	  get  :details
+  end
+
   resources :invoice_rows
 
   get 'invoice_row/new'

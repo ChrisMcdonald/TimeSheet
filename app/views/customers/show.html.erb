@@ -1,49 +1,10 @@
-<p id="notice"><%= notice %></p>
+<br>
+<div class="btn-group">
+<%= link_to 'Customer Details' , customer_details_path(@customer), remote: :true, class: 'btn btn-default' %>
+<%= link_to 'Edit' , edit_customer_path(@customer), remote: :true, class: 'btn btn-default' %>
+  <%= link_to 'Back', customers_path, class: 'btn btn-default' %>
+</div>
+<div id="customer_partial">
+<%= render 'details' %>
+</div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
-</p>
-
-<p>
-  <strong>Street no:</strong>
-  <%= @customer.street_no %>
-</p>
-
-<p>
-  <strong>Street:</strong>
-  <%= @customer.street %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @customer.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @customer.state %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @customer.country %>
-</p>
-
-<p>
-  <strong>Post code:</strong>
-  <%= @customer.post_code %>
-</p>
-
-<p>
-  <strong>Abn:</strong>
-  <%= @customer.abn %>
-</p>
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
