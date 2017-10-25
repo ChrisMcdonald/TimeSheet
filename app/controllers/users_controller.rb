@@ -2,7 +2,36 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+  def user_income
+	  @user = User.find(params[:user_id])
+	  if params[:project_search]
+		  if params[:project_search] == ""
+			  @user_table = @user.pay_for_user
+			  @total_pay = @user.total_pay(  @user_table )
+		  else
 
+			  @user_table =  @user.pay_per_project(params[:project_search])
+			  @total_pay = @user.total_pay(  @user_table )
+		  end
+		  respond_to do |format|
+
+			  format.js
+		  end
+	  else
+		  @user_table = @user.pay_for_user
+		  @total_pay = @user.total_pay(  @user_table )
+		  respond_to do |format|
+
+			  format.js
+		  end
+	  end
+  end
+
+
+	def user_data
+		@user = User.find(params[:user_id])
+
+	end
   # GET /users
   # GET /users.json
   def index
@@ -14,22 +43,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
 
-	  if params[:project_search]
-		  @user_table =  @user.pay_per_project(params[:project_search])
-		  @total_pay = @user.total_pay(  @user_table )
-
-		  respond_to do |format|
-			  format.html
-			  format.js
-			  end
-	  else
-		  @user_table = @user.pay_for_user
-		  @total_pay = @user.total_pay(  @user_table )
-		  respond_to do |format|
-			  format.html
-			  format.js
-		  end
-	  end
   end
 
   # GET /users/new
@@ -39,6 +52,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+	  @user = User.find(user_params)
+	  respond_to do |format|
+		  format.html
+		  format.js
+	  end
   end
 
   # POST /users

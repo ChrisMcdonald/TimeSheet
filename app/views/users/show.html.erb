@@ -1,87 +1,15 @@
 <p id="notice"><%= notice %></p>
+<div><h1><%= @user.full_name %></h1></div>
 
- <%= form_tag user_path(@user), method: :get, remote: true do %>
-<%= select_tag(:project_search, options_for_select(Project.select_attributes,params[:project_search]), :onchange => "this.form.submit();", class: "btn btn-default")  %>
-
-<% end %>
-<div id="user_partial">
-  <%= render 'all_user_work' %>
+<div class="btn-group">
+<%= link_to 'User Data', user_user_data_path(@user), remote: true, class: 'btn btn-default' %>
+<%= link_to 'User Income', user_user_income_path(@user), remote: true, class: 'btn btn-default' %>
+  <%= link_to 'Edit', edit_user_registration_path, remote: true, class: 'btn btn-default' %>
+  <%= link_to 'Back', users_path, class: 'btn btn-default'%>
 </div>
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Street no:</strong>
-  <%= @user.street_no %>
-</p>
-
-<p>
-  <strong>Street:</strong>
-  <%= @user.street %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @user.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @user.state %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @user.country %>
-</p>
-
-<p>
-  <strong>Post code:</strong>
-  <%= @user.post_code %>
-</p>
-
-<p>
-  <strong>Abn:</strong>
-  <%= @user.abn %>
-</p><p>
-<p>
-<table>
-  <tr>
-    <th><strong>Rate:</strong></th>
-    <th><strong>Date:</strong></th>
-  </tr>
-  <% @user.pay_rates.each do |u| %>
-
-    <tr>
-      <td><%= u.rate %></td>
-      <td><%= u.created_at.strftime("%A %b %d") %></td>
-    </tr>
-  <% end %>
-  </table>
-
-</p>
-
-
-
-
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<br><br>
+<div class="container-fluid" id="user_partial">
+<%= render 'users/user_details' %>
+</div>
+<div>
+</div>

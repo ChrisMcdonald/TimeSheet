@@ -17,7 +17,5 @@ class Work < ApplicationRecord
   end
 
 
-\
-
 end
 

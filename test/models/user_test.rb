@@ -41,7 +41,23 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	test 'pay per project' do
+		user = User.first
+		pararr = Array.new
+		time_sheet = 	TimeSheet.joins(works: :project)
+							.select('works.hour',:project_id, :id, :user_id, :time_period)
+							.where(user_id: self.id)
+
+
+		time_sheet.each do |t|
+			pay = t.hour * t.user.rate(t.time_period)
+			pararr << { date:t.time_period,pay: pay,project: t.project_id}
+		end
+		pararr
 
 	end
+
+
+
+
 
 end

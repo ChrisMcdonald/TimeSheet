@@ -67,3 +67,12 @@ $(document).on('turbolinks:load',function () {
 
     });
 });
+
+
+$(document).on('turbolinks:load', function () {
+    $('#user-details').click(function () {
+        console.log('laksdjflkasj');
+        $('user_partial .show-users-controler').html("<%= j render 'user_details' %>")
+
+    });
+});

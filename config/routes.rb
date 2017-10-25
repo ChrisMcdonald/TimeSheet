@@ -38,10 +38,17 @@ Rails.application.routes.draw do
   resources :invoices do
 	  resources :invoice_rows
   end
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"}
-    resources :users do
+  # devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" ,sessions: 'users/sessions'
+  # }
+  devise_for :users, controllers: {
+	  sessions: 'users/sessions'
+  }
+
+  resources :users do
     resources :projects
     resources :identities
+	get :user_data
+	get :user_income
   end
   authenticate(:user) do
     resources :users do

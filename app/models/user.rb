@@ -41,7 +41,22 @@ class User < ApplicationRecord
   end
 
 	def total_pay(arr)
-		arr.map {|p| p[:pay]}.sum
+
+		tot = arr.map {|p| p[:pay]}.sum
+		tot.to_i
+		tax = tot * 0.20
+		superannuation = tot * 0.10
+		holidays = tot * 0.10
+
+
+		pay_details = Hash.new
+		pay_details[:total] = tot
+		pay_details[:tax] = tax
+		pay_details[:superannuation] = superannuation
+		pay_details[:holidays] = holidays
+
+		pay_details
+
 	end
 
 

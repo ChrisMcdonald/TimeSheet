@@ -21,7 +21,6 @@ class Project < ApplicationRecord
 	def self.select_attributes
 		result = Array.new
 		Project.all.select(:id, :name).each do |p|
-
 			result.append([p.name, p.id])
 		end
 		result
@@ -32,8 +31,6 @@ class Project < ApplicationRecord
 			.joins(:works).select('works.hour','works.project_id',  :user_id, :time_period, :id,:invoice_id)
 			.where('works.project_id = ?', self.id)
 	end
-
-
 
 	def hours_by_user_by_project
 		TimeSheet.select(:id, :user_id).group(:user_id).joins(:works).where(works: {project_id: self.id}).select(:hour).sum(:hour)
@@ -46,7 +43,6 @@ class Project < ApplicationRecord
 	def hours_by_day
 		TimeSheet.joins(works: :project).group(:time_period).where('works.project_id = ?', self.id).sum(:hour)
 	end
-
 
 	def all_time_sheets
 		TimeSheet.joins(works: :project).select('works.hour',:project_id, :id, :user_id, :time_period)
