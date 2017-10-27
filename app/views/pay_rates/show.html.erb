@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @pay_rate.rate %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @pay_rate.project %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @pay_rate.user %>
+</p>
+
+<%= link_to 'Edit', edit_pay_rate_path(@pay_rate) %> |
+<%= link_to 'Back', pay_rates_path %>

@@ -1,18 +1,22 @@
 <p id="notice"><%= notice %></p>
+<div class="box">
+  <div class="container-fluid">
 <div class='pull-right '  >
   <button  id="new-project" class="btn btn-primary">New Customer</button>
 </div>
 <h1>Customers</h1>
-
 <div>
   <NewProject id="NewProject" class="new-project">
     <%= render 'form' %>
   </NewProject>
-
+</div>
+  </div>
 </div>
 <%= will_paginate @customers %>
+<br>
 <ul>
   <%= render @customers %>
 </ul>
 <%= will_paginate @customers %>
 <br>
+</div>

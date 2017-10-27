@@ -2,7 +2,7 @@
 
 
       <td >
-        <div class="field dropdown">
+        <div class="field dropdown" style="width: 50%">
           <%= f.select(:project_id, options_for_select(Project.select_attributes,f.object.project_id),{},class: ' btn btn-default form-control') %>
         </div>
       </td>

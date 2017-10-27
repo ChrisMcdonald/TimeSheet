@@ -1,1 +1,0 @@
-json.array! @invoice_rows, partial: 'invoice_rows/invoice_row', as: :invoice_row

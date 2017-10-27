@@ -69,7 +69,7 @@ th {
   li.shadow {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 19px;
-    margin-left: 8px;
+
   }
 
   li.darkShadow {
@@ -183,49 +183,61 @@ th {
 
     //display: none;
   }
-}
-  @media only screen and (min-width: 768px) {
-
-    /* For desktop: */
-    .col-1 {
-      width: 8.33%;
-    }
-    .col-2 {
-      width: 16.66%;
-    }
-    .col-3 {
-      width: 25%;
-    }
-    .col-4 {
-      width: 33.33%;
-    }
-    .col-5 {
-      width: 41.66%;
-    }
-    .col-6 {
-      width: 50%;
-    }
-    .col-7 {
-      width: 58.33%;
-    }
-    .col-8 {
-      width: 66.66%;
-    }
-    .col-9 {
-      width: 75%;
-    }
-    .col-10 {
-      width: 83.33%;
-    }
-    .col-11 {
-      width: 91.66%;
-    }
-    .col-12 {
-      width: 100%;
-    }
+  .box {
+    margin: 0;
   }
+  .col-xs-1,
+  .col-xs-2,
+  .col-xs-3,
+  .col-xs-4,
+  .col-xs-5,
+  .col-xs-6,
+  .col-xs-7,
+  .col-xs-8,
+  .col-xs-9,
+  .col-xs-10,
+  .col-xs-11,
+  .col-xs-12{
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .container-fluid{
+    margin: 0;
+    padding-left: 4px!important;
+    padding-right: 4px !important;
+  }
+}
+
 
   size {
     width: 100%;
   }
 
+.box {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 19px;
+
+}
+.authform {
+  padding-top: 30px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.authform form {
+  @extend .well;
+  @extend .well-lg;
+  padding-bottom: 40px;
+}
+.authform .right {
+  float: right !important;
+}
+.authform .button {
+  @extend .btn;
+  @extend .btn-primary;
+}
+.authform fieldset {
+  @extend .well;
+}

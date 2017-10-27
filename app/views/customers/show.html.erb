@@ -1,10 +1,11 @@
-<br>
-<div class="btn-group">
+<div class="btn-group box" style="width: 100%">
+  <h1><%= @customer.full_name %></h1>
 <%= link_to 'Customer Details' , customer_details_path(@customer), remote: :true, class: 'btn btn-default' %>
 <%= link_to 'Edit' , edit_customer_path(@customer), remote: :true, class: 'btn btn-default' %>
   <%= link_to 'Back', customers_path, class: 'btn btn-default' %>
 </div>
-<div id="customer_partial">
+<br><br>
+<div id="customer_partial" class="box">
 <%= render 'details' %>
 </div>
 

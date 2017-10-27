@@ -1,0 +1,32 @@
+<%= form_for(pay_rate) do |f| %>
+  <% if pay_rate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pay_rate.errors.count, "error") %> prohibited this pay_rate from being saved:</h2>
+
+      <ul>
+      <% pay_rate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :rate %>
+    <%= f.number_field :rate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :project_id %>
+    <%= f.text_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user %>
+    <%= f.text_field :user %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

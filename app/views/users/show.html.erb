@@ -1,14 +1,16 @@
+<div class="box">
 <p id="notice"><%= notice %></p>
 <div><h1><%= @user.full_name %></h1></div>
 
 <div class="btn-group">
 <%= link_to 'User Data', user_user_data_path(@user), remote: true, class: 'btn btn-default' %>
 <%= link_to 'User Income', user_user_income_path(@user), remote: true, class: 'btn btn-default' %>
-  <%= link_to 'Edit', edit_user_registration_path, remote: true, class: 'btn btn-default' %>
+  <%= link_to 'Edit', edit_user_path(@user), remote: true, class: 'btn btn-default' %>
   <%= link_to 'Back', users_path, class: 'btn btn-default'%>
 </div>
-<br><br>
-<div class="container-fluid" id="user_partial">
+</div>
+<br>
+<div  id="user_partial">
 <%= render 'users/user_details' %>
 </div>
 <div>

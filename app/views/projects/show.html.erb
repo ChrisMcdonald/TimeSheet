@@ -1,8 +1,13 @@
-<div class="container">
+<div class="container-fluid">
   <p id="notice"><%= notice %></p>
-
+<div class=" box">
+  <div class="card-body">
   <h1><%= @project.name.capitalize %></h1>
   <h2>Total hours for project <%= Work.total_hours_for_project(@project.id) %></h2>
+  </div>
+</div>
+<div class="box">
+
 
   <%= form_tag project_path(@project), method: :get do %>
 <div class="row">
@@ -38,14 +43,15 @@
       <div id="">
         <%= render 'time_sheets_for_week'%>
       </div>
-
+      </div>
+<div class="box">
       <h1>Hours By Day</h1>
       <%= column_chart @column_chart %>
-
+</div><div class="box">
       <h1>Users Hours For This Project</h1>
       <%= pie_chart hours_by_user_projects_path(@project) %>
 
-
+</div>
       <%= link_to 'Edit', edit_project_path(@project) %> |
       <%= link_to 'Back', projects_path %>
   <% end %>

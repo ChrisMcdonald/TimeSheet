@@ -1,5 +1,5 @@
-
-<div class="container">
+<div class="box">
+<div class="container-fluid">
 <p id="notice"><%= notice %></p>
 
 <div class="row">
@@ -9,20 +9,24 @@
 <h1>Projects</h1>
 
 <div>
+  <div>
 <NewProject id="NewProject" class="new-project">
-  <div id="">
+  <div id="" >
   <%= render 'form' %>
   </div>
 </NewProject>
+  </div>
+</div>
+</div>
+
+  <br>
 
 </div>
-</div>
+
 
 <%= will_paginate @projects %>
-<div class="row">
-<div class=" col-md-5 col-xs-5 "><strong>Project Title</strong></div>
-<div class="col-md-5 col-xs-5 "><strong>Customer </strong></div>
-</div>
+
+
 <br>
 <ul>
 

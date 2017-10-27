@@ -1,3 +1,5 @@
+
+<div class="box">
 <%= form_tag user_user_income_path(@user), method: :get,format: :js, remote: true do %>
     <%= select_tag(:project_search, options_for_select(Project.select_attributes,params[:project_search]) ,:include_blank => true, :onchange => "click_search()", class: "btn btn-default")  %>
     <%= submit_tag '',id: :search_project, remote: true , style:"display: none;" %>
@@ -11,7 +13,7 @@
   <%= render 'users/all_user_work' %>
 </div>
 
-
+</div>
 <script type="text/javascript">
     function click_search()
     {

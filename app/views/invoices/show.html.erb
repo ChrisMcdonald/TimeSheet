@@ -1,4 +1,9 @@
-<div class="container-fluid col-xs-12">
+<div class="btn-group box" style="width: 100%">
+<%= form_tag invoice_path(@invoice), method: :get do %>
+    <button formaction=" <%= invoice_path(@invoice, format: 'pdf') %>" ,type="submit" , class="btn btn-default">Download Invoice </button>
+       </div>
+<% end %>
+<div class="box col-xs-12">
 <p id="notice"><%= notice %></p>
 <div class=" pdf-background ">
 <div class="alwaysbreak">
@@ -30,7 +35,7 @@
       </td>
     </tr>
     <tr>
-      <td colspan="2  ">
+      <td colspan="2">
         <%= render 'invoice_table' %>
     <tr>
       <td>Please pay you invoice with in 2 week or men with guns will come to you house and take possession of you
@@ -38,10 +43,8 @@
       </td>
     </tr>
 </table>
-<%= form_tag invoice_path(@invoice), method: :get do %>
-    <button formaction=" <%= invoice_path(@invoice, format: 'pdf') %>" ,type="submit" , class="btn btn-default">Download Invoice </button>
-<% end %>
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', invoices_path %>
 </div>
+</div>
+</div>
+
 </div>
