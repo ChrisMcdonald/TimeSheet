@@ -1,11 +1,20 @@
 <div class="container-fluid">
   <p id="notice"><%= notice %></p>
 <div class=" box">
-  <div class="card-body">
+
   <h1><%= @project.name.capitalize %></h1>
   <h2>Total hours for project <%= Work.total_hours_for_project(@project.id) %></h2>
+
+</div>
+<div class="box">
+  <div class="btn-group">
+  <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-default' %>
+  <%= link_to 'Back', projects_path, class: 'btn btn-default' %>
   </div>
 </div>
+
+
+
 <div class="box">
 
 
@@ -17,6 +26,7 @@
 
 
       </div>
+
 </div>
       <br>
       <div class="row">
@@ -29,14 +39,16 @@
           <%= date_field_tag :end_date, params[:end_date], class: "form-control " %>
 
 </div>
+
   <div class="col-sm-2">
     <br>
     <br>
     <br>
     <br>
+
           <%= submit_tag "search", class: "btn btn-default " %>
   </div>
-
+        <br>
 </div>
       <br>
 
@@ -52,7 +64,6 @@
       <%= pie_chart hours_by_user_projects_path(@project) %>
 
 </div>
-      <%= link_to 'Edit', edit_project_path(@project) %> |
-      <%= link_to 'Back', projects_path %>
+
   <% end %>
 </div>

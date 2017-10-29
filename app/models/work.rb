@@ -4,7 +4,7 @@ class Work < ApplicationRecord
   belongs_to :invoice
   belongs_to :user
 
-
+validates_presence_of :hour
 
 	def self.total_hours_for_project(project_id)
 		self.where(project_id: project_id).sum(:hour)

@@ -1,3 +1,4 @@
+<div class="box">
 <div id="flash">
   <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
@@ -6,8 +7,11 @@
 
 
 <h1>Editing Project</h1>
+</div><div class="box">
+  <%= link_to 'Show', @project,class: 'btn btn-default' %>
+  <%= link_to 'Back', projects_path,class: 'btn btn-default' %>
+</div><div class="box">
 
-<%= render 'form', project: @project %>
-
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+  <%= render 'form', project: @project %>
+</div>
+</div>

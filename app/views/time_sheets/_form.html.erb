@@ -18,14 +18,14 @@
       <%= link_to_add_fields "Add field", f, :works, 'works'%>
     </div>
     </div>
-    <div class="table-responsive">
-    <table class="outline table table-striped table-hover">
-      <tr style="background-color: #f0f0f0;" id="hours">
-        <th>Project</th>
-        <th>Hours</th>
-        <th>Description</th>
-        <th> </th>
-        <th> </th>
+
+    <table class="outline table table-striped table-hover outline " style="  outline: 2px solid #ccc;">
+      <tr class="grey_backgound "  id="hours">
+        <th class="col-xs-7 col-sm-4">Project</th>
+        <th class="col-xs-3 col-sm-2">Hours</th>
+        <th class="hidden-xs col-sm-6">Description</th>
+
+        <th class="col-sm-1 hidden-xs"> </th>
       </tr>
       <%= f.fields_for :works do |builder| %>
 
@@ -42,4 +42,3 @@
     </div>
 
 <% end %>
-<%= @time_sheet.id %>

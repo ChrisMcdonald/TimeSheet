@@ -14,15 +14,20 @@ class UsersController < ApplicationController
 			  @total_pay = @user.total_pay(  @user_table )
 		  end
 		  respond_to do |format|
-
+			  format.pdf
 			  format.js
 		  end
 	  else
 		  @user_table = @user.pay_for_user
 		  @total_pay = @user.total_pay(  @user_table )
 		  respond_to do |format|
-
+			  format.csv {send_data @user_table.to_csv,filename: "#{@user.full_name}-#{Date.today}.csv"}
+			  format.xlsx# {send_data @time_sheets.to_csv(col_sep: "\t")}
+			  format.pdf do
+				  render pdf: "Invoice" , header: { right: '[page] of [topage]' }
+			  end
 			  format.js
+			  format.html
 		  end
 	  end
   end
@@ -42,6 +47,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+
 
   end
 

@@ -1,0 +1,37 @@
+<html>
+<head>
+  <script>
+      function number_pages() {
+          var vars = {};
+          var x = document.location.search.substring(1).split('&');
+          for (var i in x) {
+              var z = x[i].split('=', 2);
+              vars[z[0]] = decodeURIComponent(z[1]);
+          }
+          var x = ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+          for (var i in x) {
+              var y = document.getElementsByClassName(x[i]);
+              for (var j = 0; j < y.length; ++j) y[j].textContent = vars[x[i]];
+          }
+      }
+  </script>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
+  <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+
+<body onload="number_pages()" class="pdf-background">
+
+<div class="alwaysbreak">
+
+<h1>Total Income <%= @total_pay[:total] %>
+    Superannuation <%= @total_pay[:superannuation] %>
+    Holidays <%= @total_pay[:holidays] %></h1>
+
+<div id="user_income">
+    <%= render 'users/all_user_work.html.erb' %>
+</div>
+</div>
+</body>
+</html>

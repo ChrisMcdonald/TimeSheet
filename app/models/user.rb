@@ -14,6 +14,14 @@ class User < ApplicationRecord
 
 	attr_accessor :project_search
 
+	def to_csv(obj,options={})
+		CSV.generate(options) do |csv|
+			csv << ['pay', 'Date Worked','project']
+			obj.each do |p|
+				csv << [p[:pay], p[:date],p[:project]]
+			end
+		end
+	end
 	def pay_per_project(project_id)
 		user_arr = Array.new
 		time_sheet = TimeSheet.joins(works: :project)

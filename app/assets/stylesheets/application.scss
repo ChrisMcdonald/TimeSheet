@@ -69,7 +69,7 @@ th {
   li.shadow {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 19px;
-
+    margin-bottom:10px;
   }
 
   li.darkShadow {
@@ -183,6 +183,9 @@ th {
 
     //display: none;
   }
+  .sbar{
+    background-color: transparent !important;
+  }
   .box {
     margin: 0;
   }
@@ -219,6 +222,7 @@ th {
 .box {
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 19px;
+  margin-bottom:10px;
 
 }
 .authform {
@@ -240,4 +244,12 @@ th {
 }
 .authform fieldset {
   @extend .well;
+}
+.icon-bar {
+  color: white !important;
+  border-color: white;
+  background-color: white;
+}
+.sbar{
+  background-color: #7C7C7C;
 }

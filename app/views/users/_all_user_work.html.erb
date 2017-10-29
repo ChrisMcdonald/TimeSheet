@@ -6,7 +6,7 @@
     <th>date</th>
     <th>project</th>
     <% @user_table.each do |u| %>
-        <%= render 'pay_table', u: u %>
+        <%= render 'pay_table.html.erb', u: u %>
     <% end %>
 
 </table>

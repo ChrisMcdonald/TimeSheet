@@ -1,5 +1,6 @@
 <div class="box">
-<h1>  <%= @time_sheet.user.first_name %>&nbsp<%= @time_sheet.user.last_name %>   <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h1>
+  <h1>  <%= @time_sheet.user.full_name %></h1>
+  <h2>   <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h2>
 </div>
 <div class="box btn-group" style="width: 100%">
   <%= link_to 'Show', @time_sheet, class: 'btn btn-default' %>
