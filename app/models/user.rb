@@ -4,6 +4,7 @@ class User < ApplicationRecord
 	include Calculate
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
+
   has_many :pay_rates, inverse_of: :user, dependent: :destroy
   has_many :identities, dependent: :destroy
   has_many :invoices, dependent: :destroy

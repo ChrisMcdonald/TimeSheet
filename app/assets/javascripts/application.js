@@ -18,6 +18,7 @@
 //= require chartkick
 //= require Chart.bundle
 //= require bootstrap-sprockets
+//= require bootstrap
 
 
 //

@@ -1,7 +1,6 @@
-<div class="container-fluid">
-  <p id="notice"><%= notice %></p>
-<div class=" box">
 
+<div class=" box">
+  <p id="notice"><%= notice %></p>
   <h1><%= @project.name.capitalize %></h1>
   <h2>Total hours for project <%= Work.total_hours_for_project(@project.id) %></h2>
 
@@ -66,4 +65,4 @@
 </div>
 
   <% end %>
-</div>
+

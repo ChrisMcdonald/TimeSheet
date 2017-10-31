@@ -21,7 +21,7 @@ class Project < ApplicationRecord
 	def self.select_attributes
 		result = Array.new
 		Project.all.select(:id, :name).each do |p|
-			result.append([p.name, p.id])
+			result.append([p.name, p.id,{class:"dropdown-item overflow-hidden"}])
 		end
 		result
 	end

@@ -214,7 +214,9 @@ th {
   }
 }
 
-
+.overflow-hidden{
+  text-overflow: hidden
+}
   size {
     width: 100%;
   }
@@ -223,7 +225,6 @@ th {
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 19px;
   margin-bottom:10px;
-
 }
 .authform {
   padding-top: 30px;

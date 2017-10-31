@@ -48,20 +48,14 @@ $(document).on('turbolinks:load',function () {
         e.preventDefault();
         var x = document.getElementById('menuhides');
         var body = document.getElementById("bodysize");
-        console.log(x.style.visibility);
-        console.log(x.style.visibility);
 
         if (x.style.visibility === '' || x.style.visibility === 'hidden') {
             x.style.visibility = 'visible';
             body.classList.add('col-md-10');
-            console.log('1');
-            console.log(x.style.visibility);
 
         } else {
             x.style.visibility = 'hidden';
             body.classList.remove('col-md-10');
-            console.log('2');
-            console.log(x.style.visibility);
 
         }
 
@@ -71,7 +65,7 @@ $(document).on('turbolinks:load',function () {
 
 $(document).on('turbolinks:load', function () {
     $('#user-details').click(function () {
-        console.log('laksdjflkasj');
+
         $('user_partial .show-users-controler').html("<%= j render 'user_details' %>")
 
     });
