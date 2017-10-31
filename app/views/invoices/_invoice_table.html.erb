@@ -10,7 +10,7 @@
   </tr>
   <% @invoice.works.each_with_index do |work, i| %>
       <tr>
-        <td><%= work.time_sheet.user.username %></td>
+        <td><%= work.time_sheet.user.full_name %></td>
         <td><%= work.time_sheet.time_period.strftime("%A %b %d ") %></td>
         <td><%= work.hour %></td>
         <td><%= work.time_sheet.user.rate(work.time_sheet.time_period) %></td>
