@@ -11,9 +11,9 @@
 <div>
   <div>
 <NewProject id="NewProject" class="new-project">
-  <div id="" >
+
   <%= render 'form' %>
-  </div>
+
 </NewProject>
   </div>
 </div>
@@ -27,12 +27,13 @@
 <%= will_paginate @projects %>
 
 
-
+  <div id="book-list">
 <ul>
 
 <%= render @projects %>
 
 </ul>
+</div>
 <%= will_paginate @projects %>
 
 

@@ -7,7 +7,13 @@
     <h5>
       <%= project.customer.full_name %>
     </h5>
+
     <%= link_to 'Show', project, class: "hidden" %>
+  </div>
+  <div class="col-md-1 col-xs-1">
+    <%= link_to  project, data: { confirm: "Are you sure"},method: :delete do %>
+        <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+    <%end %>
   </div>
 </div>
 
