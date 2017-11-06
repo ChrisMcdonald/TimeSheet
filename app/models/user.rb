@@ -10,8 +10,8 @@ class User < ApplicationRecord
   has_many :invoices, dependent: :destroy
 
   accepts_nested_attributes_for :pay_rates, allow_destroy: true
-
-  # validates_presence_of :email ,:first_name, :last_name
+	# validates_uniqueness_of :email ,message: 'Email is already registed'
+	# validates_presence_of :email ,:first_name, :last_name
 
 	attr_accessor :project_search
 

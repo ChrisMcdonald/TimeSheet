@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="loggintracker@localhost" uuid="96072602-8808-4585-9e5c-96dc008e10fb">
+    <data-source source="LOCAL" name="loggintracker@localhost" uuid="3e580ee0-3839-4656-a1d7-5fb5c36f35c2">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/loggintracker</jdbc-url>
       <driver-properties>
         <property name="ApplicationName" value="DataGrip" />
-      </driver-properties>
-    </data-source>
-    <data-source source="LOCAL" name="test.sqlite3" uuid="9dccd369-b29e-4718-bbb4-c4bbfa948e7c">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/test.sqlite3</jdbc-url>
-      <driver-properties>
-        <property name="enable_load_extension" value="true" />
       </driver-properties>
     </data-source>
   </component>

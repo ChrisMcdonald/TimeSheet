@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
 		else
 
 			@time = @project.all_time_sheets
-ap			@column_chart =  @project.hours_by_day
+			@column_chart = @project.hours_by_day
 
 		end
 
@@ -52,7 +52,7 @@ ap			@column_chart =  @project.hours_by_day
     @project.user = current_user
     respond_to do |format|
       if @project.save
-        format.html { redirect_to project_path(@project), notice: 'Project was successfully created.' }
+		  format.html {redirect_to projects_path, notice: 'Project was successfully created.'}
         format.js
       else
         format.html { render :new }

@@ -2,16 +2,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
 	before_action :configure_permitted_parameters, if: :devise_controller?
-
+	prepend_before_filter :require_no_authentication, only: [:cancel]
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+	def new
+		super
+
+	end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+	def create
+		super
+	end
 
   # GET /resource/edit
   def edit
@@ -20,7 +21,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	  respond_to do |format|
 		  format.js
 		  format.html
-	  end
 	  end
   end
 
@@ -65,3 +65,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+	protected
+	def sign_up_params
+		params.require(:user).permit(:email, :username, :first_name, :last_name, :street_no, :street, :city, :state,
+									 :country, :post_code, :abn, :project_search, :password, :password_confirmation,
+									 pay_rates_attributes: [:id, :rate, :project_id, :_destroy])
+	end
+
+	def account_update_params
+		params.require(:user).permit(:email, :username, :first_name, :last_name, :street_no, :street, :city, :state,
+									 :country, :post_code, :abn, :project_search, :password, :password_confirmation, :current_password, pay_rates_attributes: [:id, :rate, :project_id, :_destroy])
+	end
+
+
+end
