@@ -6,3 +6,5 @@ $(".message-form").slideUp();
 $('.user-list').prepend('<%=j render  @user %>');
 $("#form ").trigger('reset');
 $(".new-project").slideUp();
+
+$('#NewProject').html('<%= j render 'users/form' %>')

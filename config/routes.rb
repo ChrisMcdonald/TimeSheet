@@ -43,11 +43,11 @@ Rails.application.routes.draw do
   end
   # devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" ,sessions: 'users/sessions'
   # }
-  devise_for :users, controllers: {
-	  sessions: 'users/sessions',
-  		registration: 'users/registration'
-  }
-
+  devise_for :users,
+			 controllers: {:registrations => "registrations"}
+  as :user do
+	  get "/register", to: "registrations#new", as: "register"
+  end
   resources :users do
     resources :projects
     resources :identities

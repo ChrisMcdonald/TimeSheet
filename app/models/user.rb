@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :pay_rates, allow_destroy: true
 	# validates_uniqueness_of :email ,message: 'Email is already registed'
-	# validates_presence_of :email ,:first_name, :last_name
+	validates_presence_of :email, :first_name, :last_name, pay_rates: :rate
 
 	attr_accessor :project_search
 
