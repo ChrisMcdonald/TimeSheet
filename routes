@@ -47,7 +47,7 @@ projects_time_sheet_for_week_show GET    /projects/time_sheet_for_week/show(.:fo
                                   PATCH  /projects/:id(.:format)                       projects#update
                                   PUT    /projects/:id(.:format)                       projects#update
                                   DELETE /projects/:id(.:format)                       projects#destroy
-                                         /cable                                        #<ActionCable::Server::Base:0x00556b2d2ed590 @mutex=#<Monitor:0x00556b2d2ed568 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Mutex:0x00556b2d2ed518>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
+                                         /cable                                        #<ActionCable::Server::Base:0x00558a01c0e4b0 @mutex=#<Monitor:0x00558a01c0e488 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Mutex:0x00558a01c0e410>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
                        identities GET    /identities(.:format)                         identities#index
                                   POST   /identities(.:format)                         identities#create
                      new_identity GET    /identities/new(.:format)                     identities#new
@@ -80,13 +80,13 @@ projects_time_sheet_for_week_show GET    /projects/time_sheet_for_week/show(.:fo
                     user_password PATCH  /admin/password(.:format)                     devise/passwords#update
                                   PUT    /admin/password(.:format)                     devise/passwords#update
                                   POST   /admin/password(.:format)                     devise/passwords#create
-         cancel_user_registration GET    /admin/cancel(.:format)                       registrations#cancel
-            new_user_registration GET    /admin/sign_up(.:format)                      registrations#new
-           edit_user_registration GET    /admin/edit(.:format)                         registrations#edit
-                user_registration PATCH  /admin(.:format)                              registrations#update
-                                  PUT    /admin(.:format)                              registrations#update
-                                  DELETE /admin(.:format)                              registrations#destroy
-                                  POST   /admin(.:format)                              registrations#create
+         cancel_user_registration GET    /admin/cancel(.:format)                       devise/registrations#cancel
+            new_user_registration GET    /admin/sign_up(.:format)                      devise/registrations#new
+           edit_user_registration GET    /admin/edit(.:format)                         devise/registrations#edit
+                user_registration PATCH  /admin(.:format)                              devise/registrations#update
+                                  PUT    /admin(.:format)                              devise/registrations#update
+                                  DELETE /admin(.:format)                              devise/registrations#destroy
+                                  POST   /admin(.:format)                              devise/registrations#create
                     user_projects GET    /users/:user_id/projects(.:format)            projects#index
                                   POST   /users/:user_id/projects(.:format)            projects#create
                  new_user_project GET    /users/:user_id/projects/new(.:format)        projects#new

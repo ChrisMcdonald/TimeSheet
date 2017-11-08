@@ -57,7 +57,9 @@
           <li><%= link_to 'My Invoices', invoices_path(current_user) %></li>
           <li><%= link_to 'My Projects', projects_path %></li>
           <li><%= link_to 'My Customers', customers_path %></li>
+        <% if can? :manage, User %>
           <li><%= link_to 'My Users', users_path %></li>
+        <% end %>
         </ul>
       </div>
 

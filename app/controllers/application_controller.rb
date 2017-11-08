@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  include Pundit
   helper_method :current_user
   before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :user_not_authorized
-
-
+  # load_and_authorize_resource
+  #
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   redirect_to root_url, :alert => exception.message
+  # end
   private
 
   def user_not_authorized
