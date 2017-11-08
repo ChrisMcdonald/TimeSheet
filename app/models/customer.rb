@@ -2,7 +2,7 @@ class Customer < ApplicationRecord
 	belongs_to :user
 	has_one :project
 
-
+	resourcify
 	def full_name
 
 		if self.first_name

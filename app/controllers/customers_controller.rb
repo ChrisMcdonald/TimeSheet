@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
+  load_and_authorize_resource
   # GET /customers
   # GET /customers.json
   def details
@@ -11,7 +11,7 @@ class CustomersController < ApplicationController
 	  end
   end
   def index
-    @customers = Customer.all.where(user: current_user).paginate(:page => params[:page], :per_page => 10).reverse_order
+	  @customers = Customer.all.paginate(:page => params[:page], :per_page => 10).reverse_order
 	  @customer = Customer.new
   end
 

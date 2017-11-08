@@ -7,8 +7,11 @@ class Ability
 		user ||= User.new # guest user (not logged in)
 		if user.has_role? :admin
 			can :manage, :all
+			can :manage, Project
+			can :manage, Customer
 		else
-			can :manage, [TimeSheet, Customer, Identity, Invoice, PayRate, Project, Work]
+			can :manage, TimeSheet
+			can :read, [Customer, Identity, Project]
 			# end
 		end
 		# Define abilities for the passed in user here. For example:

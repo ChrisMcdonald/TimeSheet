@@ -6,7 +6,7 @@
 <%=month_calendar  do |date| %>
 
  <%= date.strftime("%d %a %b ") %>
-    <% if TimeSheet.has_time_sheet(date,current_user.id) %>
+    <% if @time_sheets.has_time_sheet(date, current_user.id) %>
         <div class="has-time-sheet">
 
         </div>

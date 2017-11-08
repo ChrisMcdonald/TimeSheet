@@ -1,6 +1,7 @@
 class TimeSheetsController < ApplicationController
   before_action :set_time_sheet, only: [ :show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  load_and_authorize_resource
   # before_action :set_calender, only: :index
   # GET /time_sheets
   # GET /time_sheets.json
@@ -10,11 +11,12 @@ class TimeSheetsController < ApplicationController
 
   def index
   add_breadcrumb "my", :time_sheets_path
+  if can? :manage, User
     @time_sheets = TimeSheet.where(user: current_user)
 	@user = current_user
   end
 
-
+  end
   # GET /time_sheets/1
   # GET /time_sheets/1.json
   def show

@@ -1,10 +1,11 @@
 class InvoicesController < ApplicationController
 	before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
+	load_and_authorize_resource
 	# GET /invoices
 	# GET /invoices.json
 	def index
-		@invoices = Invoice.all.where(user: current_user).paginate(:page => params[:page], :per_page => 10).reverse_order
+		@invoices = Invoice.all.paginate(:page => params[:page], :per_page => 10).reverse_order
 		@project = Project.first
 		@invoice = Invoice.new
 		@time = Work.uninvoiced_work(@project.id)

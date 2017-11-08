@@ -1,9 +1,9 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy,:hours_by_day, :hours_by_date_range,:hours_by_user,:time_sheets_for_week]
   before_action :authenticate_user!
-
+  load_and_authorize_resource
   def index
-    @projects = Project.all.where(user: current_user).paginate(:page => params[:page], :per_page => 10).reverse_order
+	  @projects = Project.all.paginate(:page => params[:page], :per_page => 10).reverse_order
     @project = Project.new
   end
 

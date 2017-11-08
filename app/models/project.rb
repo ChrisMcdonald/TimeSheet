@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-
+	resourcify
 	include Calculate
 	# has_many :invoices belongs_to :time_sheet
 	attr_accessor :start_date, :end_date

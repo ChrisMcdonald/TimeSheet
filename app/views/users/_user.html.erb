@@ -1,11 +1,15 @@
 <li class="shadow user-<%= user.id %>">
   <div class="row">
-         <div class="col-md-8">
+    <div class="col-md-9">
 
           <h5><%= user.full_name %></h5>
            <%= link_to 'Open', user, class: "hidden" %>
 
        </div>
-
+    <div class="col-md-1 col-xs-1">
+      <%= link_to user, data: {confirm: "Are you sure"}, method: :delete do %>
+          <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+      <% end %>
+    </div>
   </div>
 </li>

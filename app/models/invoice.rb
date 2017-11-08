@@ -1,5 +1,5 @@
 class Invoice < ApplicationRecord
-
+	resourcify
 	include Calculate
 	belongs_to :user
 	has_many :works, inverse_of: :invoice

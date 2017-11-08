@@ -1,7 +1,7 @@
 class TimeSheet < ApplicationRecord
 
 	include Calculate
-
+	resourcify
 
 	belongs_to :user
 	has_many :works, dependent: :destroy
