@@ -74,15 +74,18 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     respond_to do |format|
-      if @user.save
+		if @user.save
+			@user.success = true
 		  format.html {redirect_to users_path, notice: 'User was successfully created.'}
         format.json { render :show, status: :created, location: @user }
 	  	format.js
-      else
-        format.html { render :new }
+		else
+			@user.success = false
+
+			format.html {render :new}
         format.json { render json: @user.errors, status: :unprocessable_entity }
 		format.js
-      end
+		end
     end
   end
 
@@ -91,11 +94,17 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to user_path(@user), notice: 'User was successfully updated.' }
+		  @user.success = true
+
+		  format.html {redirect_to user_path(@user), notice: 'User was successfully updated.'}
         format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
+		  format.js
+	  else
+		  @user.success = false
+
+		  format.html {render :edit}
         format.json { render json: @user.errors, status: :unprocessable_entity }
+		  format.js
       end
     end
   end
@@ -118,8 +127,8 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :username, :first_name, :last_name, :street_no, :street, :city, :state,
-								   :country, :post_code, :abn,:project_search, pay_rates_attributes: [:id, :rate,:project_id, :_destroy])
+		params.require(:user).permit(:email, :username, :first_name, :last_name, :street_no, :street, :city, :state, :password, :password_confirmation, :success,
+									 :country, :post_code, :abn, :project_search, pay_rates_attributes: [:id, :rate,:project_id, :_destroy])
 	end
 
 end

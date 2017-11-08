@@ -12,9 +12,11 @@
 
 </div>
 <%= will_paginate @users %>
-
 <ul>
-<%= render @users %>
+  <div id="user-list">
+
+    <%= render @users %>
+  </div>
 </ul>
 <%= will_paginate @users %>
 

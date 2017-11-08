@@ -18,11 +18,7 @@ Rails.application.routes.draw do
 	  get  :details
   end
 
-  resources :invoice_rows
-
-  get 'invoice_row/new'
   resources :projects do
-
 	  collection do
 		  get :all_work_for_project
 		  get '/hours_by_day/:id/' , to: 'projects#hours_by_day', as: :hours_by_day
@@ -37,17 +33,13 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   resources :identities
   resources :projects
-  resources :invoice_rows
-  resources :invoices do
-	  resources :invoice_rows
-  end
+  resources :invoices
+
   # devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" ,sessions: 'users/sessions'
   # }
-  devise_for :users,
+  devise_for :users,path: :admin,
 			 controllers: {:registrations => "registrations"}
-  as :user do
-	  get "/register", to: "registrations#new", as: "register"
-  end
+
   resources :users do
     resources :projects
     resources :identities
