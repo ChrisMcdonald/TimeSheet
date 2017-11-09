@@ -33,3 +33,11 @@ development:
   password: monster
   host: localhost
 
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: loggintracker
+  pool: 5
+  username: postgres
+  password: monster
+  host: localhost

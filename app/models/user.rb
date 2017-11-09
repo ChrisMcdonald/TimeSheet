@@ -9,12 +9,12 @@ class User < ApplicationRecord
   has_many :pay_rates, inverse_of: :user, dependent: :destroy
   has_many :identities, dependent: :destroy
   has_many :invoices, dependent: :destroy
-	attr_accessor :success
+
 	accepts_nested_attributes_for :pay_rates, allow_destroy: true, reject_if: :rate.blank?
 	# validates_uniqueness_of :email ,message: 'Email is already registed'
 	validates_presence_of :email, :first_name, :last_name
 
-	attr_accessor :project_search
+	attr_accessor :project_search, :success
 
 	def to_csv(obj,options={})
 		CSV.generate(options) do |csv|

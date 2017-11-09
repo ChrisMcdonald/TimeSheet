@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     get 'time_sheet_for_week/show'
   end
 
+  resources :identities
+  resources :projects
+  resources :invoices
   resources :works
   resources :pay_rates
 
@@ -30,10 +33,8 @@ Rails.application.routes.draw do
 
 
 
-  mount ActionCable.server => '/cable'
-  resources :identities
-  resources :projects
-  resources :invoices
+  # mount ActionCable.server => '/cable'
+
 
   # devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" ,sessions: 'users/sessions'
   # }
