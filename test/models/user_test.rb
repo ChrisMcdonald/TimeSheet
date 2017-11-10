@@ -6,6 +6,13 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal 2,user.rate(Date.yesterday)
 	end
 
+	test 'should be admin' do
+		user = User.first
+		user.add_role :admin
+		result = user.has_role? :admin
+		assert_equal true, result
+	end
+
 	test 'user holidays' do
 
 	end

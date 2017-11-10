@@ -2,7 +2,6 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
-require 'capybara/rspec'
 
 # To add Capybara feature tests add `gem "minitest-rails-capybara"`
 # to the test group in the Gemfile and uncomment the following:
@@ -10,7 +9,8 @@ require 'capybara/rspec'
 
 # Uncomment for awesome colorful output
 # require "minitest/pride"
-
+Capybara.server = :puma # Until your setup is working
+Capybara.server = :puma, {Silent: true} # To clean up your test output
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all

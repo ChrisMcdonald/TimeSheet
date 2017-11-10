@@ -1,5 +1,5 @@
 require_relative 'boot'
-require 'csv'
+
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -11,20 +11,5 @@ module Devise3
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
-	  config.assets.paths << Rails.root.join('images')
-	  config.beginning_of_week = :sunday
-
-	  config.time_zone = "Australia/Brisbane"
-	  config.assets.paths << "#{Rails}/vendor/assets/fonts"
-
-	  class UnauthorizedActionException < StandardError
-		  attr :message
-
-		  def initialize(message)
-			  @message = message
-		  end
-	  end
-
   end
 end

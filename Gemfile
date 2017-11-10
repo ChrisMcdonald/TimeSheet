@@ -4,14 +4,13 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-gem 'telegram_bot'
 gem 'awesome_print'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'devise'
-gem 'redis', '~> 3.2'
+gem 'redis'
 gem 'carrierwave'
 gem "pundit"
 gem "breadcrumbs_on_rails"
@@ -21,35 +20,35 @@ gem 'active_median'
 gem "simple_calendar"
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
-gem 'rubyzip', '~> 1.1.0'
-gem 'axlsx', '2.1.0.pre'
+gem 'rubyzip'
+gem 'axlsx'
 gem 'axlsx_rails'
 gem 'remotipart'
 gem 'cancancan'
 gem 'rolify'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '5.1.3'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -67,11 +66,11 @@ end
 
 group :development  do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.0.5'
+	gem 'web-console'
+	gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+	gem 'spring-watcher-listen'
   gem "minitest-rails"
 
 end
@@ -79,9 +78,10 @@ end
 group :test do
 	gem 'faker'
 	gem 'sqlite3'
-	gem 'rspec'
 	gem 'simplecov'
-	gem "minitest-rails-capybara"
+	gem 'capybara'
+	gem 'selenium-webdriver'
+
 
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
