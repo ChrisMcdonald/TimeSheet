@@ -2,7 +2,7 @@
 lock "~> 3.10.0"
 
 set :application, "Soupcloud"
-set :repo_url, "https://github.com/ChrisMcdonald/TimeSheet.git"
+set :repo_url, "git@github.com:ChrisMcdonald/TimeSheet.git"
 
 set :passenger_restart_with_touch, true
 set :deploy_to, '/home/chris/TimeSheet'
