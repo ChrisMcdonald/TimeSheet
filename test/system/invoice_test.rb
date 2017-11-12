@@ -48,6 +48,11 @@ class InvoiceTest < ApplicationSystemTestCase
 		sleep 1
 		find('button', text: 'DOWNLOAD INVOICE').click
 		sleep 1
+		invoice = Invoice.last
+		visit invoices_path
+		find(".invoice-#{invoice.id}").click
+		sleep 1
+		sleep 1
 	end
 
 end

@@ -16,6 +16,7 @@ one:
     state: <%= Faker::Address.state %>
     country: <%= Faker::Address.country %>
     post_code: <%= Faker::Address.postcode %>
+    abn: <%= Faker::Number.number(10) %>
 
 
 
@@ -32,4 +33,6 @@ two:
     state: <%= Faker::Address.state %>
     country: <%= Faker::Address.country %>
     post_code: <%= Faker::Address.postcode %>
+    abn: <%= Faker::Number.number(10) %>
+
 

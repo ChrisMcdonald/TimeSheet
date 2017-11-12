@@ -1,9 +1,9 @@
 require "test_helper"
 
-describe PayRate do
-  let(:pay_rate) { PayRate.new }
+class ProjectTest < ActiveSupport::TestCase
 
-  it "must be valid" do
-    value(pay_rate).must_be :valid?
-  end
+	test 'pay rate valid' do
+		pay = pay_rates(:one)
+		assert pay.valid?
+	end
 end

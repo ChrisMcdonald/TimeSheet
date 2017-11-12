@@ -1,32 +1,49 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  endOfFortnight: 2017-08-14
-  user_id: 1
+  user: one
   project_id: 1
+  owner_first_name: <%= Faker::Name.first_name %>
+  owner_last_name: <%= Faker::Name.last_name %>
+  owner_email: <%= Faker::Internet.email %>
+  owner_street_no: <%= Faker::Number.number(2) %>
+  owner_street: <%= Faker::Address.street_name %>
+  owner_city: <%= Faker::Address.city %>
+  owner_state: <%= Faker::Address.state %>
+  owner_country: <%= Faker::Address.country %>
+  owner_post_code: <%= Faker::Address.postcode %>
+  owner_abn: <%= Faker::Number.number(10) %>
+  customer_first_name:  <%= Faker::Name.first_name %>
+  customer_last_name: <%= Faker::Name.last_name %>
+  customer_street_no: <%= Faker::Number.number(2) %>
+  customer_street: <%= Faker::Address.street_name %>
+  customer_city: <%= Faker::Address.city %>
+  customer_state: <%= Faker::Address.state %>
+  customer_country: <%= Faker::Address.country %>
+  customer_post_code: <%= Faker::Address.postcode %>
+  customer_abn: <%= Faker::Number.number(10) %>
+  invoice_date: <%= Date.today %>
 
 two:
-  id: 1
-  user_id: 1
-  project_id: 1
-  owner_first_name: owner.first_name
-  owner_last_name: owner.last_name
-  owner_email: owner.email
-  owner_street_no: owner.street_no
-  owner_street: owner.street
-  owner_city: owner.city
-  owner_state: owner.state
-  owner_country: owner.country
-  owner_post_code: owner.post_code
-  owner_abn: owner.abn
-  customer_first_name: customer.first_name
-  customer_last_name: customer.last_name
-  customer_street_no: customer.street_no
-  customer_street: customer.street
-  customer_city: customer.city
-  customer_state: customer.state
-  customer_country: customer.country
-  customer_post_code: customer.post_code
-  customer_abn: customer.abn
-  invoice_date: <%= Date.today %>
+  user: two
+  project: two
+  owner_first_name: <%= Faker::Name.first_name %>
+  owner_last_name: <%= Faker::Name.last_name %>
+  owner_email: <%= Faker::Internet.email %>
+  owner_street_no: <%= Faker::Number.number(2) %>
+  owner_street: <%= Faker::Address.street_name %>
+  owner_city: <%= Faker::Address.city %>
+  owner_state: <%= Faker::Address.state %>
+  owner_country: <%= Faker::Address.country %>
+  owner_post_code: <%= Faker::Address.postcode %>
+  owner_abn: <%= Faker::Number.number(10) %>
+  customer_first_name:  <%= Faker::Name.first_name %>
+  customer_last_name: <%= Faker::Name.last_name %>
+  customer_street_no: <%= Faker::Number.number(2) %>
+  customer_street: <%= Faker::Address.street_name %>
+  customer_city: <%= Faker::Address.city %>
+  customer_state: <%= Faker::Address.state %>
+  customer_country: <%= Faker::Address.country %>
+  customer_post_code: <%= Faker::Address.postcode %>
+  customer_abn: <%= Faker.Number.number(10)
+
