@@ -68,6 +68,10 @@ group :development, :test do
 end
 
 group :development  do
+	gem 'capistrano-rbenv'
+	gem 'capistrano'
+	gem 'capistrano-rails'
+	gem 'capistrano-passenger'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
 	gem 'web-console'
 	gem 'listen'
@@ -87,6 +91,12 @@ group :test do
 	gem 'capybara-puma'
 
 
+end
+group :assets do
+	gem 'therubyracer'
+	gem 'sass-rails', "  ~> 3.1.0"
+	gem 'coffee-rails', "~> 3.1.0"
+	gem 'uglifier'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
