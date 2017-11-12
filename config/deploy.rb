@@ -5,7 +5,7 @@ set :application, "Soupcloud"
 set :repo_url, "https://github.com/ChrisMcdonald/TimeSheet.git"
 
 set :passenger_restart_with_touch, true
-set :deploy_to, '/home/deploy/TimeSheet'
+set :deploy_to, '/home/chris/TimeSheet'
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
