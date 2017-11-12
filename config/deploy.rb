@@ -2,12 +2,12 @@
 lock "~> 3.10.0"
 
 set :application, "Soupcloud"
-set :repo_url, "https://github.com/ChrisMcdonald/TimeSheet.git"
-set :ssh_options, { :forward_agent => true }
-set :passenger_restart_with_touch, true
+set :scm, :git
+set :repository, "git@github.com:ChrisMcdonald/TimeSheet.git"
+set :branch, "stable"
 set :repository_cache, "git_cache"
 set :deploy_via, :remote_cache
-set :deploy_to, '/home/chris/TimeSheet'
+set :ssh_options, { :forward_agent => true }
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
