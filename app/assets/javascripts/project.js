@@ -34,15 +34,10 @@ $(document).on('turbolinks:load',function () {
 
     });
 });
-
-
-$(document).on('turbolinks:load',function () {
-
-    $('li').click(function(){
-        Turbolinks.visit($(this).find("a").attr("href"))
-
-    });
+$(document).on('click', 'li', function () {
+    Turbolinks.visit($(this).find("a").attr("href"));
 });
+
 $(document).on('turbolinks:load',function () {
     $("#menu-toggle").click(function (e) {
         e.preventDefault();
@@ -56,13 +51,9 @@ $(document).on('turbolinks:load',function () {
         } else {
             x.style.visibility = 'hidden';
             body.classList.remove('col-md-10');
-
         }
-
     });
 });
-
-
 $(document).on('turbolinks:load', function () {
     $('#user-details').click(function () {
 
