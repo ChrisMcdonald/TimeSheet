@@ -1,40 +1,34 @@
 <div class="box">
-<div class="container-fluid">
-<p id="notice"><%= notice %></p>
+  <div class="container-fluid">
+    <p id="notice"><%= notice %></p>
 
-<div class="row">
-<div class='pull-right'  >
-  <button  id="new-project" class="btn btn-primary">New Project</button>
-</div>
-<h1>Projects</h1>
+    <div class="row">
+      <div class='pull-right'>
+        <button id="new-project" class="btn btn-primary">New Project</button>
+      </div>
+      <h1>Projects</h1>
+      <div>
+        <div>
+          <NewProject id="NewProject" class="new-project">
 
-<div>
-  <div>
-<NewProject id="NewProject" class="new-project">
+            <%= render 'form' %>
 
-  <%= render 'form' %>
-
-</NewProject>
+          </NewProject>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <%= will_paginate @projects %>
+  <ul>
+    <div id="book-list">
+
+      <%= render @projects %>
+  </ul>
+  <%= will_paginate @projects %>
+
+
 </div>
-</div>
-
-
-
-</div>
-
-
-<%= will_paginate @projects %>
-
-
-  <div id="book-list">
-<ul>
-
-<%= render @projects %>
-
-</ul>
-</div>
-<%= will_paginate @projects %>
 
 
 

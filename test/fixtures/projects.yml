@@ -4,11 +4,13 @@ one:
   id: 1
   name: Project one
   hours: 1.5
-  customer_id: 1
+  customer: one
+  user: one
 
 
 two:
   id: 2
   name: Project Two
   hours: 1.5
-  customer_id: 1
+  customer: one
+  user: one

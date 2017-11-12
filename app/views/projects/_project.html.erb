@@ -1,7 +1,7 @@
 <li class="shadow project-<%= project.id %>">
 <div class="row">
   <div class="col-md-5 col-xs-5">
-    <h5> <%= project.name.humanize%></h5>
+    <h5 class="clickable"> <%= project.name.humanize %></h5>
   </div>
   <div class="col-md-5 col-xs-5">
     <h5>
@@ -10,7 +10,7 @@
 
     <%= link_to 'Show', project, class: "hidden" %>
   </div>
-  <div class="col-md-1 col-xs-1">
+  <div class="col-md-1 col-xs-1 user">
     <%= link_to  project, data: { confirm: "Are you sure"},method: :delete do %>
         <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
     <%end %>
@@ -18,7 +18,6 @@
 </div>
 
 </li>
-
 
 
 

@@ -2,8 +2,16 @@ require "application_system_test_case"
 class UsersTest < ApplicationSystemTestCase
 	include Devise::Test::IntegrationHelpers
 	include Warden::Test::Helpers
+	CHROME_DRIVER = if ENV['HEADLESS'] then
+						:selenium_chrome_headless
+					else
+						:selenium_chrome
+					end
+
 	setup do
-		sign_in users(:one)
+		user = users(:one)
+		user.add_role :admin
+		sign_in user
 		@routes = Rails.application.routes
 
 	end
@@ -13,14 +21,13 @@ class UsersTest < ApplicationSystemTestCase
 
 
 	test 'create a new User' do
-		user = User.first
-		user.add_role :admin
-		visit users_path
 
-		page.execute_script("  $('NewProject').slideToggle();")
+		visit users_path
+		find('#new-project').click
+		# page.execute_script("  $('NewProject').slideToggle();")
 		within('#NewProject') do
 			fill_in 'user_first_name', with: 'bob'
-			fill_in 'user_email', with: 'bob@email.com'
+			fill_in 'user_email', with: 'bob2@email.com'
 			fill_in 'user_password', with: 'password'
 			fill_in 'user_password_confirmation', with: 'password'
 			fill_in 'user_last_name', with: 'smith'
@@ -33,11 +40,16 @@ class UsersTest < ApplicationSystemTestCase
 			fill_in 'user_abn', with: 1223456
 		end
 		find('a.add_fields').click
-		fill_in "user[pay_rate_attributes][/[0-9]/][rate]", with: 25
+		find('.pay_rate').set("23")
 
-		# find('input[name="commit"]').click
-		user = User.find_by(first_name: 'bob')
-		assert_equal 'bob', user
+		# fill_in "user_pay_rates_attributes" ,with: 25
+		find(".create-user").click
+		# wait: 10
+		page.execute_script("$('form#new-user').submit()")
+		sleep 1
+		user = User.last
+		assert_equal 'bob', user.first_name
 	end
+
 
 end

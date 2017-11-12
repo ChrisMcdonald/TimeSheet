@@ -112,3 +112,4 @@ test/controllers/registrations_controller_test.rb
 test/fixtures/roles.yml
 test/models/role_test.rb
 /config/
+!/config/initializers/

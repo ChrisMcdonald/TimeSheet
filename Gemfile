@@ -81,6 +81,7 @@ group :test do
 	gem 'simplecov'
 	gem 'capybara'
 	gem 'selenium-webdriver'
+	gem 'capybara-puma'
 
 
 end

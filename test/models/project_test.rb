@@ -80,8 +80,7 @@ class ProjectTest < ActiveSupport::TestCase
 	end
 
 	test ' work week' do
-		start_time = Date.yesterday
-		end_time = Date.today
+
 		project = Project.first
 		time = project.all_time_sheets
 

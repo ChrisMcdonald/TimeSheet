@@ -2,14 +2,16 @@
 
 one:
   rate: 1
-  user_id: 1
+  user: one
   created_at: <%= Date.today %>
 
 two:
   rate: 1
-  user_id: 2
+  user: two
+  created_at: <%= Date.today %>
+
 
 three:
   rate: 2
-  user_id: 1
+  user: two
   created_at: <%= Date.yesterday %>

@@ -9,8 +9,16 @@ require "minitest/rails"
 
 # Uncomment for awesome colorful output
 # require "minitest/pride"
-Capybara.server = :puma # Until your setup is working
-Capybara.server = :puma, {Silent: true} # To clean up your test output
+Capybara.register_driver :chrome do |app|
+	Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.javascript_driver = :chrome
+Capybara.asset_host = "http://localhost:3000"
+# Capybara.server = :puma # Until your setup is working
+Capybara.configure do |config|
+	config.server = :puma
+end
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
