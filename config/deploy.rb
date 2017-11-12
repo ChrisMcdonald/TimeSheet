@@ -2,15 +2,31 @@
 lock "~> 3.10.0"
 
 set :application, "Soupcloud"
-set :scm, :git
-set :repository, "git@github.com:ChrisMcdonald/TimeSheet.git"
-# set :branch, "stable"
-set :repository_cache, "git_cache"
-set :deploy_via, :remote_cache
-set :ssh_options, { :forward_agent => true }
+set :repo_url, "https://github.com/ChrisMcdonald/TimeSheet.git"
+set :user, "chris"
+set :branch, 'timesheet'
+set :passenger_restart_with_touch, true
+require "capistrano/scm/git"
+# install_plugin Capistrano::SCM::Git
+
+
+
+set :use_sudo, false
+set :deploy_to, '/home/chris/TimeSheet'
+# set :rails_env, "production"
+# set :deploy_via, :copy
+# set :ssh_options, { :forward_agent => true, :port => 4321 }
+# set :keep_releases, 5
+
+
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
-
+namespace :deploy do
+before :starting,     :check_revision
+after  :finishing,    :compile_assets
+after  :finishing,    :cleanup
+after  :finishing,    :restart
+	end
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
