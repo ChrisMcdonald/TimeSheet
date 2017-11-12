@@ -4,7 +4,7 @@ lock "~> 3.10.0"
 set :application, "Soupcloud"
 set :scm, :git
 set :repository, "git@github.com:ChrisMcdonald/TimeSheet.git"
-set :branch, "stable"
+# set :branch, "stable"
 set :repository_cache, "git_cache"
 set :deploy_via, :remote_cache
 set :ssh_options, { :forward_agent => true }
