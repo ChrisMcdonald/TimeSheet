@@ -26,24 +26,19 @@
     <div class="container-fluid"style="background-color: #7C7C7C !important; color: white">
 
       <div class="navbar-header" style="padding-left: 20px;color: white">
-
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-collapse">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar" ></span>
           <span class="icon-bar" ></span>
           <span class="icon-bar" ></span>
         </button>
-        <% if signed_in? %>
-            <% if current_user.has_any_role? :admin, {name: :read, resource: Project}, {name: :read, resource: Invoice}, {name: :read, resource: User} %>
-        <a href="#" class="navbar-btn btn btn-success pull-left" id="menu-toggle" style="margin-right:  20px">Menu</a>
-            <% end %>
-        <% end %>
+
         <a class="navbar-brand" style="color: white" href="/"> Time Sheet</a>
       </div>
-      <div class="collapse navbar-collapse">
+      <div id="navbar" class="navbar-collapse collapse">
         <p class="navbar-text pull-right" style="color: white" >
           <% if user_signed_in? %>
-              Logged in as <strong><%= current_user.email %></strong>.
+              Logged in as <strong><%= current_user.email %></strong>
               <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link', style:"color: white"%> |
               <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' , style:"color: white"%> |
               <%= link_to "Identities", user_identities_path(current_user), :class => 'navbar-link' , style:"color: white"%>
@@ -53,6 +48,11 @@
           <% end %>
           </div>
     </div>
+  <% if signed_in? %>
+      <% if current_user.has_any_role? :admin, {name: :read, resource: Project}, {name: :read, resource: Invoice}, {name: :read, resource: User} %>
+          <a href="#" class="navbar-btn btn btn-success pull-left" id="menu-toggle" style="margin-right:  20px">Menu</a>
+      <% end %>
+  <% end %>
   </nav>
 <% if signed_in? %>
     <% if current_user.has_any_role? :admin, {name: :read, resource: Project}, {name: :read, resource: Invoice}, {name: :read, resource: User} %>
