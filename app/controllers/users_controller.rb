@@ -3,6 +3,27 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
+  def user_permission
+	  @user = User.find(params[:user_id])
+	  if params["commit"] == 'Save'
+		  User::PERMISSION_GROUPS.each do |value|
+			  permission = value.split('_').to_a
+			  if params.include?(value)
+				  @user.add_role permission[1], permission[0].classify.constantize
+			  else
+				  if params[value].blank?
+					  @user.remove_role permission[1], permission[0].classify.constantize
+				  end
+			  end
+		  end
+	  end
+	  respond_to do |format|
+		  format.js
+		  format.html
+	  end
+  end
+
+
   def user_income
 	  @user = User.find(params[:user_id])
 	  if params[:project_search]
@@ -76,6 +97,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
 		if @user.save
+			@user.add_role(:read, TimeSheet)
+			@user.add_role(:edit, TimeSheet)
 			@user.success = true
 		  format.html {redirect_to users_path, notice: 'User was successfully created.'}
         format.json { render :show, status: :created, location: @user }

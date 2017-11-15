@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :identities
   resources :projects
-  resources :invoices
+  resources :invoices, :except => [:edit]
   resources :works
   resources :pay_rates
 
@@ -48,7 +48,10 @@ Rails.application.routes.draw do
     resources :identities
 	get :user_data
 	get :user_income
-  end
+  	get :user_permission
+  	post :user_permission
+	end
+
   authenticate(:user) do
     resources :users do
 

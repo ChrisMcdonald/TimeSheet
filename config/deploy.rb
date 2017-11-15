@@ -21,12 +21,7 @@ set :deploy_to, '/home/chris/TimeSheet'
 
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
-namespace :deploy do
-before :starting,     :check_revision
-after  :finishing,    :compile_assets
-after  :finishing,    :cleanup
-after  :finishing,    :restart
-	end
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

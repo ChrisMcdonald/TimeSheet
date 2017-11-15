@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
 	before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
 	load_and_authorize_resource :only => [:index, :show, :new]
-
+	skip_authorization_check :only => [:edit, :create]
 
 	# GET /invoices
 	# GET /invoices.json

@@ -15,6 +15,7 @@ class InvoiceTest < ApplicationSystemTestCase
 	end
 	test 'blank  invoice' do
 		user = users(:one)
+		user.add_role(:admin)
 
 		visit root_path
 		find_link(href: "/invoices.#{user.id}").click
@@ -28,6 +29,8 @@ class InvoiceTest < ApplicationSystemTestCase
 
 	test 'valid  invoice' do
 		user = users(:one)
+		user.add_role(:admin)
+
 		visit root_path
 		find_link(href: "/current_day/#{Date.today}").click
 		find('a.add_fields').click
@@ -38,10 +41,10 @@ class InvoiceTest < ApplicationSystemTestCase
 		find_link(href: "/invoices.#{user.id}").click
 		find_link(href: '/invoices/new').click
 		sleep 1
-		find('select', 'name=search').click
+		find('select',).click
 		find('option[value="2"]').click
 		sleep 1
-		find('select', 'name=search').click
+		find('select').click
 		find('option[value="1"]').click
 		sleep 1
 		find('input[name="commit"]').click

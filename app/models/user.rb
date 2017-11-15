@@ -1,5 +1,7 @@
 class User < ApplicationRecord
+	resourcify
 	rolify
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 	include Calculate
@@ -14,7 +16,15 @@ class User < ApplicationRecord
 	# validates_uniqueness_of :email ,message: 'Email is already registed'
 	validates_presence_of :email, :first_name, :last_name
 
-	attr_accessor :project_search, :success
+	attr_accessor :project_search, :success, :user_read, :user_edit, :customer_read, :customer_edit,
+				  :project_read, :project_edit, :TimeSheet_read, :time_sheet_edit, :Invoice_read, :Invoice_edit, :User_admin
+
+	PERMISSION_GROUPS = ['User_read', 'User_edit', 'TimeSheet_read', 'TimeSheet_edit', 'Project_read', 'Project_edit',
+						 'Customer_read', 'Customer_edit', 'Invoice_read', 'Invoice_edit', 'User_admin']
+
+	PERMISSIONS = ['User', 'TimeSheet', 'Project', 'Customer', 'Invoice']
+
+	attr_writer
 
 	def to_csv(obj,options={})
 		CSV.generate(options) do |csv|
