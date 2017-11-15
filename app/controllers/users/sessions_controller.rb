@@ -1,7 +1,9 @@
 class Users::SessionsController < Devise::SessionsController
 	# before_action :configure_sign_in_params, only: [:create]
-	load_and_authorize_resource
+	load_and_authorize_resource except: [:destroy, :new, :create]
 	# GET /resource/sign_in
+	skip_authorize_resource only: :destroy
+
 	def new
 		super
 	end
