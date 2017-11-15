@@ -56,7 +56,6 @@ gem 'jbuilder'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'simple_form'
 
 gem 'capistrano-rbenv'
 gem 'capistrano'
