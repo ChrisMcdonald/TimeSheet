@@ -17,6 +17,12 @@ class UsersTest < ApplicationSystemTestCase
 		fill_in 'user_password_confirmation', with: 'Password'
 		find('input[name=commit]').click
 		sleep 1
+		find_link(href: '/admin/sign_out').click
+		sleep 1
+		fill_in 'user_email', with: 'user@email.com'
+		fill_in 'user_password', with: 'Password'
+		find('input[name="commit"]').click
+		sleep 1
 	end
 
 end
