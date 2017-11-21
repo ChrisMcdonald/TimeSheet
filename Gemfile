@@ -95,9 +95,7 @@ group :test do
 	gem 'capybara-puma'
 end
 group :assets do
-	gem 'sass-rails'
-	gem 'coffee-rails'
-	gem 'therubyracer', :platform => :ruby
+
 	gem 'uglifier'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
