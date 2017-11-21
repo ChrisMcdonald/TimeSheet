@@ -9,20 +9,20 @@ class ProjectsController < ApplicationController
 
 	# GET /projects/1
 	def show
-		if !params[:start_date].blank? && !params[:end_date].blank?
-			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date])
-			@column_chart =  @project.hours_by_date_range(params[:start_date], params[:end_date])
+		if request.format.js? || request.format.html?
 
+			@time = @project.all_time_sheets.paginate(:page => params[:page], :per_page => 20)
+			@time.time_sheets_for_week(params[:start_date], params[:end_date]) if !params[:start_date].blank? && !params[:end_date].blank?
+			@chat = @project.hours_by_day
+			@total_for_user = @project.total_project_users(@time)
+			@total = @project.total(@total_for_user)
 		else
-
 			@time = @project.all_time_sheets
-			@column_chart = @project.hours_by_day
-
+			@time.time_sheets_for_week(params[:start_date], params[:end_date]) if !params[:start_date].blank? && !params[:end_date].blank?
+			@chat = @project.hours_by_day
+			@total_for_user = @project.total_project_users(@time)
+			@total = @project.total(@total_for_user)
 		end
-
-		@chat = @project.hours_by_day
-		@total_for_user = @project.total_project_users(@time)
-		@total = @project.total(@total_for_user)
 
 		respond_to do |format|
 			format.html

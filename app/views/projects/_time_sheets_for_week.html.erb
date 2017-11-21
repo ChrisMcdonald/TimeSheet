@@ -1,5 +1,8 @@
 <div class="table-responsive">
   <table class="table outline table-striped table-hover">
+    <div id="page_links">
+      <%= will_paginate @time %>
+    </div>
     <tr class=" grey_backgound">
       <th>User Name</th>
       <th>Date worked</th>
@@ -31,6 +34,9 @@
     <tr>
     </tr>
   </table>
+  <div id="page_links">
+    <%= will_paginate @time %>
+  </div>
 </div>
 
 
