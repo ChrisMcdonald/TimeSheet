@@ -1,15 +1,15 @@
 class TimeSheet < ApplicationRecord
-
 	include Calculate
 	resourcify
 
-	belongs_to :user
 	has_many :works, dependent: :destroy
 	has_many :projects, through: :works
 	accepts_nested_attributes_for :works,
 								  allow_destroy: true
 	validates_presence_of :time_period
+	belongs_to :user
 
+	scope :date_range, -> (start_date, end_date) {where(time_period: start_date..end_date)}
 
 	def self.to_csv(options={})
 		CSV.generate(options) do |csv|

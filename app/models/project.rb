@@ -6,8 +6,7 @@ class Project < ApplicationRecord
 	has_many :works, dependent: :destroy
 	belongs_to :customer
 	belongs_to :user
-	has_many :pay_rates, dependent: :destroy
-	has_many :time_sheets, through: :works
+
 
 	def total_project_users(time)
 		total = Array.new

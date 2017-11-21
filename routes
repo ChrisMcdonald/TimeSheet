@@ -19,7 +19,6 @@ projects_time_sheet_for_week_show GET    /projects/time_sheet_for_week/show(.:fo
                          invoices GET    /invoices(.:format)                           invoices#index
                                   POST   /invoices(.:format)                           invoices#create
                       new_invoice GET    /invoices/new(.:format)                       invoices#new
-                     edit_invoice GET    /invoices/:id/edit(.:format)                  invoices#edit
                           invoice GET    /invoices/:id(.:format)                       invoices#show
                                   PATCH  /invoices/:id(.:format)                       invoices#update
                                   PUT    /invoices/:id(.:format)                       invoices#update
@@ -79,13 +78,13 @@ projects_time_sheet_for_week_show GET    /projects/time_sheet_for_week/show(.:fo
                     user_password PATCH  /admin/password(.:format)                     devise/passwords#update
                                   PUT    /admin/password(.:format)                     devise/passwords#update
                                   POST   /admin/password(.:format)                     devise/passwords#create
-         cancel_user_registration GET    /admin/cancel(.:format)                       users/registrations#cancel
-            new_user_registration GET    /admin/sign_up(.:format)                      users/registrations#new
-           edit_user_registration GET    /admin/edit(.:format)                         users/registrations#edit
-                user_registration PATCH  /admin(.:format)                              users/registrations#update
-                                  PUT    /admin(.:format)                              users/registrations#update
-                                  DELETE /admin(.:format)                              users/registrations#destroy
-                                  POST   /admin(.:format)                              users/registrations#create
+         cancel_user_registration GET    /admin/cancel(.:format)                       devise/registrations#cancel
+            new_user_registration GET    /admin/sign_up(.:format)                      devise/registrations#new
+           edit_user_registration GET    /admin/edit(.:format)                         devise/registrations#edit
+                user_registration PATCH  /admin(.:format)                              devise/registrations#update
+                                  PUT    /admin(.:format)                              devise/registrations#update
+                                  DELETE /admin(.:format)                              devise/registrations#destroy
+                                  POST   /admin(.:format)                              devise/registrations#create
                     user_projects GET    /users/:user_id/projects(.:format)            projects#index
                                   POST   /users/:user_id/projects(.:format)            projects#create
                  new_user_project GET    /users/:user_id/projects/new(.:format)        projects#new
@@ -105,6 +104,7 @@ projects_time_sheet_for_week_show GET    /projects/time_sheet_for_week/show(.:fo
                    user_user_data GET    /users/:user_id/user_data(.:format)           users#user_data
                  user_user_income GET    /users/:user_id/user_income(.:format)         users#user_income
              user_user_permission GET    /users/:user_id/user_permission(.:format)     users#user_permission
+                                  POST   /users/:user_id/user_permission(.:format)     users#user_permission
                             users GET    /users(.:format)                              users#index
                                   POST   /users(.:format)                              users#create
                          new_user GET    /users/new(.:format)                          users#new

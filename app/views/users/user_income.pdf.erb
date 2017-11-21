@@ -25,9 +25,8 @@
 
 <div class="alwaysbreak">
 
-<h1>Total Income <%= @total_pay[:total] %>
-    Superannuation <%= @total_pay[:superannuation] %>
-    Holidays <%= @total_pay[:holidays] %></h1>
+  <h1>Total Income <%= @sub_total[:total] %>
+    Superannuation <%= @sub_total[:superannuation] %>
 
 <div id="user_income">
     <%= render 'users/all_user_work.html.erb' %>

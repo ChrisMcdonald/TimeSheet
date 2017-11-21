@@ -6,15 +6,17 @@
 </div>
 <h1>Invoices</h1>
 </div>
-
-<%= will_paginate @invoices %>
 <div class="col-xs-5 col-md-5"><strong>Invoice No#</strong></div>
 <div class="col-xs-5 col-md-5" ><strong>Customer: </strong></div>
 
-<ul>
-  <%= render @invoices %>
+<div>
+  <%= will_paginate @invoices %>
+
+
+  <ul>
+    <%= render @invoices %>
 </ul>
 <%= will_paginate @invoices %>
-
+</div>
 <br>
 

@@ -1,12 +1,12 @@
 <table class="table table-striped">
   <tr class="pdf-tr">
-    <th>
-      pay
-    </th>
+    <th>pay</th>
+    <th>hours</th>
+    <th>rate</th>
     <th>date</th>
     <th>project</th>
-    <% @user_table.each do |u| %>
-        <%= render 'pay_table.html.erb', u: u %>
+    <% @user_table.each_with_index do |u, i| %>
+        <%= render 'pay_table.html.erb', u: u, i: i %>
     <% end %>
 
 </table>

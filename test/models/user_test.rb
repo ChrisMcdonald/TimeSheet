@@ -22,12 +22,14 @@ class UserTest < ActiveSupport::TestCase
 	test 'user super '
 
 	test 'user total income' do
-		pararr = Array.new
-		user = User.first
-		pararr = user.pay_for_user
-	ap	pararr
-	end
+		user = users(:one)
+		work = user.works.includes(:project)
+		work.each do |w|
+			puts Project.find w.project_id
+			puts w.time_sheet.time_period
 
+		end
+	end
 
 	test 'user total income '  do
 		user = User.first

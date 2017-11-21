@@ -31,12 +31,15 @@
       <% end %>
     </div>
   </div>
-  <h1>Total Income <%= @total_pay[:total] %>
-    Superannuation <%= @total_pay[:superannuation] %>
-    Holidays <%= @total_pay[:holidays] %></h1>
+  <h1>Total Income <%= @sub_total[:total] %>
+    Superannuation <%= @sub_total[:superannuation] %>
+  </h1>
 
   <div id="user_income">
+    <%= will_paginate @user_table, remote: true %>
     <%= render 'users/all_user_work' %>
+    <%= will_paginate @user_table, remote: true %>
+
   </div>
 
 </div>
