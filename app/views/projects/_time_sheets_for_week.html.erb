@@ -27,7 +27,7 @@
     <td></td>
     <td></td>
 
-    <td>total hours <%= @project.sum_time_sheet(@time) %>
+    <td>total hours <%= @project.sum_time_sheet(@project.all_time_sheets) %>
     </td>
 
     <td>total cost <%= @total %></td>
