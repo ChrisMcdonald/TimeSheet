@@ -13,16 +13,18 @@ class ProjectsController < ApplicationController
 
 			@time = @project.all_time_sheets.paginate(:page => params[:page], :per_page => 20)
 			@time.time_sheets_for_week(params[:start_date], params[:end_date]) if !params[:start_date].blank? && !params[:end_date].blank?
-			@chat = @project.hours_by_day
 			@total_for_user = @project.total_project_users(@time)
 			@total = @project.total(@total_for_user)
 		else
 			@time = @project.all_time_sheets
 			@time.time_sheets_for_week(params[:start_date], params[:end_date]) if !params[:start_date].blank? && !params[:end_date].blank?
-			@chat = @project.hours_by_day
 			@total_for_user = @project.total_project_users(@time)
 			@total = @project.total(@total_for_user)
 		end
+		@column_chart = @project.hours_by_day
+		@chat = @project.hours_by_day
+		@total_for_user = @project.total_project_users(@time)
+		@total = @project.total(@total_for_user)
 
 		respond_to do |format|
 			format.html
