@@ -25,10 +25,18 @@ class UsersController < ApplicationController
 
 	def user_income
 		@user = User.find(params[:user_id])
-		@user_table = @user.time_work.paginate(:page => params[:page], :per_page => 20)
-		@user_table = @user_table.where(project_id: params[:project_search]) if params[:project_search]
-		@user_table = @user_table.where(time_sheet: {time_period: Date.yesterday..Date.tomorrow}) if params[:start_date] && params[:end_date]
-		@sub_total = @user.sub_total(@user.time_work)
+
+		if request.format.js? || request.format.html?
+			@user_table = @user.time_work.paginate(:page => params[:page], :per_page => 20)
+			@user_table = @user_table.where(project_id: params[:project_search]) if params[:project_search]
+			@user_table = @user_table.where(time_sheet: {time_period: Date.yesterday..Date.tomorrow}) if params[:start_date] && params[:end_date]
+			@sub_total = @user.sub_total(@user.time_work)
+		else
+			@user_table = @user.time_work
+			@user_table = @user_table.where(project_id: params[:project_search]) if !params[:project_search].blank?
+			# @user_table = @user_table.where(time_sheet: {time_period: Date.yesterday..Date.tomorrow}) if params[:start_date] && params[:end_date]
+			@sub_total = @user.sub_total(@user.time_work)
+		end
 
 		respond_to do |format|
 			format.csv {send_data @user.to_csv(@user_table), disposition: "attachment;", filename: "#{@user.full_name}-#{Date.today}.csv"}

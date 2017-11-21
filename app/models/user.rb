@@ -35,14 +35,15 @@ class User < ApplicationRecord
 
 
 	def to_csv(obj, options={})
+		sub_total = self.sub_total(obj)
 		CSV.generate(options) do |csv|
 			csv << ['pay', 'hours', 'rate', 'Date Worked', 'project']
-			obj.each do |p|
-
-
-				csv << [self.sub_total(self.rate(p.time_sheet.time_period), p.hour),
+			obj.each_with_index do |p, i|
+				csv << [sub_total[:sub_totals][i],
 						p.hour,
-						self.rate(p.time_sheet.time_period), p.time_sheet.time_period]
+						self.rate(p.time_sheet.time_period),
+						p.time_sheet.time_period.strftime("%A %b %d "),
+						p.project.name]
 			end
 		end
 	end

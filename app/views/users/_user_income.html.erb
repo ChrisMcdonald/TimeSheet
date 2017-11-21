@@ -36,9 +36,9 @@
   </h1>
 
   <div id="user_income">
-    <%= will_paginate @user_table, remote: true %>
+    <%= will_paginate @user_table %>
     <%= render 'users/all_user_work' %>
-    <%= will_paginate @user_table, remote: true %>
+    <%= will_paginate @user_table %>
 
   </div>
 
