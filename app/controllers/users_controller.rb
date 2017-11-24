@@ -28,21 +28,21 @@ class UsersController < ApplicationController
 
 		if request.format.js? || request.format.html?
 			@user_table = @user.time_work.paginate(:page => params[:page], :per_page => 20)
-			@user_table = @user_table.where(project_id: params[:project_search]) if params[:project_search]
-			@user_table = @user_table.where(time_sheet: {time_period: Date.yesterday..Date.tomorrow}) if params[:start_date] && params[:end_date]
+			@user_table = @user_table.where(project_id: params[:project_search]) unless params[:project_search].blank?
+			@user_table = @user_table.filter_buy_date params[:start_date], params[:end_date] unless params[:start_date].blank? || params[:end_date].blank?
 			@sub_total = @user.sub_total(@user.time_work)
 		else
 			@user_table = @user.time_work
-			@user_table = @user_table.where(project_id: params[:project_search]) if !params[:project_search].blank?
-			# @user_table = @user_table.where(time_sheet: {time_period: Date.yesterday..Date.tomorrow}) if params[:start_date] && params[:end_date]
+			@user_table = @user_table.where(project_id: params[:project_search]) unless params[:project_search].blank?
+			@user_table = @user_table.filter_buy_date params[:start_date], params[:end_date] unless params[:start_date].blank? || params[:end_date].blank?
 			@sub_total = @user.sub_total(@user.time_work)
 		end
 
 		respond_to do |format|
 			format.csv {send_data @user.to_csv(@user_table), disposition: "attachment;", filename: "#{@user.full_name}-#{Date.today}.csv"}
-			format.xlsx # {send_data @time_sheets.to_csv(col_sep: "\t")}
+			format.xlsx {headers["Content-Disposition"] = "attachment; filename: #{@user.full_name}-#{Date.today}.xlsx"}
 			format.pdf do
-				render pdf: "Invoice", header: {right: '[page] of [topage]'}
+				render pdf: "Invoice", header: {right: '[page] of [topage]'}, filename: "#{@user.full_name}-#{Date.today}.pdf"
 			end
 			format.js
 			format.html
@@ -146,7 +146,7 @@ class UsersController < ApplicationController
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def user_params
 		params.require(:user).permit(:email, :username, :first_name, :last_name, :street_no, :street, :city, :state, :password, :password_confirmation, :success,
-									 :country, :post_code, :abn, :project_search, pay_rates_attributes: [:id, :rate, :project_id, :_destroy])
+									 :start_date, :end_date, :country, :post_code, :abn, :project_search, pay_rates_attributes: [:id, :rate, :project_id, :_destroy])
 	end
 
 end

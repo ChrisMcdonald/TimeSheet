@@ -9,7 +9,8 @@ class TimeSheetTest < ActiveSupport::TestCase
 	end
 
 	test 'has time sheet' do
-		assert TimeSheet.has_time_sheet(Date.today)
+		user = users(:one)
+		assert TimeSheet.has_time_sheet(Date.today, user)
 	end
 
 	test 'time sheet has work' do

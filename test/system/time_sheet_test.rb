@@ -3,9 +3,9 @@ class CustomerTest < ApplicationSystemTestCase
 	include Devise::Test::IntegrationHelpers
 	include Warden::Test::Helpers
 	setup do
-		user = users(:one)
-		user.add_role :admin
-		sign_in user
+		@user = users(:one)
+		@user.add_role :admin
+		sign_in @user
 		@routes = Rails.application.routes
 
 	end
@@ -15,7 +15,6 @@ class CustomerTest < ApplicationSystemTestCase
 
 
 	test 'create a new timesheet' do
-		user = users(:one)
 		visit root_path
 		find_link(href: "/current_day/#{Date.today}").click
 		find('a.add_fields').click
@@ -33,7 +32,7 @@ class CustomerTest < ApplicationSystemTestCase
 		first('textarea', class: 'description-field').set('this is the description')
 		find('input[name="commit"]').click
 
-		find_link(href: "/invoices.#{user.id}").click
+		find_link(href: "/invoices.#{@user.id}").click
 		find_link(href: '/invoices/new').click
 		sleep 1
 		find('input[name="commit"]').click
@@ -41,5 +40,15 @@ class CustomerTest < ApplicationSystemTestCase
 		find('.btn', text: 'DOWNLOAD INVOICE').click
 
 		sleep 1
+
+		visit user_path(@user)
+		find('.btn', text: 'USER INCOME').click
+		fill_in 'start_date', with: 1.week.ago.to_s
+		fill_in 'end_date', with: Date.tomorrow.to_s
+		find('input[name="commit"]').click
+		sleep 1
+
+		sleep 1
+
 	end
 end

@@ -15,6 +15,10 @@ class Work < ApplicationRecord
 			.where('works.project_id = ?', project_id).where('works.invoice_id IS ?', nil)
 	end
 
+	def self.filter_buy_date start_date, end_date
+		joins(:time_sheet).where('time_sheets.time_period 	BETWEEN ? AND ? ', start_date.to_s, end_date.to_s)
+	end
+
 
 end
 

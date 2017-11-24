@@ -13,8 +13,14 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal true, result
 	end
 
-	test 'user holidays' do
+	test 'user work table' do
+		@user = users(:one)
+		@user.add_role :admin
+		@user_table = @user.time_work
+		@user_table = @user_table.joins(:time_sheet).where('time_sheets.time_period = ?', Date.yesterday..Date.tomorrow)
 
+		# @user_table = @user_table.where(time_sheet: {time_period: Date.yesterday..Date.tomorrow}) if params[:start_date] && params[:end_date]
+		ap @user_table
 	end
 
 	test 'user tax'

@@ -12,10 +12,10 @@ class ProjectsController < ApplicationController
 	def show
 		if request.format.js? || request.format.html?
 			@time = @project.all_time_sheets.paginate(:page => params[:page], :per_page => 20)
-			@time.time_sheets_for_week(params[:start_date], params[:end_date]) if !params[:start_date].blank? && !params[:end_date].blank?
+			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date]).paginate(:page => params[:page], :per_page => 20) if !params[:start_date].blank? && !params[:end_date].blank?
 		else
 			@time = @project.all_time_sheets
-			@time.time_sheets_for_week(params[:start_date], params[:end_date]) if !params[:start_date].blank? && !params[:end_date].blank?
+			@time = @project.time_sheets_for_week(params[:start_date], params[:end_date]) if !params[:start_date].blank? && !params[:end_date].blank?
 		end
 
 		@column_chart = @project.hours_by_day

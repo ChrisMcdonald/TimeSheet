@@ -9,9 +9,9 @@ class UsersTest < ApplicationSystemTestCase
 					end
 
 	setup do
-		user = users(:one)
-		user.add_role :admin
-		sign_in user
+		@user = users(:one)
+		@user.add_role :admin
+		sign_in @user
 		@routes = Rails.application.routes
 
 	end
