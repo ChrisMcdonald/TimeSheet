@@ -1,0 +1,25 @@
+<div class="box">
+  <p>
+    <strong>User:</strong>
+    <%= @time_sheet.user.full_name %>
+  </p>
+<table class="outline table table-striped table-hover outline" style="width: 100%">
+  <tr class="grey_backgound">
+    <th>hours</th>
+    <th>project</th>
+    <th>description</th>
+
+    <th></th>
+  </tr>
+  <% @time_sheet.works.each do |w| %>
+  <tr>
+    <td><%= w.hour %></td>
+    <td><%= w.project_id %></td>
+    <td><%= w.description %></td>
+
+    <td><%=link_to 'delete', work_path( w.id), data: {confirm: 'Are you sure'}, method: :delete %></td>
+
+  </tr>
+  <% end %>
+</table>
+</div>
