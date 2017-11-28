@@ -9,6 +9,17 @@ class TimeSheetsController < ApplicationController
   add_breadcrumb "home", :root_path
   add_breadcrumb "my", :time_sheets_path
 
+  def travel
+    @time_sheet = TimeSheet.find(params[:time_sheet_id])
+    @time_sheet.travels.build if @time_sheet.travels.count < 1
+    @time_sheet.user = current_user
+    respond_to do |format|
+      format.js
+      format.html
+    end
+
+  end
+
   def index
   add_breadcrumb "my", :time_sheets_path
   if can? :manage, User
@@ -20,7 +31,9 @@ class TimeSheetsController < ApplicationController
   # GET /time_sheets/1
   # GET /time_sheets/1.json
   def show
-
+    if @time_sheet.works.count < 1
+      @time_sheet.works.build
+    end
   end
 
   def current_day
@@ -30,7 +43,7 @@ class TimeSheetsController < ApplicationController
 		  @time_sheet.user = current_user
 		  @time_sheet.save!
 	  end
-	 redirect_to edit_time_sheet_path(@time_sheet)
+    redirect_to time_sheet_path(@time_sheet)
   end
 
   # GET /time_sheets/new
@@ -44,6 +57,13 @@ class TimeSheetsController < ApplicationController
   # GET /time_sheets/1/edit
   def edit
 	  @user = current_user
+    if @time_sheet.works.count < 1
+      @time_sheet.works.build
+    end
+    respond_to do |format|
+      format.js
+      format.html
+    end
 
   end
 
@@ -59,7 +79,7 @@ class TimeSheetsController < ApplicationController
         format.json { render :index, status: :created, location: @time_sheet }
 	  	format.js
       else
-        format.html { render :new }
+        format.html {render :show}
         format.json { render json: @time_sheet.errors, status: :unprocessable_entity }
       end
     end
@@ -73,7 +93,7 @@ class TimeSheetsController < ApplicationController
        format.html { redirect_to time_sheets_path @time_sheet, notice: 'Time sheet was successfully updated.' }
         format.json { render :show, status: :ok, location: @time_sheet }
       else
-        format.html { render :edit }
+        format.html {render :show}
         format.json { render json: @time_sheet.errors, status: :unprocessable_entity }
       end
     end
@@ -110,7 +130,10 @@ class TimeSheetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def time_sheet_params
-      params.require(:time_sheet).permit(:time_period, :user_id, works_attributes: [:id,:date, :hour, :description, :project_id, :time_sheet_id,:_destroy] )
+      params.require(:time_sheet).permit(:time_period, :user_id,
+                                         works_attributes: [:id, :date, :hour, :description, :project_id, :time_sheet_id, :_destroy],
+                                         travels_attributes: [:travel_date, :od_start, :od_finish, :purpose, :user_id, :project_id, :time_sheet_id, :vehicle_id]
+      )
 
 	end
 end
