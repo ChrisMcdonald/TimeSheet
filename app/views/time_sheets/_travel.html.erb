@@ -1,0 +1,35 @@
+<div class="box">
+  <%= form_for(@time_sheet) do |f| %>
+      <% if @time_sheet.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@time_sheet.errors.count, "error") %> prohibited this time_sheet from being saved:</h2>
+
+            <ul>
+              <% @time_sheet.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="btn-group">
+        <%= link_to_add_fields "Add Travel", f, :travels, 'time_sheets/travel_fields' %>
+        <%= f.submit "Save", class: 'btn btn-default' %>
+      </div>
+      <table class="outline table table-striped table-hover outline " style="  outline: 2px solid #ccc;">
+        <tr class="grey_background " id="hours">
+          <th class="col-xs-12 col-sm-3">Travel Date</th>
+          <th class="hidden-xs col-sm-3">Odometer Start</th>
+          <th class="hidden-xs col-sm-3">Odometer Finish</th>
+        </tr>
+        <%= f.fields_for :travels do |builder| %>
+
+            <%= render 'time_sheets/travel_fields', f: builder %>
+
+        <% end %>
+
+
+        </tr>
+      </table>
+      </div>
+  <% end %>
+  </div>

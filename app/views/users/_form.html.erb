@@ -161,13 +161,13 @@
 
 
               <div class="actions">
-                <div class='btn btn-default'>
-                  <% if @user.pay_rates.present? %>
+
+                <% if @user.pay_rates.present? %>
                       <%= link_to_add_fields "Change Pay Rate", f, :pay_rates, 'users/pay_rates' %>
                   <% else %>
                       <%= link_to_add_fields "Add Pay Rate", f, :pay_rates, 'users/pay_rates' %>
                   <% end %>
-                </div>
+
               </div>
               <div class="table-responsive">
                 <table>

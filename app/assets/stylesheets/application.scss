@@ -12,9 +12,11 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-datepicker
  */
 @import "bootstrap";
 @import "bootstrap-sprockets";
+
 
 body, html, .container-fluid, .sidebar, .body {
   height: 100%;
@@ -45,7 +47,7 @@ table, td, th, tr, td {
   border: none;
 }
 
-.grey_backgound {
+.grey_background {
   background-color: #f0f0f0;
 }
 

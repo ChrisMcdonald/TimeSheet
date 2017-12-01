@@ -1,22 +1,18 @@
 <div class="box">
   <div class="row">
-    <div class="col-md-2 " style="padding-right: 0">
-      <%= form_tag user_user_income_path(@user), method: :get do %>
 
-          <button formaction=" <%= user_user_income_path(@user, format: 'pdf') %>" id="pdf" type="submit" class="btn btn-default pull-right">Pdf</button>
-          <button formaction=" <%= user_user_income_path(@user, format: 'csv') %>" id="csv" type="submit" class="btn btn-default pull-right">Csv</button>
-          <button formaction=" <%= user_user_income_path(@user, format: 'xlsx') %>" id="excel" type="submit" class="btn btn-default pull-right">Excel</button>
-      <% end %>
-    </div>
     <%= form_tag user_user_income_path(@user), method: :get, remote: true do %>
 
-        <div class="btn-group col-md-3 pull-left" style="padding-left: 0">
+        <div class="btn-group col-md-5 pull-left">
             <div class="dropdown show">
               <a class="btn btn-default dropdown-toggle pull-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Select Projects
               </a>
 
-              <%= submit_tag 'search', class: 'btn btn-default', id: 'search' %>
+              <%= submit_tag 'search', class: 'btn btn-default', id: 'search', remote: true %>
+              <%= submit_tag 'csv', formaction: user_user_income_path(@user, format: 'csv'), class: 'btn btn-default', remote: false %>
+              <%= submit_tag 'pdf', formaction: user_user_income_path(@user, format: 'pdf'), class: 'btn btn-default', remote: false %>
+              <%= submit_tag 'excel', formaction: user_user_income_path(@user, format: 'xlsx'), class: 'btn btn-default', remote: false %>
 
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style='overflow: hidden;'>
 

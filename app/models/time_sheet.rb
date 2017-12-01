@@ -2,10 +2,12 @@ class TimeSheet < ApplicationRecord
 	include Calculate
 	resourcify
 
+  has_many :travels, dependent: :destroy
+  accepts_nested_attributes_for :travels, allow_destroy: true
 	has_many :works, dependent: :destroy
 	has_many :projects, through: :works
-	accepts_nested_attributes_for :works,
-								  allow_destroy: true
+
+  accepts_nested_attributes_for :works, allow_destroy: true
 	validates_presence_of :time_period
 	belongs_to :user
 

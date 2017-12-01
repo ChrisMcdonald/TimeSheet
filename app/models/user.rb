@@ -3,6 +3,8 @@ class User < ApplicationRecord
 	rolify
 	include Calculate
 
+  has_many :travels
+  has_many :time_travel, through: :time_sheets, foreign_key: :user_id, source: :travels
 	has_many :projects
 	has_many :time_sheets
 	has_many :time_work, through: :time_sheets, foreign_key: :user_id, source: :works
@@ -25,13 +27,13 @@ class User < ApplicationRecord
 	validates_presence_of :email, :first_name, :last_name
 
 	attr_accessor :project_search, :success, :user_read, :user_edit, :customer_read, :customer_edit,
-				  :project_read, :project_edit, :TimeSheet_read, :time_sheet_edit, :Invoice_read, :Invoice_edit,
-				  :User_admin, :start_date, :end_date
+                :project_read, :project_edit, :TimeSheet_read, :time_sheet_edit, :Invoice_read, :Invoice_edit,
+                :User_admin, :start_date, :end_date, :Travel_read, :Travel_edit
 
 	PERMISSION_GROUPS = ['User_read', 'User_edit', 'TimeSheet_read', 'TimeSheet_edit', 'Project_read', 'Project_edit',
-						 'Customer_read', 'Customer_edit', 'Invoice_read', 'Invoice_edit', 'User_admin']
+                       'Customer_read', 'Customer_edit', 'Invoice_read', 'Invoice_edit', 'User_admin', 'Travel_read', 'Travel_edit']
 
-	PERMISSIONS = ['User', 'TimeSheet', 'Project', 'Customer', 'Invoice']
+  PERMISSIONS = ['Travel', 'User', 'TimeSheet', 'Project', 'Customer', 'Invoice']
 
 
 	def to_csv(obj, options={})

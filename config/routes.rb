@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :travels
 	namespace :projects do
 		get 'time_sheet_for_week/show'
 	end
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
 
 
 	resources :time_sheets do
+		get :travel
 		collection do
 			post 'hours_for_day/:date', to: "time_sheets#hours_for_day", as: '_hours'
 		end

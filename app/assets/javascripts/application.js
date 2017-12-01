@@ -17,21 +17,7 @@
 //= require cable
 //= require chartkick
 //= require Chart.bundle
-//= require bootstrap-sprockets
 //= require bootstrap
-
-
-//
-// $(document).ready( function() {
-//
-//     var base_url = window.location.protocol + "//" + window.location.host;
-//
-//     $('#current_date').searchbox({
-//         url: base_url + '/time_sheets/hours_for_day/',
-//         param: 'date',
-//         dom_id: '#hours'
-//         // loading_css: '#livesearch_loading'
-//     })
-// });
-
+//= require bootstrap-sprockets
+//= require bootstrap-datepicker
 

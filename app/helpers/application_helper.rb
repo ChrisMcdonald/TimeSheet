@@ -5,8 +5,9 @@ module ApplicationHelper
 		id = new_object.object_id
 		fields = f.fields_for(association, new_object, child_index: id,) do |builder|
 			render(url, f: builder)
+
 		end
-		link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")} )
+    link_to(name, '#', class: "btn btn-default add_fields", data: {id: id, fields: fields.gsub("\n", "")})
 	end
 
 	module ApplicationHelper
@@ -14,4 +15,6 @@ module ApplicationHelper
 			will_paginate collection, params.merge(:renderer => RemoteLinkPaginationHelper::LinkRenderer)
 		end
 	end
+
+
 end

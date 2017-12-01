@@ -1,0 +1,34 @@
+<%= form_with(model: travel, local: true) do |form| %>
+    <% if travel.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(travel.errors.count, "error") %> prohibited this travel from being saved:</h2>
+
+          <ul>
+            <% travel.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :travel_date %>
+      <%= form.datetime_select :travel_date, id: :travel_travel_date %>
+    </div>
+
+    <div class="field">
+      <%= form.label :od_start %>
+      <%= form.number_field :od_start, id: :travel_od_start %>
+    </div>
+
+    <div class="field">
+      <%= form.label :od_finish %>
+      <%= form.number_field :od_finish, id: :travel_od_finish %>
+    </div>
+
+    <div class="field">
+      <%= form.label :purpose %>
+      <%= form.text_field :purpose, id: :travel_purpose %>
+    </div>
+
+<% end %>
