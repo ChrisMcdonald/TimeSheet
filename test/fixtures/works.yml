@@ -4,28 +4,11 @@ one:
   hour: 1
   description: 'this is a description'
   project: one
-  time_sheet_id: one
+  time_sheet: one
 
 two:
   hour: 1
   description: 'this is a description'
   project: one
-  time_sheet_id: two
+  time_sheet: two
 
-three:
-  hour: 1
-  description: 'this is a description'
-  project: two
-  time_sheet_id: two
-four:
-
-  hour: 1
-  description: 'this is a description'
-  project: two
-  time_sheet_id: one
-five:
-
-  hour: 1
-  description: 'this is a description'
-  project: two
-  time_sheet_id: one

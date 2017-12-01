@@ -28,10 +28,10 @@ desc "Restart Passenger app"
 task :restart do
 	run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
 end
-
-after "deploy", "deploy:symlink_config_files"
-after "deploy", "deploy:restart"
-after "deploy", "deploy:cleanup"
+#
+# after "deploy", "deploy:symlink_config_files"
+# after "deploy", "deploy:restart"
+# after "deploy", "deploy:cleanup"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

@@ -18,9 +18,9 @@ class ProjectTest < ActiveSupport::TestCase
 
 
 	test 'hour_by_day by project' do
-		project = Project.first
+    project = projects(:one)
 		time = project.hours_by_user_by_project
-		assert_equal 1, time[1]
+    assert_equal 1, time[1]
 	end
 
 

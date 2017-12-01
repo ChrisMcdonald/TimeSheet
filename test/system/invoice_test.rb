@@ -30,32 +30,26 @@ class InvoiceTest < ApplicationSystemTestCase
 	test 'valid  invoice' do
 		user = users(:one)
 		user.add_role(:admin)
-
+    p1 = projects(:one)
+    p2 = projects(:two)
 		visit root_path
-		find_link(href: "/current_day/#{Date.today}").click
-		find('a.add_fields').click
-		first('input', class: 'hours-field').set(5)
-		first('textarea', class: 'description-field').set('this is the description')
-		find('input[name="commit"]').click
+    # find_link(href: "/current_day/#{Date.today}").click
+    # find('a.add_fields').click
+    # first('input', class: 'hours-field').set(5)
+    # first('textarea', class: 'description-field').set('this is the description')
+    # find('input[name="commit"]').click
 
 		find_link(href: "/invoices.#{user.id}").click
 		find_link(href: '/invoices/new').click
-		sleep 1
 		find('select',).click
-		find('option[value="2"]').click
-		sleep 1
+    find('option', text: 'PROJECTTWO').click
 		find('select').click
-		find('option[value="1"]').click
-		sleep 1
+    find('option', text: 'PROJECTONE').click
 		find('input[name="commit"]').click
-		sleep 1
 		find('button', text: 'DOWNLOAD INVOICE').click
-		sleep 1
 		invoice = Invoice.last
 		visit invoices_path
 		find(".invoice-#{invoice.id}").click
-		sleep 1
-		sleep 1
 	end
 
 end

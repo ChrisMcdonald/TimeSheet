@@ -24,16 +24,16 @@ class UserPermissionTest < ApplicationSystemTestCase
 		find('.btn', text: 'USER PERMISSION').click
 
 		sleep 1
-		# assert_not user.has_role? :read , User
 		assert user.has_role? :edit, User
 		assert_not user.has_role? :read, Project
 		assert_not user.has_role? :edit, Project
-		# assert_not user.has_role? :read , TimeSheet
 		assert_not user.has_role? :edit, TimeSheet
 		assert_not user.has_role? :read, Customer
 		assert_not user.has_role? :edit, Customer
 		assert_not user.has_role? :read, Invoice
 		assert_not user.has_role? :edit, Invoice
+    assert_not user.has_role? :read, Travel
+    assert_not user.has_role? :edit, Travel
 		page.check "User_edit"
 		page.check "User_read"
 		page.check "Project_edit"
@@ -44,6 +44,8 @@ class UserPermissionTest < ApplicationSystemTestCase
 		page.check "Invoice_edit"
 		page.check "TimeSheet_read"
 		page.check "TimeSheet_edit"
+    page.check "Travel_read"
+    page.check "Travel_edit"
 		find('input[name="commit"]').click
 		sleep 1
 
@@ -57,6 +59,8 @@ class UserPermissionTest < ApplicationSystemTestCase
 		assert user.has_role? :edit, Customer
 		assert user.has_role? :read, Invoice
 		assert user.has_role? :edit, Invoice
+    assert user.has_role? :read, Travel
+    assert user.has_role? :edit, Travel
 	end
 
 
@@ -136,5 +140,15 @@ class UserPermissionTest < ApplicationSystemTestCase
 		visit user_path(User.first)
 		assert_current_path('/')
 
-	end
+    visit travels_path
+    assert_current_path('/')
+    visit edit_travel_path(Travel.first)
+    assert_current_path('/')
+    visit new_travel_path
+    assert_current_path('/')
+    visit travel_path(Travel.first)
+    assert_current_path('/')
+
+
+  end
 end

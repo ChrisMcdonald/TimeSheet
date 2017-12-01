@@ -19,12 +19,22 @@ class UsersTest < ApplicationSystemTestCase
 		Warden.test_reset!
 	end
 
+  test 'user income ' do
+    visit user_path(@user)
+    find('.btn', text: 'USER INCOME').click
+    sleep 1
+    fill_in 'start_date', with: 1.week.ago.to_s
+    fill_in 'end_date', with: Date.tomorrow.to_s
+    sleep 1
+    find('input', id: 'search').click
+
+    sleep 1
+  end
 
 	test 'create a new User' do
 
 		visit users_path
 		find('#new-project').click
-		# page.execute_script("  $('NewProject').slideToggle();")
 		within('#NewProject') do
 			fill_in 'user_first_name', with: 'bob'
 			fill_in 'user_email', with: 'bob2@email.com'
@@ -39,13 +49,11 @@ class UsersTest < ApplicationSystemTestCase
 			fill_in 'user_post_code', with: 4000
 			fill_in 'user_abn', with: 1223456
 		end
-		find('a.add_fields').click
-		find('.pay_rate').set("23")
-
-		# fill_in "user_pay_rates_attributes" ,with: 25
-		find(".create-user").click
-		# wait: 10
-		page.execute_script("$('form#new-user').submit()")
+    find('.btn', text: 'ADD PAY RATE').click
+    find('.pay_rate').set(24)
+    # find(".create-user").click
+    find('input', class: 'create-user').click
+    # page.execute_script("$('form#new-user').submit()")
 		sleep 1
 		user = User.last
 		assert_equal 'bob', user.first_name

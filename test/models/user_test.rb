@@ -17,7 +17,7 @@ class UserTest < ActiveSupport::TestCase
 		@user = users(:one)
 		@user.add_role :admin
 		@user_table = @user.time_work
-		@user_table = @user_table.joins(:time_sheet).where('time_sheets.time_period = ?', Date.yesterday..Date.tomorrow)
+    @user_table = @user_table.filter_buy_date Date.yesterday, Date.tomorrow
 
 		# @user_table = @user_table.where(time_sheet: {time_period: Date.yesterday..Date.tomorrow}) if params[:start_date] && params[:end_date]
 		ap @user_table
@@ -39,20 +39,20 @@ class UserTest < ActiveSupport::TestCase
 
 	test 'user total income '  do
 		user = User.first
-	ap	pay = user.total_pay(user.pay_for_user)
+    pay = user.total_pay(user.pay_for_user)
 
 	end
 
 	test 'pay user all projects ' do
 		user = User.first
-		ap arr = user.pay_for_user
+    arr = user.pay_for_user
 	end
 
 	test "project select" do
 		user_arr = Array.new
 		user = User.first
 		arr = user.pay_per_project(2)
-		ap user_arr
+    user_arr
 	end
 
 	test 'pay per project' do
@@ -70,9 +70,4 @@ class UserTest < ActiveSupport::TestCase
 		pararr
 
 	end
-
-
-
-
-
 end

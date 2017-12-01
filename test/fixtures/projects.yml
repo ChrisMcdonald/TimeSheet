@@ -1,16 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
-  name: Project one
+  name: Projectone
   hours: 1.5
   customer: one
   user: one
 
 
 two:
-  id: 2
-  name: Project Two
+  name: ProjectTwo
   hours: 1.5
   customer: one
   user: one
