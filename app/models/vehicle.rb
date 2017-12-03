@@ -13,5 +13,7 @@ class Vehicle < ApplicationRecord
     self.class.where('id < ?', id).last
   end
 
-
+  def self.previous_od_finish
+    self.first.travels.pluck(:od_finish).last
+  end
 end

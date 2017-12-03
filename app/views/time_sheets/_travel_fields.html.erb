@@ -4,10 +4,10 @@
       <%= f.select(:vehicle_id, options_for_select(Vehicle.select_attributes, f.object.vehicle_id), {}, class: ' btn btn-default form-control') %>
     </div>
     <div class="col-xs-6 col-sm-3" style="padding: 0%">
-      <%= f.number_field :od_start, min: 0, class: 'form-control ', placeholder: 'Odometer Start' %>
+      <%= f.number_field :od_start, min: Vehicle.previous_od_finish, class: 'form-control ', placeholder: 'Odometer Start' %>
     </div>
     <div class="col-xs-6 col-sm-3" style="padding: 0%">
-      <%= f.number_field :od_finish, class: 'form-control ', placeholder: 'Odometer Finish' %>
+      <%= f.number_field :od_finish, min: Vehicle.previous_od_finish, class: 'form-control ', placeholder: 'Odometer Finish' %>
     </div>
     <div class="hidden-xs col-sm-2">
       <%= f.hidden_field :_destroy %>

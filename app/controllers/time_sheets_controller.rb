@@ -49,8 +49,8 @@ class TimeSheetsController < ApplicationController
   # GET /time_sheets/new
   def new
     @time_sheet = TimeSheet.new
-	@time_sheet.works.build
-	@time_sheet.user = current_user
+    @time_sheet.works.build
+    @time_sheet.user = current_user
 
   end
 
@@ -71,7 +71,7 @@ class TimeSheetsController < ApplicationController
   # POST /time_sheets.json
   def create
     @time_sheet = TimeSheet.new(time_sheet_params)
-	@time_sheet.user = current_user
+    @time_sheet.user = current_user
 
 	respond_to do |format|
       if @time_sheet.save
@@ -90,7 +90,7 @@ class TimeSheetsController < ApplicationController
   def update
     respond_to do |format|
       if @time_sheet.update(time_sheet_params)
-       format.html { redirect_to time_sheets_path @time_sheet, notice: 'Time sheet was successfully updated.' }
+        format.html {redirect_to time_sheets_path @time_sheet, notice: 'Time sheet was successfully updated.'}
         format.json { render :show, status: :ok, location: @time_sheet }
       else
         format.html {render :show}
@@ -132,7 +132,7 @@ class TimeSheetsController < ApplicationController
     def time_sheet_params
       params.require(:time_sheet).permit(:time_period, :user_id,
                                          works_attributes: [:id, :date, :hour, :description, :project_id, :time_sheet_id, :_destroy],
-                                         travels_attributes: [:travel_date, :od_start, :od_finish, :purpose, :user_id, :project_id, :time_sheet_id, :vehicle_id]
+                                         travels_attributes: [:id, :travel_date, :od_start, :od_finish, :purpose, :user_id, :project_id, :time_sheet_id, :vehicle_id]
       )
 
 	end
