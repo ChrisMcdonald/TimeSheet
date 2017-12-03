@@ -10,7 +10,13 @@ class Travel < ApplicationRecord
   validate :od_start_greater_than_previous_od_finish
 
   def previous_od_finish
-    self.class.where(vehicle: self.vehicle).last.od_finish || 0
+
+    begin
+      result = self.class.where(vehicle: self.vehicle).last.od_finish
+    rescue
+      result = 0
+    end
+    result
   end
 
   private
