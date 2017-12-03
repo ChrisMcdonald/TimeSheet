@@ -39,6 +39,7 @@ projects_time_sheet_for_week_show GET    /projects/time_sheet_for_week/show(.:fo
                                   PATCH  /pay_rates/:id(.:format)                      pay_rates#update
                                   PUT    /pay_rates/:id(.:format)                      pay_rates#update
                                   DELETE /pay_rates/:id(.:format)                      pay_rates#destroy
+                 time_sheet_hours GET    /time_sheets/:time_sheet_id/hours(.:format)   time_sheets#hours
                _hours_time_sheets POST   /time_sheets/hours_for_day/:date(.:format)    time_sheets#hours_for_day
                       time_sheets GET    /time_sheets(.:format)                        time_sheets#index
                                   POST   /time_sheets(.:format)                        time_sheets#create
@@ -78,13 +79,6 @@ projects_time_sheet_for_week_show GET    /projects/time_sheet_for_week/show(.:fo
                     user_password PATCH  /admin/password(.:format)                     devise/passwords#update
                                   PUT    /admin/password(.:format)                     devise/passwords#update
                                   POST   /admin/password(.:format)                     devise/passwords#create
-         cancel_user_registration GET    /admin/cancel(.:format)                       devise/registrations#cancel
-            new_user_registration GET    /admin/sign_up(.:format)                      devise/registrations#new
-           edit_user_registration GET    /admin/edit(.:format)                         devise/registrations#edit
-                user_registration PATCH  /admin(.:format)                              devise/registrations#update
-                                  PUT    /admin(.:format)                              devise/registrations#update
-                                  DELETE /admin(.:format)                              devise/registrations#destroy
-                                  POST   /admin(.:format)                              devise/registrations#create
                     user_projects GET    /users/:user_id/projects(.:format)            projects#index
                                   POST   /users/:user_id/projects(.:format)            projects#create
                  new_user_project GET    /users/:user_id/projects/new(.:format)        projects#new
