@@ -12,6 +12,5 @@ $(document).on 'click', 'form .add_fields', (event) ->
   $("#hours").after($(this).data('fields').replace(regexp, time))
   event.preventDefault()
 
-$ document.addEventListener 'turbolinks:load', ->
-  $('td.day').on 'click', ->
+$(document).on 'click', 'td.day', (event)->
     Turbolinks.visit($(this).find("a").attr("href"))

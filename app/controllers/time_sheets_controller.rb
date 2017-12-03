@@ -17,7 +17,6 @@ class TimeSheetsController < ApplicationController
       format.js
       format.html
     end
-
   end
 
   def index
