@@ -1,6 +1,6 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
 
   def all

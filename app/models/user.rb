@@ -147,7 +147,6 @@ class User < ApplicationRecord
 
     identity = Identity.find_or_initialize_by(provider: auth.provider,
                                               uid: auth.uid.to_s,
-
     )
     identity.token = auth.credentials.token
     identity.username = auth.info.name
