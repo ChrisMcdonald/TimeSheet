@@ -252,8 +252,8 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   # config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
 
-    config.omniauth :facebook, '176711186401841', '46b41e89d1242c9a3fb5e96f072b4284', callback_url: "http://lvh.me/admin/auth/facebook/callback", scope: "email, user_friends,user_about_me"
-    config.omniauth :google_oauth2, ENV['GOOGLE_CONSUMER_KEY'], ENV['GOOGLE_CONSUMER_SECRET'],{ callback_url: "http://localhost:3000/admin/auth/google/callback", name: 'google',
+    config.omniauth :facebook, '176711186401841', '46b41e89d1242c9a3fb5e96f072b4284', callback_url: "http://earth-broken.bnr.la/admin/auth/facebook/callback", scope: "email, user_friends,user_about_me"
+    config.omniauth :google_oauth2, ENV['GOOGLE_CONSUMER_KEY'], ENV['GOOGLE_CONSUMER_SECRET'],{ callback_url: "http://earth-broken.bnr.la/admin/auth/google/callback", name: 'google',
                                                                                                 scope:"email, https://www.googleapis.com/auth/plus.login"}
 	#
 	#
