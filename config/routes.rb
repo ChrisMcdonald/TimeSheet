@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 				 sessions: 'users/sessions',
 				 oomniauth_callbacks: 'users/omniauth_callbacks'
          			   }
+	get 'auth/:provider/callback', to: 'time_sheets#index'
 
 	resources :users do
 		resources :projects
@@ -49,7 +50,6 @@ Rails.application.routes.draw do
 		get :user_income
 		get :user_permission
 		post :user_permission
-		get 'auth/:provider/callback', to: 'time_sheets#index'
 
 	end
 
