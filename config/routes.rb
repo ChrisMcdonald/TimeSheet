@@ -39,9 +39,9 @@ Rails.application.routes.draw do
 	devise_for :users, path: :admin,
 			   controllers: {#registrations: "users/registrations",
 				 sessions: 'users/sessions',
-				 oomniauth_callbacks: 'users/omniauth_callbacks'
+				 omniauth_callbacks: 'users/omniauth_callbacks'
          			   }
-	get 'auth/:provider/callback', to: 'time_sheets#index'
+		get 'auth/:provider/callback', to: 'time_sheet#index'
 
 	resources :users do
 		resources :projects

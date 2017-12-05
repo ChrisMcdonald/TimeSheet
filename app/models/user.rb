@@ -153,14 +153,13 @@ class User < ApplicationRecord
     identity.image = auth.info.image
     identity.email = auth.info.email
     # identity.user.avatar = auth.info.image
-    identity.save
+		identity.save!
 
 
     if identity.user.blank?
       user = current_user
       identity.user = user
       identity.save
-
     end
 
     identity

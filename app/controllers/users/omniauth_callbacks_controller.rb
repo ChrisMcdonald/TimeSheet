@@ -1,5 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
+  skip_authorize_resource
 
 
   def all

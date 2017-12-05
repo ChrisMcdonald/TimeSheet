@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128033007) do
+ActiveRecord::Schema.define(version: 20171205095016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20171128033007) do
 
   create_table "identities", id: :serial, force: :cascade do |t|
     t.integer "user_id"
-    t.integer "uid"
+    t.string "uid"
     t.string "provider"
     t.string "token"
     t.string "secrect"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20171128033007) do
     t.datetime "updated_at", null: false
     t.string "profile_page"
     t.string "image"
+    t.string "username"
+    t.string "email"
   end
 
   create_table "invoices", id: :serial, force: :cascade do |t|
@@ -117,7 +119,6 @@ ActiveRecord::Schema.define(version: 20171128033007) do
   end
 
   create_table "travels", force: :cascade do |t|
-    t.datetime "travel_date"
     t.integer "od_start"
     t.integer "od_finish"
     t.string "purpose"
