@@ -3,7 +3,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # load_and_authorize_resource
 
 
-  def all
+  def facebook
     auth = request.env["omniauth.auth"]
     identity = User.from_omniauth(auth ,current_user)
     if user_signed_in?
