@@ -2,7 +2,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   before_action :authenticate_user!
 
 
-  def all
+  def facebook
     auth = request.env["omniauth.auth"]
     identity = User.from_omniauth(auth, current_user)
     if user_signed_in?
