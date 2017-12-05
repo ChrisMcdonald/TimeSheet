@@ -1,119 +1,131 @@
-                           Prefix Verb   URI Pattern                                   Controller#Action
-projects_time_sheet_for_week_show GET    /projects/time_sheet_for_week/show(.:format)  projects/time_sheet_for_week#show
-                       identities GET    /identities(.:format)                         identities#index
-                                  POST   /identities(.:format)                         identities#create
-                     new_identity GET    /identities/new(.:format)                     identities#new
-                    edit_identity GET    /identities/:id/edit(.:format)                identities#edit
-                         identity GET    /identities/:id(.:format)                     identities#show
-                                  PATCH  /identities/:id(.:format)                     identities#update
-                                  PUT    /identities/:id(.:format)                     identities#update
-                                  DELETE /identities/:id(.:format)                     identities#destroy
-                         projects GET    /projects(.:format)                           projects#index
-                                  POST   /projects(.:format)                           projects#create
-                      new_project GET    /projects/new(.:format)                       projects#new
-                     edit_project GET    /projects/:id/edit(.:format)                  projects#edit
-                          project GET    /projects/:id(.:format)                       projects#show
-                                  PATCH  /projects/:id(.:format)                       projects#update
-                                  PUT    /projects/:id(.:format)                       projects#update
-                                  DELETE /projects/:id(.:format)                       projects#destroy
-                         invoices GET    /invoices(.:format)                           invoices#index
-                                  POST   /invoices(.:format)                           invoices#create
-                      new_invoice GET    /invoices/new(.:format)                       invoices#new
-                          invoice GET    /invoices/:id(.:format)                       invoices#show
-                                  PATCH  /invoices/:id(.:format)                       invoices#update
-                                  PUT    /invoices/:id(.:format)                       invoices#update
-                                  DELETE /invoices/:id(.:format)                       invoices#destroy
-                            works GET    /works(.:format)                              works#index
-                                  POST   /works(.:format)                              works#create
-                         new_work GET    /works/new(.:format)                          works#new
-                        edit_work GET    /works/:id/edit(.:format)                     works#edit
-                             work GET    /works/:id(.:format)                          works#show
-                                  PATCH  /works/:id(.:format)                          works#update
-                                  PUT    /works/:id(.:format)                          works#update
-                                  DELETE /works/:id(.:format)                          works#destroy
-                        pay_rates GET    /pay_rates(.:format)                          pay_rates#index
-                                  POST   /pay_rates(.:format)                          pay_rates#create
-                     new_pay_rate GET    /pay_rates/new(.:format)                      pay_rates#new
-                    edit_pay_rate GET    /pay_rates/:id/edit(.:format)                 pay_rates#edit
-                         pay_rate GET    /pay_rates/:id(.:format)                      pay_rates#show
-                                  PATCH  /pay_rates/:id(.:format)                      pay_rates#update
-                                  PUT    /pay_rates/:id(.:format)                      pay_rates#update
-                                  DELETE /pay_rates/:id(.:format)                      pay_rates#destroy
-                 time_sheet_hours GET    /time_sheets/:time_sheet_id/hours(.:format)   time_sheets#hours
-               _hours_time_sheets POST   /time_sheets/hours_for_day/:date(.:format)    time_sheets#hours_for_day
-                      time_sheets GET    /time_sheets(.:format)                        time_sheets#index
-                                  POST   /time_sheets(.:format)                        time_sheets#create
-                   new_time_sheet GET    /time_sheets/new(.:format)                    time_sheets#new
-                  edit_time_sheet GET    /time_sheets/:id/edit(.:format)               time_sheets#edit
-                       time_sheet GET    /time_sheets/:id(.:format)                    time_sheets#show
-                                  PATCH  /time_sheets/:id(.:format)                    time_sheets#update
-                                  PUT    /time_sheets/:id(.:format)                    time_sheets#update
-                                  DELETE /time_sheets/:id(.:format)                    time_sheets#destroy
-                      current_day GET    /current_day/:time_period(.:format)           time_sheets#current_day
-                 customer_details GET    /customers/:customer_id/details(.:format)     customers#details
-                        customers GET    /customers(.:format)                          customers#index
-                                  POST   /customers(.:format)                          customers#create
-                     new_customer GET    /customers/new(.:format)                      customers#new
-                    edit_customer GET    /customers/:id/edit(.:format)                 customers#edit
-                         customer GET    /customers/:id(.:format)                      customers#show
-                                  PATCH  /customers/:id(.:format)                      customers#update
-                                  PUT    /customers/:id(.:format)                      customers#update
-                                  DELETE /customers/:id(.:format)                      customers#destroy
-    all_work_for_project_projects GET    /projects/all_work_for_project(.:format)      projects#all_work_for_project
-            hours_by_day_projects GET    /projects/hours_by_day/:id(.:format)          projects#hours_by_day
-           hours_by_user_projects GET    /projects/hours_by_user_by/:id(.:format)      projects#hours_by_user
-    time_sheets_for_week_projects GET    /projects/:id/time_sheets_for_week(.:format)  projects#time_sheets_for_week
-                                  GET    /projects(.:format)                           projects#index
-                                  POST   /projects(.:format)                           projects#create
-                                  GET    /projects/new(.:format)                       projects#new
-                                  GET    /projects/:id/edit(.:format)                  projects#edit
-                                  GET    /projects/:id(.:format)                       projects#show
-                                  PATCH  /projects/:id(.:format)                       projects#update
-                                  PUT    /projects/:id(.:format)                       projects#update
-                                  DELETE /projects/:id(.:format)                       projects#destroy
-                 new_user_session GET    /admin/sign_in(.:format)                      users/sessions#new
-                     user_session POST   /admin/sign_in(.:format)                      users/sessions#create
-             destroy_user_session DELETE /admin/sign_out(.:format)                     users/sessions#destroy
-                new_user_password GET    /admin/password/new(.:format)                 devise/passwords#new
-               edit_user_password GET    /admin/password/edit(.:format)                devise/passwords#edit
-                    user_password PATCH  /admin/password(.:format)                     devise/passwords#update
-                                  PUT    /admin/password(.:format)                     devise/passwords#update
-                                  POST   /admin/password(.:format)                     devise/passwords#create
-                    user_projects GET    /users/:user_id/projects(.:format)            projects#index
-                                  POST   /users/:user_id/projects(.:format)            projects#create
-                 new_user_project GET    /users/:user_id/projects/new(.:format)        projects#new
-                edit_user_project GET    /users/:user_id/projects/:id/edit(.:format)   projects#edit
-                     user_project GET    /users/:user_id/projects/:id(.:format)        projects#show
-                                  PATCH  /users/:user_id/projects/:id(.:format)        projects#update
-                                  PUT    /users/:user_id/projects/:id(.:format)        projects#update
-                                  DELETE /users/:user_id/projects/:id(.:format)        projects#destroy
-                  user_identities GET    /users/:user_id/identities(.:format)          identities#index
-                                  POST   /users/:user_id/identities(.:format)          identities#create
-                new_user_identity GET    /users/:user_id/identities/new(.:format)      identities#new
-               edit_user_identity GET    /users/:user_id/identities/:id/edit(.:format) identities#edit
-                    user_identity GET    /users/:user_id/identities/:id(.:format)      identities#show
-                                  PATCH  /users/:user_id/identities/:id(.:format)      identities#update
-                                  PUT    /users/:user_id/identities/:id(.:format)      identities#update
-                                  DELETE /users/:user_id/identities/:id(.:format)      identities#destroy
-                   user_user_data GET    /users/:user_id/user_data(.:format)           users#user_data
-                 user_user_income GET    /users/:user_id/user_income(.:format)         users#user_income
-             user_user_permission GET    /users/:user_id/user_permission(.:format)     users#user_permission
-                                  POST   /users/:user_id/user_permission(.:format)     users#user_permission
-                            users GET    /users(.:format)                              users#index
-                                  POST   /users(.:format)                              users#create
-                         new_user GET    /users/new(.:format)                          users#new
-                        edit_user GET    /users/:id/edit(.:format)                     users#edit
-                             user GET    /users/:id(.:format)                          users#show
-                                  PATCH  /users/:id(.:format)                          users#update
-                                  PUT    /users/:id(.:format)                          users#update
-                                  DELETE /users/:id(.:format)                          users#destroy
-                                  GET    /users(.:format)                              users#index
-                                  POST   /users(.:format)                              users#create
-                                  GET    /users/new(.:format)                          users#new
-                                  GET    /users/:id/edit(.:format)                     users#edit
-                                  GET    /users/:id(.:format)                          users#show
-                                  PATCH  /users/:id(.:format)                          users#update
-                                  PUT    /users/:id(.:format)                          users#update
-                                  DELETE /users/:id(.:format)                          users#destroy
-                             root GET    /                                             time_sheets#index
-                                  GET    /auth/:provider/callback(.:format)            ideas#create
+                           Prefix Verb     URI Pattern                                       Controller#Action
+                          travels GET      /travels(.:format)                                travels#index
+                                  POST     /travels(.:format)                                travels#create
+                       new_travel GET      /travels/new(.:format)                            travels#new
+                      edit_travel GET      /travels/:id/edit(.:format)                       travels#edit
+                           travel GET      /travels/:id(.:format)                            travels#show
+                                  PATCH    /travels/:id(.:format)                            travels#update
+                                  PUT      /travels/:id(.:format)                            travels#update
+                                  DELETE   /travels/:id(.:format)                            travels#destroy
+projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:format)      projects/time_sheet_for_week#show
+                       identities GET      /identities(.:format)                             identities#index
+                                  POST     /identities(.:format)                             identities#create
+                     new_identity GET      /identities/new(.:format)                         identities#new
+                    edit_identity GET      /identities/:id/edit(.:format)                    identities#edit
+                         identity GET      /identities/:id(.:format)                         identities#show
+                                  PATCH    /identities/:id(.:format)                         identities#update
+                                  PUT      /identities/:id(.:format)                         identities#update
+                                  DELETE   /identities/:id(.:format)                         identities#destroy
+                         projects GET      /projects(.:format)                               projects#index
+                                  POST     /projects(.:format)                               projects#create
+                      new_project GET      /projects/new(.:format)                           projects#new
+                     edit_project GET      /projects/:id/edit(.:format)                      projects#edit
+                          project GET      /projects/:id(.:format)                           projects#show
+                                  PATCH    /projects/:id(.:format)                           projects#update
+                                  PUT      /projects/:id(.:format)                           projects#update
+                                  DELETE   /projects/:id(.:format)                           projects#destroy
+                         invoices GET      /invoices(.:format)                               invoices#index
+                                  POST     /invoices(.:format)                               invoices#create
+                      new_invoice GET      /invoices/new(.:format)                           invoices#new
+                          invoice GET      /invoices/:id(.:format)                           invoices#show
+                                  PATCH    /invoices/:id(.:format)                           invoices#update
+                                  PUT      /invoices/:id(.:format)                           invoices#update
+                                  DELETE   /invoices/:id(.:format)                           invoices#destroy
+                            works GET      /works(.:format)                                  works#index
+                                  POST     /works(.:format)                                  works#create
+                         new_work GET      /works/new(.:format)                              works#new
+                        edit_work GET      /works/:id/edit(.:format)                         works#edit
+                             work GET      /works/:id(.:format)                              works#show
+                                  PATCH    /works/:id(.:format)                              works#update
+                                  PUT      /works/:id(.:format)                              works#update
+                                  DELETE   /works/:id(.:format)                              works#destroy
+                        pay_rates GET      /pay_rates(.:format)                              pay_rates#index
+                                  POST     /pay_rates(.:format)                              pay_rates#create
+                     new_pay_rate GET      /pay_rates/new(.:format)                          pay_rates#new
+                    edit_pay_rate GET      /pay_rates/:id/edit(.:format)                     pay_rates#edit
+                         pay_rate GET      /pay_rates/:id(.:format)                          pay_rates#show
+                                  PATCH    /pay_rates/:id(.:format)                          pay_rates#update
+                                  PUT      /pay_rates/:id(.:format)                          pay_rates#update
+                                  DELETE   /pay_rates/:id(.:format)                          pay_rates#destroy
+                time_sheet_travel GET      /time_sheets/:time_sheet_id/travel(.:format)      time_sheets#travel
+               _hours_time_sheets POST     /time_sheets/hours_for_day/:date(.:format)        time_sheets#hours_for_day
+                      time_sheets GET      /time_sheets(.:format)                            time_sheets#index
+                                  POST     /time_sheets(.:format)                            time_sheets#create
+                   new_time_sheet GET      /time_sheets/new(.:format)                        time_sheets#new
+                  edit_time_sheet GET      /time_sheets/:id/edit(.:format)                   time_sheets#edit
+                       time_sheet GET      /time_sheets/:id(.:format)                        time_sheets#show
+                                  PATCH    /time_sheets/:id(.:format)                        time_sheets#update
+                                  PUT      /time_sheets/:id(.:format)                        time_sheets#update
+                                  DELETE   /time_sheets/:id(.:format)                        time_sheets#destroy
+                      current_day GET      /current_day/:time_period(.:format)               time_sheets#current_day
+                 customer_details GET      /customers/:customer_id/details(.:format)         customers#details
+                        customers GET      /customers(.:format)                              customers#index
+                                  POST     /customers(.:format)                              customers#create
+                     new_customer GET      /customers/new(.:format)                          customers#new
+                    edit_customer GET      /customers/:id/edit(.:format)                     customers#edit
+                         customer GET      /customers/:id(.:format)                          customers#show
+                                  PATCH    /customers/:id(.:format)                          customers#update
+                                  PUT      /customers/:id(.:format)                          customers#update
+                                  DELETE   /customers/:id(.:format)                          customers#destroy
+    all_work_for_project_projects GET      /projects/all_work_for_project(.:format)          projects#all_work_for_project
+            hours_by_day_projects GET      /projects/hours_by_day/:id(.:format)              projects#hours_by_day
+           hours_by_user_projects GET      /projects/hours_by_user_by/:id(.:format)          projects#hours_by_user
+    time_sheets_for_week_projects GET      /projects/:id/time_sheets_for_week(.:format)      projects#time_sheets_for_week
+                                  GET      /projects(.:format)                               projects#index
+                                  POST     /projects(.:format)                               projects#create
+                                  GET      /projects/new(.:format)                           projects#new
+                                  GET      /projects/:id/edit(.:format)                      projects#edit
+                                  GET      /projects/:id(.:format)                           projects#show
+                                  PATCH    /projects/:id(.:format)                           projects#update
+                                  PUT      /projects/:id(.:format)                           projects#update
+                                  DELETE   /projects/:id(.:format)                           projects#destroy
+                 new_user_session GET      /admin/sign_in(.:format)                          users/sessions#new
+                     user_session POST     /admin/sign_in(.:format)                          users/sessions#create
+             destroy_user_session DELETE   /admin/sign_out(.:format)                         users/sessions#destroy
+ user_facebook_omniauth_authorize GET|POST /admin/auth/facebook(.:format)                    users/omniauth_callbacks#passthru
+  user_facebook_omniauth_callback GET|POST /admin/auth/facebook/callback(.:format)           users/omniauth_callbacks#facebook
+   user_google_omniauth_authorize GET|POST /admin/auth/google(.:format)                      users/omniauth_callbacks#passthru
+    user_google_omniauth_callback GET|POST /admin/auth/google/callback(.:format)             users/omniauth_callbacks#google
+                new_user_password GET      /admin/password/new(.:format)                     devise/passwords#new
+               edit_user_password GET      /admin/password/edit(.:format)                    devise/passwords#edit
+                    user_password PATCH    /admin/password(.:format)                         devise/passwords#update
+                                  PUT      /admin/password(.:format)                         devise/passwords#update
+                                  POST     /admin/password(.:format)                         devise/passwords#create
+                    user_projects GET      /users/:user_id/projects(.:format)                projects#index
+                                  POST     /users/:user_id/projects(.:format)                projects#create
+                 new_user_project GET      /users/:user_id/projects/new(.:format)            projects#new
+                edit_user_project GET      /users/:user_id/projects/:id/edit(.:format)       projects#edit
+                     user_project GET      /users/:user_id/projects/:id(.:format)            projects#show
+                                  PATCH    /users/:user_id/projects/:id(.:format)            projects#update
+                                  PUT      /users/:user_id/projects/:id(.:format)            projects#update
+                                  DELETE   /users/:user_id/projects/:id(.:format)            projects#destroy
+                  user_identities GET      /users/:user_id/identities(.:format)              identities#index
+                                  POST     /users/:user_id/identities(.:format)              identities#create
+                new_user_identity GET      /users/:user_id/identities/new(.:format)          identities#new
+               edit_user_identity GET      /users/:user_id/identities/:id/edit(.:format)     identities#edit
+                    user_identity GET      /users/:user_id/identities/:id(.:format)          identities#show
+                                  PATCH    /users/:user_id/identities/:id(.:format)          identities#update
+                                  PUT      /users/:user_id/identities/:id(.:format)          identities#update
+                                  DELETE   /users/:user_id/identities/:id(.:format)          identities#destroy
+                   user_user_data GET      /users/:user_id/user_data(.:format)               users#user_data
+                 user_user_income GET      /users/:user_id/user_income(.:format)             users#user_income
+             user_user_permission GET      /users/:user_id/user_permission(.:format)         users#user_permission
+                                  POST     /users/:user_id/user_permission(.:format)         users#user_permission
+                                  GET      /users/:user_id/auth/:provider/callback(.:format) time_sheets#index
+                            users GET      /users(.:format)                                  users#index
+                                  POST     /users(.:format)                                  users#create
+                         new_user GET      /users/new(.:format)                              users#new
+                        edit_user GET      /users/:id/edit(.:format)                         users#edit
+                             user GET      /users/:id(.:format)                              users#show
+                                  PATCH    /users/:id(.:format)                              users#update
+                                  PUT      /users/:id(.:format)                              users#update
+                                  DELETE   /users/:id(.:format)                              users#destroy
+                                  GET      /users(.:format)                                  users#index
+                                  POST     /users(.:format)                                  users#create
+                                  GET      /users/new(.:format)                              users#new
+                                  GET      /users/:id/edit(.:format)                         users#edit
+                                  GET      /users/:id(.:format)                              users#show
+                                  PATCH    /users/:id(.:format)                              users#update
+                                  PUT      /users/:id(.:format)                              users#update
+                                  DELETE   /users/:id(.:format)                              users#destroy
+                             root GET      /                                                 time_sheets#index

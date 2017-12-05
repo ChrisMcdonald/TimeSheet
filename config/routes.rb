@@ -38,8 +38,9 @@ Rails.application.routes.draw do
 
 	devise_for :users, path: :admin,
 			   controllers: {#registrations: "users/registrations",
-							 sessions: 'users/sessions'
-			   }
+				 sessions: 'users/sessions',
+				 omniauth_callbacks: 'users/omniauth_callbacks'
+         			   }
 
 	resources :users do
 		resources :projects
@@ -48,6 +49,8 @@ Rails.application.routes.draw do
 		get :user_income
 		get :user_permission
 		post :user_permission
+		get 'auth/:provider/callback', to: 'time_sheets#index'
+
 	end
 
 	authenticate(:user) do
@@ -57,7 +60,6 @@ Rails.application.routes.draw do
 	end
 
 	root to: 'time_sheets#index'
-	get 'auth/:provider/callback', to: 'ideas#create'
 
 
 end
