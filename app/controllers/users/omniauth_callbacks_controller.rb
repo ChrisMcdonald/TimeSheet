@@ -1,10 +1,10 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-	skip_authorize_resource
+
   before_action :authenticate_user!
   # load_and_authorize_resource
 
 
-  def all
+  def facebook
     auth = request.env["omniauth.auth"]
     identity = User.from_omniauth(auth, current_user)
     if user_signed_in?
