@@ -1,7 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_authorize_resource
   before_action :authenticate_user!
-  # load_and_authorize_resource
 
 
   def all
@@ -26,8 +24,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = "Account Not Found"
     end
   end
-
   alias_method :facebook, :all
   alias_method :google, :all
 
 end
+# user.provider = auth.provider
+# user.uid = auth.uid
+# user.username = auth.info.nickname
+# user.email = auth.info.email
