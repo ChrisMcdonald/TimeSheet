@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Travel date:</strong>
+  <%= @travel.travel_date %>
+</p>
+
+<p>
+  <strong>Od start:</strong>
+  <%= @travel.od_start %>
+</p>
+
+<p>
+  <strong>Od finish:</strong>
+  <%= @travel.od_finish %>
+</p>
+
+<p>
+  <strong>Purpose:</strong>
+  <%= @travel.purpose %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @travel.user %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @travel.project %>
+</p>
+
+<p>
+  <strong>Time sheet:</strong>
+  <%= @travel.time_sheet %>
+</p>
+
+<%= link_to 'Edit', edit_travel_path(@travel) %> |
+<%= link_to 'Back', travels_path %>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Travels</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Travel date</th>
+    <th>Od start</th>
+    <th>Od finish</th>
+    <th>Purpose</th>
+    <th>User</th>
+    <th>Project</th>
+    <th>Time sheet</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @travels.each do |travel| %>
+      <tr>
+        <td><%= travel.travel_date %></td>
+        <td><%= travel.od_start %></td>
+        <td><%= travel.od_finish %></td>
+        <td><%= travel.purpose %></td>
+        <td><%= travel.user %></td>
+        <td><%= travel.project %></td>
+        <td><%= travel.time_sheet %></td>
+        <td><%= link_to 'Show', travel %></td>
+        <td><%= link_to 'Edit', edit_travel_path(travel) %></td>
+        <td><%= link_to 'Destroy', travel, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Travel', new_travel_path %>
