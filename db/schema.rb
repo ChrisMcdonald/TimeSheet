@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205095016) do
+ActiveRecord::Schema.define(version: 20171207183034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chat_rooms_on_user_id"
+  end
 
   create_table "customers", id: :serial, force: :cascade do |t|
     t.string "first_name"
@@ -77,6 +85,16 @@ ActiveRecord::Schema.define(version: 20171205095016) do
     t.index ["customer_id"], name: "index_invoices_on_customer_id"
     t.index ["project_id"], name: "index_invoices_on_project_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id"
+    t.bigint "chat_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "pay_rates", id: :serial, force: :cascade do |t|
@@ -189,8 +207,11 @@ ActiveRecord::Schema.define(version: 20171205095016) do
     t.index ["time_sheet_id"], name: "index_works_on_time_sheet_id"
   end
 
+  add_foreign_key "chat_rooms", "users"
   add_foreign_key "customers", "users"
   add_foreign_key "invoices", "customers"
+  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "pay_rates", "projects"
   add_foreign_key "pay_rates", "users"
   add_foreign_key "projects", "customers"

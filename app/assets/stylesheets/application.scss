@@ -12,11 +12,11 @@
  *
  *= require_tree .
  *= require_self
- *= require bootstrap-datepicker
  */
 @import "bootstrap";
 @import "bootstrap-sprockets";
-
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 body, html, .container-fluid, .sidebar, .body {
   height: 100%;

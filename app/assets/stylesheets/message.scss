@@ -1,0 +1,181 @@
+#messages {
+  max-height: 850px;
+  overflow-y: auto;
+  .avatar {
+    margin: 0.5rem;
+  }
+}
+
+.speech {
+  position: relative;
+  background: #b7dcfe;
+  color: #317787;
+  display: inline-block;
+  border-radius: 0;
+  padding: 12px 20px;
+  width: 100%;
+}
+
+.speech .media-heading {
+  color: #317787;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  font-weight: 600;
+}
+
+.speech .media-heading:hover {
+  text-decoration: underline;
+}
+
+.speech-time {
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-size: .8em;
+}
+
+.speech-right {
+  text-align: right;
+}
+
+.speech-right > .speech {
+  background: #ffda87;
+  color: #a07617;
+  text-align: right;
+}
+
+.speech-right > .speech .media-heading {
+  color: #a07617;
+}
+
+.speech-right > .speech:before {
+  left: auto;
+  right: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #ffdc91;
+  border-right: 0;
+  margin: 15px -6px 0 0;
+}
+
+.speech:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 0;
+  top: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 7px solid #b7dcfe;
+  margin: 15px 0 0 -6px;
+}
+
+li.mar-btm.message {
+  max-width: 60%;
+  min-width: 20%; /* This line changed */
+  float: right;
+  //background: rgba(0,0,0,0.1);
+  border-radius: 20px 20px 20px 20px;
+  padding: 15px;
+  margin: 15px;
+}
+
+.message-speech {
+  width: 20%;
+  border-radius: 20px 20px 0 20px;
+}
+
+.speech-right > .speech {
+  background: none;
+  color: #666;
+  font-size: 15px;
+  padding: 10px;
+  text-align: right;
+}
+
+.speech-time {
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-size: 10px;
+  color: #666;
+}
+
+.pad-hor {
+  padding: 0;
+}
+
+.message_input {
+  background: #FFF;
+  position: relative;
+  padding: 10px 10px 40px 10px;
+  border-radius: 20px 20px 0 20px;
+}
+
+.message_input > textarea {
+  border: none;
+  background: none;
+  min-height: 100px;
+}
+
+.message_input > button[type="submit"] {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  margin: 0;
+}
+
+.message_input > .solved {
+  position: absolute;
+  width: auto;
+  box-shadow: none;
+  bottom: 15px;
+  left: 15px;
+}
+
+.message_input > .solved > input {
+  width: auto;
+  box-shadow: none;
+  display: inline-block;
+  vertical-align: bottom;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  height: auto;
+}
+
+.message_input > .solved > label {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-left: 9px;
+  font-size: 12px;
+  color: #CCC;
+}
+
+.demo-pli-clock:before {
+  content: "\e913"
+}
+
+.icon-fw {
+  width: 1.33em;
+  margin-right: 4px;
+  text-align: center;
+}
+
+.img-circle {
+  -webkit-border-radius: 500px;
+  -moz-border-radius: 500px;
+  border-radius: 500px;
+}
+
+.img-sm {
+  width: 46px;
+  height: 46px;
+}
+
+.timestamp {
+  float: right;
+  color: #dddddd;
+}

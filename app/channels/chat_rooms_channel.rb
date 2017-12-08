@@ -11,6 +11,8 @@ class ChatRoomsChannel < ApplicationCable::Channel
 	end
 
 	def send_message(data)
-		current_user.messages << Message.create(message: data['message'], project_id: data['chat_room_id'])
-	end
+    def send_message(data)
+      current_user.messages.create!(body: data['message'], chat_room_id: data['chat_room_id'])
+    end
+  end
 end

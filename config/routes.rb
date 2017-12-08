@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 	resources :works
 	resources :pay_rates
 
+	resources :chat_rooms, only: [:new, :create, :show, :index]
 
 	resources :time_sheets do
 		get :travel
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
 	end
 
 
-	# mount ActionCable.server => '/cable'
+	mount ActionCable.server => '/cable'
 
 	devise_for :users, path: :admin,
 			   controllers: {#registrations: "users/registrations",

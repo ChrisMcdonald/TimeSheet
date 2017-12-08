@@ -9,9 +9,16 @@ module ApplicationHelper
     link_to(name, '#', class: "btn btn-default add_fields", data: {id: id, fields: fields.gsub("\n", "")})
 	end
 
-	module ApplicationHelper
-		def paginate(collection, params= {})
-			will_paginate collection, params.merge(:renderer => RemoteLinkPaginationHelper::LinkRenderer)
+  def paginate(collection, params= {})
+    will_paginate collection, params.merge(:renderer => RemoteLinkPaginationHelper::LinkRenderer)
+  end
+
+  def gravatar_for(user, opts = {})
+    opts[:alt] = user.full_name
+    if user.identities.present?
+      image_tag user.identities.first.image, size: 30
+    else
+      image_tag 'default_avatar.jpeg', size: 30, class: "img-circle img-sm"
 		end
 	end
 

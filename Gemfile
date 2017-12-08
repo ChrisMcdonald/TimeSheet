@@ -28,7 +28,7 @@ gem 'axlsx_rails'
 gem 'remotipart'
 gem 'cancancan'
 gem 'rolify'
-gem 'bootstrap-datepicker-rails'
+gem 'font-awesome-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.1.3'
 # Use postgresql as the database for Active Record
@@ -51,7 +51,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+# gem 'redis', '~> 3.2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
