@@ -10,7 +10,6 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'devise'
-gem 'redis'
 gem 'carrierwave'
 gem "pundit"
 gem "breadcrumbs_on_rails"
@@ -51,10 +50,9 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.2'
+gem 'redis', '~> 3.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'redis'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'capistrano-rbenv'
