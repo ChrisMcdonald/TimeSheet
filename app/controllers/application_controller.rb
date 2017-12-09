@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
 	  devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :username, :first_name, :last_name, :street_no, :street, :city, :state,
 														 :country, :post_code, :abn, :project_search, pay_rates_attributes: [:id, :rate, :project_id, :_destroy]])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+      # devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
 end
 
