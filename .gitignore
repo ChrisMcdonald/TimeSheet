@@ -16,7 +16,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 /config/secrets.yml
-
+.idea
 /tmp/
 /log/
 .idea/dataSources.local.xml
