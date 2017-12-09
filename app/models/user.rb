@@ -9,7 +9,8 @@ class User < ApplicationRecord
 	has_many :time_sheets
 	has_many :time_work, through: :time_sheets, foreign_key: :user_id, source: :works
 	has_many :project_work, through: :projects, foreign_key: :user_id, source: :works
-  has_many :chat_rooms, dependent: :destroy
+	has_many :chatroom_users
+	has_many :chatrooms, through: :chatroom_users
   has_many :messages, dependent: :destroy
 	# has_many :work_pro, through: :projects, source: :works
 	# Include default devise modules. Others available are:

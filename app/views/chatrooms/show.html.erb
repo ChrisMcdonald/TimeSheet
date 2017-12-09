@@ -1,0 +1,24 @@
+<h1><%= @chatroom.title %></h1>
+
+<%= form_for [@chatroom, @message] do |f| %>
+    <div class="message_input">
+      <%= f.label :body %>
+      <%= f.text_area :body, class: 'form-control', autofocus: true %>
+      <small class="text-muted">From 2 to 1000 characters</small>
+    </div>
+    <%= f.button "Post", class: 'btn btn-default' do %>
+        Post
+        <span><i class="fa fa-paper-plane"></i></span>
+    <% end %>
+<% end %>
+
+
+
+<ul data-behavior='messages' data-chatroom-id="<%= @chatroom.id %>">
+  <% @messages.each do |message| %>
+
+      <%= render message %>
+
+  <% end %>
+</ul>
+

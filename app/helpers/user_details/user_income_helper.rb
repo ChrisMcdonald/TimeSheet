@@ -1,0 +1,2 @@
+module UserDetails::UserIncomeHelper
+end

@@ -1,6 +1,6 @@
 <li class="stuff mar-btm message " data-id="<%= message.id %>" data-user-id="<%= message.user.id %>">
 
-  <div id="message-media-<%= message.id %>" class="message message-media " data-id="<%= message.id %>" data-user-id="<%= message.user.id %>">
+  <div>
 
 
     <%= gravatar_for message.user %>
@@ -12,7 +12,7 @@
         <%= message.body %>
         <p class="speech-time">
           <i class="demo-pli-clock icon-fw"></i>
-          <%= message.created_at.strftime("%A %b %d %I ") %>
+          <%= message.created_at.strftime("%A %b %d %I %M ") %>
           <time class="timeago timestamp" datetime=""><%= message.created_at %></time>
         </p>
       </div>

@@ -10,17 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207183034) do
+ActiveRecord::Schema.define(version: 20171209081821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "chat_rooms", force: :cascade do |t|
+  create_table "chatroom_users", force: :cascade do |t|
+    t.bigint "chatroom_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "last_read_at"
+    t.index ["chatroom_id"], name: "index_chatroom_users_on_chat_room_id"
+    t.index ["user_id"], name: "index_chatroom_users_on_user_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_chat_rooms_on_user_id"
+    t.index ["user_id"], name: "index_chatrooms_on_user_id"
   end
 
   create_table "customers", id: :serial, force: :cascade do |t|
@@ -90,10 +100,10 @@ ActiveRecord::Schema.define(version: 20171207183034) do
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.bigint "user_id"
-    t.bigint "chat_room_id"
+    t.bigint "chatroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chat_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -207,10 +217,10 @@ ActiveRecord::Schema.define(version: 20171207183034) do
     t.index ["time_sheet_id"], name: "index_works_on_time_sheet_id"
   end
 
-  add_foreign_key "chat_rooms", "users"
+  add_foreign_key "chatroom_users", "users"
+  add_foreign_key "chatrooms", "users"
   add_foreign_key "customers", "users"
   add_foreign_key "invoices", "customers"
-  add_foreign_key "messages", "chat_rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "pay_rates", "projects"
   add_foreign_key "pay_rates", "users"

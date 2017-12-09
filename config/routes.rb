@@ -10,7 +10,10 @@ Rails.application.routes.draw do
 	resources :works
 	resources :pay_rates
 
-	resources :chat_rooms, only: [:new, :create, :show, :index]
+	resources :chatrooms do
+    resource :chatroom_users
+    resources :messages
+  end
 
 	resources :time_sheets do
 		get :travel
