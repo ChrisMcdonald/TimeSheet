@@ -6,7 +6,22 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
   received: (data) ->
     active_chatroom = $("[data-behavior='messages'][data-chatroom-id='#{data.chatroom_id }']")
     if active_chatroom.length > 0
+
+      if document.hidden
+        if $('.strike').length == 0
+          active_chatroom.prepend('<div class="strike"><span>Unread Messages</span></div>')
+
+        if Notification.permission == "granted"
+          new Notification(data.username, {body: data.message})
+          console.log data.message
+
+      else
+        App.last_read.update(data.chatroom_id)
+
+
       active_chatroom.prepend(data.message)
+      console.log data.message
+
     else
       $("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}']").css("font-weight", "bold").addClass('fa fa-envelope');
 

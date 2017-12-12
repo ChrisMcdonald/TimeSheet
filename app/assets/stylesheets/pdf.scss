@@ -8,7 +8,7 @@
 @include make-grid(md);
 @include make-grid(lg);
 
-@import "theme.css";
+@import "theme";
 tr.pdf-tr  {
   background: lightblue;
   padding: 10px;

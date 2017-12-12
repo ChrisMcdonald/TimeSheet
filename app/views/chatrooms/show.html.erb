@@ -1,6 +1,6 @@
 <h1><%= @chatroom.title %></h1>
 
-<%= form_for [@chatroom, @message] do |f| %>
+<%= form_for [@chatroom, Message.new] do |f| %>
     <div class="message_input">
       <%= f.label :body %>
       <%= f.text_area :body, class: 'form-control', autofocus: true %>
@@ -13,10 +13,14 @@
 <% end %>
 
 
+<% unread_messages = false %>
 
 <ul data-behavior='messages' data-chatroom-id="<%= @chatroom.id %>">
   <% @messages.each do |message| %>
-
+      <% if !unread_messages && @chatroom_user.last_read_at < message.created_at %>
+          <% unread_messages = true %>
+          <div class="strike"><span>Unread Messages</span></div>
+      <% end %>
       <%= render message %>
 
   <% end %>

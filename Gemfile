@@ -19,7 +19,8 @@ gem 'active_median'
 gem "simple_calendar"
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'sass-rails', '>= 3.2'
 gem 'autoprefixer-rails'
 gem 'rubyzip'
 gem 'axlsx'
@@ -35,7 +36,7 @@ gem 'pg'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views

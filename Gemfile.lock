@@ -319,7 +319,7 @@ DEPENDENCIES
   awesome_print
   axlsx
   axlsx_rails
-  bootstrap-sass
+  bootstrap-sass (~> 3.3.7)
   breadcrumbs_on_rails
   byebug
   cancancan
@@ -353,7 +353,7 @@ DEPENDENCIES
   remotipart
   rolify
   rubyzip
-  sass-rails
+  sass-rails (>= 3.2)
   selenium-webdriver
   simple_calendar
   simplecov

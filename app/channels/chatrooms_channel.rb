@@ -1,7 +1,5 @@
+# Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
 class ChatroomsChannel < ApplicationCable::Channel
-
-  # identified_by :current_user
-
   def subscribed
     current_user.chatrooms.each do |chatroom|
       stream_from "chatrooms:#{chatroom.id}"
@@ -13,12 +11,8 @@ class ChatroomsChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    # current_user.messages.create!(body: data['message'], chatroom_id: data['chatroom_id'])
     @chatroom = Chatroom.find(data["chatroom_id"])
     message = @chatroom.messages.create(body: data["body"], user: current_user)
     MessageBroadcastJob.perform_later(message)
-
-    Rails.logger.info data
-
   end
 end

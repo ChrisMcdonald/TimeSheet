@@ -1,5 +1,6 @@
 class ChatroomsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_chatroom, only: [:show, :edit, :update, :destroy]
 
   def index
     @chatrooms = Chatroom.all
@@ -10,9 +11,8 @@ class ChatroomsController < ApplicationController
   end
 
   def show
-    @chatroom = Chatroom.includes(:messages).find_by(id: params[:id])
-    @messages = @chatroom.messages.reverse_order.limit(50)
-    @message = Message.new
+    @messages = @chatroom.messages.order(created_at: :desc).limit(100).reverse
+    @chatroom_user = current_user.chatroom_users.find_by(chatroom_id: @chatroom.id)
 
   end
 
@@ -33,6 +33,9 @@ class ChatroomsController < ApplicationController
   end
 
   private
+  def set_chatroom
+    @chatroom = Chatroom.find(params[:id])
+  end
 
   def chatroom_params
     params.require(:chatroom).permit(:title)
