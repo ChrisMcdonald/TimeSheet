@@ -2,7 +2,7 @@ class IdentitiesController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_identity, only: [:index, :show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  load_and_authorize_resource
+  # load_and_authorize_resource
   # GET /identities
   # GET /identities.json
   def index
@@ -61,12 +61,12 @@ class IdentitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
     def set_identity
       @identity = Identity.find_by(user_id: current_user)
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list through.
     def identity_params
       params.require(:identity).permit(:provider, :username, :image, :user_id)
     end
