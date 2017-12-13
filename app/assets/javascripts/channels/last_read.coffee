@@ -6,11 +6,13 @@ App.last_read = App.cable.subscriptions.create "LastReadChannel",
 # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    console.log data.animation
-    $(".ana[data-message-id='#{data.animation['chatroom_id']}']").show();
-    $(".ana[data-message-id='#{data.animation['chatroom_id']}']").fadeOut(50);
-    $("textarea[id='#{data.animation['chatroom_id']}']").css({'background-color': "lightgrey"});
-    $("textarea[id='#{data.animation['chatroom_id']}']").animate({'background-color': ""}, 50);
+    active_chatroom = $("[data-behavior='messages'][data-chatroom-id='#{data.animation.chatroom_id }']")
+    console.log data
+    if active_chatroom.length > 0
+      $(".ana[data-message-id='#{data.animation['chatroom_id']}']").show();
+      $(".ana[data-message-id='#{data.animation['chatroom_id']}']").fadeOut(50);
+      $("#message_body").css({'background-color': "lightgrey"});
+      $("#message_body").animate({'background-color': ""}, 50);
 
   update: (chatroom_id) ->
     @perform "update", {chatroom_id: chatroom_id}

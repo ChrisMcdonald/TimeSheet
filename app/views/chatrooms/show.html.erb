@@ -4,7 +4,7 @@
     <div class="message_input" data-message-id="<%= @chatroom.id %>">
       <%= f.label :body %>
       <div class="fa fa-paper-plane ana" data-message-id="<%= @chatroom.id %>"></div>
-      <%= f.text_area :body, class: 'form-control', id: @chatroom.id, autofocus: true %>
+      <%= f.text_area :body, class: 'form-control', autofocus: true %>
       <small class="text-muted">From 2 to 1000 characters</small>
     </div>
     <%= f.button "Post", class: 'btn btn-default' do %>
