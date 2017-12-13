@@ -37,6 +37,13 @@ class User < ApplicationRecord
 
   PERMISSIONS = ['Travel', 'User', 'TimeSheet', 'Project', 'Customer', 'Invoice']
 
+  def avatar
+    if self.identities.present?
+      self.identities.first.image
+    else
+      ActionController::Base.helpers.asset_path('default_avatar.jpeg')
+    end
+  end
 
 	def to_csv(obj, options={})
 		sub_total = self.sub_total(obj)

@@ -15,11 +15,7 @@ module ApplicationHelper
 
   def gravatar_for(user, opts = {})
     opts[:alt] = user.full_name
-    if user.identities.present?
-      image_tag user.identities.first.image, size: 30
-    else
-      image_tag 'default_avatar.jpeg', size: 30, class: "img-circle img-sm"
-		end
+    image_tag user.avatar, size: 30
 	end
 
 

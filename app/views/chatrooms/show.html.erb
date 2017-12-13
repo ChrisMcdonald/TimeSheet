@@ -1,9 +1,10 @@
 <h1><%= @chatroom.title %></h1>
 
-<%= form_for [@chatroom, Message.new] do |f| %>
-    <div class="message_input">
+<%= form_for [@chatroom, Message.new], remote: true do |f| %>
+    <div class="message_input" data-message-id="<%= @chatroom.id %>">
       <%= f.label :body %>
-      <%= f.text_area :body, class: 'form-control', autofocus: true %>
+      <div class="fa fa-paper-plane ana" data-message-id="<%= @chatroom.id %>"></div>
+      <%= f.text_area :body, class: 'form-control', id: @chatroom.id, autofocus: true %>
       <small class="text-muted">From 2 to 1000 characters</small>
     </div>
     <%= f.button "Post", class: 'btn btn-default' do %>
@@ -20,7 +21,7 @@
       <% if @chatroom_user %>
           <% if !unread_messages && @chatroom_user.last_read_at < message.created_at %>
               <% unread_messages = true %>
-              <div class="strike"><span>Unread Messages</span></div>
+              <li data-id="<%= message.id %>" class="strike"><h5></h5></li>
           <% end %>
       <% end %>
       <%= render message %>

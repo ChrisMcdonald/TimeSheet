@@ -11,7 +11,6 @@
         <h4><%= message.user.full_name %></h4>
         <%= message.body %>
         <p class="speech-time">
-          <i class="demo-pli-clock icon-fw"></i>
           <%= message.created_at.strftime("%A %b %d %I %M ") %>
           <time class="timeago timestamp" datetime=""><%= message.created_at %></time>
         </p>

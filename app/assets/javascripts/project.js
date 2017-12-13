@@ -55,9 +55,17 @@ $(document).on('turbolinks:load',function () {
     });
 });
 $(document).on('turbolinks:load', function () {
+    $('.ana').fadeOut(1200);
+
     $('#user-details').click(function () {
 
         $('user_partial .show-users-controler').html("<%= j render 'user_details' %>")
 
     });
 });
+
+jQuery.fn.flash = function (color, duration) {
+    var current = this.css('backgroundColor');
+    this.animate({backgroundColor: 'rgb(' + color + ')'}, duration / 2)
+        .animate({backgroundColor: current}, duration / 2);
+};
