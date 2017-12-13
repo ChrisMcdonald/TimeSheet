@@ -18,7 +18,7 @@
 
 <ul data-behavior='messages' data-chatroom-id="<%= @chatroom.id %>">
   <% @messages.each do |message| %>
-      <% if @chatroom_user %>
+      <% if @chatroom_user.present? %>
           <% if !unread_messages && @chatroom_user.last_read_at < message.created_at %>
               <% unread_messages = true %>
               <li data-id="<%= message.id %>" class="strike"><h5></h5></li>
