@@ -1,3 +1,4 @@
+
 App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
   connected: ->
 
@@ -17,9 +18,17 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
           $("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}']").css("font-weight", "bold").addClass('fa fa-envelope');
 
       else
-        console.log data.chatroom_id
-        App.last_read.update(data.chatroom_id)
+#        App.last_read.update(data.chatroom_id)
+#      set_message_side(data.message)
+      user = (Number) $('body').attr('data-user')
+      console.log user + 1
+      console.log data.message_user.id
       active_chatroom.prepend(data.message)
+      if user == data.message_user.id
+        console.log 'true'
+        $("[data-id='#{data.message_id}']").css('float': 'left');
+
+
       $("[data-id='#{data.message_id}']").css({'background-color': "lightgrey"});
       $("[data-id='#{data.message_id}']").animate({'background-color': ""}, 1200);
 
@@ -29,3 +38,4 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
 
   send_message: (chatroom_id, message) ->
     @perform "send_message", {chatroom_id: chatroom_id, body: message}
+

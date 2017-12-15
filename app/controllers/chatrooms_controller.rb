@@ -21,9 +21,9 @@ class ChatroomsController < ApplicationController
     @chatroom = current_user.chatrooms.build(chatroom_params)
     if @chatroom.save
       flash[:success] = 'Chat room added!'
-      redirect_to chatrooms_path
-    else
-      render 'new'
+      respond_to do |format|
+        format.js
+      end
     end
   end
 

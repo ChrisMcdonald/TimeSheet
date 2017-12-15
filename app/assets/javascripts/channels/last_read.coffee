@@ -7,8 +7,9 @@ App.last_read = App.cable.subscriptions.create "LastReadChannel",
 
   received: (data) ->
     active_chatroom = $("[data-behavior='messages'][data-chatroom-id='#{data.animation.chatroom_id }']")
-    console.log data
-    if active_chatroom.length > 0
+    message_user = data.message.user.id
+    user = $('body').attr('data-user')
+    if active_chatroom.length > 0 && message_user != user
       $(".ana[data-message-id='#{data.animation['chatroom_id']}']").show();
       $(".ana[data-message-id='#{data.animation['chatroom_id']}']").fadeOut(50);
       $("#message_body").css({'background-color': "lightgrey"});

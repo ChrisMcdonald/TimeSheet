@@ -18,9 +18,12 @@
 
 <ul data-behavior='messages' data-chatroom-id="<%= @chatroom.id %>">
   <% @messages.each do |message| %>
+    <%= render message %>
 
-      <%= render message %>
 
   <% end %>
 </ul>
 
+<script type="text/javascript" charset="utf-8">
+
+</script>
