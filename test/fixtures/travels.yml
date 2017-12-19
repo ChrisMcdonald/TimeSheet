@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  travel_date: 2017-11-25 17:43:55
+  od_start: 1
+  od_finish: 2
+  purpose: MyString
+  user: one
+  project: one
+  time_sheet: one
+  vehicle: one
+
+two:
+  id: 2
+  travel_date: 2017-11-25 17:43:55
+  od_start: 3
+  od_finish: 4
+  purpose: MyString
+  user: two
+  project: two
+  time_sheet: two
+  vehicle: one

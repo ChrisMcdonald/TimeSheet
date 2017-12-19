@@ -15,7 +15,8 @@ class LastReadChannel < ApplicationCable::Channel
   end
 
   def send_animation(data)
-    SendAnimationJob.perform_later(data)
+    # chatroom_user = ChatroomUser.where(data['chatroom_id'])
 
+    SendAnimationJob.perform_later(data)
   end
 end

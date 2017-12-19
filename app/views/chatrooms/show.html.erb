@@ -1,29 +1,32 @@
 <h1><%= @chatroom.title %></h1>
 
-<%= form_for [@chatroom, Message.new], remote: true do |f| %>
-    <div class="message_input" data-message-id="<%= @chatroom.id %>">
-      <%= f.label :body %>
-      <div class="fa fa-paper-plane ana" data-message-id="<%= @chatroom.id %>"></div>
-      <%= f.text_area :body, class: 'form-control', autofocus: true %>
-      <small class="text-muted">From 2 to 1000 characters</small>
-    </div>
+
+<div class="container ">
+  <div class="row">
+    <ul id='messages' data-behavior='messages' data-chatroom-id="<%= @chatroom.id %>">
+      <% @messages.each do |message| %>
+        <%= render message %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <%= form_for [@chatroom, Message.new], remote: true do |f| %>
+        <div class="" data-message-id="<%= @chatroom.id %>" style=" position: sticky;">
+          <small class="text-muted">From 2 to 1000 characters</small>
+
+          <%= f.text_area :body, class: 'form-control ', autofocus: true, cols: 150, style: 'z-index: -2' %>
+          <i style="display: inline" class="fa fa-paper-plane ana pull-right" data-message-id="<%= @chatroom.id %>"></i>
     <%= f.button "Post", class: 'btn btn-default' do %>
-        Post
-        <span><i class="fa fa-paper-plane"></i></span>
+            Post
+            <span><i class="fa fa-paper-plane"></i></span>
     <% end %>
-<% end %>
+        </div>
+        </div>
 
+      <% end %>
 
-<% unread_messages = false %>
-
-<ul data-behavior='messages' data-chatroom-id="<%= @chatroom.id %>">
-  <% @messages.each do |message| %>
-    <%= render message %>
-
-
-  <% end %>
-</ul>
-
-<script type="text/javascript" charset="utf-8">
-
-</script>
+      </div>
+</div>

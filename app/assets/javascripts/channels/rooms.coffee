@@ -21,16 +21,15 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
 #        App.last_read.update(data.chatroom_id)
 #      set_message_side(data.message)
       user = (Number) $('body').attr('data-user')
-      console.log user + 1
-      console.log data.message_user.id
-      active_chatroom.prepend(data.message)
+      active_chatroom.append(data.message)
       if user == data.message_user.id
-        console.log 'true'
         $("[data-id='#{data.message_id}']").css('float': 'left');
 
 
       $("[data-id='#{data.message_id}']").css({'background-color': "lightgrey"});
       $("[data-id='#{data.message_id}']").animate({'background-color': ""}, 1200);
+      message_list_scroll_heigth = $('ul#messages').prop('scrollHeight');
+      $('ul#messages').scrollTop(message_list_scroll_heigth);
 
     else
       $("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}']").css("font-weight", "bold").addClass('fa fa-envelope');

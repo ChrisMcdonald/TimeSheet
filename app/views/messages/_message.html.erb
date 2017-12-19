@@ -1,8 +1,7 @@
-
-<li class="stuff mar-btm message " data-id="<%= message.id %>" data-user-id="<%= message.user.id %>">
+<li class="stuff mar-btm message  media-padding" data-id="<%= message.id %>" data-user-id="<%= message.user.id %>">
   <div>
     <%= gravatar_for message.user %>
-    <div id="message-speech-<%= message.id %>" class=" media-body pad-hor message-speech ">
+    <div id="message-speech-<%= message.id %>" class=" media-body pad-hor message-speech media-message  ">
       <div class="speech">
         <h4><%= message.user.full_name %></h4>
         <%= message.body %>

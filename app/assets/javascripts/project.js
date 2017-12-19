@@ -54,15 +54,15 @@ $(document).on('turbolinks:load',function () {
         }
     });
 });
-$(document).on('turbolinks:load', function () {
-    $('.ana').fadeOut(1200);
-
-    $('#user-details').click(function () {
-
-        $('user_partial .show-users-controler').html("<%= j render 'user_details' %>")
-
-    });
-});
+// $(document).on('turbolinks:load', function () {
+//     $('.ana').fadeOut(1200);
+//
+//     $('#user-details').click(function () {
+//
+//         $('user_partial .show-users-controler').html("<%= j render 'user_details' %>")
+//
+//     });
+// });
 
 jQuery.fn.flash = function (color, duration) {
     var current = this.css('backgroundColor');

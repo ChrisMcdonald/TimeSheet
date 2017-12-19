@@ -13,6 +13,9 @@ handleVisiblityChange = ->
 
 $(document).on "turbolinks:load", ->
   $(document).on "click", handleVisiblityChange
+  message_list_scroll_heigth = $('ul#messages').prop('scrollHeight')
+  $('ul#messages').scrollTop(message_list_scroll_heigth)
+
 
   $("#new_message").on "keypress", (e) ->
     if e && e.keyCode == 13
@@ -24,8 +27,9 @@ $(document).on "turbolinks:load", ->
 
     chatroom_id = $("[data-behavior='messages']").data("chatroom-id")
     body = $("#message_body")
+    console.log body.val()
     App.chatrooms.send_message(chatroom_id, body.val())
-    body.val("")
+  #    body.val("")
 
   $("#new_message").on "keypress", (e) ->
     chatroom_id = $("[data-behavior='messages']").data("chatroom-id")
