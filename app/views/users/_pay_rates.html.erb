@@ -1,7 +1,7 @@
 <tr>
   <td>
     <div class="field">
-      <%= f.number_field :rate, class: 'pay_rate' %>
+      <%= f.number_field :rate, class: 'pay_rate', step: '0.01' %>
       <p>This will update the users pay rate from today. All previous records will retain the same pay rate</p>
 
     </div>
