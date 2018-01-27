@@ -116,7 +116,7 @@ class UsersController < ApplicationController
 
 				format.html {redirect_to user_path(@user), notice: 'User was successfully updated.'}
 				format.json {render :show, status: :ok, location: @user}
-				format.js
+				format.js {flash[:notice] = 'User was updated'}
 			else
 				@user.success = false
 
