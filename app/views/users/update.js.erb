@@ -1,6 +1,0 @@
-<% if(@user.success == true) %>
-$('#user-list').prepend('<%=j render  @user %>');
-$("#show-form").trigger('reset');
-$(".new-project").slideUp();
-<% end %>
-$('#NewProject').html('<%= j render 'users/form' %>')
