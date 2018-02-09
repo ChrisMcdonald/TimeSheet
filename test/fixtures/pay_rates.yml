@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  rate: 1
+  rate: 1.0
   user: one
   created_at: <%= Date.today %>
 
 two:
-  rate: 1
+  rate: 1.0
   user: two
   created_at: <%= Date.today %>
 
 
 three:
-  rate: 2
+  rate: 2.0
   user: two
   created_at: <%= Date.yesterday %>

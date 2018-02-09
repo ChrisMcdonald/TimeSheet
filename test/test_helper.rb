@@ -14,6 +14,7 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.javascript_driver = :chrome
+# Capybara.asset_host = "http://earth-broken.bnr.la"
 Capybara.asset_host = "http://localhost:3000"
 # Capybara.server = :puma # Until your setup is working
 Capybara.configure do |config|

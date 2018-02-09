@@ -18,8 +18,8 @@ class CustomerTest < ApplicationSystemTestCase
 		user = User.first
 
 		visit root_path
-
-		find_link(href: "/current_day/#{Date.today}").click
+		date = Date.today
+		find_link(href: "/current_day/#{date}").click
     sleep 1
     find('a', class: 'add_fields').click
     sleep 2
@@ -32,7 +32,6 @@ class CustomerTest < ApplicationSystemTestCase
 		find('#new-project').click
 		within('#NewProject') do
       fill_in 'project_name', with: 'Projectone'
-
 		end
 
 		find('input[name="commit"]').click
