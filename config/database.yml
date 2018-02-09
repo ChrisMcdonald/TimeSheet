@@ -4,11 +4,11 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 ##
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-#
+#default: &default
+#  adapter: sqlite3
+#  pool: 5
+#  timeout: 5000
+##
 #development:
 #  <<: *default
 #  database: db/development.sqlite3
@@ -22,7 +22,7 @@ test:
   database: loggintrackerTEST
   pool: 5
   username: postgres
-  password: monster
+  password: password
   host: localhost
 #
 #production:
@@ -35,7 +35,7 @@ development:
   database: loggintracker
   pool: 5
   username: postgres
-  password: monster
+  password: passord
   host: localhost
 
 production:

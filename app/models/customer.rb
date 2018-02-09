@@ -1,28 +1,26 @@
+# frozen_string_literal: true
+
 class Customer < ApplicationRecord
-	belongs_to :user
-	has_one :project
+  belongs_to :user
+  has_one :project
 
-	resourcify
-	def full_name
+  resourcify
+  def full_name
+    first = if first_name
+              first_name
+            else
+              'No First Name'
+            end
 
-		if self.first_name
-			first = self.first_name
-		else
-			first = 'No First Name'
-		end
+    last = if last_name
+             last_name
+           else
+             'No Last Name'
+           end
+    first.humanize + ' ' + last.humanize
+  end
 
-		if self.last_name
-			last = self.last_name
-		else
-			last = 'No Last Name'
-		end
-		first.humanize  + " "+ last.humanize
-	end
-
-	def address
-
-		address = "#{self.street_no.humanize }   #{self.street.humanize }<br>#{self.city.humanize }  #{self.state.humanize }  <br>	#{self.country.humanize } #{self.post_code.humanize  }".html_safe
-
-	end
-
+  def address
+    address = "#{street_no.humanize}   #{street.humanize}<br>#{city.humanize}  #{state.humanize}  <br>	#{country.humanize} #{post_code.humanize}".html_safe
+  end
 end

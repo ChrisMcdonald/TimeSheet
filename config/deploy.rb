@@ -1,15 +1,16 @@
-# config valid for current version and patch releases of Capistrano
-lock "~> 3.10.0"
+# frozen_string_literal: true
 
-set :application, "Soupcloud"
-set :repo_url, "https://github.com/ChrisMcdonald/TimeSheet.git"
-set :user, "chris"
+# config valid for current version and patch releases of Capistrano
+lock '~> 3.10.0'
+
+set :application, 'Soupcloud'
+set :repo_url, 'https://github.com/ChrisMcdonald/TimeSheet.git'
+set :user, 'chris'
 set :branch, 'timesheet'
 set :passenger_restart_with_touch, true
-require "capistrano/scm/git"
+require 'capistrano/scm/git'
 # install_plugin Capistrano::SCM::Git
-
-
+set :keep_releases, 1
 
 set :use_sudo, false
 set :deploy_to, '/home/chris/TimeSheet'
@@ -18,15 +19,14 @@ set :deploy_to, '/home/chris/TimeSheet'
 # set :ssh_options, { :forward_agent => true, :port => 4321 }
 # set :keep_releases, 5
 
+append :linked_files, 'config/database.yml', 'config/secrets.yml'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
 
-append :linked_files, "config/database.yml", "config/secrets.yml"
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
+set :scm_passphrase, 'monsterhelpgose'
 
-set :scm_passphrase, "monsterhelpgose"
-
-desc "Restart Passenger app"
+desc 'Restart Passenger app'
 task :restart do
-	run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
+  run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
 end
 #
 # after "deploy", "deploy:symlink_config_files"

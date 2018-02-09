@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TravelsController < ApplicationController
-  before_action :set_travel, only: [:show, :edit, :update, :destroy]
+  before_action :set_travel, only: %i[show edit update destroy]
   load_and_authorize_resource
 
   # GET /travels
@@ -10,8 +12,7 @@ class TravelsController < ApplicationController
 
   # GET /travels/1
   # GET /travels/1.json
-  def show
-  end
+  def show; end
 
   # GET /travels/new
   def new
@@ -19,8 +20,7 @@ class TravelsController < ApplicationController
   end
 
   # GET /travels/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /travels
   # POST /travels.json
@@ -29,11 +29,11 @@ class TravelsController < ApplicationController
 
     respond_to do |format|
       if @travel.save
-        format.html {redirect_to @travel, notice: 'Travel was successfully created.'}
-        format.json {render :show, status: :created, location: @travel}
+        format.html { redirect_to @travel, notice: 'Travel was successfully created.' }
+        format.json { render :show, status: :created, location: @travel }
       else
-        format.html {render :new}
-        format.json {render json: @travel.errors, status: :unprocessable_entity}
+        format.html { render :new }
+        format.json { render json: @travel.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,11 +43,11 @@ class TravelsController < ApplicationController
   def update
     respond_to do |format|
       if @travel.update(travel_params)
-        format.html {redirect_to @travel, notice: 'Travel was successfully updated.'}
-        format.json {render :show, status: :ok, location: @travel}
+        format.html { redirect_to @travel, notice: 'Travel was successfully updated.' }
+        format.json { render :show, status: :ok, location: @travel }
       else
-        format.html {render :edit}
-        format.json {render json: @travel.errors, status: :unprocessable_entity}
+        format.html { render :edit }
+        format.json { render json: @travel.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,12 +57,13 @@ class TravelsController < ApplicationController
   def destroy
     @travel.destroy
     respond_to do |format|
-      format.html {redirect_to travels_url, notice: 'Travel was successfully destroyed.'}
-      format.json {head :no_content}
+      format.html { redirect_to travels_url, notice: 'Travel was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_travel
     @travel = Travel.find(params[:id])

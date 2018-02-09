@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PayRatesController < ApplicationController
-  before_action :set_pay_rate, only: [:show, :edit, :update, :destroy]
+  before_action :set_pay_rate, only: %i[show edit update destroy]
   load_and_authorize_resource
   # GET /pay_rates
   # GET /pay_rates.json
@@ -9,8 +11,7 @@ class PayRatesController < ApplicationController
 
   # GET /pay_rates/1
   # GET /pay_rates/1.json
-  def show
-  end
+  def show; end
 
   # GET /pay_rates/new
   def new
@@ -18,8 +19,7 @@ class PayRatesController < ApplicationController
   end
 
   # GET /pay_rates/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /pay_rates
   # POST /pay_rates.json
@@ -62,13 +62,14 @@ class PayRatesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pay_rate
-      @pay_rate = PayRate.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def pay_rate_params
-      params.require(:pay_rate).permit(:rate, :project_id, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pay_rate
+    @pay_rate = PayRate.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def pay_rate_params
+    params.require(:pay_rate).permit(:rate, :project_id, :user_id)
+  end
 end

@@ -1,27 +1,30 @@
+# frozen_string_literal: true
+
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: %i[show edit update destroy]
   before_action :authenticate_user!
   load_and_authorize_resource
   # GET /customers
   # GET /customers.json
   def details
-	  @customer = Customer.find(params[:customer_id])
-	  respond_to do |format|
-		  format.js
-	  end
+    @customer = Customer.find(params[:customer_id])
+    respond_to do |format|
+      format.js
+    end
   end
+
   def index
-	  @customers = Customer.all.paginate(:page => params[:page], :per_page => 10).reverse_order
-	  @customer = Customer.new
+    @customers = Customer.all.paginate(page: params[:page], per_page: 10).reverse_order
+    @customer = Customer.new
   end
 
   # GET /customers/1
   # GET /customers/1.json
   def show
-	  respond_to do |format|
-		  format.js
-		  format.html
-	  end
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # GET /customers/new
@@ -30,14 +33,13 @@ class CustomersController < ApplicationController
   end
 
   # GET /customers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /customers
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-	@customer.user = current_user
+    @customer.user = current_user
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
@@ -74,13 +76,14 @@ class CustomersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_customer
-      @customer = Customer.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def customer_params
-      params.require(:customer).permit(:first_name, :last_name, :street_no, :street, :city, :state, :country, :post_code, :abn)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_customer
+    @customer = Customer.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def customer_params
+    params.require(:customer).permit(:first_name, :last_name, :street_no, :street, :city, :state, :country, :post_code, :abn)
+  end
 end

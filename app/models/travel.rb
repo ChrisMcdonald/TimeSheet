@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Travel < ApplicationRecord
   resourcify
   belongs_to :user
@@ -10,10 +12,9 @@ class Travel < ApplicationRecord
   validate :od_start_greater_than_previous_od_finish
 
   def previous_od_finish
-
     begin
-      result = self.class.where(vehicle: self.vehicle).last.od_finish
-    rescue
+      result = self.class.where(vehicle: vehicle).last.od_finish
+    rescue StandardError
       result = 0
     end
     result
@@ -30,10 +31,8 @@ class Travel < ApplicationRecord
   end
 
   def od_start_cannot_be_greater_than_od_finish
-
     if od_start > od_finish
       errors.add(:od_finish, 'od finish should be greater than od start ')
     end
   end
-
 end

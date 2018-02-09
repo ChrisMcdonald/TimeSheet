@@ -1,29 +1,27 @@
+# frozen_string_literal: true
+
 class IdentitiesController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_identity, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_identity, only: %i[index show edit update destroy]
   before_action :authenticate_user!
   # load_and_authorize_resource
   # GET /identities
   # GET /identities.json
   def index
-    @identities = Identity.where("user_id = '?'",current_user.id)
-
+    @identities = Identity.where("user_id = '?'", current_user.id)
   end
 
   # GET /identities/1
   # GET /identities/1.json
-  def show
-
-  end
+  def show; end
 
   # GET /identities/new
   def new
-    @user = User.from_omniauth(request.env["omniauth.auth"] ,current_user)
+    @user = User.from_omniauth(request.env['omniauth.auth'], current_user)
   end
 
   # GET /identities/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /identities
   # POST /identities.json
@@ -61,13 +59,14 @@ class IdentitiesController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
-    def set_identity
-      @identity = Identity.find_by(user_id: current_user)
-    end
+  def set_identity
+    @identity = Identity.find_by(user_id: current_user)
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-    def identity_params
-      params.require(:identity).permit(:provider, :username, :image, :user_id)
-    end
+  def identity_params
+    params.require(:identity).permit(:provider, :username, :image, :user_id)
+  end
 end

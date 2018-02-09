@@ -1,128 +1,126 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
-	resourcify
-	rolify
-	include Calculate
+  resourcify
+  rolify
+  include Calculate
 
   has_many :travels
   has_many :time_travel, through: :time_sheets, foreign_key: :user_id, source: :travels
-	has_many :projects
-	has_many :time_sheets
-	has_many :time_work, through: :time_sheets, foreign_key: :user_id, source: :works
-	has_many :project_work, through: :projects, foreign_key: :user_id, source: :works
-	has_many :chatroom_users
-	has_many :chatrooms, through: :chatroom_users
+  has_many :projects
+  has_many :time_sheets
+  has_many :time_work, through: :time_sheets, foreign_key: :user_id, source: :works
+  has_many :project_work, through: :projects, foreign_key: :user_id, source: :works
+  has_many :chatroom_users
+  has_many :chatrooms, through: :chatroom_users
   has_many :messages, dependent: :destroy
-	# has_many :work_pro, through: :projects, source: :works
-	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable and :omniauthable
+  # has_many :work_pro, through: :projects, source: :works
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
 
-	devise :database_authenticatable, :omniauthable,
-		   :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :omniauthable,
+         :recoverable, :rememberable, :trackable, :validatable
 
-	has_many :pay_rates, inverse_of: :user, dependent: :destroy
-	has_many :identities, dependent: :destroy
-	has_many :invoices, dependent: :destroy
+  has_many :pay_rates, inverse_of: :user, dependent: :destroy
+  has_many :identities, dependent: :destroy
+  has_many :invoices, dependent: :destroy
 
+  accepts_nested_attributes_for :pay_rates, allow_destroy: true, reject_if: :rate.blank?
+  # validates_uniqueness_of :email ,message: 'Email is already registed'
+  validates_presence_of :email, :first_name, :last_name
 
-	accepts_nested_attributes_for :pay_rates, allow_destroy: true, reject_if: :rate.blank?
-	# validates_uniqueness_of :email ,message: 'Email is already registed'
-	validates_presence_of :email, :first_name, :last_name
-
-	attr_accessor :project_search, :success, :user_read, :user_edit, :customer_read, :customer_edit,
+  attr_accessor :project_search, :success, :user_read, :user_edit, :customer_read, :customer_edit,
                 :project_read, :project_edit, :TimeSheet_read, :time_sheet_edit, :Invoice_read, :Invoice_edit,
                 :User_admin, :start_date, :end_date, :Travel_read, :Travel_edit
 
-	PERMISSION_GROUPS = ['User_read', 'User_edit', 'TimeSheet_read', 'TimeSheet_edit', 'Project_read', 'Project_edit',
-                       'Customer_read', 'Customer_edit', 'Invoice_read', 'Invoice_edit', 'User_admin', 'Travel_read', 'Travel_edit']
+  PERMISSION_GROUPS = %w[User_read User_edit TimeSheet_read TimeSheet_edit Project_read Project_edit
+                         Customer_read Customer_edit Invoice_read Invoice_edit User_admin Travel_read Travel_edit].freeze
 
-  PERMISSIONS = ['Travel', 'User', 'TimeSheet', 'Project', 'Customer', 'Invoice']
+  PERMISSIONS = %w[Travel User TimeSheet Project Customer Invoice].freeze
 
   def avatar
-    if self.identities.present?
-      self.identities.first.image
+    if identities.present?
+      identities.first.image
     else
       ActionController::Base.helpers.asset_path('default_avatar.jpeg')
     end
   end
 
-	def to_csv(obj, options={})
-		sub_total = self.sub_total(obj)
-		CSV.generate(options) do |csv|
-			csv << ['pay', 'hours', 'rate', 'Date Worked', 'project']
-			obj.each_with_index do |p, i|
-				csv << [sub_total[:sub_totals][i],
-						p.hour,
-						self.rate(p.time_sheet.time_period),
-						p.time_sheet.time_period.strftime("%A %b %d "),
-						p.project.name]
-			end
-		end
-	end
+  def to_csv(obj, options = {})
+    sub_total = self.sub_total(obj)
+    CSV.generate(options) do |csv|
+      csv << ['pay', 'hours', 'rate', 'Date Worked', 'project']
+      obj.each_with_index do |p, i|
+        csv << [sub_total[:sub_totals][i],
+                p.hour,
+                rate(p.time_sheet.time_period),
+                p.time_sheet.time_period.strftime('%A %b %d '),
+                p.project.name]
+      end
+    end
+  end
 
-	def pay_per_project(project_id)
-		# self.works.find_by project_id: project_id
-		self.project_work.find_by project_id: project_id
-	end
+  def pay_per_project(project_id)
+    # self.works.find_by project_id: project_id
+    project_work.find_by project_id: project_id
+  end
 
-	def project
-		self.project_work
-	end
+  def project
+    project_work
+  end
 
-	def pay_for_user
-		self.time_work
-	end
+  def pay_for_user
+    time_work
+  end
 
-	def sub_total(time)
-		totals = Array.new
-		total = 0
-		time.each do |t|
-			rate = self.rate(t.time_sheet.time_period.to_date)
-			sub_total = rate * t.hour
-			totals << sub_total
-			total += sub_total
-		end
-		totals
-		tax = total * 0.20
-		superannuation = total * 0.10
-		pay_details = Hash.new
-		pay_details[:total] = total
-		pay_details[:sub_totals] = totals
-		pay_details[:tax] = tax
-		pay_details[:superannuation] = superannuation
-		pay_details
-	end
+  def sub_total(time)
+    totals = []
+    total = 0
+    time.each do |t|
+      rate = self.rate(t.time_sheet.time_period.to_date)
+      sub_total = rate * t.hour
+      totals << sub_total
+      total += sub_total
+    end
+    totals
+    tax = total * 0.20
+    superannuation = total * 0.10
+    pay_details = {}
+    pay_details[:total] = total
+    pay_details[:sub_totals] = totals
+    pay_details[:tax] = tax
+    pay_details[:superannuation] = superannuation
+    pay_details
+  end
 
-	def rate(created_at)
-		rate = 0
-		begin
-			rate = self.pay_rates.where('created_at <= ?', created_at).last.rate
-		rescue
-			rate = self.pay_rates.last.rate
-		end
-		rate
-	end
+  def rate(created_at)
+    rate = 0
+    begin
+      rate = pay_rates.where('created_at <= ?', created_at).last.rate
+    rescue StandardError
+      rate = pay_rates.last.rate
+    end
+    rate
+  end
 
-	def full_name
+  def full_name
+    first = if first_name
+              first_name
+            else
+              'No First Name'
+            end
 
-		if self.first_name
-			first = self.first_name
-		else
-			first = 'No First Name'
-		end
+    last = if last_name
+             last_name
+           else
+             'No Last Name'
+           end
+    first.humanize + ' ' + last.humanize
+  end
 
-		if self.last_name
-			last = self.last_name
-		else
-			last = 'No Last Name'
-		end
-		first.humanize + " "+ last.humanize
-	end
-
-	def address
-
-		address = "#{self.street_no.humanize }   #{self.street}<br>#{self.city.humanize }  #{self.state.humanize }  <br>	#{self.country.humanize } #{self.post_code.humanize  }".html_safe
-
-	end
+  def address
+    address = "#{street_no.humanize}   #{street}<br>#{city.humanize}  #{state.humanize}  <br>	#{country.humanize} #{post_code.humanize}".html_safe
+  end
 
   def fetch_details(auth)
     self.email = auth.info.email
@@ -135,13 +133,11 @@ class User < ApplicationRecord
       new(session['devise.user_attributes'], without_protection: true) do |user|
         user.attributes = params
         user.valid?
-
       end
     else
       super
     end
   end
-
 
   def email_required?
     super && provider.blank?
@@ -151,25 +147,21 @@ class User < ApplicationRecord
     super && provider.blank?
   end
 
-
   def self.from_omniauth(auth, current_user)
-
     identity = Identity.find_or_initialize_by(provider: auth.provider,
-                                              uid: auth.uid.to_s,
-    )
+                                              uid: auth.uid.to_s)
     identity.token = auth.credentials.token
     identity.username = auth.info.name
     identity.image = auth.info.image
     identity.email = auth.info.email
     # identity.user.avatar = auth.info.image
-		identity.save!
-
+    identity.save!
 
     if identity.user.blank?
       user = current_user
       identity.user = user
       identity.save
-    end
+  end
 
     identity
   end
@@ -179,6 +171,6 @@ class User < ApplicationRecord
   end
 
   def user_image
-    self.identities.first.image
+    identities.first.image
   end
 end

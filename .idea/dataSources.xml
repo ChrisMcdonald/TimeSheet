@@ -10,14 +10,11 @@
         <property name="ApplicationName" value="DataGrip" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="loggintrackerTEST@localhost" uuid="a6bc5f75-b7e5-4c07-9858-862d3202f767">
+    <data-source source="LOCAL" name="loggintrackerTEST@localhost" uuid="ee421106-d735-46bc-9b41-c943b2bda65d">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/loggintrackerTEST</jdbc-url>
-      <driver-properties>
-        <property name="ApplicationName" value="DataGrip" />
-      </driver-properties>
     </data-source>
   </component>
 </project>

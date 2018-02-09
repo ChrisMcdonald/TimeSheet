@@ -112,3 +112,16 @@ test/controllers/registrations_controller_test.rb
 test/fixtures/roles.yml
 test/models/role_test.rb
 
+/coverage/
+app/controllers/projects/
+app/helpers/projects/
+app/task/
+app/views/omniauth_callbacks/
+app/views/user_details/
+chromedriver
+config/local_env.yml
+db/migrate/20180209021357_add_travel_date_to_travels.rb
+db/schema.rb
+deploy:new_release_path
+lib/capistrano/
+test/jobs/

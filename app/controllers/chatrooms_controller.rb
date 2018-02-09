@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ChatroomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_chatroom, only: [:show, :edit, :update, :destroy]
+  before_action :set_chatroom, only: %i[show edit update destroy]
 
   def index
     @chatrooms = Chatroom.all
@@ -13,9 +15,7 @@ class ChatroomsController < ApplicationController
   def show
     @messages = @chatroom.messages.last(20)
     @chatroom_user = current_user.chatroom_users.find_by(chatroom_id: @chatroom.id)
-
   end
-
 
   def create
     @chatroom = current_user.chatrooms.build(chatroom_params)
@@ -33,6 +33,7 @@ class ChatroomsController < ApplicationController
   end
 
   private
+
   def set_chatroom
     @chatroom = Chatroom.find(params[:id])
   end

@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-
-
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -242,7 +242,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-   config.navigational_formats = ['*/*', :html,:js]
+  config.navigational_formats = ['*/*', :html, :js]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -253,16 +253,12 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   # config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
 
-    config.omniauth :facebook, '176711186401841', '46b41e89d1242c9a3fb5e96f072b4284', redirect_uri: ENV['facebook_callback_url'] ,scope: " email, user_friends,user_about_me"
-    config.omniauth :google_oauth2, '536781353623-c9ktfkho5qde96u55jb7l98pbddacu0s.apps.googleusercontent.com',
-         'XrK5tuirAdDS4cyJiR2zi_Mw',
-                   { redirect_uri: ENV['google_callback_url'], name: 'google',
-                    scope:"email, https://www.googleapis.com/auth/plus.login"}
-	#
-
-
-
-
+  config.omniauth :facebook, '176711186401841', '46b41e89d1242c9a3fb5e96f072b4284', redirect_uri: ENV['facebook_callback_url'], scope: ' email, user_friends,user_about_me'
+  config.omniauth :google_oauth2, '536781353623-c9ktfkho5qde96u55jb7l98pbddacu0s.apps.googleusercontent.com',
+                  'XrK5tuirAdDS4cyJiR2zi_Mw',
+                  redirect_uri: ENV['google_callback_url'], name: 'google',
+                  scope: 'email, https://www.googleapis.com/auth/plus.login'
+  #
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

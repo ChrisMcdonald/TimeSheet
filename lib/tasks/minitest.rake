@@ -1,8 +1,10 @@
-require "rake/testtask"
+# frozen_string_literal: true
 
-Rake::TestTask.new(:test => "db:test:prepare") do |t|
-	t.libs << "test"
-	t.pattern = "test/**/*_test.rb"
+require 'rake/testtask'
+
+Rake::TestTask.new(test: 'db:test:prepare') do |t|
+  t.libs << 'test'
+  t.pattern = 'test/**/*_test.rb'
 end
 
-task :default => :test
+task default: :test

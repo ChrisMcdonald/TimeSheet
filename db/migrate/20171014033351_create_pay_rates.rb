@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePayRates < ActiveRecord::Migration[5.0]
   def change
     create_table :pay_rates do |t|

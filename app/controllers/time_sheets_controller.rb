@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 class TimeSheetsController < ApplicationController
-  before_action :set_time_sheet, only: [ :show, :edit, :update, :destroy]
+  before_action :set_time_sheet, only: %i[show edit update destroy]
   before_action :authenticate_user!
   load_and_authorize_resource
   # before_action :set_calender, only: :index
   # GET /time_sheets
   # GET /time_sheets.json
 
-  add_breadcrumb "home", :root_path
-  add_breadcrumb "my", :time_sheets_path
+  add_breadcrumb 'home', :root_path
+  add_breadcrumb 'my', :time_sheets_path
 
   def travel
     @time_sheet = TimeSheet.find(params[:time_sheet_id])
@@ -20,28 +22,26 @@ class TimeSheetsController < ApplicationController
   end
 
   def index
-  add_breadcrumb "my", :time_sheets_path
-  if can? :manage, User
-    @time_sheets = TimeSheet.where(user: current_user)
-	@user = current_user
-  end
-
-  end
-  # GET /time_sheets/1
-  # GET /time_sheets/1.json
-  def show
-    if @time_sheet.works.count < 1
-      @time_sheet.works.build
+    add_breadcrumb 'my', :time_sheets_path
+    if can? :manage, User
+      @time_sheets = TimeSheet.where(user: current_user)
+      @user = current_user
     end
   end
 
+  # GET /time_sheets/1
+  # GET /time_sheets/1.json
+  def show
+    @time_sheet.works.build if @time_sheet.works.count < 1
+  end
+
   def current_day
-	  @time_sheet = TimeSheet.find_or_create_by(time_period: params[:time_period],user: current_user)
-	  if @time_sheet.id.nil?
-		  @time_sheet.time_period = params[:time_period]
-		  @time_sheet.user = current_user
-		  @time_sheet.save!
-	  end
+    @time_sheet = TimeSheet.find_or_create_by(time_period: params[:time_period], user: current_user)
+    if @time_sheet.id.nil?
+      @time_sheet.time_period = params[:time_period]
+      @time_sheet.user = current_user
+      @time_sheet.save!
+    end
     redirect_to time_sheet_path(@time_sheet)
   end
 
@@ -50,20 +50,16 @@ class TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.new
     @time_sheet.works.build
     @time_sheet.user = current_user
-
   end
 
   # GET /time_sheets/1/edit
   def edit
-	  @user = current_user
-    if @time_sheet.works.count < 1
-      @time_sheet.works.build
-    end
+    @user = current_user
+    @time_sheet.works.build if @time_sheet.works.count < 1
     respond_to do |format|
       format.js
       format.html
     end
-
   end
 
   # POST /time_sheets
@@ -72,15 +68,15 @@ class TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.new(time_sheet_params)
     @time_sheet.user = current_user
 
-	respond_to do |format|
+    respond_to do |format|
       if @time_sheet.save
         format.html { redirect_to time_sheets_path @time_sheet, notice: 'Time sheet was successfully created.' }
         format.json { render :index, status: :created, location: @time_sheet }
-	  	format.js
+        format.js
       else
-        format.html {render :show}
+        format.html { render :show }
         format.json { render json: @time_sheet.errors, status: :unprocessable_entity }
-      end
+       end
     end
   end
 
@@ -89,10 +85,10 @@ class TimeSheetsController < ApplicationController
   def update
     respond_to do |format|
       if @time_sheet.update(time_sheet_params)
-        format.html {redirect_to time_sheets_path @time_sheet, notice: 'Time sheet was successfully updated.'}
+        format.html { redirect_to time_sheets_path @time_sheet, notice: 'Time sheet was successfully updated.' }
         format.json { render :show, status: :ok, location: @time_sheet }
       else
-        format.html {render :show}
+        format.html { render :show }
         format.json { render json: @time_sheet.errors, status: :unprocessable_entity }
       end
     end
@@ -107,32 +103,31 @@ class TimeSheetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def hours_for_day
-		@hours =  TimeSheet.where(date: params[:date]).joins(:works).select(:hour)
-	  respond_to do |format|
-		  format.js
-	  end
+    @hours = TimeSheet.where(date: params[:date]).joins(:works).select(:hour)
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
 
-  	def set_calender
-		config.beginning_of_week = :sunday
-		Time.zone = "Australia/Brisbane"
+  # Use callbacks to share common setup or constraints between actions.
 
-	end
+  def set_calender
+    config.beginning_of_week = :sunday
+    Time.zone = 'Australia/Brisbane'
+  end
 
-    def set_time_sheet
-      @time_sheet = TimeSheet.find(params[:id])
-    end
+  def set_time_sheet
+    @time_sheet = TimeSheet.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def time_sheet_params
-      params.require(:time_sheet).permit(:time_period, :user_id,
-                                         works_attributes: [:id, :date, :hour, :description, :project_id, :time_sheet_id, :_destroy],
-                                         travels_attributes: [:id, :travel_date, :od_start, :od_finish, :purpose, :user_id, :project_id, :time_sheet_id, :vehicle_id]
-      )
-
-	end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def time_sheet_params
+    params.require(:time_sheet).permit(:time_period, :user_id,
+                                       works_attributes: %i[id date hour description project_id time_sheet_id _destroy],
+                                       travels_attributes: %i[id travel_date od_start od_finish purpose user_id project_id time_sheet_id vehicle_id])
+  end
 end

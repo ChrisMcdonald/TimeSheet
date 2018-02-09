@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Vehicle < ApplicationRecord
   has_many :travels
 
   def self.select_attributes
-    result = Array.new
-    self.all.select(:id, :rego_no).each do |p|
-      result.append([p.rego_no, p.id, {class: "dropdown-item overflow-hidden"}])
+    result = []
+    all.select(:id, :rego_no).each do |p|
+      result.append([p.rego_no, p.id, { class: 'dropdown-item overflow-hidden' }])
     end
     result
   end
@@ -14,6 +16,6 @@ class Vehicle < ApplicationRecord
   end
 
   def self.previous_od_finish
-    self.first.travels.pluck(:od_finish).last
+    first.travels.pluck(:od_finish).last
   end
 end

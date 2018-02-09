@@ -1,70 +1,67 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :travels
-	namespace :projects do
-		get 'time_sheet_for_week/show'
-	end
+  namespace :projects do
+    get 'time_sheet_for_week/show'
+  end
 
-	resources :identities
-	resources :projects
-	resources :invoices, :except => [:edit]
-	resources :works
-	resources :pay_rates
+  resources :identities
+  resources :projects
+  resources :invoices, except: [:edit]
+  resources :works
+  resources :pay_rates
 
-	resources :chatrooms do
+  resources :chatrooms do
     resource :chatroom_users
     resources :messages
   end
 
-	resources :time_sheets do
-		get :travel
-		collection do
-			post 'hours_for_day/:date', to: "time_sheets#hours_for_day", as: '_hours'
-		end
-	end
+  resources :time_sheets do
+    get :travel
+    collection do
+      post 'hours_for_day/:date', to: 'time_sheets#hours_for_day', as: '_hours'
+    end
+  end
 
-	get '/current_day/:time_period', to: "time_sheets#current_day", as: :current_day
-	resources :customers do
-		get :details
-	end
+  get '/current_day/:time_period', to: 'time_sheets#current_day', as: :current_day
+  resources :customers do
+    get :details
+  end
 
-	resources :projects do
-		collection do
-			get :all_work_for_project
-			get '/hours_by_day/:id/', to: 'projects#hours_by_day', as: :hours_by_day
-			get '/hours_by_user_by/:id', to: 'projects#hours_by_user', as: :hours_by_user
-			get '/:id/time_sheets_for_week(.:format)', to: 'projects#time_sheets_for_week', as: :time_sheets_for_week
-			# resources :time_sheets_for_week
-		end
-	end
+  resources :projects do
+    collection do
+      get :all_work_for_project
+      get '/hours_by_day/:id/', to: 'projects#hours_by_day', as: :hours_by_day
+      get '/hours_by_user_by/:id', to: 'projects#hours_by_user', as: :hours_by_user
+      get '/:id/time_sheets_for_week(.:format)', to: 'projects#time_sheets_for_week', as: :time_sheets_for_week
+      # resources :time_sheets_for_week
+    end
+  end
 
+  mount ActionCable.server => '/cable'
 
-	mount ActionCable.server => '/cable'
+  devise_for :users, path: :admin,
+                     controllers: {
+                       registrations: 'users/registrations',
+                       sessions: 'users/sessions',
+                       omniauth_callbacks: 'users/omniauth_callbacks'
+                     }
+  get 'auth/:provider/callback', to: 'time_sheet#index'
 
-	devise_for :users, path: :admin,
-			   controllers: {#registrations: "users/registrations",
-				 sessions: 'users/sessions',
-				 omniauth_callbacks: 'users/omniauth_callbacks'
-         			   }
-		get 'auth/:provider/callback', to: 'time_sheet#index'
+  resources :users do
+    resources :projects
+    resources :identities
+    get :user_data
+    get :user_income
+    get :user_permission
+    post :user_permission
+  end
 
-	resources :users do
-		resources :projects
-		resources :identities
-		get :user_data
-		get :user_income
-		get :user_permission
-		post :user_permission
+  authenticate(:user) do
+    resources :users do
+    end
+  end
 
-	end
-
-	authenticate(:user) do
-		resources :users do
-
-		end
-	end
-
-	root to: 'time_sheets#index'
-
-
+  root to: 'time_sheets#index'
 end
-

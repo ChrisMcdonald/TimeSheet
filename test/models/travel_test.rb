@@ -1,7 +1,8 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class TravelTest < ActiveSupport::TestCase
-
   test 'all travel' do
     travel = Travel.all
     assert_equal 2, travel.count
@@ -11,7 +12,6 @@ class TravelTest < ActiveSupport::TestCase
     vehicle = vehicles(:one)
     assert vehicle.valid?
     ap vehicle.travels
-
   end
 
   test 'odometer validation' do
@@ -29,8 +29,5 @@ class TravelTest < ActiveSupport::TestCase
     pre = travel.previous_od_finish
     ap pre
     ap travel.od_finish
-
   end
-
-
 end

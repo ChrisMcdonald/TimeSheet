@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class WorksController < ApplicationController
-  before_action :set_work, only: [:show, :edit, :update, :destroy]
+  before_action :set_work, only: %i[show edit update destroy]
   before_action :authenticate_user!
   load_and_authorize_resource
 
@@ -11,8 +13,7 @@ class WorksController < ApplicationController
 
   # GET /works/1
   # GET /works/1.json
-  def show
-  end
+  def show; end
 
   # GET /works/new
   def new
@@ -20,8 +21,7 @@ class WorksController < ApplicationController
   end
 
   # GET /works/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /works
   # POST /works.json
@@ -64,13 +64,14 @@ class WorksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_work
-      @work = Work.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def work_params
-      params.require(:work).permit(:date, :hour, :description, :project_id, :time_sheet_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_work
+    @work = Work.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def work_params
+    params.require(:work).permit(:date, :hour, :description, :project_id, :time_sheet_id)
+  end
 end
