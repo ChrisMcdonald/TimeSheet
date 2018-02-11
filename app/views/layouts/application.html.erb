@@ -31,9 +31,7 @@
         <span class="icon-bar"></span>
       </button>
       <% if signed_in? %>
-          <% if current_user.has_any_role? :admin, {name: :read, resource: Project}, {name: :read, resource: Invoice}, {name: :read, resource: User} %>
               <a href="#" class="navbar-btn btn btn-success pull-left" id="menu-toggle" style="margin-right:  20px">Menu</a>
-          <% end %>
           <a class="navbar-brand" style="color: white" href="/"> Time Sheet</a>
 
           </div>
