@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
   # helper_method :current_user
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  rescue_from CanCan::AccessDenied, with: :user_not_authorized
+  # rescue_from CanCan::AccessDenied, with: :user_not_authorized
+  rescue_from CanCan::AccessDenied do |exception|
+    sign_out(current_user)
+    render file: "#{Rails.root}/public/401.html", layout: false, status: 401
+
+  end
 
   private
 
@@ -22,9 +27,9 @@ class ApplicationController < ActionController::Base
 
   # def authenticate_user!
   #
-  #   redirect_to user_session_path, :notice => 'if you want to add a notice'
-  #   ## if you want render 404 page
-  #   ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
+  #   # redirect_to user_session_path, :notice => 'if you want to add a notice'
+  #   if you want render 404 page
+  #   render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
   #
   # end
 
