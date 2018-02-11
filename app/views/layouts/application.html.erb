@@ -52,7 +52,6 @@
       <% end %>
       </nav>
 <% if signed_in? %>
-    <% if current_user.has_any_role? :admin, {name: :read, resource: Project}, {name: :read, resource: Invoice}, {name: :read, resource: User} %>
         <div id="menuhides" class="box menu-hide-mobile col-md-2 col-xs-0 sbar" style="height:100%;position: fixed; z-index: 2;">
           <ul class="menu">
             <% if can? :read, TimeSheet %>
@@ -84,10 +83,7 @@
         </div>
         <div id="bodysize" class="container-fluid  col-md-10 col-sm-12 pull-right body-container" style="z-index: 1;">
     <% end %>
-<% else %>
-    <div id="bodysize" class="container-fluid  col-md-12 col-sm-12 pull-right body-container" style="z-index: 1;">
 
-<% end %>
 
 <br>
 <div id="user_content">

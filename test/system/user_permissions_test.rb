@@ -20,6 +20,7 @@ class UserPermissionTest < ApplicationSystemTestCase
     user.add_role(:read, TimeSheet)
     user.add_role(:read, User)
     user.add_role(:edit, User)
+    user.save!
     # user2 = users(:two)
     sign_in user
     visit user_path(user)
@@ -75,7 +76,7 @@ class UserPermissionTest < ApplicationSystemTestCase
     sleep 1
   end
 
-  test 'user no permission paht' do
+  test 'user no permission path' do
     user = users(:two)
     user.add_role(:read, TimeSheet)
     # user2 = users(:two)
@@ -84,9 +85,11 @@ class UserPermissionTest < ApplicationSystemTestCase
     # assert_current_path('/')
 
     visit projects_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
     visit edit_project_path(Project.first)
     assert_current_path('/')
+    assert_matches_selector('h1', text: 'You are not authorized to access this web page.')
+
     visit new_project_path
     assert_current_path('/')
     visit project_path(Project.first)
@@ -144,5 +147,16 @@ class UserPermissionTest < ApplicationSystemTestCase
     assert_current_path('/')
     visit travel_path(Travel.first)
     assert_current_path('/')
+  end
+  test 'user with no permission redirected to 401' do
+    text = 'You are not authorized to access this web page.'
+    user = User.new
+    user.remove_role(TimeSheet)
+    sign_out(user)
+    visit root_path
+    sign_in user
+    visit root_path
+    page.all('h1', text: text)
+
   end
 end

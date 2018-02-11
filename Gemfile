@@ -68,6 +68,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   # gem 'figaro'
+  gem 'rubocop'
+  # gem 'ruby-debug-ide'
 end
 
 group :development do
@@ -77,6 +79,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'minitest-rails'
+  gem 'minitest-reporters', '>= 0.5.0'
   gem 'spring'
   gem 'spring-watcher-listen'
 end
@@ -90,8 +93,6 @@ group :test do
   gem 'simplecov'
   gem 'sqlite3'
 end
-group :assets do
-  gem 'uglifier'
-end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
