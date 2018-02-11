@@ -6,25 +6,29 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     user ||= User.new # guest user (not logged in)
+    if user.has_role?(:admin) || user.has_role?(TimeSheet)
+      can :manage, :all if user.has_role? :admin
+      if user.has_role? :read, User
+        can :read, User
+        can :view
+      end
+      can :manage, User if user.has_role? :edit, User
 
-    can :manage, :all if user.has_role? :admin
-    if user.has_role? :read, User
-      can :read, User
-      can :view
+      can :read, Project if user.has_role? :read, Project
+      can :manage, Project if user.has_role? :edit, Project
+
+      can :manage, Customer if user.has_role? :read, Customer
+      can :manage, Customer if user.has_role? :edit, Customer
+
+      can :read, Invoice if user.has_role? :read, Invoice
+      can :manage, Invoice if user.has_role? :edit, Invoice
+
+      can :read, TimeSheet if user.has_role? :read, TimeSheet
+      can :manage, TimeSheet if user.has_role? :edit, TimeSheet
+
+    else
+      raise CanCan::AccessDenied, 'Not authorized!'
     end
-    can :manage, User if user.has_role? :edit, User
-
-    can :read, Project if user.has_role? :read, Project
-    can :manage, Project if user.has_role? :edit, Project
-
-    can :manage, Customer if user.has_role? :read, Customer
-    can :manage, Customer if user.has_role? :edit, Customer
-
-    can :read, Invoice if user.has_role? :read, Invoice
-    can :manage, Invoice if user.has_role? :edit, Invoice
-
-    can :read, TimeSheet if user.has_role? :read, TimeSheet
-    can :manage, TimeSheet if user.has_role? :edit, TimeSheet
 
     # Define abilities for the passed in user here. For example:
     #
