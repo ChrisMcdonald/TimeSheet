@@ -5,7 +5,11 @@
   </div>
   <div class="col-md-5 col-xs-5">
     <h5>
-      <%= project.customer.full_name %>
+      <% if project.customer.present? %>
+        <%= project.customer.full_name %>
+      <% else %>
+        <%= 'No Customer Selected' %>
+      <% end %>
     </h5>
 
     <%= link_to 'Show', project, class: "hidden" %>
