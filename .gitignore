@@ -125,3 +125,4 @@ db/schema.rb
 deploy:new_release_path
 lib/capistrano/
 test/jobs/
+/config/deploy/

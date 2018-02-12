@@ -22,6 +22,7 @@ class ChatroomsController < ApplicationController
     if @chatroom.save
       flash[:success] = 'Chat room added!'
       respond_to do |format|
+        format.html { redirect_to chatrooms_path }
         format.js
       end
     end

@@ -19,7 +19,7 @@ server '103.16.128.202', user: 'chris', roles: %w[app db web]
 # Defines a role with one or multiple servers. The primary server in each
 # group is considered to be the first unless any hosts have the primary
 # property set. Specify the username and a domain or IP for the server.
-# Don't use `:all`, it's a meta role.
+# Don't use `:all`, it's a meta role.ssh
 
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
