@@ -11,10 +11,10 @@
             Select Projects
           </a>
 
-          <%= submit_tag 'search', class: 'btn btn-default', id: 'search', remote: true %>
-          <%= submit_tag 'csv', formaction: user_user_income_path(@user, format: 'csv'), class: 'btn btn-default', remote: false %>
-          <%= submit_tag 'pdf', formaction: user_user_income_path(@user, format: 'pdf'), class: 'btn btn-default', remote: false %>
-          <%= submit_tag 'excel', formaction: user_user_income_path(@user, format: 'xlsx'), class: 'btn btn-default', remote: false %>
+          <%= button_tag 'search', class: 'btn btn-default', id: 'search', remote: true %>
+          <%= button_tag 'csv', formaction: user_user_income_path(@user, format: 'csv'), class: 'btn btn-default' %>
+          <%= button_tag 'pdf', formaction: user_user_income_path(@user, format: 'pdf'), class: 'btn btn-default'%>
+          <%= button_tag 'excel', formaction: user_user_income_path(@user, format: 'xlsx'), class: 'btn btn-default' %>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style='overflow: hidden;'>
 
