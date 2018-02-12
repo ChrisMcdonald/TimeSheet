@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 before_action :authenticate_user!
 class ChatroomUsersController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_chatroom
 
   def create
