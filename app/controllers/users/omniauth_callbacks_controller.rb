@@ -8,7 +8,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env['omniauth.auth']
     identity = User.from_omniauth(auth, current_user)
     if user_signed_in?
-      flash[:notice] = if current_user != identity.user
+      flash[:success] = if current_user.full_name
                          'Account is registered to another user'
                        else
                          'Account Added'
@@ -17,7 +17,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     elsif identity.user.present?
       sign_in_and_redirect identity.user
-      flash[:notice] = "Signed in as #{identity.user.username} "
+      flash[:success] = "Signed in as #{current_user.full_name} "
 
     else
       # session['user'] = user.id
