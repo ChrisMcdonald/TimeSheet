@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
-  load_and_authorize_resource except: %i[destroy new create]
+  before_action :configure_sign_in_params, only: [:create]
+  load_and_authorize_resource except: %i[destroy  create]
   # GET /resource/sign_in
   skip_authorize_resource only: :destroy
 

@@ -6,17 +6,16 @@ class ApplicationController < ActionController::Base
 
   # rescue_from CanCan::AccessDenied, with: :user_not_authorized
   rescue_from CanCan::AccessDenied do |exception|
-    # sign_out(current_user || User.new)
+    sign_out(current_user || User.new)
     render file: "#{Rails.root}/public/401.html", status: 401
-
   end
 
   private
 
-  def user_not_authorized
-    flash[:alert] = 'You are not authorized to perform this action.'
-    redirect_to user_session_path
-  end
+  # def user_not_authorized
+  #   flash[:alert] = 'You are not authorized to perform this action.'
+  #   redirect_to user_session_path
+  # end
 
   def set_time_zone
     Time.zone = 'Australia/Brisbane'
