@@ -11,12 +11,20 @@ class UsersController < ApplicationController
       User::PERMISSION_GROUPS.each do |value|
         permission = value.split('_').to_a
         if params.include?(value)
+          user_roles = @user.roles.select(:id, :name, :resource_type).find_by(resource_type: permission[0], name: permission[1])
           @user.add_role permission[1], permission[0].classify.constantize
         else
           if params[value].blank?
             @user.remove_role permission[1], permission[0].classify.constantize
+
           end
         end
+        array = Array(@user.roles.select(:id, :name, :resource_type).find_by(resource_type: permission[0], name: permission[1])) & Array(user_roles)
+        flash[:success] = if array.empty?
+                            " #{@user.full_name}'s permissions have been updated"
+                          else
+                            'Permission have not changed'
+                          end
       end
     end
     respond_to do |format|
@@ -41,10 +49,10 @@ class UsersController < ApplicationController
     end
 
     respond_to do |format|
-      format.csv { send_data @user.to_csv(@user_table), disposition: 'attachment;', filename: "#{@user.full_name}-#{Date.today}.csv" }
-      format.xlsx { headers['Content-Disposition'] = "attachment; filename: #{@user.full_name}-#{Date.today}.xlsx" }
+      format.csv {send_data @user.to_csv(@user_table), disposition: 'attachment;', filename: "#{@user.full_name}-#{Date.today}.csv"}
+      format.xlsx {headers['Content-Disposition'] = "attachment; filename: #{@user.full_name}-#{Date.today}.xlsx"}
       format.pdf do
-        render pdf: 'Invoice', header: { right: '[page] of [topage]' }, filename: "#{@user.full_name}-#{Date.today}.pdf"
+        render pdf: 'Invoice', header: {right: '[page] of [topage]'}, filename: "#{@user.full_name}-#{Date.today}.pdf"
       end
       format.js
       format.html
@@ -64,7 +72,8 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
-  def show; end
+  def show;
+  end
 
   # GET /users/new
   def new
@@ -90,14 +99,14 @@ class UsersController < ApplicationController
         @user.add_role(:read, TimeSheet)
         @user.add_role(:edit, TimeSheet)
         @user.success = true
-        format.html { redirect_to users_path, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.html {redirect_to users_path, notice: 'User was successfully created.'}
+        format.json {render :show, status: :created, location: @user}
         format.js
       else
         @user.success = false
 
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @user.errors, status: :unprocessable_entity}
         format.js
       end
     end
@@ -110,14 +119,14 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         @user.success = true
 
-        format.html { redirect_to user_path(@user), notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-        format.js { flash[:notice] = 'User was updated' }
+        format.html {redirect_to user_path(@user), notice: 'User was successfully updated.'}
+        format.json {render :show, status: :ok, location: @user}
+        format.js {flash[:notice] = 'User was updated'}
       else
         @user.success = false
 
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @user.errors, status: :unprocessable_entity}
         format.js
       end
     end
@@ -128,8 +137,8 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to users_url, notice: 'User was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
