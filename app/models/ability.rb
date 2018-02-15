@@ -26,6 +26,9 @@ class Ability
     can :read, TimeSheet if user.has_role? :read, TimeSheet
     can :manage, TimeSheet if user.has_role? :edit, TimeSheet
 
+    can :read, Travel if user.has_role? :read, Travel
+    can :manage, Travel if user.has_role? :edit, Travel
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
