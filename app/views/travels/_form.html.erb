@@ -1,34 +1,48 @@
-<%= form_with(model: travel, local: true) do |form| %>
-    <% if travel.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(travel.errors.count, "error") %> prohibited this travel from being saved:</h2>
+<div class="box">
+  <%= form_for(@travel,url: time_sheet_travels_url(@time_sheet,@travel), method: :create) do |f| %>
+    <% if @travel.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@travel.errors.count, "error") %> prohibited this time_sheet from being saved:</h2>
 
-          <ul>
-            <% travel.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
+        <ul>
+          <% @travel.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-
-    <div class="field">
-      <%= form.label :travel_date %>
-      <%= form.datetime_select :travel_date, id: :travel_travel_date %>
+    <div class="btn-group">
+      <%= f.submit "Save", class: 'btn btn-default' %>
     </div>
+    <table class="outline table table-striped table-hover outline " style="  outline: 2px solid #ccc;">
+      <tr class="grey_background " id="hours">
+        <th class="col-xs-12 col-sm-3">Vehicle</th>
+        <th class="hidden-xs col-sm-3">Odometer Start</th>
+        <th class="hidden-xs col-sm-3">Odometer Finish</th>
+      </tr>
+      <tr>
+        <td colspan="4" style="margin: 0%; padding: 0%">
+          <div class="col-xs-12 col-sm-3 " style="padding: 0%">
+            <%= f.select(:vehicle_id, options_for_select(Vehicle.select_attributes, f.object.vehicle_id), {}, class: ' btn btn-default form-control') %>
+          </div>
+          <div class="col-xs-6 col-sm-3" style="padding: 0%">
+            <%= f.number_field :od_start, min: Vehicle.previous_od_finish, class: 'form-control ', placeholder: 'Odometer Start' %>
+          </div>
+          <div class="col-xs-6 col-sm-3" style="padding: 0%">
+            <%= f.number_field :od_finish, min: Vehicle.previous_od_finish, class: 'form-control ', placeholder: 'Odometer Finish' %>
+          </div>
+          <div class="hidden-xs col-sm-2">
+            <%= f.hidden_field :time_sheet_id, value: @time_sheet.id %>
+            <%= link_to "remove", '#', class: "remove_fields", style: 'text-overflow:hidden' %>
+          </div>
+          <div class="col-xs-12 col-sm-12" style="padding: 0%">
+            <%= f.text_area :purpose, cols: "60", rows: "2", class: ' form-control description-field', placeholder: 'Travel Purpose' %>
+          </div>
+        </td>
+      </tr>
 
-    <div class="field">
-      <%= form.label :od_start %>
-      <%= form.number_field :od_start, id: :travel_od_start %>
+      </tr>
+    </table>
     </div>
-
-    <div class="field">
-      <%= form.label :od_finish %>
-      <%= form.number_field :od_finish, id: :travel_od_finish %>
-    </div>
-
-    <div class="field">
-      <%= form.label :purpose %>
-      <%= form.text_field :purpose, id: :travel_purpose %>
-    </div>
-
-<% end %>
+  <% end %>
+  </div>

@@ -7,7 +7,3 @@ wb.add_worksheet(name: "Employee") do |sheet|
   end
   sheet.add_row [ "","","","total hours #{@project.sum_time_sheet(@time)}"]
 end
-
-
-
-

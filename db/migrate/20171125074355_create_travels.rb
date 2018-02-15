@@ -8,7 +8,7 @@ class CreateTravels < ActiveRecord::Migration[5.1]
       t.string :purpose
       t.references :user, foreign_key: true
       t.references :project, foreign_key: true
-      t.references :time_sheet, foreign_key: true
+      t.references :travel, foreign_key: true
 
       t.timestamps
     end

@@ -11,15 +11,15 @@ class TimeSheetsController < ApplicationController
   add_breadcrumb 'home', :root_path
   add_breadcrumb 'my', :time_sheets_path
 
-  def travel
-    @time_sheet = TimeSheet.find(params[:time_sheet_id])
-    @time_sheet.travels.build if @time_sheet.travels.count < 1
-    @time_sheet.user = current_user
-    respond_to do |format|
-      format.js
-      format.html
-    end
-  end
+  # def travel
+  #   @travel = TimeSheet.find(params[:time_sheet_id])
+  #   @travel.travels.build if @travel.travels.count < 1
+  #   @travel.user = current_user
+  #   respond_to do |format|
+  #     format.js
+  #     format.html
+  #   end
+  # end
 
   def index
     add_breadcrumb 'my', :time_sheets_path
@@ -74,7 +74,7 @@ class TimeSheetsController < ApplicationController
         format.json { render :index, status: :created, location: @time_sheet }
         format.js
       else
-        format.html { render :show }
+        format.html { redirect_back(fallback_location: time_sheets_path(@time_sheet))}
         format.json { render json: @time_sheet.errors, status: :unprocessable_entity }
        end
     end
@@ -127,7 +127,7 @@ class TimeSheetsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def time_sheet_params
     params.require(:time_sheet).permit(:time_period, :user_id,
-                                       works_attributes: %i[id date hour description project_id time_sheet_id _destroy],
-                                       travels_attributes: %i[id travel_date od_start od_finish purpose user_id project_id time_sheet_id vehicle_id])
+                                   works_attributes: %i[id date hour description project_id time_sheet_id _destroy],
+                                   travels_attributes: %i[id travel_date od_start od_finish purpose user_id project_id time_sheet_id vehicle_id])
   end
 end

@@ -16,6 +16,15 @@ class TravelsTest < ApplicationSystemTestCase
   end
 
   test 'visiting the index' do
-    visit travels_url
+    time_sheet = time_sheets(:one)
+    visit time_sheet_travels_path(time_sheet)
+    find('.btn', text: 'ADD TRAVEL').click
+    fill_in 'travel_od_start' , with: 4
+    fill_in 'travel_od_finish', with: 5
+    sleep 1
+    find('input[name="commit"]').click
+    sleep 1
+    sleep 1
+
   end
 end

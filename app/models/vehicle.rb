@@ -16,6 +16,6 @@ class Vehicle < ApplicationRecord
   end
 
   def self.previous_od_finish
-    first.travels.pluck(:od_finish).last
+    first.travels.pluck(:od_finish).last if first.present?
   end
 end

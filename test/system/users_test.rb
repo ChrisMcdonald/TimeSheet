@@ -27,7 +27,7 @@ class UsersTest < ApplicationSystemTestCase
     fill_in 'start_date', with: 1.week.ago.to_s
     fill_in 'end_date', with: Date.tomorrow.to_s
     sleep 1
-    find('input', id: 'search').click
+    find('.btn', text: 'SEARCH').click
 
     sleep 1
   end

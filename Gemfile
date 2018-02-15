@@ -9,7 +9,8 @@ end
 gem 'active_median'
 gem 'autoprefixer-rails'
 gem 'awesome_print'
-gem 'rubyzip', '>= 1.2.1'
+gem 'rubyzip'
+gem  'zip-zip'
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
 gem 'bootstrap-sass', '~> 3.3.7'
@@ -31,7 +32,7 @@ gem 'sass-rails', '>= 3.2'
 gem 'simple_calendar'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
-gem 'zip'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.1.3'
 # Use postgresql as the database for Active Record

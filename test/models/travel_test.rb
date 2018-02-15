@@ -15,8 +15,8 @@ class TravelTest < ActiveSupport::TestCase
   end
 
   test 'odometer validation' do
-    travel = Travel.new(od_start: 5, od_finish: 6, vehicle: vehicles(:one), time_sheet: time_sheets(:one))
-    travel2 = Travel.new(od_start: 5, od_finish: 6, vehicle: vehicles(:one), time_sheet: time_sheets(:one))
+    travel = Travel.new(od_start: 5, od_finish: 6, vehicle: vehicles(:one), travel: time_sheets(:one))
+    travel2 = Travel.new(od_start: 5, od_finish: 6, vehicle: vehicles(:one), travel: time_sheets(:one))
     ap travel.previous_od_finish
     ap travel.save!
     ap travel2.save!

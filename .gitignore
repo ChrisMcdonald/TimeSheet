@@ -107,17 +107,9 @@ public/assets/works-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f9
 public/assets/works-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js.gz
 public/assets/works-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css
 public/assets/works-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css.gz
-test/controllers/projects/
-test/controllers/registrations_controller_test.rb
-test/fixtures/roles.yml
-test/models/role_test.rb
 
 /coverage/
-app/controllers/projects/
-app/helpers/projects/
-app/task/
-app/views/omniauth_callbacks/
-app/views/user_details/
+
 chromedriver
 config/local_env.yml
 db/migrate/20180209021357_add_travel_date_to_travels.rb
@@ -126,3 +118,4 @@ deploy:new_release_path
 lib/capistrano/
 test/jobs/
 /config/deploy/
+/config/database.yml

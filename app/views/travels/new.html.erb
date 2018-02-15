@@ -1,5 +1,6 @@
-<h1>New Travel</h1>
-
+<div class="box">
+  <h1>Travel for  <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h1>
+</div>
+<%= render 'buttons' %>
 <%= render 'form', travel: @travel %>
 
-<%= link_to 'Back', travels_path %>

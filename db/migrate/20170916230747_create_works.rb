@@ -7,7 +7,7 @@ class CreateWorks < ActiveRecord::Migration[5.0]
       t.float :hour
       t.string :description
       t.references :project, foreign_key: true
-      t.references :time_sheet, foreign_key: true
+      t.references :travel, foreign_key: true
 
       t.timestamps
     end

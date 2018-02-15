@@ -10,6 +10,9 @@ class UserPermissionTest < ApplicationSystemTestCase
                     :selenium_chrome
           end
   setup do
+    user = users(:one)
+    sign_in user
+
     @routes = Rails.application.routes
   end
   after do
@@ -22,7 +25,6 @@ class UserPermissionTest < ApplicationSystemTestCase
     user.add_role(:edit, User)
     user.save!
     # user2 = users(:two)
-    sign_in user
     visit user_path(user)
     find('.btn', text: 'USER PERMISSION').click
 
@@ -69,7 +71,6 @@ class UserPermissionTest < ApplicationSystemTestCase
   test 'user full permissions' do
     user = users(:one)
     user.add_role :admin
-    sign_in user
     visit root_path
     menu_button = find('.btn', text: 'MENU')
     assert menu_button
@@ -79,74 +80,107 @@ class UserPermissionTest < ApplicationSystemTestCase
   test 'user no permission path' do
     user = users(:two)
     user.add_role(:read, TimeSheet)
-    # user2 = users(:two)
     sign_in user
-    # visit user_path(User.second)
-    # assert_current_path('/')
+    # user2 = users(:two)
 
+    # visit user_path(User.second)
+    # assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
+    visit root_path
+    sleep 1
     visit projects_path
     assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
+    sign_in user
+
     visit edit_project_path(Project.first)
-    assert_current_path('/')
-    assert_matches_selector('h1', text: 'You are not authorized to access this web page.')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
+    sign_in user
 
     visit new_project_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit project_path(Project.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
 
     visit invoices_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit new_invoice_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit invoice_path(Invoice.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
 
     visit works_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit edit_work_path(Work.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit new_work_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit work_path(Work.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
 
     visit pay_rates_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit edit_pay_rate_path(PayRate.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit new_pay_rate_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit pay_rate_path(PayRate.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
 
     visit customers_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit edit_customer_path(Customer.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit new_customer_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit customer_path(Customer.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit customer_details_path(Customer.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
 
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit edit_user_path(User.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit new_user_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit user_path(User.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
 
     visit travels_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit edit_travel_path(Travel.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit new_travel_path
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
     visit travel_path(Travel.first)
-    assert_current_path('/')
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    sign_in user
   end
   test 'user with no permission redirected to 401' do
     text = 'You are not authorized to access this web page.'
@@ -157,6 +191,5 @@ class UserPermissionTest < ApplicationSystemTestCase
     sign_in user
     visit root_path
     page.all('h1', text: text)
-
   end
 end

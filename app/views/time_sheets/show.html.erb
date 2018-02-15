@@ -3,12 +3,7 @@
   <h1>Time Sheet for  <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h1>
 </p>
 </div>
-<div class="box">
-  <div class="btn-group"></div>
-  <%= link_to 'Back', root_path, class: 'btn btn-default' %>
-  <%= link_to 'Hours', edit_time_sheet_path(@time_sheet), class: 'btn btn-default', remote: true %>
-  <%= link_to 'Travel', time_sheet_travel_path(@time_sheet), remote: true, class: 'btn btn-default' %>
-</div>
+<%= render 'buttons' %>
 <div id="time_sheet_partial">
   <%= render 'edit' %>
 </div>

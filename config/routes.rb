@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :time_sheets do
-    get :travel
+    resources :travels
     collection do
       post 'hours_for_day/:date', to: 'time_sheets#hours_for_day', as: '_hours'
     end
