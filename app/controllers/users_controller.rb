@@ -20,11 +20,7 @@ class UsersController < ApplicationController
           end
         end
         array = Array(@user.roles.select(:id, :name, :resource_type).find_by(resource_type: permission[0], name: permission[1])) & Array(user_roles)
-        flash[:success] = if array.empty?
-                            " #{@user.full_name}'s permissions have been updated"
-                          else
-                            'Permission have not changed'
-                          end
+        flash[:notice] = " #{@user.full_name}'s permissions have been updated"
       end
     end
     respond_to do |format|
