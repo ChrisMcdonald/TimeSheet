@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
 
   # rescue_from CanCan::AccessDenied, with: :user_not_authorized
   rescue_from CanCan::AccessDenied do |exception|
-    sign_out(current_user || User.new)
     render file: "#{Rails.root}/public/401.html", status: 401
   end
 
