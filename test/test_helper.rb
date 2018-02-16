@@ -11,14 +11,14 @@ require 'minitest/rails'
 
 # Uncomment for awesome colorful output
 # require "minitest/pride"
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
+# Capybara.register_driver :chrome do |app|
+#   Capybara::Selenium::Driver.new(app, browser: :chrome)
+# end
 
 Capybara.javascript_driver = :chrome
 # Capybara.asset_host = "http://earth-broken.bnr.la"
 Capybara.asset_host = 'http://localhost:3000'
-# Capybara.server = :puma # Until your setup is working
+Capybara.server = :puma # Until your setup is working
 Capybara.configure do |config|
   config.server = :puma
 end

@@ -88,7 +88,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-puma'
   gem 'chromedriver-helper'
   gem 'faker'
   gem 'selenium-webdriver'

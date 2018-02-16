@@ -4,11 +4,11 @@ require 'application_system_test_case'
 class UsersTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
   include Warden::Test::Helpers
-  CHROME_DRIVER = if ENV['HEADLESS']
-                    :selenium_chrome_headless
-                  else
-                    :selenium_chrome
-          end
+  # CHROME_DRIVER = if ENV['HEADLESS']
+  #                   :selenium_chrome_headless
+  #                 else
+  #                   :selenium_chrome
+  #         end
 
   setup do
     @user = users(:one)

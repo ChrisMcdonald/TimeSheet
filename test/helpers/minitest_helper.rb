@@ -14,6 +14,9 @@ require 'minitest/rails/capybara'
 
 require 'minitest-mongoid'
 
+Capybara.configure do |config|
+  config.server = :puma
+end
 DatabaseCleaner[:mongoid].strategy = :truncation
 # OmniAuth.config.test_mode = true
 OmniAuth.config.add_mock(:identity,
