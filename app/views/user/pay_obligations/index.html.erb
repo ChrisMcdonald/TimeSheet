@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users Pay Obligations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Superannuation</th>
+      <th>Holiday</th>
+      <th>Hourly rate</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_pay_obligations.each do |user_pay_obligation| %>
+      <tr>
+        <td><%= user_pay_obligation.superannuation %></td>
+        <td><%= user_pay_obligation.holiday %></td>
+        <td><%= user_pay_obligation.hourly_rate %></td>
+        <td><%= user_pay_obligation.user.full_name %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Users Pay Obligation', new_user_pay_obligation_path %>

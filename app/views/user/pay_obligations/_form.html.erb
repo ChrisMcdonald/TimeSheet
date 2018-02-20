@@ -1,0 +1,33 @@
+<%= form_with(model: user_pay_obligation, local: true) do |form| %>
+  <% if user_pay_obligation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_pay_obligation.errors.count, "error") %> prohibited this users_pay_obligation from being saved:</h2>
+
+      <ul>
+      <% user_pay_obligation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :superannuation %>
+    <%= form.text_field :superannuation, id: :user_pay_obligation_superannuation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday %>
+    <%= form.text_field :holiday, id: :user_pay_obligation_holiday %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hourly_rate %>
+    <%= form.text_field :hourly_rate, id: :user_pay_obligation_hourly_rate %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

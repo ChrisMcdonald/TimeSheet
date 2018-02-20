@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Superannuation:</strong>
+  <%= @user_pay_obligation.superannuation %>
+</p>
+
+<p>
+  <strong>Holiday:</strong>
+  <%= @user_pay_obligation.holiday %>
+</p>
+
+<p>
+  <strong>Hourly rate:</strong>
+  <%= @user_pay_obligation.hourly_rate %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_pay_obligation.user %>
+</p>
+
+<%= link_to 'Edit', edit_user_pay_obligation_path(@user_pay_obligation) %> |
+<%= link_to 'Back', user_pay_obligations_path %>
