@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  superannuation: 9.99
+  holiday: 9.99
+  hourly_rate: 9.99
+  user: one
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+
+two:
+  superannuation: 9.99
+  holiday: 9.99
+  hourly_rate: 9.99
+  user: two
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>

@@ -44,8 +44,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'pay user all projects ' do
-    user = User.first
-    arr = user.pay_for_user
+    ap user = users(:one)
+    ap arr = user.rate(Time.now)
   end
 
   test 'project select' do

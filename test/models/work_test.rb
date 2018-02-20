@@ -31,16 +31,17 @@ class WorkTest < ActiveSupport::TestCase
   end
 
   test ' all work for project' do
-    works = Project.includes(:works).find(1)
+    work = works(:one)
+    works = Project.includes(:works).find(work.id)
 
     works.works
   end
 
-  test 'work time_sheets ' do
-    start_time = 2.weeks.ago
-    end_time = Date.today
-    # work = Work.first
-    # w = Work.joins(:time_sheet_work).where(time_sheet: {time_period: start_time..end_time })
-    Work.from(Work.with_time_sheet_work, :works).joins(:project_work).merge(Work.first)
-  end
+  # test 'work time_sheets ' do
+  #   start_time = 2.weeks.ago
+  #   end_time = Date.today
+  #   # work = Work.first
+  #   # w = Work.joins(:time_sheet_work).where(time_sheet: {time_period: start_time..end_time })
+  #   Work.from(Work.with_time_sheet_work, :works).joins(:project_work).merge(Work.first)
+  # end
 end

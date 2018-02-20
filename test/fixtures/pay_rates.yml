@@ -1,17 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  rate: 1.0
+  rate: 9.99
+  holiday: 9.99
+  superannuation: 9.99
   user: one
-  created_at: <%= Date.today %>
+  project: one
+  date: <%= Time.now %>
 
 two:
-  rate: 1.0
+  rate: 9.99
+  holiday: 9.99
+  superannuation: 9.99
   user: two
-  created_at: <%= Date.today %>
+  project: two
+  date: <%= Time.now %>
 
-
-three:
-  rate: 2.0
-  user: two
-  created_at: <%= Date.yesterday %>

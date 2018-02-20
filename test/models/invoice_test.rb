@@ -8,6 +8,7 @@ class InvoiceTest < ActiveSupport::TestCase
 
   test 'invoice to be valid' do
     invoice = invoices(:one)
+    ap invoice
     assert invoice.valid?
   end
 

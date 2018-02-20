@@ -1,6 +1,6 @@
 
 require 'application_system_test_case'
-class CustomerTest < ApplicationSystemTestCase
+class ProjectTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
   include Warden::Test::Helpers
   setup do

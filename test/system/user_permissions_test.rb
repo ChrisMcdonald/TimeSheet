@@ -113,14 +113,14 @@ class UserPermissionTest < ApplicationSystemTestCase
     visit work_path(Work.first)
     assert_selector('h1', text: 'You are not authorized to access this web page.')
 
-    visit pay_rates_path
-    assert_selector('h1', text: 'You are not authorized to access this web page.')
-    visit edit_pay_rate_path(PayRate.first)
-    assert_selector('h1', text: 'You are not authorized to access this web page.')
-    visit new_pay_rate_path
-    assert_selector('h1', text: 'You are not authorized to access this web page.')
-    visit pay_rate_path(PayRate.first)
-    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    # visit pay_rates_path
+    # assert_selector('h1', text: 'You are not authorized to access this web page.')
+    # visit edit_pay_rate_path(PayRate.first)
+    # assert_selector('h1', text: 'You are not authorized to access this web page.')
+    # visit new_pay_rate_path
+    # assert_selector('h1', text: 'You are not authorized to access this web page.')
+    # visit pay_rate_path(PayRate.first)
+    # assert_selector('h1', text: 'You are not authorized to access this web page.')
 
     visit customers_path
     assert_selector('h1', text: 'You are not authorized to access this web page.')

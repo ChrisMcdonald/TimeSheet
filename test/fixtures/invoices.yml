@@ -2,7 +2,7 @@
 
 one:
   user: one
-  project_id: 1
+  project: one
   owner_first_name: <%= Faker::Name.first_name %>
   owner_last_name: <%= Faker::Name.last_name %>
   owner_email: <%= Faker::Internet.email %>
@@ -46,4 +46,5 @@ two:
   customer_country: <%= Faker::Address.country %>
   customer_post_code: <%= Faker::Address.postcode %>
   customer_abn: <%= Faker.Number.number(10)
+  customer_id: 2
 
