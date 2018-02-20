@@ -29,6 +29,9 @@ class Ability
     can :read, Travel if user.has_role? :read, Travel
     can :manage, Travel if user.has_role? :edit, Travel
 
+    can :read, PayObligation if user.has_role? :read, PayObligation
+    can :manage, PayObligation if user.has_role? :edit, PayObligation
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

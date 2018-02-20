@@ -1,10 +1,9 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   resourcify
   rolify
   include Calculate
 
+  has_many :user_pay_obligations, :class_name => 'User::PayObligation'
   has_many :travels
   has_many :time_travel, through: :time_sheets, foreign_key: :user_id, source: :travels
   has_many :projects
