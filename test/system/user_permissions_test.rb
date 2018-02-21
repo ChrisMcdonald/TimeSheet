@@ -39,6 +39,8 @@ class UserPermissionTest < ApplicationSystemTestCase
     assert_not user.has_role? :edit, Invoice
     assert_not user.has_role? :read, Travel
     assert_not user.has_role? :edit, Travel
+    assert_not user.has_role? :read, User::PayObligation
+    assert_not user.has_role? :edit, User::PayObligation
     page.check 'User_edit'
     page.check 'User_read'
     page.check 'Project_edit'
@@ -51,6 +53,8 @@ class UserPermissionTest < ApplicationSystemTestCase
     page.check 'TimeSheet_edit'
     page.check 'Travel_read'
     page.check 'Travel_edit'
+    page.check 'User::PayObligation_read'
+    page.check 'User::PayObligation_edit'
     find('input[name="commit"]').click
     sleep 1
 
@@ -66,6 +70,8 @@ class UserPermissionTest < ApplicationSystemTestCase
     assert user.has_role? :edit, Invoice
     assert user.has_role? :read, Travel
     assert user.has_role? :edit, Travel
+    assert user.has_role? :read, User::PayObligation
+    assert user.has_role? :edit, User::PayObligation
   end
 
   test 'user full permissions' do
@@ -148,6 +154,15 @@ class UserPermissionTest < ApplicationSystemTestCase
     visit new_travel_path
     assert_selector('h1', text: 'You are not authorized to access this web page.')
     visit travel_path(Travel.first)
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+
+    visit user_pay_obligations_path User.first
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    visit edit_user_pay_obligation_path(User.first, User::PayObligation.first)
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    visit new_user_pay_obligation_path User.first
+    assert_selector('h1', text: 'You are not authorized to access this web page.')
+    visit user_pay_obligation_path(User.first, User::PayObligation.first)
     assert_selector('h1', text: 'You are not authorized to access this web page.')
   end
   test 'user with no permission redirected to 401' do
