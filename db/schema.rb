@@ -167,9 +167,9 @@ ActiveRecord::Schema.define(version: 20180219213951) do
   end
 
   create_table "user_pay_obligations", force: :cascade do |t|
-    t.decimal "superannuation"
-    t.decimal "holiday"
-    t.decimal "hourly_rate"
+    t.decimal "superannuation", precision: 5, scale: 2
+    t.decimal "holiday", precision: 5, scale: 2
+    t.decimal "hourly_rate", precision: 5, scale: 2
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -231,5 +231,24 @@ ActiveRecord::Schema.define(version: 20180219213951) do
     t.index ["time_sheet_id"], name: "index_works_on_time_sheet_id"
   end
 
+  add_foreign_key "chatroom_users", "chatrooms"
+  add_foreign_key "chatroom_users", "users"
+  add_foreign_key "chatrooms", "users"
+  add_foreign_key "customers", "users"
+  add_foreign_key "invoices", "customers"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
+  add_foreign_key "pay_rates", "projects"
+  add_foreign_key "pay_rates", "users"
+  add_foreign_key "projects", "customers"
+  add_foreign_key "projects", "users"
+  add_foreign_key "time_sheets", "users"
+  add_foreign_key "travels", "projects"
+  add_foreign_key "travels", "time_sheets"
+  add_foreign_key "travels", "users"
+  add_foreign_key "travels", "vehicles"
   add_foreign_key "user_pay_obligations", "users"
+  add_foreign_key "works", "invoices"
+  add_foreign_key "works", "projects"
+  add_foreign_key "works", "time_sheets"
 end
