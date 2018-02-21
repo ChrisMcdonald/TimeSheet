@@ -6,14 +6,22 @@
 </p>
 
 <p>
-  <strong>Project:</strong>
-  <%= @pay_rate.project %>
+  <strong>Holiday:</strong>
+  <%= @pay_rate.holiday %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @pay_rate.user %>
+  <strong>Superannuation:</strong>
+  <%= @pay_rate.superannuation %>
 </p>
 
-<%= link_to 'Edit', edit_pay_rate_path(@pay_rate) %> |
-<%= link_to 'Back', pay_rates_path %>
+<p>
+  <strong>Projects:</strong>
+  <%= @pay_rate.project %>
+</p>
+<p>
+  <strong>Date:</strong>
+  <%= @pay_rate.date %>
+</p>
+<%= link_to 'Edit', edit_user_pay_rate_path(@pay_rate) %> |
+<%= link_to 'Back', user_pay_rates_path %>

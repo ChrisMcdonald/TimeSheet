@@ -30,12 +30,13 @@ class User < ApplicationRecord
 
   attr_accessor :project_search, :success, :user_read, :user_edit, :customer_read, :customer_edit,
                 :project_read, :project_edit, :TimeSheet_read, :time_sheet_edit, :Invoice_read, :Invoice_edit,
-                :User_admin, :start_date, :end_date, :Travel_read, :Travel_edit
+                :User_admin, :start_date, :end_date, :Travel_read, :Travel_edit, :PayObligation_read, :PayObligation_edit
 
   PERMISSION_GROUPS = %w[User_read User_edit TimeSheet_read TimeSheet_edit Project_read Project_edit
-                         Customer_read Customer_edit Invoice_read Invoice_edit User_admin Travel_read Travel_edit].freeze
+                         Customer_read Customer_edit Invoice_read Invoice_edit User_admin Travel_read Travel_edit
+                          User::PayObligation_read User::PayObligation_edit].freeze
 
-  PERMISSIONS = %w[Travel User TimeSheet Project Customer Invoice].freeze
+  PERMISSIONS = %w[Travel User TimeSheet Project Customer Invoice User::PayObligation].freeze
 
   def avatar
     if identities.present?

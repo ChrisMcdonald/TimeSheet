@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
   resources :travels
   namespace :projects do
     get 'time_sheet_for_week/show'
   end
-
+  resources :pay_rates
   resources :identities
   resources :projects
   resources :invoices, except: [:edit]
   resources :works
-  resources :pay_rates
 
   resources :chatrooms do
     resource :chatroom_users
@@ -52,6 +52,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :projects
     resources :identities
+    resources :pay_rates
+    scope module: "user" do
+      resources :pay_obligations
+    end
     get :user_data
     get :user_income
     get :user_permission

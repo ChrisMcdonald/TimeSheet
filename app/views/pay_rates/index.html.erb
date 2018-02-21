@@ -6,8 +6,10 @@
   <thead>
     <tr>
       <th>Rate</th>
-      <th>Project</th>
-      <th>User</th>
+      <th>Holiday</th>
+      <th>Superannuation</th>
+      <th>Projects</th>
+      <th>Date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,14 +18,18 @@
     <% @pay_rates.each do |pay_rate| %>
       <tr>
         <td><%= pay_rate.rate %></td>
+        <td><%= pay_rate.holiday %></td>
+        <td><%= pay_rate.superannuation %></td>
         <td><%= pay_rate.project %></td>
-        <td><%= pay_rate.user %></td>
-        <td><%= link_to 'Show', pay_rate %></td>
-        <td><%= link_to 'Edit', edit_pay_rate_path(pay_rate) %></td>
-        <td><%= link_to 'Destroy', pay_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= pay_rate.date %></td>
+        <td><%= link_to 'Show', user_pay_rate_path(pay_rate, pay_rate.user_id) %></td>
+        <td><%= link_to 'Edit', edit_user_pay_rate_path(pay_rate, pay_rate.user_id) %></td>
+        <td><%= link_to 'Destroy', user_pay_rate_path(pay_rate, pay_rate.user_id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New Pay Rate', new_pay_rate_path %>
+<br>
+
+<%= link_to 'New Pay Rate', new_user_pay_rate_path %>
