@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Users Pay Obligations</h1>
+<div class="box">
+<h1><%= @user.full_name %> Pay Rates</h1>
 
 <table>
   <thead>
@@ -8,7 +8,7 @@
       <th>Superannuation</th>
       <th>Holiday</th>
       <th>Hourly rate</th>
-      <th>User</th>
+      <th>Gross</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +16,10 @@
   <tbody>
     <% @user_pay_obligations.each do |user_pay_obligation| %>
       <tr>
-        <td><%= user_pay_obligation.superannuation %></td>
-        <td><%= user_pay_obligation.holiday %></td>
+        <td><%= user_pay_obligation.superannuation %>%</td>
+        <td><%= user_pay_obligation.holiday %>%</td>
         <td><%= user_pay_obligation.hourly_rate %></td>
-        <td><%= user_pay_obligation.user.full_name %></td>
+        <td><%= user_pay_obligation.calculate %></td>
 
       </tr>
     <% end %>
@@ -28,4 +28,5 @@
 
 <br>
 
-<%= link_to 'New Users Pay Obligation', new_user_pay_obligation_path %>
+<%= link_to 'New Pay Rate', new_user_pay_obligation_path, class: 'btn btn-default' %>
+</div>

@@ -6,7 +6,7 @@
           <%= f.select(:project_id, options_for_select(Project.select_attributes,f.object.project_id),{},class: ' btn btn-default form-control') %>
   </div>
     <div class=" col-xs-5 col-sm-2" style="padding: 0%">
-      <%= f.number_field :hour, min: 0, class: 'form-control hours-field', step: :any, placeholder: 'Hours' %>
+      <%= f.number_field :hour, min: 0, class: 'form-control hours-field', step: :any, placeholder: 'Hours', :autofocus => true %>
     </div>
     <div class="field col-xs-12 col-sm-5" style='padding: 0%'>
       <%= f.text_area :description, cols: "60", rows: "2", class: 'form-control description-field', placeholder: 'Description' %>
@@ -18,3 +18,4 @@
 
   </td>
 </tr>
+

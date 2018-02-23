@@ -26,7 +26,7 @@
             <%= f.select(:vehicle_id, options_for_select(Vehicle.select_attributes, f.object.vehicle_id), {}, class: ' btn btn-default form-control') %>
           </div>
           <div class="col-xs-6 col-sm-3" style="padding: 0%">
-            <%= f.number_field :od_start, min: Vehicle.previous_od_finish, class: 'form-control ', placeholder: 'Odometer Start' %>
+            <%= f.number_field :od_start, min: Vehicle.previous_od_finish, class: 'form-control ', placeholder: 'Odometer Start' , :autofocus => true%>
           </div>
           <div class="col-xs-6 col-sm-3" style="padding: 0%">
             <%= f.number_field :od_finish, min: Vehicle.previous_od_finish, class: 'form-control ', placeholder: 'Odometer Finish' %>

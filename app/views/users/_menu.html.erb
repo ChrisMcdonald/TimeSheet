@@ -7,7 +7,7 @@
     <%= link_to 'User Permission', user_user_permission_path(@user), class: 'btn btn-default' %>
     <%= link_to 'User Income', user_user_income_path(@user), class: 'btn btn-default' %>
     <% if can? :read, User::PayObligation %>
-    <%= link_to 'User Obligations', user_pay_obligations_path(@user), class: 'btn btn-default' %>
+    <%= link_to 'Pay Calculator', user_pay_obligations_path(@user), class: 'btn btn-default' %>
     <% end %>
     <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default' %>
     <%= link_to 'Back', users_path, class: 'btn btn-default' %>

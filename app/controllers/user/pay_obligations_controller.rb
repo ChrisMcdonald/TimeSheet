@@ -1,17 +1,21 @@
+# frozen_string_literal: true
+
 class User::PayObligationsController < ApplicationController
-  before_action :set_user_pay_obligation, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  before_action :set_user_pay_obligation, only: %i[show edit update destroy]
+  load_and_authorize_resource except: :create
 
   # GET /users/pay_obligations
   # GET /users/pay_obligations.json
   def index
-    @user_pay_obligations = User::PayObligation.all
+    @user = User.find(params[:user_id])
+    @user_pay_obligations = User::PayObligation.where(user_id: @user.id)
   end
 
   # GET /users/pay_obligations/1
   # GET /users/pay_obligations/1.json
   def show
     @user = User.find(params[:user_id])
+    @gross = GrossPay.new(@user_pay_obligation).calculate
   end
 
   # GET /users/pay_obligations/new
@@ -20,8 +24,7 @@ class User::PayObligationsController < ApplicationController
   end
 
   # GET /users/pay_obligations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /users/pay_obligations
   # POST /users/pay_obligations.json
@@ -31,11 +34,11 @@ class User::PayObligationsController < ApplicationController
 
     respond_to do |format|
       if @user_pay_obligations.save
-        format.html {redirect_to user_pay_obligation_path(id: @user_pay_obligations.id), notice: 'Pay obligation was successfully created.'}
-        format.json {render :show, status: :created, location: @user_pay_obligations}
+        format.html { redirect_to user_pay_obligation_path(id: @user_pay_obligations.id), notice: 'Pay obligation was successfully created.' }
+        format.json { render :show, status: :created, location: @user_pay_obligations }
       else
-        format.html {render :new}
-        format.json {render json: @user_pay_obligations.errors, status: :unprocessable_entity}
+        format.html { render :new }
+        format.json { render json: @user_pay_obligations.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,11 +48,11 @@ class User::PayObligationsController < ApplicationController
   def update
     respond_to do |format|
       if @user_pay_obligation.update(user_pay_obligation_params)
-        format.html {redirect_to user_pay_obligation_path(user_id: @user_pay_obligation.user_id, id: @user_pay_obligation.id), notice: 'Pay obligation was successfully updated.'}
-        format.json {render :show, status: :ok, location: @user_pay_obligation}
+        format.html { redirect_to user_pay_obligation_path(user_id: @user_pay_obligation.user_id, id: @user_pay_obligation.id), notice: 'Pay obligation was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user_pay_obligation }
       else
-        format.html {render :edit}
-        format.json {render json: @user_pay_obligation.errors, status: :unprocessable_entity}
+        format.html { render :edit }
+        format.json { render json: @user_pay_obligation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,12 +62,13 @@ class User::PayObligationsController < ApplicationController
   def destroy
     @user_pay_obligation.destroy
     respond_to do |format|
-      format.html {redirect_to user_pay_obligations_url, notice: 'Pay obligation was successfully destroyed.'}
-      format.json {head :no_content}
+      format.html { redirect_to user_pay_obligations_url, notice: 'Pay obligation was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_user_pay_obligation
     @user_pay_obligation = User::PayObligation.find(params[:id])

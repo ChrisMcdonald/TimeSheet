@@ -109,7 +109,7 @@ projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:
                                   PATCH    /projects/:id(.:format)                                projects#update
                                   PUT      /projects/:id(.:format)                                projects#update
                                   DELETE   /projects/:id(.:format)                                projects#destroy
-                                           /cable                                                 #<ActionCable::Server::Base:0x007ff330e6e440 @mutex=#<Monitor:0x007ff330e6e418 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x007ff330e6e3c8>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
+                                           /cable                                                 #<ActionCable::Server::Base:0x007fbdf621d3e0 @mutex=#<Monitor:0x007fbdf621d3b8 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x007fbdf621d340>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
                  new_user_session GET      /admin/sign_in(.:format)                               users/sessions#new
                      user_session POST     /admin/sign_in(.:format)                               users/sessions#create
              destroy_user_session DELETE   /admin/sign_out(.:format)                              users/sessions#destroy

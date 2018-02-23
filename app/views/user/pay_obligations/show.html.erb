@@ -1,10 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div class="box">
+<h1>  Pay Rate for   <%= @user_pay_obligation.user.full_name %>
+</h1>
+</div>
 
-<p>
-  <strong>Superannuation:</strong>
-  <%= @user_pay_obligation.superannuation %>
-</p>
-
+  <div class="box">
+    <%= render 'menu' %>
+  </div>
+<div class="box">
 <p>
   <strong>Holiday:</strong>
   <%= @user_pay_obligation.holiday %>
@@ -16,9 +18,10 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @user_pay_obligation.user %>
-</p>
+  <strong>Superannuation:</strong>
+  <%= @user_pay_obligation.superannuation %></p>
 
-<%= link_to 'Edit', edit_user_pay_obligation_path(@user_pay_obligation) %> |
-<%= link_to 'Back', user_pay_obligations_path %>
+<h1>Gross pay Rate <%= @gross %></h1>
+
+
+</div>
