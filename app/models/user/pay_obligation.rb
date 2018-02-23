@@ -3,11 +3,13 @@ class User::PayObligation < ApplicationRecord
   resourcify
 
   def calculate
-    superannuation = self.superannuation / 10
-    holiday = self.holiday / 10
-    charge_out_rate = self.hourly_rate
-    charge_out_rate +=   charge_out_rate * holiday
-    charge_out_rate +=   charge_out_rate * superannuation
-    charge_out_rate
+    superannuation = self.superannuation / 100
+    holiday = self.holiday / 100
+    gross = self.hourly_rate
+    percentage = 0.0
+    percentage +=   gross * holiday
+    percentage +=   gross * superannuation
+    gross +=  percentage
+    gross
   end
 end
