@@ -29,6 +29,9 @@ class Ability
     can :read, Travel if user.has_role? :read, Travel
     can :manage, Travel if user.has_role? :edit, Travel
 
+    can :read, User::PayObligation if user.has_role? :read, User::PayObligation
+    can :manage, User::PayObligation if user.has_role? :edit, User::PayObligation
+
     # can :read, User::PayObligation if user.has_role? :read, User::PayObligation
     # can :manage, User::PayObligation if user.has_role? :edit, User::PayObligation
 

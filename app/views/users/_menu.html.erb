@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <div><h1><%= @user.full_name %></h1></div>
 
 <div class="box">
@@ -5,7 +6,9 @@
     <%= link_to 'User Data', user_user_data_path(@user), class: 'btn btn-default' %>
     <%= link_to 'User Permission', user_user_permission_path(@user), class: 'btn btn-default' %>
     <%= link_to 'User Income', user_user_income_path(@user), class: 'btn btn-default' %>
+    <% if can? :read, User::PayObligation %>
     <%= link_to 'Pay Calculator', user_pay_obligations_path(@user), class: 'btn btn-default' %>
+    <% end %>
     <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default' %>
     <%= link_to 'Back', users_path, class: 'btn btn-default' %>
   </div>
