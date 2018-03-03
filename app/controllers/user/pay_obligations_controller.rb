@@ -21,6 +21,7 @@ class User::PayObligationsController < ApplicationController
   # GET /users/pay_obligations/new
   def new
     @user_pay_obligation = User::PayObligation.new
+    @user = User.find(params[:user_id])
   end
 
   # GET /users/pay_obligations/1/edit
@@ -29,12 +30,14 @@ class User::PayObligationsController < ApplicationController
   # POST /users/pay_obligations
   # POST /users/pay_obligations.json
   def create
+    @user = User.find(params[:user_id])
+
     @user_pay_obligation = User::PayObligation.new(user_pay_obligation_params)
-    @user_pay_obligation.user = User.find(params[:user_id])
+    @user_pay_obligation.user = @user
 
     respond_to do |format|
       if @user_pay_obligation.save
-        format.html { redirect_to user_pay_obligation_path(id: @user_pay_obligation.id), notice: 'Pay obligation was successfully created.' }
+        format.html { redirect_to user_pay_obligations_path(user_id: @user_pay_obligation.user_id), notice: 'Pay obligation was successfully created.' }
         format.json { render :show, status: :created, location: @user_pay_obligation }
       else
         format.html { render :new }
@@ -46,9 +49,11 @@ class User::PayObligationsController < ApplicationController
   # PATCH/PUT /users/pay_obligations/1
   # PATCH/PUT /users/pay_obligations/1.json
   def update
+    @user = User.find(params[:user_id])
+
     respond_to do |format|
       if @user_pay_obligation.update(user_pay_obligation_params)
-        format.html { redirect_to user_pay_obligation_path(user_id: @user_pay_obligation.user_id, id: @user_pay_obligation.id), notice: 'Pay obligation was successfully updated.' }
+        format.html { redirect_to user_pay_obligations_path(user_id: @user_pay_obligation.user_id), notice: 'Pay obligation was successfully updated.' }
         format.json { render :show, status: :ok, location: @user_pay_obligation }
       else
         format.html { render :edit }
