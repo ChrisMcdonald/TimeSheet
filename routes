@@ -109,7 +109,7 @@ projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:
                                   PATCH    /projects/:id(.:format)                                projects#update
                                   PUT      /projects/:id(.:format)                                projects#update
                                   DELETE   /projects/:id(.:format)                                projects#destroy
-                                           /cable                                                 #<ActionCable::Server::Base:0x007fbdf621d3e0 @mutex=#<Monitor:0x007fbdf621d3b8 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x007fbdf621d340>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
+                                           /cable                                                 #<ActionCable::Server::Base:0x007fc503d70850 @mutex=#<Monitor:0x007fc503d70828 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x007fc503d707d8>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
                  new_user_session GET      /admin/sign_in(.:format)                               users/sessions#new
                      user_session POST     /admin/sign_in(.:format)                               users/sessions#create
              destroy_user_session DELETE   /admin/sign_out(.:format)                              users/sessions#destroy
@@ -164,14 +164,6 @@ projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:
                          new_user GET      /users/new(.:format)                                   users#new
                         edit_user GET      /users/:id/edit(.:format)                              users#edit
                              user GET      /users/:id(.:format)                                   users#show
-                                  PATCH    /users/:id(.:format)                                   users#update
-                                  PUT      /users/:id(.:format)                                   users#update
-                                  DELETE   /users/:id(.:format)                                   users#destroy
-                                  GET      /users(.:format)                                       users#index
-                                  POST     /users(.:format)                                       users#create
-                                  GET      /users/new(.:format)                                   users#new
-                                  GET      /users/:id/edit(.:format)                              users#edit
-                                  GET      /users/:id(.:format)                                   users#show
                                   PATCH    /users/:id(.:format)                                   users#update
                                   PUT      /users/:id(.:format)                                   users#update
                                   DELETE   /users/:id(.:format)                                   users#destroy

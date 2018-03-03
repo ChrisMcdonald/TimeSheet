@@ -62,7 +62,7 @@ class User::PayObligationsController < ApplicationController
   def destroy
     @user_pay_obligation.destroy
     respond_to do |format|
-      format.html { redirect_to user_pay_obligations_url, notice: 'Pay obligation was successfully destroyed.' }
+      format.html { redirect_to user_pay_obligations_path, notice: 'Pay obligation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -76,6 +76,6 @@ class User::PayObligationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_pay_obligation_params
-    params.require(:user_pay_obligation).permit(:superannuation, :holiday, :hourly_rate, :user_id)
+    params.require(:user_pay_obligation).permit(:id, :superannuation, :holiday, :hourly_rate, :user_id)
   end
 end

@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class User::PayObligation < ApplicationRecord
-  belongs_to :user
   resourcify
+  belongs_to :user
 
   def calculate
     superannuation = self.superannuation / 100
     holiday = self.holiday / 100
-    gross = self.hourly_rate
+    gross = hourly_rate
     percentage = 0.0
     percentage +=   gross * holiday
     percentage +=   gross * superannuation
-    gross +=  percentage
+    gross += percentage
     gross
   end
 end

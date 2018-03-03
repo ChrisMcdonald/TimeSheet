@@ -49,21 +49,20 @@ Rails.application.routes.draw do
                      }
   get 'auth/:provider/callback', to: 'time_sheet#index'
 
-  resources :users do
-    resources :projects
-    resources :identities
-    resources :pay_rates
-    scope module: "user" do
-      resources :pay_obligations
-    end
-    get :user_data
-    get :user_income
-    get :user_permission
-    post :user_permission
-  end
+
 
   authenticate(:user) do
     resources :users do
+      resources :projects
+      resources :identities
+      resources :pay_rates
+      scope module: "user" do
+        resources :pay_obligations
+      end
+      get :user_data
+      get :user_income
+      get :user_permission
+      post :user_permission
     end
   end
 

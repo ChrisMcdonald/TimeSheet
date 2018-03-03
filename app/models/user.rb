@@ -3,7 +3,7 @@ class User < ApplicationRecord
   rolify
   include Calculate
 
-  has_many :user_pay_obligations, :class_name => 'User::PayObligation'
+  has_many :user_pay_obligations
   has_many :travels
   has_many :time_travel, through: :time_sheets, foreign_key: :user_id, source: :travels
   has_many :projects
