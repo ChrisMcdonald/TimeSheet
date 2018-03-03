@@ -11,23 +11,36 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="row">
+    <div class="col-sm-2">
     <%= form.label :superannuation %>
+    </div>
+    <div class="col-sm-7">
     <%= form.text_field :superannuation, id: :user_pay_obligation_superannuation, :autofocus => true %>
   </div>
+  </div>
 
-  <div class="field">
+  <div class="row">
+    <div class="col-sm-2">
     <%= form.label :holiday %>
+    </div>
+    <div class="col-sm-7">
     <%= form.text_field :holiday, id: :user_pay_obligation_holiday %>
   </div>
+  </div>
 
-  <div class="field">
+    <div class="row">
+      <div class="col-sm-2">
     <%= form.label :hourly_rate %>
+      </div>
+      <div class="col-sm-7">
     <%= form.text_field :hourly_rate, id: :user_pay_obligation_hourly_rate %>
   </div>
+    </div>
 
-
-  <div class="actions">
+      <div class="row">
+        <div class="col-sm-2">
     <%= form.submit  %>
-  </div>
+        </div>
+      </div>
 <% end %>

@@ -4,6 +4,8 @@ class User::PayObligation < ApplicationRecord
   resourcify
   belongs_to :user
 
+  validates_presence_of :holiday, :superannuation, :hourly_rate
+
   def calculate
     superannuation = self.superannuation / 100
     holiday = self.holiday / 100
