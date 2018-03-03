@@ -1,10 +1,10 @@
 <%= form_with(model: user_pay_obligation, local: true) do |form| %>
-  <% if user_pay_obligation.errors.any? %>
+  <% if @user_pay_obligation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user_pay_obligation.errors.count, "error") %> prohibited this users_pay_obligation from being saved:</h2>
+      <h2><%= pluralize(@user_pay_obligation.errors.count, "error") %> prohibited this users_pay_obligation from being saved:</h2>
 
       <ul>
-      <% user_pay_obligation.errors.full_messages.each do |message| %>
+      <% @user_pay_obligation.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

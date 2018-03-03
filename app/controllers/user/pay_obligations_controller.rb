@@ -29,16 +29,16 @@ class User::PayObligationsController < ApplicationController
   # POST /users/pay_obligations
   # POST /users/pay_obligations.json
   def create
-    @user_pay_obligations = User::PayObligation.new(user_pay_obligation_params)
-    @user_pay_obligations.user = User.find(params[:user_id])
+    @user_pay_obligation = User::PayObligation.new(user_pay_obligation_params)
+    @user_pay_obligation.user = User.find(params[:user_id])
 
     respond_to do |format|
-      if @user_pay_obligations.save
-        format.html { redirect_to user_pay_obligation_path(id: @user_pay_obligations.id), notice: 'Pay obligation was successfully created.' }
-        format.json { render :show, status: :created, location: @user_pay_obligations }
+      if @user_pay_obligation.save
+        format.html { redirect_to user_pay_obligation_path(id: @user_pay_obligation.id), notice: 'Pay obligation was successfully created.' }
+        format.json { render :show, status: :created, location: @user_pay_obligation }
       else
         format.html { render :new }
-        format.json { render json: @user_pay_obligations.errors, status: :unprocessable_entity }
+        format.json { render json: @user_pay_obligation.errors, status: :unprocessable_entity }
       end
     end
   end
