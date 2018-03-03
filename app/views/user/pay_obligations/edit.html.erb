@@ -1,8 +1,5 @@
-<div class="box">
-  <div class="btn-group">
-  <%= link_to 'Back', user_pay_obligations_path, class: 'btn btn-default'%>
-  </div>
-</div>
+<%= render 'users/menu' %>
+
 <div class="box">
 <h1>Editing Users Pay Obligation</h1>
 <%= render 'form', user_pay_obligation: @user_pay_obligation %>

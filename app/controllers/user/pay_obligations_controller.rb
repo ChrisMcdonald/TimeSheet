@@ -72,6 +72,7 @@ class User::PayObligationsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user_pay_obligation
     @user_pay_obligation = User::PayObligation.find(params[:id])
+    @user = @user_pay_obligation.user
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
