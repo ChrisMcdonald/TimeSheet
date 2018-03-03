@@ -1,46 +1,62 @@
 <%= form_with(model: user_pay_obligation, local: true) do |form| %>
   <% if @user_pay_obligation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user_pay_obligation.errors.count, "error") %> prohibited this users_pay_obligation from being saved:</h2>
+      <h2><%= pluralize(@user_pay_obligation.errors.count, "error") %> prohibited this users_pay_obligation from being
+        saved:</h2>
 
       <ul>
-      <% @user_pay_obligation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @user_pay_obligation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="col-sm-2">
-    <%= form.label :superannuation %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= form.label :superannuation, class: 'control-label' %>
+      </div>
+      <div class="col-sm-2">
+        <%= form.number_field :superannuation,
+                              id: :user_pay_obligation_superannuation,
+                              :autofocus => true, class: 'form-control',
+                              step: '0.01' %>
+      </div>
     </div>
-    <div class="col-sm-7">
-    <%= form.text_field :superannuation, id: :user_pay_obligation_superannuation, :autofocus => true %>
-  </div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-2">
-    <%= form.label :holiday %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= form.label :holiday, class: 'control-label' %>
+      </div>
+      <div class="col-sm-2">
+        <%= form.number_field :holiday,
+                              id: :user_pay_obligation_holiday,
+                              class: 'form-control',
+                              step: '0.01' %>
+      </div>
     </div>
-    <div class="col-sm-7">
-    <%= form.text_field :holiday, id: :user_pay_obligation_holiday %>
   </div>
-  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= form.label :hourly_rate,  class: 'control-label'%>
+      </div>
+      <div class="col-sm-2">
+        <%= form.number_field :hourly_rate,
+                              id: :user_pay_obligation_hourly_rate,
+                              class: 'form-control',
+                              step: '0.01'
+        %>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-sm-2">
-    <%= form.label :hourly_rate %>
+        <%= form.submit class: 'btn btn-default' %>
       </div>
-      <div class="col-sm-7">
-    <%= form.text_field :hourly_rate, id: :user_pay_obligation_hourly_rate %>
-  </div>
     </div>
-
-      <div class="row">
-        <div class="col-sm-2">
-    <%= form.submit  %>
-        </div>
-      </div>
 <% end %>
