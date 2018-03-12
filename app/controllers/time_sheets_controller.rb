@@ -22,11 +22,14 @@ class TimeSheetsController < ApplicationController
   # end
 
   def index
-    add_breadcrumb 'my', :time_sheets_path
-    if can? :manage, User
+    @user = current_user
+
+    if params[:user_id].present?
+      @time_sheets = TimeSheet.where(user_id: params[:user_id])
+    else
       @time_sheets = TimeSheet.where(user: current_user)
-      @user = current_user
     end
+    @time_sheets
   end
 
   # GET /time_sheets/1
@@ -74,9 +77,9 @@ class TimeSheetsController < ApplicationController
         format.json { render :index, status: :created, location: @time_sheet }
         format.js
       else
-        format.html { redirect_back(fallback_location: time_sheets_path(@time_sheet))}
+        format.html {redirect_back(fallback_location: time_sheets_path(@time_sheet))}
         format.json { render json: @time_sheet.errors, status: :unprocessable_entity }
-       end
+      end
     end
   end
 
@@ -127,7 +130,7 @@ class TimeSheetsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def time_sheet_params
     params.require(:time_sheet).permit(:time_period, :user_id,
-                                   works_attributes: %i[id date hour description project_id time_sheet_id _destroy],
-                                   travels_attributes: %i[id travel_date od_start od_finish purpose user_id project_id time_sheet_id vehicle_id])
+                                       works_attributes: %i[id date hour description project_id time_sheet_id _destroy],
+                                       travels_attributes: %i[id travel_date od_start od_finish purpose user_id project_id time_sheet_id vehicle_id])
   end
 end

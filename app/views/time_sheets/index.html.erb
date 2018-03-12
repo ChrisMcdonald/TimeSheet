@@ -1,8 +1,11 @@
-<h1>Time Sheets</h1>
-<%=month_calendar  do |date| %>
- <%= date.strftime("%d %a %b ") %>
-    <% if @time_sheets.has_time_sheet(date, current_user.id) %>
-        <div class="has-time-sheet">
-        </div>
+<h1>Time Sheets For <%= @time_sheets.first.user.full_name %></h1>
+<% if can? :read, User %>
+  <%= form_tag({}, {:method => :get}) do %>
+    <%= select_tag(:user_id, options_for_select(User.select_attributes), class: ' btn btn-default form-control') %>
+    <%= submit_tag 'Search' %>
   <% end %>
+<% end %>
+
+<%= my_calendar do |date| %>
+ <%= date.strftime("%d %a %b ") %>
 <%end %>

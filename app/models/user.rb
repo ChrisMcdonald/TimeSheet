@@ -38,6 +38,15 @@ class User < ApplicationRecord
 
   PERMISSIONS = %w[Travel User TimeSheet Project Customer Invoice User::PayObligation].freeze
 
+  def self.select_attributes
+    result = []
+    self.all.select(:id, :first_name, :last_name).each do |p|
+      result.append([p.full_name, p.id, {class: 'dropdown-item overflow-hidden'}])
+    end
+    result
+  end
+
+
   def avatar
     if identities.present?
       identities.first.image

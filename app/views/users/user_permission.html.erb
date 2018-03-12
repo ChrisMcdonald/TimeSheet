@@ -1,6 +1,5 @@
 <%= render 'users/menu' %>
 <div class="box">
-  <h1><%= @user.full_name %></h1>
 
   <%= form_tag remote: true, url: user_user_permission_path(@user) do %>
     <div class="row outline">

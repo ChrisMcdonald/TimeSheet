@@ -11,33 +11,22 @@
   </div>
 </div>
 
-
-
 <div class="box">
-
-
   <%= form_tag project_path(@project), method: :get do %>
       <div class="row">
         <div class="btn-group">
           <button formaction=" <%= project_path(@project, format: 'csv') %>" ,type="submit" , class="btn btn-default">Csv</button>
           <button formaction=" <%= project_path(@project, format: 'xlsx') %>" ,type="submit" , class="btn btn-default">Excel</button>
-
-
         </div>
-
       </div>
       <br>
       <div class="row">
         <div class="col-sm-4">
           <%= label_tag :start_date %>
           <%= date_field_tag :start_date, params[:start_date], class: "form-control" %>
-
-
           <%= label_tag :end_date %>
           <%= date_field_tag :end_date, params[:end_date], class: "form-control " %>
-
         </div>
-
         <div class="col-sm-2">
           <br>
           <br>

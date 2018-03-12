@@ -24,8 +24,12 @@ class UserPermissionTest < ApplicationSystemTestCase
     user.add_role(:read, User)
     user.add_role(:edit, User)
     user.save!
+
+
     # user2 = users(:two)
+    sleep 1
     visit user_path(user)
+    sleep 1
     find('.btn', text: 'USER PERMISSION').click
 
     sleep 1
@@ -76,8 +80,11 @@ class UserPermissionTest < ApplicationSystemTestCase
 
   test 'user full permissions' do
     user = users(:one)
+    sign_in user
+
     user.add_role :admin
     visit root_path
+    sleep 0.5
     menu_button = find('.btn', text: 'MENU')
     assert menu_button
     sleep 1
@@ -85,6 +92,9 @@ class UserPermissionTest < ApplicationSystemTestCase
 
   test 'user no permission path' do
     user = users(:two)
+    sign_in user
+
+
     user.add_role(:read, TimeSheet)
     # user2 = users(:two)
 
