@@ -23,45 +23,6 @@
 
 <body onload="number_pages()" class="pdf-background">
   <div class="alwaysbreak">
-    <table style="width: 100%; ">
-      <tr class="pdf-tr ">
-        <td class="pdf-td"><h1>Tax Invoice</h1>
-          <h3> For Project <%= @invoice.project.name.humanize %></h3>
-
-        </td>
-        <td class="pdf-td">
-          <div align="right" style="padding: 10">
-            <h3>For Time Period</h3>
-            <%= @invoice.invoice_date.strftime("%A %b %d") %>
-            <h4>Invoice Number#  <%= @invoice.id %></h4>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <h2>to: <%= @invoice.customer_full_name %></h2>
-          <p><%= @invoice.customer_address %> <br>
-            ABN: <%= @invoice.customer_abn %></p>
-
-          <p>
-          <h2><%= @invoice.owner_full_name %> </h2>
-          <%= @invoice.owner_address %> <br>
-          ABN: <%= @invoice.owner_abn %>
-
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2  ">
-          <%= render 'invoices/invoice_table.html.erb' %>
-      <tr>
-        <td>Please pay you invoice with in 2 week or men with guns will come to you house and take possession of you
-          dog
-        </td>
-      </tr>
-  </div>
-  </table>
-
-</div>
+    <%= render 'show_invoice.html.erb' %>
 </body>
 </html>

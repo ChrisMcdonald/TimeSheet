@@ -17,10 +17,11 @@ class InvoicesController < ApplicationController
   def show
     @row_total = @invoice.total_for_user
     @total = @invoice.invoice_total(@row_total)
+    @works = @invoice.works.includes(:time_sheet).order('time_sheets.time_period')
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'Invoice', header: { right: '[page] of [topage]' }
+        render pdf: 'Invoice', header: {right: '[page] of [topage]'}, page_size: 'A4', dpi: 300
       end
     end
   end
@@ -31,7 +32,7 @@ class InvoicesController < ApplicationController
     if params[:search]
       @project = Project.find(params[:search])
       @invoice = Invoice.new
-      @work = Work.uninvoiced_work(@project.id)
+      @work = Work.includes(:time_sheet).order('time_sheets.time_period').uninvoiced_work(@project.id)
       @total_for_user = @invoice.total_for_users(@work)
       @total = @invoice.total(@total_for_user)
 

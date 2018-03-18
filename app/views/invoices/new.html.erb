@@ -27,7 +27,7 @@
           <div align="right" style="padding: 10px">
             <h3>For time period</h3>
             <%= @work.first.time_sheet.time_period.strftime("%A %b %d ") if @work.first.present? %>|
-            <%= Date.today.strftime("%A %b %d") %>
+            <%= @work.last.time_sheet.time_period.strftime("%A %b %d ") if @work.last.present? %>
           </div>
         </td>
       </tr>
@@ -41,7 +41,12 @@
           <h2><%= current_user.full_name %> </h2>
           <%= current_user.address %> <br>
           ABN: <%= current_user.abn %></p>
-
+      <tr>
+        <td><p><strong>Payment details</strong>
+          <strong> Bank: </strong>Suncorp
+          <strong>Account No: </strong> 000490121 <strong>bsb:</strong> 484 799
+        </p></td>
+      </tr>
           <h1>For the <%= @project.name %> Project</h1>
         </td>
       </tr>

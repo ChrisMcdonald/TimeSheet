@@ -8,6 +8,7 @@ class Invoice < ApplicationRecord
   accepts_nested_attributes_for :works
   belongs_to :project
   validates_presence_of :works
+
   def save_invoice(project_id)
     work = Work.uninvoiced_work(project_id)
     project = Project.find(project_id)
@@ -41,18 +42,18 @@ class Invoice < ApplicationRecord
   end
 
   def owner_full_name
-    first = if owner_first_name
-              owner_first_name
+    first = if self.owner_first_name
+              self.owner_first_name
             else
               'No First Name'
             end
 
-    last = if owner_last_name
-             owner_last_name
+    last = if self.owner_last_name
+             self.owner_last_name
            else
              'No Last Name'
            end
-    first.humanize + ' ' + last.humanize
+    first + ' ' + last
   end
 
   def customer_full_name
@@ -67,15 +68,15 @@ class Invoice < ApplicationRecord
            else
              'No Last Name'
            end
-    first.humanize + ' ' + last.humanize
+    first + ' ' + last
   end
 
   def owner_address
-    address = "#{owner_street_no.humanize}   #{owner_street}<br>#{owner_city.humanize}  #{owner_state.humanize}  <br>	#{owner_country.humanize} #{owner_post_code.humanize}".html_safe
+    address = "#{self.owner_street_no}   #{self.owner_street}<br>#{self.owner_city}  #{self.owner_state}  <br>	#{self.owner_country} #{self.owner_post_code}".html_safe
   end
 
   def customer_address
-    address = "#{customer_street_no.humanize}   #{customer_street}<br>#{customer_city.humanize}  #{customer_state.humanize}  <br>	#{customer_country.humanize} #{customer_post_code.humanize}".html_safe
+    address = "#{self.customer_street_no}   #{self.customer_street}<br>#{self.customer_city}  #{self.customer_state}  <br>	#{self.customer_country} #{self.customer_post_code}".html_safe
   end
 
   def total_for_user

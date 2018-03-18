@@ -8,13 +8,13 @@
 
 
   </tr>
-  <% @invoice.works.each_with_index do |work, i| %>
+  <% @works.each_with_index do |work, i| %>
       <tr>
         <td><%= work.time_sheet.user.full_name %></td>
         <td><%= work.time_sheet.time_period.strftime("%A %b %d ") %></td>
         <td><%= work.hour %></td>
-        <td><%= work.time_sheet.user.rate(work.time_sheet.time_period) %></td>
-        <td><%= @row_total[i] %></td>
+        <td>$<%= work.time_sheet.user.rate(work.time_sheet.time_period) %></td>
+        <td>$<%= @row_total[i] %></td>
       </tr>
 
   <% end %>
@@ -22,7 +22,7 @@
   <td></td>
   <td></td>
   <td></td>
-  <td>total <%= @total %> </td>
+  <td>total $<%= @total %> </td>
 
   <tr>
   </tr>
