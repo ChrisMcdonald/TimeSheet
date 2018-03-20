@@ -25,9 +25,9 @@ class TimeSheetsController < ApplicationController
     @user = current_user
 
     if params[:user_id].present?
-      @time_sheets = TimeSheet.where(user_id: params[:user_id])
+      @time_sheets = TimeSheet.includes(:works).where(user_id: params[:user_id])
     else
-      @time_sheets = TimeSheet.where(user: current_user)
+      @time_sheets = TimeSheet.includes(:works).where(user: current_user)
     end
     @time_sheets
   end

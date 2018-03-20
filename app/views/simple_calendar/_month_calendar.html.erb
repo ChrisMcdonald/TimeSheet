@@ -19,8 +19,7 @@
       <tr>
 
         <% week.each do |day| %>
-          <% if @time_sheets.has_time_sheet(day, @time_sheets.first.user_id) %>
-
+          <% if @time_sheets.where(time_period: day).has_time_sheet? %>
             <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-time-sheet'] do %>
               <%= link_to current_day_path(day) do %>
                 <% block.call day, sorted_events.fetch(day, []) %>

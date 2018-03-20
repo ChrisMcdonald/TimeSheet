@@ -27,4 +27,9 @@ class TimeSheet < ApplicationRecord
   def self.has_time_sheet(day, user)
     Work.joins(:time_sheet).where('time_sheets.time_period = ?', day).where('time_sheets.user_id =?', user).exists?
   end
+
+  def has_time_sheet?
+    # Work.joins(:time_sheet).where('time_sheets.time_period = ?', day).where('time_sheets.user_id =?', user).exists?
+    self.works.present?
+  end
 end

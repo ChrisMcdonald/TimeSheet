@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
   has_many :messages, dependent: :destroy
+
   # has_many :work_pro, through: :projects, source: :works
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

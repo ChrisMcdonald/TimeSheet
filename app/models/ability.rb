@@ -6,7 +6,7 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     user ||= User.new # guest user (not logged in)
-
+    user = User.includes(:roles).find(user.id)
     can :manage, :all if user.has_role? :admin
     if user.has_role? :read, User
       can :read, User
