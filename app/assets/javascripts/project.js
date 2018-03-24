@@ -37,6 +37,9 @@ $(document).on('turbolinks:load',function () {
 $(document).on('click', 'li', function () {
     Turbolinks.visit($(this).find("a").attr("href"));
 });
+$(document).on('click', 'div.clickable', function () {
+    Turbolinks.visit($(this).find("a").attr("href"));
+});
 
 $(document).on('turbolinks:load',function () {
     $("#menu-toggle").click(function (e) {

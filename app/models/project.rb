@@ -20,7 +20,8 @@ class Project < ApplicationRecord
 
   def self.select_attributes
     result = []
-    Project.all.select(:id, :name).each do |p|
+    project = all.select(:id, :name).order(:created_at).reverse
+    project.each do |p|
       result.append([p.name, p.id, { class: 'dropdown-item overflow-hidden' }])
     end
     result

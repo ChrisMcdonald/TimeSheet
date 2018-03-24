@@ -1,4 +1,4 @@
-<h1>Time Sheets For <%= @time_sheets.first.user.full_name %></h1>
+<h1>Time Sheets For <%= @time_sheets.first.user.full_name rescue '' %></h1>
 <% if can? :read, User %>
   <%= form_tag({}, {:method => :get}) do %>
     <%= select_tag(:user_id, options_for_select(User.select_attributes), class: ' btn btn-default form-control') %>

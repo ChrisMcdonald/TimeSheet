@@ -19,16 +19,32 @@
       <tr>
 
         <% week.each do |day| %>
-          <% if @time_sheets.find_or_initialize_by(time_period: day).has_time_sheet? %>
+          <% t = @time_sheets.includes(:works).find_or_initialize_by(time_period: day) %>
 
-            <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-time-sheet'] do %>
-              <%= link_to current_day_path(day) do %>
-                <% block.call day, sorted_events.fetch(day, []) %>
+          <% if t.has_time_sheet? %>
+
+            <% if Work.find_by(time_sheet: t).invoice.present? %>
+
+              <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-invoice'] do %>
+                <%= link_to current_day_path(day) do %>
+                  <% block.call day, sorted_events.fetch(day, []) %>
+                <% end %>
+                <h1 style="padding: 0;margin: 0">
+                  <%= Work.find_by(time_sheet: @time_sheets.where(time_period: day)).hour %>
+                </h1>
               <% end %>
-              <h1 style="padding: 0;margin: 0">
-                <%= Work.find_by(time_sheet: @time_sheets.where(time_period: day)).hour %>
-              </h1>
+            <% else %>
 
+              <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-time-sheet'] do %>
+                <%= link_to current_day_path(day) do %>
+                  <% block.call day, sorted_events.fetch(day, []) %>
+                <% end %>
+                <h1 style="padding: 0;margin: 0">
+                  <%= Work.find_by(time_sheet: @time_sheets.where(time_period: day)).hour %>
+                </h1>
+
+
+              <% end %>
 
             <% end %>
           <% else %>

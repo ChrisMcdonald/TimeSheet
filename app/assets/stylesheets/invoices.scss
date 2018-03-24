@@ -11,17 +11,19 @@
 li.shadow {
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 19px;
+  list-style: none;
 }
 
 li.darkShadow {
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: grey;
-;
+  list-style: none;
+
 }
 li.background {
   //background-color: grey;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.6), 6px 12px 30px 0 rgba(0, 0, 0, 0.19);
   //font-size: 150%;
-
+  list-style: none;
 
 }

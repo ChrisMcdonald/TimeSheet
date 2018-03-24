@@ -19,4 +19,9 @@ class Work < ApplicationRecord
   def self.filter_buy_date(start_date, end_date)
     joins(:time_sheet).where('time_sheets.time_period 	BETWEEN ? AND ? ', start_date.to_s, end_date.to_s)
   end
+
+  def has_invoice?
+    invoice_id.present?
+  end
+
 end
