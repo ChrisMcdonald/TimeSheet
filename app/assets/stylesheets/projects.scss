@@ -40,7 +40,21 @@ td.shadow:active {
   transform: translateY(4px);
 }
 
-td:active {
+td.clickable:active {
+  background-color: white !important;
+  //box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: inset 0 0 10px #000000;
+  transform: translateY(4px);
+}
+
+td.has-invoice:active {
+  background-color: white !important;
+  //box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: inset 0 0 10px #000000;
+  transform: translateY(4px);
+}
+
+td.has-time-sheet:active {
   background-color: white !important;
   //box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
   box-shadow: inset 0 0 10px #000000;
