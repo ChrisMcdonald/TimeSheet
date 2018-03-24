@@ -37,7 +37,7 @@ $(document).on('turbolinks:load',function () {
 $(document).on('click', 'li', function () {
     Turbolinks.visit($(this).find("a").attr("href"));
 });
-$(document).on('click', 'div.clickable', function () {
+$(document).on('click', 'td.clickable', function () {
     Turbolinks.visit($(this).find("a").attr("href"));
 });
 

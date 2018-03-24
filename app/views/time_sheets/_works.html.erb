@@ -1,8 +1,8 @@
 <tr style="padding: 0%;">
   <% if f.object.has_invoice? %>
 
-    <td colspan="5" style="padding: 0%; margin-bottom: 0px;">
-      <li class="clickable shadow" style="padding: 1%; margin-bottom: 0px;">
+    <td colspan="3" style="padding: 0%; margin-bottom: 0px;" class="clickable " style="padding: 1%; margin-bottom: 0px; outline: 2px solid #ccc;">
+      <div>
 
         <div class=" dropdown col-xs-7 col-sm-4 " style="padding: 0%;">
           <%= f.object.project.name %>
@@ -16,10 +16,10 @@
         <div class="field col-xs-1 col-sm-1">
           <%= link_to "", invoice_path(f.object.invoice_id) %>
         </div>
-
+    <td>
         <%= image_tag('tick.png', size: "40x40") %>
-
-      </li>
+    </td>
+    </div>
     </td>
 
   <% else %>

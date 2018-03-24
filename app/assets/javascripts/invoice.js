@@ -32,3 +32,13 @@ $(document).on('turbolinks:load',function () {
 
     });
 });
+$(document).on('turbolinks:load', function () {
+    $('td.shadow').hover(function () {
+        $(this).toggleClass("background");
+        // $(this).animate({height: "110"}, 50);
+    }, function () {
+        // $(this).animate({height: "100%"}, 50);
+        $(this).toggleClass("background");
+
+    });
+});
