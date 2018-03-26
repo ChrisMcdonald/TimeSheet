@@ -64,32 +64,23 @@ body {
     height: 80px;
   }
 
-  .wday-0 {background: lightgray}
+  .wday-0 {
+    background-color: lightgray
+  }
   .wday-1 {}
   .wday-2 {}
   .wday-3 {}
   .wday-4 {}
   .wday-5 {}
-  .wday-6 {background: lightgray}
+  .wday-6 {
+    background-color: lightgray
+  }
 
   .today {
     background: lightgreen;
 
   }
-  .has-time-sheet {
-    background:  url('redcross.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    padding: 20px;
 
-  }
-  .has-invoice {
-    background: url('tick.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    padding: 20px;
-
-  }
 
   .past {}
   .future {}

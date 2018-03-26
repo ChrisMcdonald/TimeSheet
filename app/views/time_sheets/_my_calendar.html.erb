@@ -32,6 +32,7 @@
                 <h1 style="padding: 0;margin: 0">
                   <%= Work.find_by(time_sheet: @time_sheets.where(time_period: day)).hour %>
                 </h1>
+
               <% end %>
             <% else %>
 
@@ -51,6 +52,7 @@
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
               <%= link_to current_day_path(day) do %>
                 <% block.call day, sorted_events.fetch(day, []) %>
+
               <% end %>
             <% end %>
 
