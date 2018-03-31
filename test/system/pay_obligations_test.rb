@@ -29,7 +29,6 @@ class PayObligationTest < ApplicationSystemTestCase
     fill_in 'user_pay_obligation[holiday]',with: 9.5
     find('input[name="commit"]').click
     first('.fa-trash').click
-    page.driver.browser.switch_to.alert.accept
 
     find('.btn', text: 'NEW PAY RATE').click
     sleep 1

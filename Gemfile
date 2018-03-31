@@ -32,7 +32,7 @@ gem 'sass-rails', '>= 3.2'
 gem 'simple_calendar'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
-
+gem 'pdfkit'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.1.3'
 # Use postgresql as the database for Active Record

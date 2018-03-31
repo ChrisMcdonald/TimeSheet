@@ -218,6 +218,7 @@ GEM
     parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
+    pdfkit (0.8.2)
     pg (0.18.4)
     powerpack (0.1.1)
     public_suffix (3.0.2)
@@ -379,6 +380,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter
+  pdfkit
   pg (~> 0.18.4)
   puma
   pundit

@@ -1,9 +1,12 @@
 <div class="btn-group box" style="width: 100%">
 <%= form_tag invoice_path(@invoice), method: :get do %>
     <button formaction=" <%= invoice_path(@invoice, format: 'pdf') %>" ,type="submit" , class="btn btn-default">Download Invoice </button>
-       </div>
+    <%= link_to 'send invoice', send_invoice_path(invoice: @invoice.id), class: 'btn btn-default' %>
+
+    </div>
 <% end %>
-<div class="box col-xs-12">
-<p id="notice"><%= notice %></p>
-<div class=" pdf-background ">
+
+  <div class="box col-xs-12">
+
+    <div class=" pdf-background ">
   <%= render 'show_invoice' %>

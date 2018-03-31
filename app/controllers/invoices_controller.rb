@@ -21,7 +21,7 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'Invoice', header: {right: '[page] of [topage]'}, page_size: 'A4', dpi: 300
+        render pdf: "#{@invoice.user.full_name} -invoice- #{@invoice.id}", header: {right: '[page] of [topage]'}, page_size: 'A4', dpi: 300
       end
     end
   end
@@ -97,6 +97,14 @@ class InvoicesController < ApplicationController
     end
   end
 
+
+  def send_invoice
+
+    invoice = params[:invoice]
+    InvoiceMailer.invoice_email(invoice).deliver_now
+    flash[:notice] = 'Invoice  sent!'
+    redirect_to invoice_path(invoice)
+  end
   private
 
   # Use callbacks to share common setup or constraints between actions.
