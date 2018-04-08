@@ -81,7 +81,7 @@ class Invoice < ApplicationRecord
 
   def total_for_user
     total = []
-    works = self.works
+    works = self.works.includes(time_sheet: :user)
     works.each do |work|
       total << work.time_sheet.user.rate(work.date) * work.hour
     end

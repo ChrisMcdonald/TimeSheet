@@ -60,15 +60,17 @@ td.has-time-sheet:active {
 
 .has-time-sheet {
   background-image: url('redcross.png');
-  background-size: 90% 80%;
+  background-position: 50% 80%;
+  background-size: 70% 60%;
   background-repeat: no-repeat;
+  margin-bottom: 5px;
 
 }
 
 .has-invoice {
   background: url('tick.png');
-  align: bottom;
-  background-size: 90% 80%;
+  background-position: 50% 80%;
+  background-size: 60% 60%;
   background-repeat: no-repeat;
 
 }

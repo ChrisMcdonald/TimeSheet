@@ -25,7 +25,6 @@ class InvoiceMailer < ApplicationMailer
     # use wicked_pdf gem to create PDF from the doc HTML
     doc_pdf = WickedPdf.new.pdf_from_string(
         pdf_html,
-        page_size: 'Letter',
         javascript_delay: 600,
         header: {right: '[page] of [topage]'},
         page_size: 'A4',

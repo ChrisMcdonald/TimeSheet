@@ -176,9 +176,6 @@ class User < ApplicationRecord
     identity
   end
 
-  def bar
-    puts 'class method'
-  end
 
   def user_image
     identities.first.image

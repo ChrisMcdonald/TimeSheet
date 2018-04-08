@@ -25,8 +25,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = 'Account Not Found'
     end
   end
+
+
+  private
   alias facebook all
   alias google all
+  alias github all
 end
 # user.provider = auth.provider
 # user.uid = auth.uid

@@ -3,6 +3,9 @@
 class TimeSheetsController < ApplicationController
   before_action :set_time_sheet, only: %i[show edit update destroy]
   before_action :authenticate_user!
+
+  require 'github'
+
   load_and_authorize_resource
   # before_action :set_calender, only: :index
   # GET /time_sheets
@@ -25,9 +28,9 @@ class TimeSheetsController < ApplicationController
     @user = current_user
 
     if params[:user_id].present?
-      @time_sheets = TimeSheet.includes(:works).where(user_id: params[:user_id])
+      @time_sheets = TimeSheet.where(user_id: params[:user_id])
     else
-      @time_sheets = TimeSheet.includes(:works).where(user: current_user)
+      @time_sheets = TimeSheet.where(user: current_user)
     end
     @time_sheets
   end
@@ -35,7 +38,13 @@ class TimeSheetsController < ApplicationController
   # GET /time_sheets/1
   # GET /time_sheets/1.json
   def show
+    options = {}
     @time_sheet.works.build if @time_sheet.works.count < 1
+    @project = Project.last
+    options[:token] = current_user.identities.find_by provider: 'github'
+    options[:day] = @time_sheet.time_period
+    @github = Github.new(@project.gitname, options).commit_on_day
+
   end
 
   def current_day
@@ -124,7 +133,7 @@ class TimeSheetsController < ApplicationController
   end
 
   def set_time_sheet
-    @time_sheet = TimeSheet.find(params[:id])
+    @time_sheet = TimeSheet.includes(:roles, :user).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

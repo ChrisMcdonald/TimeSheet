@@ -9,7 +9,7 @@ class TimeSheet < ApplicationRecord
   has_many :works, dependent: :destroy
   has_many :projects, through: :works
 
-  accepts_nested_attributes_for :works, allow_destroy: true
+  accepts_nested_attributes_for :works, allow_destroy: true, :reject_if => lambda {|a| a[:hour].blank?}
   validates_presence_of :time_period
   belongs_to :user
 

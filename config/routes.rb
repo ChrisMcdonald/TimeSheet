@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :invoices, except: [:edit]
   resources :works
   get '/send_invoice' , to: 'invoices#send_invoice', as: :send_invoice
+   resources :social_info
   resources :chatrooms do
     resource :chatroom_users
     resources :messages

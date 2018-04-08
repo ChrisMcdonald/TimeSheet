@@ -17,7 +17,7 @@ class InvoicesController < ApplicationController
   def show
     @row_total = @invoice.total_for_user
     @total = @invoice.invoice_total(@row_total)
-    @works = @invoice.works.includes(:time_sheet).order('time_sheets.time_period')
+    @works = @invoice.works.joins(:time_sheet).order('time_sheets.time_period')
     respond_to do |format|
       format.html
       format.pdf do
@@ -109,7 +109,7 @@ class InvoicesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_invoice
-    @invoice = Invoice.find(params[:id])
+    @invoice = Invoice.includes(:roles).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

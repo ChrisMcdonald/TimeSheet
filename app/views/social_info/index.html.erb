@@ -1,0 +1,9 @@
+<h1>Githhub</h1>
+<%= link_to 'Pdf', social_info_index_path(project: @project, branch: params[:branch], format: :pdf), class: 'btn btn-default' %>
+<%= form_tag social_info_index_path, method: :get do %>
+  <%= select_tag(:branch, options_for_select(@github.branches, params[:branch]), class: 'btn btn-default form-control') %>
+  <!--#,:onchange => '$(this).trigger("submit.rails")'-->
+  <%= hidden_field_tag 'project', @project.id %>
+  <%= submit_tag 'search' %>
+<% end %>
+<%= render 'commits' rescue '' %>

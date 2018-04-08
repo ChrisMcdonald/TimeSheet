@@ -1,11 +1,12 @@
 <div class="box">
 <p>
-  <h1>Time Sheet for  <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h1>
+  <h1>Time Sheet for  <%= @time_sheet.time_period.strftime("%A %d %B %Y") %></h1>
 </p>
 </div>
 <%= render 'buttons' %>
 <div id="time_sheet_partial">
   <%= render 'edit' %>
+  <div class="box">
+    <%= render 'commits' %>
+  </div>
 </div>
-
-

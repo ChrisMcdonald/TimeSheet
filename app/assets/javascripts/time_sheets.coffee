@@ -2,8 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on 'click', 'form .remove_fields', (event) ->
-  $(this).prev('input[type=hidden]').val('1')
-  $(this).closest('tr').hide()
+#  $(this).closest('tr').hide()
   event.preventDefault()
 
 $(document).on 'click', 'form .add_fields', (event) ->

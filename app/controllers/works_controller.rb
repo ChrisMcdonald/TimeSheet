@@ -58,7 +58,7 @@ class WorksController < ApplicationController
   def destroy
     @work.destroy
     respond_to do |format|
-      format.html { redirect_to works_url, notice: 'Work was successfully destroyed.' }
+      format.html {redirect_to works_url, notice: 'Work was successfully destroyedasdfadsf.'}
       format.json { head :no_content }
     end
   end
@@ -67,7 +67,7 @@ class WorksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_work
-    @work = Work.find(params[:id])
+    @work = Work.includes(:roles).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

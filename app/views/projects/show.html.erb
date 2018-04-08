@@ -8,6 +8,7 @@
   <div class="btn-group">
     <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-default' %>
     <%= link_to 'Back', projects_path, class: 'btn btn-default' %>
+    <%= link_to 'GitHub', social_info_index_path(project: @project), class: 'btn btn-default' %>
   </div>
 </div>
 
