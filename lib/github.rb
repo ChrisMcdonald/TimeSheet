@@ -14,7 +14,6 @@ require 'pry'
     since_date = date.utc.iso8601
     until_date = date + 1.day
     until_date = until_date.utc.iso8601
-    puts  since_date
     # url = URI.parse("https://api.github.com/repos/StephenKellyQLD/G2A/commits?sha=origin/featrues/chris,author=chris78323@gmail.com")
     url = URI.parse("https://api.github.com/repos/#{@project}/commits?sha=origin/features/chris&since=#{since_date}&until=#{until_date}")
     #
@@ -43,7 +42,7 @@ end
     http.use_ssl = true
     bra = Net::HTTP::Get.new(url.request_uri)
     bra["Accept"] = 'application/vnd.github.cloak-preview'
-    bra['Authorization'] = "token #{@auth.token}"
+    bra['Authorization'] = "token #{@auth}"
     branches = http.request(bra)
 
     branches = JSON.parse(branches.body)
@@ -63,7 +62,7 @@ end
     http.use_ssl = true
     req = Net::HTTP::Get.new(url.request_uri)
     req["Accept"] = 'application/vnd.github.cloak-preview'
-    req["Authorization"] = "token #{@auth.token}"
+    req["Authorization"] = "token #{@auth}" if @auth.present?
     res = http.request(req)
 
     commit_list = JSON.parse(res.body)

@@ -41,7 +41,7 @@ class TimeSheetsController < ApplicationController
     options = {}
     @time_sheet.works.build if @time_sheet.works.count < 1
     @project = Project.last
-    options[:token] = current_user.identities.find_by provider: 'github'
+    options[:token] = current_user.identities.find_by(provider: 'github').token rescue nil
     options[:day] = @time_sheet.time_period
     @github = Github.new(@project.gitname, options).commit_on_day
 
@@ -133,7 +133,7 @@ class TimeSheetsController < ApplicationController
   end
 
   def set_time_sheet
-    @time_sheet = TimeSheet.includes(:roles, :user).find(params[:id])
+    @time_sheet = TimeSheet.includes(:user).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

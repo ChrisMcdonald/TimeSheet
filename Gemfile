@@ -79,7 +79,11 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # gem 'figaro'
   gem 'rubocop'
-  # gem 'ruby-debug-ide'
+  gem 'ruby-debug-ide', '~> 0.6.0'
+  gem 'debase'
+  gem 'pry-nav'
+  gem 'pry'
+
 end
 
 group :development do

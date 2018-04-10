@@ -12,7 +12,7 @@ class SocialInfoController < ApplicationController
 
     options = {}
     options[:branch] = "sha=#{params[:branch]}" if params[:branch].present?
-    options[:token] = current_user.identities.find_by provider: 'github' || nil
+    options[:token] = current_user.identities.find_by(provider: 'github').token rescue nil
 
     @github = Github.new(@project.gitname, options)
 

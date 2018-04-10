@@ -8,6 +8,7 @@ class InvoiceTest < ApplicationSystemTestCase
   setup do
     user = users(:one)
     user.add_role :admin
+    user.save!
     sign_in user
     @routes = Rails.application.routes
   end
