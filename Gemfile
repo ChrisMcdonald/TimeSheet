@@ -36,6 +36,8 @@ gem 'wkhtmltopdf-binary'
 gem 'pdfkit'
 gem 'oj'
 gem 'bullet', group: 'development'
+gem 'nokogiri', '~> 1.6', '>= 1.7.0.1'
+gem 'loofah', '~> 2.0', '>= 2.0.3'
 # gem "uniform_notifier"
 # gem 'honeybadger'
 # gem 'airbrake'
@@ -72,7 +74,7 @@ gem 'capistrano-passenger'
 gem 'capistrano-rails'
 gem 'capistrano-rails-console'
 gem 'capistrano-rbenv'
-
+gem 'loofah-activerecord'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

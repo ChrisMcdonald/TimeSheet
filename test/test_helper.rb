@@ -17,7 +17,7 @@ require 'minitest/rails'
 
 Capybara.javascript_driver = :chrome
 # Capybara.asset_host = "http://earth-broken.bnr.la"
-Capybara.asset_host = 'http://localhost:3000'
+Capybara.asset_host = 'http://localhost:3001'
 Capybara.server = :puma # Until your setup is working
 Capybara.configure do |config|
   config.server = :puma

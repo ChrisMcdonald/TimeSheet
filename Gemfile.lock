@@ -169,6 +169,8 @@ GEM
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    loofah-activerecord (2.0.0)
+      loofah (>= 1.0.0)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     method_source (0.8.2)
@@ -397,8 +399,11 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   listen
+  loofah (~> 2.0, >= 2.0.3)
+  loofah-activerecord
   minitest-rails
   minitest-reporters (>= 0.5.0)
+  nokogiri (~> 1.6, >= 1.7.0.1)
   oj
   omniauth
   omniauth-facebook
