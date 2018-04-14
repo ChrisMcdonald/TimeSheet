@@ -36,7 +36,6 @@ gem 'wkhtmltopdf-binary'
 gem 'pdfkit'
 gem 'oj'
 gem 'bullet', group: 'development'
-gem 'pry'
 # gem "uniform_notifier"
 # gem 'honeybadger'
 # gem 'airbrake'
