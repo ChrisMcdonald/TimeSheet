@@ -5,7 +5,8 @@
     <th>Date</th>
     <th>Link</th>
   </tr>
-  <% @github.each do |v, i| %>
+  <% @github.each do |project| %>
+    <% project.each do |v| %>
     <tr>
 
       <td>  <%= v['commit']['message'] %></td>
@@ -14,6 +15,7 @@
 
 
     </tr>
+  <% end %>
   <% end %>
 
 

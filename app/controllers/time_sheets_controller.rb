@@ -39,11 +39,13 @@ class TimeSheetsController < ApplicationController
   # GET /time_sheets/1.json
   def show
     options = {}
+    @github = []
     @time_sheet.works.build if @time_sheet.works.count < 1
-    @project = Project.last
     options[:token] = current_user.identities.find_by(provider: 'github').token rescue nil
     options[:day] = @time_sheet.time_period
-    @github = Github.new(@project.gitname, options).commit_on_day
+    @time_sheet.projects.each {|project| @github << Github.new(project.gitname, options).commit_on_day if project.present?}
+
+    # @github = @project.each { |project| Github.new(project.gitname, options).commit_on_day}
 
   end
 
