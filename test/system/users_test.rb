@@ -31,6 +31,7 @@ class UsersTest < ApplicationSystemTestCase
 
   test 'create a new User' do
     visit users_path
+    visit users_path
     find('#new-project').click
     within('#NewProject') do
       fill_in 'user_first_name', with: 'bob'
