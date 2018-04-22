@@ -19,9 +19,7 @@ class ProjectTest < ApplicationSystemTestCase
     visit root_path
     date = Date.today
     find_link(href: "/current_day/#{date}").click
-    sleep 1
     find('a', class: 'add_fields').click
-    sleep 2
     first('input', class: 'hours-field').set(5)
     first('textarea', class: 'description-field').set('this is the description')
     find('input[name="commit"]').click
@@ -37,15 +35,10 @@ class ProjectTest < ApplicationSystemTestCase
     project2 = projects(:two)
     project1 = projects(:one)
     assert_equal project1.name, 'Projectone'
-    sleep 1
     find(".project-#{project2.id}").click
-    sleep 1
     find('a', text: 'BACK').click
-    sleep 1
     find(".project-#{project1.id}").click
-    sleep 1
     find('button', text: 'CSV').click
-    sleep 1
   end
 
   test 'project csv' do

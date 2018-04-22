@@ -22,6 +22,5 @@ class RootTest < ApplicationSystemTestCase
     find_link(href: '/users').click
     find_link(href: "/time_sheets.#{user.id}").click
 
-    sleep 1
   end
 end

@@ -23,13 +23,10 @@ class UsersTest < ApplicationSystemTestCase
   test 'user income ' do
     visit user_path(@user)
     find('.btn', text: 'USER INCOME').click
-    sleep 1
     fill_in 'start_date', with: 1.week.ago.to_s
     fill_in 'end_date', with: Date.tomorrow.to_s
-    sleep 1
     find('.btn', text: 'SEARCH').click
 
-    sleep 1
   end
 
   test 'create a new User' do
@@ -54,7 +51,6 @@ class UsersTest < ApplicationSystemTestCase
     # find(".create-user").click
     find('input', class: 'create-user').click
     # page.execute_script("$('form#new-user').submit()")
-    sleep 1
     user = User.last
     assert_equal 'bob', user.first_name
   end

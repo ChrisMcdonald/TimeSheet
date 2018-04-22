@@ -4,7 +4,6 @@ require 'application_system_test_case'
 class CustomerTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
   include Warden::Test::Helpers
-  require 'pry'
   setup do
     @user = users(:one)
     @user.add_role :admin
@@ -18,14 +17,10 @@ class CustomerTest < ApplicationSystemTestCase
   test 'create a new timesheet' do
     visit root_path
     find_link(href: "/current_day/#{Date.today.iso8601}").click
-    sleep 1
-    find('.btn', text: 'TRAVEL').click
-    sleep 1
-    find('.btn', text: 'ADD TRAVEL').click
 
-    sleep 1
+    find('.btn', text: 'TRAVEL').click
+    find('.btn', text: 'ADD TRAVEL').click
     find('.btn', text: 'HOURS').click
-    sleep 1
     find('a.add_fields').click
     first('#time_sheet_works_attributes_0_hour', class: 'hours-field').set(5)
     first('textarea', class: 'description-field').set('this is the description')
@@ -33,13 +28,10 @@ class CustomerTest < ApplicationSystemTestCase
     find('input[name="commit"]').click
     find_link(href: "/current_day/#{Date.tomorrow.iso8601}").click
     # find('a.add_fields').click
-    sleep 1
-
     first('#time_sheet_works_attributes_0_hour', class: 'hours-field').set(5)
     first('textarea', class: 'description-field').set('this is the description')
     find('input[name="commit"]').click
     find_link(href: "/current_day/#{Date.yesterday.iso8601}").click
-    sleep 1
     first('#time_sheet_works_attributes_0_hour', class: 'hours-field').set(5)
     first('textarea', class: 'description-field').set('this is the description')
     find('input[name="commit"]').click

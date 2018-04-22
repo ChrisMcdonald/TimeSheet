@@ -27,12 +27,9 @@ class UserPermissionTest < ApplicationSystemTestCase
 
 
     # user2 = users(:two)
-    sleep 1
     visit user_path(user)
-    sleep 1
     find('.btn', text: 'USER PERMISSION').click
 
-    sleep 1
     assert user.has_role? :edit, User
     assert_not user.has_role? :read, Project
     assert_not user.has_role? :edit, Project
@@ -60,7 +57,6 @@ class UserPermissionTest < ApplicationSystemTestCase
     page.check 'User::PayObligation_read'
     page.check 'User::PayObligation_edit'
     find('input[name="commit"]').click
-    sleep 1
 
     assert user.has_role? :read, User
     assert user.has_role? :edit, User
@@ -84,10 +80,8 @@ class UserPermissionTest < ApplicationSystemTestCase
 
     user.add_role :admin
     visit root_path
-    sleep 0.5
     menu_button = find('.btn', text: 'MENU')
     assert menu_button
-    sleep 1
   end
 
   test 'user no permission path' do
@@ -101,7 +95,6 @@ class UserPermissionTest < ApplicationSystemTestCase
     # visit user_path(User.second)
     # assert_selector('h1', text: 'You are not authorized to access this web page.')
     visit root_path
-    sleep 1
     visit projects_path
     assert_selector('h1', text: 'You are not authorized to access this web page.')
 

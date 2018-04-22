@@ -33,7 +33,6 @@ class CustomerTest < ApplicationSystemTestCase
     end
 
     find('input[name="commit"]').click
-    sleep 1
     customer = Customer.last
     assert_equal customer.first_name, 'bob'
   end

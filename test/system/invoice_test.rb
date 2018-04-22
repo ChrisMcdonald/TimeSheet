@@ -22,11 +22,8 @@ class InvoiceTest < ApplicationSystemTestCase
     visit root_path
     find_link(href: "/invoices.#{user.id}").click
     find_link(href: '/invoices/new').click
-    sleep 1
     find('input[name="commit"]').click
-    sleep 1
     find_link(href: '/invoices').click
-    sleep 1
   end
 
   test 'valid  invoice' do
@@ -40,7 +37,6 @@ class InvoiceTest < ApplicationSystemTestCase
     # first('input', class: 'hours-field').set(5)
     # first('textarea', class: 'description-field').set('this is the description')
     # find('input[name="commit"]').click
-    sleep 0.5
     find_link(href: "/invoices.#{user.id}").click
     find_link(href: '/invoices/new').click
     find('select').click
