@@ -14,10 +14,10 @@ class ProjectTest < ApplicationSystemTestCase
   end
 
   test 'create a new project' do
-    user = User.first
+    # user = User.first
 
     visit root_path
-    date = Date.today
+    date = Date.today.iso8601
     find_link(href: "/current_day/#{date}").click
     find('a', class: 'add_fields').click
     first('input', class: 'hours-field').set(5)
