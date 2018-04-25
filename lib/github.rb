@@ -1,7 +1,7 @@
 class Github
-  def initialize(gitname,options = {})
+  def initialize(gitname,branch ,options = {})
     @project = gitname
-    @branch = options[:branch] if options[:branch].present?
+    @branch = "sha=#{branch}"
     @day = options[:day] if options[:day].present?
     @auth = options[:token] if options[:token].present?
 
@@ -13,8 +13,10 @@ class Github
     since_date = date.utc.iso8601
     until_date = date + 1.day
     until_date = until_date.utc.iso8601
+    puts @branch
+    puts @project
     # url = URI.parse("https://api.github.com/repos/StephenKellyQLD/G2A/commits?sha=origin/featrues/chris,author=chris78323@gmail.com")
-    url = URI.parse("https://api.github.com/repos/#{@project}/commits?sha=origin/features/chris&since=#{since_date}&until=#{until_date}")
+    url = URI.parse("https://api.github.com/repos/#{@project}/commits?#{@branch}&since=#{since_date}&until=#{until_date}")
     #
     # url = URI.parse("https://api.github.com/repos/#{@project}/commits?author=chris78323@gmail.com")
     # binding.pry
