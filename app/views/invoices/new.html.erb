@@ -11,9 +11,9 @@
 
   <% end %>
 
-    <%= form_tag new_invoice_url, method: :get do %>
+  <%= form_tag new_invoice_url, class: 'form-group', method: :get do %>
 
-        <%= select_tag(:search, options_for_select(Project.select_attributes, params[:search]), :onchange => "this.form.submit();", class: 'btn btn-default ') %>
+    <%= select_tag(:search, options_for_select(Project.select_attributes, params[:search]), :onchange => "this.form.submit();", class: 'btn btn-default form-control ') %>
 
     <% end %>
 

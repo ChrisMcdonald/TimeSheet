@@ -1,4 +1,5 @@
 class InvoiceMailer < ApplicationMailer
+  require 'tempfile'
 
   default from: 'chris78323@gmai.com'
 
@@ -25,13 +26,13 @@ class InvoiceMailer < ApplicationMailer
     # use wicked_pdf gem to create PDF from the doc HTML
     doc_pdf = WickedPdf.new.pdf_from_string(
         pdf_html,
-        javascript_delay: 600,
+        javascript_delay: 60,
         header: {right: '[page] of [topage]'},
         page_size: 'A4',
         dpi: 300
     )
     #  # save PDF to disk
-    pdf_path = Rails.root.join('tmp/reports', "#{@invoice.id}_#{Date.today.iso8601}.pdf")
+    pdf_path = Tempfile.new("#{@invoice.id}_#{Date.today.iso8601}.pdf")
     File.open(pdf_path, 'wb') do |file|
       file.write doc_pdf
       file.close

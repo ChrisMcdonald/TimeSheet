@@ -49,7 +49,7 @@ class User::PayObligationsController < ApplicationController
   # PATCH/PUT /users/pay_obligations/1
   # PATCH/PUT /users/pay_obligations/1.json
   def update
-    @user = User.find(params[:user_id])
+    # @user = PayObligations.find(params[:id]).user
 
     respond_to do |format|
       if @user_pay_obligation.update(user_pay_obligation_params)
