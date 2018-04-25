@@ -3,20 +3,20 @@
   <tr>
     <th>Commit</th>
     <th>Date</th>
+    <th>Project</th>
     <th>Link</th>
   </tr>
   <% @github.each do |project| %>
-    <% project.each do |v| %>
+    <% project[:data].each do |v| %>
     <tr>
 
       <td>  <%= v['commit']['message'] %></td>
       <td>  <%= Time.parse(v['commit']['author']['date']).strftime("%A %b/%d/%Y") %></td>
+      <td><%= project[:name] %></td>
       <td>  <%= link_to 'GO TO', v['html_url'], class: 'btn btn-default' %></td>
-
 
     </tr>
   <% end %>
   <% end %>
-
 
 </table>
