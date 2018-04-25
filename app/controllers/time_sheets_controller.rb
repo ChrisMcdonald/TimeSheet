@@ -43,7 +43,8 @@ class TimeSheetsController < ApplicationController
     @time_sheet.works.build if @time_sheet.works.count < 1
     options[:token] = current_user.identities.find_by(provider: 'github').token rescue nil
     options[:day] = @time_sheet.time_period
-    @time_sheet.projects.each {|project| @github << Github.new(project.gitname, options).commit_on_day if project.present?}
+    options[:branch] = 'origin/features/chris'
+    @time_sheet.projects.each {|project| @github << {name: project.name, data: Github.new(project.gitname, project.branch, options).commit_on_day} if project.present?}
 
     # @github = @project.each { |project| Github.new(project.gitname, options).commit_on_day}
 
