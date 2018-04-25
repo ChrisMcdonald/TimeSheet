@@ -10,6 +10,7 @@ class IntegrationTest < MiniTest::Spec
   include Rails.application.routes.url_helpers
   include Capybara::DSL
   register_spec_type(/integration$/, self)
+
 end
 
 class HelperTest < MiniTest::Spec
@@ -17,7 +18,8 @@ class HelperTest < MiniTest::Spec
   include ActionView::TestCase::Behavior
   register_spec_type(/Helper$/, self)
   include type: :feature
-  include WaitForAjax
+  # include WaitForAjax
+
 end
 # spec/support/wait_for_ajax.rb
 module WaitForAjax
@@ -32,5 +34,5 @@ module WaitForAjax
   end
 end
 
-RSpec.configure do |config|
-end
+# RSpec.configure do |config|
+# end

@@ -4,21 +4,6 @@ require 'application_system_test_case'
 class UsersTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
   include Warden::Test::Helpers
-  # CHROME_DRIVER = if ENV['HEADLESS']
-  #                   :selenium_chrome_headless
-  #                 else
-  #                   :selenium_chrome
-  #         end
-
-  setup do
-    @user = users(:one)
-    @user.add_role :admin
-    sign_in @user
-    @routes = Rails.application.routes
-  end
-  after do
-    Warden.test_reset!
-  end
 
   test 'user income ' do
     visit user_path(@user)
@@ -31,7 +16,7 @@ class UsersTest < ApplicationSystemTestCase
 
   test 'create a new User' do
     visit users_path
-    visit users_path
+
     find('#new-project').click
     within('#NewProject') do
       fill_in 'user_first_name', with: 'bob'
@@ -51,7 +36,6 @@ class UsersTest < ApplicationSystemTestCase
     find('.pay_rate').set(24)
     # find(".create-user").click
     find('input', class: 'create-user').click
-    # page.execute_script("$('form#new-user').submit()")
-    user = User.last
+
   end
 end
