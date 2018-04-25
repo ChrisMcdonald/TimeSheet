@@ -1,5 +1,4 @@
 class Github
-require 'pry'
   def initialize(gitname,options = {})
     @project = gitname
     @branch = options[:branch] if options[:branch].present?
@@ -18,6 +17,7 @@ require 'pry'
     url = URI.parse("https://api.github.com/repos/#{@project}/commits?sha=origin/features/chris&since=#{since_date}&until=#{until_date}")
     #
     # url = URI.parse("https://api.github.com/repos/#{@project}/commits?author=chris78323@gmail.com")
+    # binding.pry
     get_list(url)
   end
 
@@ -30,7 +30,7 @@ def  commits
     #curl https://api.github.com/repos/ChrisMcdonald/TimeSheet/commits?timesheet
 
     url = URI.parse("https://api.github.com/repos/#{@project}/commits?#{@branch}")
-    puts
+   
     get_list(url)
 end
 

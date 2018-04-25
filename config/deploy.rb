@@ -3,7 +3,7 @@
 # config valid for current version and patch releases of Capistrano
 lock '~> 3.10.0'
 
-set :application, 'Soupcloud'
+set :application, 'TimeSheet'
 set :repo_url, 'https://github.com/ChrisMcdonald/TimeSheet.git'
 set :user, 'chris'
 set :branch, 'timesheet'

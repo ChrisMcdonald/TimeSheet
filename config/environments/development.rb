@@ -23,25 +23,14 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
   config.serve_static_files = true
 
   # Show full error reports.
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
-    config.action_controller.perform_caching = false
-
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      'Cache-Control' => 'public, max-age=172800'
-    }
-  else
-    config.action_controller.perform_caching = false
-
-    config.cache_store = :null_store
-  end
+  config.cache_store = :null_store
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
