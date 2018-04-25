@@ -124,6 +124,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    database_cleaner (1.6.1)
     debase (0.2.2)
       debase-ruby_core_source (>= 0.10.2)
     debase-ruby_core_source (0.10.2)
@@ -391,6 +392,7 @@ DEPENDENCIES
   chartkick
   chromedriver-helper
   coffee-rails
+  database_cleaner
   debase
   devise
   faker
