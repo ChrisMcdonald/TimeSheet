@@ -14,5 +14,13 @@ module Devise3
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'Australia/Brisbane'
+
+    config.before_configuration do
+
+      ENV['git_client_id'] = '7d1d2a52f780c9df4e1e'
+      ENV['git_client_secret'] = '8ac07f2b185fdeb757307983aab075b697d5a2a7'
+
+    end
+
   end
 end

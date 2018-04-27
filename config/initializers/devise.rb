@@ -254,7 +254,7 @@ Devise.setup do |config|
   # config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
 
   config.omniauth :facebook, '176711186401841', '46b41e89d1242c9a3fb5e96f072b4284', redirect_uri:"#{ENV['server_url']}/admin/auth/facebook/callback", scope: ' email, user_friends'
-  config.omniauth :github, '7d1d2a52f780c9df4e1e', '8ac07f2b185fdeb757307983aab075b697d5a2a7', redirect_uri:"#{ENV['server_url']}/admin/auth/github/callback", scope: 'admin:gpg_key, repo',name: 'github'
+  config.omniauth :github, ENV.fetch('git_client_id'), ENV.fetch('git_client_secret'), redirect_uri:"#{ENV['server_url']}/admin/auth/github/callback", scope: 'admin:gpg_key, repo',name: 'github'
   config.omniauth :google_oauth2, '536781353623-c9ktfkho5qde96u55jb7l98pbddacu0s.apps.googleusercontent.com',
                   'XrK5tuirAdDS4cyJiR2zi_Mw',
                   redirect_uri: ENV['google_callback_url'], name: 'google',
