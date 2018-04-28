@@ -16,6 +16,10 @@ module Devise3
     config.time_zone = 'Australia/Brisbane'
 
     config.before_configuration do
+
+      ENV['git_client_id'] = 'fd5cd10d8bdff392350b'
+      ENV['git_client_secret'] = '0ff201111e7c9a47ec675aec8d9c3595344ff632'
+
     end
 
   end
