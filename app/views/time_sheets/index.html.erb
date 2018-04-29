@@ -9,4 +9,4 @@
 <%= my_calendar do |date| %>
  <%= date.strftime("%d %a %b ") %>
 <%end %>
-<%= Rails.env %>
+<%= debug ENV.to_h.to_yaml %>

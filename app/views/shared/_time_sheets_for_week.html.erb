@@ -7,8 +7,9 @@
     <tr class=" grey_background">
       <th>Employee</th>
       <th>Date worked</th>
-      <th>Rate</th>
       <th>Hours</th>
+      <th>Rate</th>
+      <th>Description</th>
       <th>Sub Total</th>
     </tr>
     <% work.each_with_index do |work, i| %>
@@ -17,8 +18,9 @@
         <span>
         <td><%= link_to "#{work.time_sheet.user.full_name}", time_sheet_path(work.time_sheet) %></td>
         <td><%= work.time_sheet.time_period.strftime("%A %b %d ") %></td>
-        <td><%= work.time_sheet.user.rate(work.time_sheet.time_period) %></td>
         <td>  <%= work.hour %> </td>
+        <td><%= work.time_sheet.user.rate(work.time_sheet.time_period) %></td>
+          <td><%= work.description %></td>
         <td>$<%= @total_for_user[i] %></td></span></tr>
     <% end %>
     <td></td>

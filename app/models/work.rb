@@ -12,8 +12,8 @@ class Work < ApplicationRecord
   end
 
   def self.uninvoiced_work(project_id)
-    select(:hour, :id, :time_sheet_id)
-      .where('works.project_id = ?', project_id).where('works.invoice_id IS ?', nil)
+    # select(:hour, :id, :time_sheet_id)
+    where('works.project_id = ?', project_id).where('works.invoice_id IS ?', nil)
   end
 
   def self.filter_buy_date(start_date, end_date)

@@ -4,6 +4,7 @@
     <th>Date worked</th>
     <th>Hours</th>
     <th>Rate</th>
+    <th>Description</th>
     <th>Sub Total</th>
 
 
@@ -14,6 +15,7 @@
         <td><%= work.time_sheet.time_period.strftime("%A %b %d ") %></td>
         <td><%= work.hour %></td>
         <td>$<%= work.time_sheet.user.rate(work.time_sheet.time_period) %></td>
+        <td><%= work.description %></td>
         <td>$<%= @row_total[i] %></td>
       </tr>
 
