@@ -1,7 +1,10 @@
 class Github
-  def initialize(gitname,branch ,options = {})
+
+
+  def initialize(gitname, branch, options = {})
+    @auth = ''
     @project = gitname
-    @branch = "sha=#{branch}"
+    @branch = "sha=#{options[:branch]}" if options[:branch].present?
     @day = options[:day] if options[:day].present?
     @auth = options[:token] if options[:token].present?
 
@@ -13,8 +16,6 @@ class Github
     since_date = date.utc.iso8601
     until_date = date + 1.day
     until_date = until_date.utc.iso8601
-    puts @branch
-    puts @project
     # url = URI.parse("https://api.github.com/repos/StephenKellyQLD/G2A/commits?sha=origin/featrues/chris,author=chris78323@gmail.com")
     url = URI.parse("https://api.github.com/repos/#{@project}/commits?#{@branch}&since=#{since_date}&until=#{until_date}")
     #
@@ -23,7 +24,7 @@ class Github
     get_list(url)
   end
 
-def  commits
+  def commits
 
     since_date = 2.weeks.ago #since=#{since_date}
     until_date = Time.now
@@ -32,14 +33,15 @@ def  commits
     #curl https://api.github.com/repos/ChrisMcdonald/TimeSheet/commits?timesheet
 
     url = URI.parse("https://api.github.com/repos/#{@project}/commits?#{@branch}")
-   
+
     get_list(url)
-end
+  end
 
 
   def branches
 
     url = URI.parse("https://api.github.com/repos/#{@project}/branches")
+    # url = URI.parse("https://api.github.com/repos/ChrisMcdonald/TimeSheet/branches")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     bra = Net::HTTP::Get.new(url.request_uri)
@@ -48,26 +50,30 @@ end
     branches = http.request(bra)
 
     branches = JSON.parse(branches.body)
-    branch_attribues = []
-    branches.each do |b|
+    branch_attribues = ['Select a Branch']
+    # begin
+      branches.each do |b|
       branch_attribues << b['name']
 
-    end
+      end
+    # rescue
+    #   branch_attribues = ['401 Unauthorized']
+    # end
     branch_attribues
+    end
+
+
+    private
+
+    def get_list(url)
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      req = Net::HTTP::Get.new(url.request_uri)
+      req["Accept"] = 'application/vnd.github.cloak-preview'
+      req["Authorization"] = "token #{@auth}" if @auth.present?
+      res = http.request(req)
+
+      commit_list = JSON.parse(res.body)
+      commit_list
+    end
   end
-
-
-  private
-
-  def get_list(url)
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    req = Net::HTTP::Get.new(url.request_uri)
-    req["Accept"] = 'application/vnd.github.cloak-preview'
-    req["Authorization"] = "token #{@auth}" if @auth.present?
-    res = http.request(req)
-
-    commit_list = JSON.parse(res.body)
-    commit_list
-  end
-end
