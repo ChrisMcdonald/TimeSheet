@@ -27,11 +27,11 @@ class TimeSheetsController < ApplicationController
   def index
     @user = current_user
 
-    if params[:user_id].present?
-      @time_sheets = TimeSheet.where(user_id: params[:user_id])
-    else
-      @time_sheets = TimeSheet.where(user: current_user)
-    end
+    @time_sheets = if params[:user_id].present?
+                     TimeSheet.where(user_id: params[:user_id])
+                   else
+                     TimeSheet.where(user: current_user)
+                   end
     @time_sheets
   end
 
@@ -41,15 +41,15 @@ class TimeSheetsController < ApplicationController
     options = {}
     @github = []
     @time_sheet.works.build if @time_sheet.works.count < 1
-    options[:token] = current_user.identities.find_by(provider: 'github').token rescue nil
-    options[:day] = @time_sheet.time_period
-    options[:branch] = 'origin/features/chris'
-    @time_sheet.projects.each {|project| @github << {name: project.name, data: Github.new(project.gitname, project.branch, options).commit_on_day} if project.present?}
+    options[:token] = current_user.identities.find_by(provider: 'github').token rescue ''
+    day = @time_sheet.time_period
+
+    github = Github.new(options)
+
+    @time_sheet.projects.each {|project| @github << {name: project.name, data: github.commit_on_day(day, project.gitname, project.branch, current_user.email)} if project.present?}
 
     # @github = @project.each { |project| Github.new(project.gitname, options).commit_on_day}
-
   end
-
   def current_day
     @time_sheet = TimeSheet.find_or_create_by(time_period: params[:time_period], user: current_user)
     if @time_sheet.id.nil?

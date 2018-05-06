@@ -4,10 +4,19 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy hours_by_day hours_by_date_range hours_by_user time_sheets_for_week]
   before_action :authenticate_user!
   load_and_authorize_resource
+  require 'github'
 
   def index
     @projects = Project.all.paginate(page: params[:page], per_page: 10).reverse_order
     @project = Project.new
+
+
+    auth = current_user.identities.find_by(provider: 'github').token rescue nil
+    repos = repos(auth)
+    @repo_list = repos.map do |r|
+      [r['name'], r['id']]
+    end
+
   end
 
   # GET /projects/1
@@ -42,7 +51,11 @@ class ProjectsController < ApplicationController
   end
 
   # GET /projects/1/edit
-  def edit; end
+  def edit
+    auth = current_user.identities.find_by(provider: 'github').token rescue nil
+    repos = repos(auth)
+    @repo_list = repos.map {|r| [r['full_name'], r['id']]}
+  end
 
   # POST /projects
   def create
@@ -108,4 +121,20 @@ class ProjectsController < ApplicationController
   #   flash[:error] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
   #   redirect_to(request.referrer || root_path)
   # end
+
+  private
+
+  def repos(auth)
+    url = URI.parse("https://api.github.com/user/repos")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    req = Net::HTTP::Get.new(url.request_uri)
+    req["Accept"] = 'application/vnd.github.cloak-preview'
+    req["Authorization"] = "token #{auth}" if auth.present?
+    res = http.request(req)
+
+    repo_list = JSON.parse(res.body)
+    repo_list
+
+  end
 end

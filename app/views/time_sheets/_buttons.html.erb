@@ -1,6 +1,8 @@
 <div class="box">
   <div class="btn-group"></div>
-  <%= link_to 'Back', root_path, class: 'btn btn-default' %>
+  <%= link_to 'Calender', root_path, class: 'btn btn-default' %>
   <%= link_to 'Hours', time_sheet_path(@time_sheet), class: 'btn btn-default' %>
   <%= link_to 'Travel', time_sheet_travels_path(@time_sheet), class: 'btn btn-default' %>
+  <%= link_to 'Next Day ', current_day_path(@time_sheet.time_period + 1.day), class: 'btn btn-default' %>
+  <%= link_to 'Previous Day ', current_day_path(@time_sheet.time_period - 1.day), class: 'btn btn-default' %>
 </div>

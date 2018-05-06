@@ -11,9 +11,11 @@ class SocialInfoController < ApplicationController
     @project = Project.find(params[:project]) if params[:project].present?
 
     options = {}
+    options[:gitname] = @project.gitname
     options[:branch] = params[:branch] if params[:branch].present?
     options[:token] = current_user.identities.find_by(provider: 'github').token rescue nil
-    @github = Github.new(@project.gitname, options[:branch], options)
+    @github = Github.new(options)
+    @commits = @github.commits(options)
 
     respond_to do |format|
       format.html

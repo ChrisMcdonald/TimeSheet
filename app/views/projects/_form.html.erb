@@ -33,7 +33,17 @@
               <%= f.select(:customer_id, Customer.all.collect {|c| [c.full_name, c.id]},{},class: 'btn btn-default') %>
             </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-sm-1">
+              <%= f.label :gitname, class: "control-label" %>
+            </div>
+            <div class=" col-sm-7">
+              <%= f.select(:gitname, options_for_select(@repo_list, params[:gitname]), class: 'btn btn-default form-control') %>
+            </div>
+          </div>
+
+
+          <div>
           <div class="row">
             <div class="form-group">
             <div class="col-sm-offset-1 col-sm-7 ">

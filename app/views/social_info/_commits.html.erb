@@ -5,7 +5,7 @@
     <th>Date</th>
     <th>Link</th>
   </tr>
-  <% @github.commits.each do |v, i| %>
+  <% @commits.each do |v, i| %>
     <tr>
       <td>  <%= v['commit']['message'] %></td>
       <td>  <%= Time.parse(v['commit']['author']['date']).strftime("%A %b/%d/%Y") %></td>
