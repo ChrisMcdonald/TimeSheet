@@ -120,3 +120,5 @@ test/jobs/
 /config/deploy/
 /config/database.yml
 !/db/migrate/20180209021357_add_travel_date_to_travels.rb
+/config/deploy.rb
+/config/application.rb

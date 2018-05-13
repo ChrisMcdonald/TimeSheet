@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class InvoicesController < ApplicationController
+
+
   before_action :set_invoice, only: %i[show edit update destroy]
   before_action :authenticate_user!
   load_and_authorize_resource only: %i[index show new]
@@ -21,7 +23,16 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "#{@invoice.user.full_name} -invoice- #{@invoice.id}", header: {right: '[page] of [topage]'}, page_size: 'A4', dpi: 300
+        render pdf: "#{@invoice.user.full_name} -invoice- #{@invoice.id}",
+               header: {right: '[page] of [topage]'},
+               page_size: 'A4',
+               dpi: 900,
+               margin: {
+                   top: 0,
+                   bottom: 0,
+                   left: 0,
+                   right: 0}
+
       end
     end
   end

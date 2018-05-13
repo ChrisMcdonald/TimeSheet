@@ -11,10 +11,66 @@
 @import "theme";
 tr.pdf-tr  {
   background: lightblue;
-  padding: 5px;
-}td.pdf-td  {
-   padding: 5px;
+  padding: 20px;
+  margin: 20px;
+
 }
-div.alwaysbreak { page-break-before: always; }
+
+td.pdf-td {
+
+}
+
+table-top {
+  position: absolute;
+  top: 10px;
+}
+
+.work-table {
+
+  padding: 0px;
+  margin: 0px;
+
+  th, tr, td {
+    font-size: .7em;
+    padding: 0px;
+    margin: 0px;
+    height: 5px;
+    border: 0.5px solid lightgray;
+
+  }
+}
+
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+div.alwaysbreak {
+  page-break-before: always;
+  h1 {
+    font-size: 1.2em
+
+  }
+  h2 {
+    font-size: 1em
+  }
+  h4 {
+    font-size: .8em
+  }
+  p {
+    font-size: .5em;
+  }
+
+}
 div.nobreak:before { clear:both; }
-div.nobreak { page-break-inside: avoid; }
+
+div.nobreak {
+  page-break-inside: avoid;
+}

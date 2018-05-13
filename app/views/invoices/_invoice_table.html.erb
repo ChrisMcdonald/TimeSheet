@@ -1,4 +1,4 @@
-<table class="table table-bordered table-striped" style="width: 100%">
+<table class="table table-sm table-striped  work-table center" style="width: 90%;  ">
   <tr class="grey_background">
     <th>Employee</th>
     <th>Date worked</th>
@@ -20,14 +20,13 @@
       </tr>
 
   <% end %>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td>total $<%= @total %> </td>
-
   <tr>
-  </tr>
-  </td>
+    <td></td>
+    <td></td>
+    <td>total hours <%= @works.sum(:hour) %></td>
+    <td></td>
+    <td></td>
+    <td>total $<%= @total %> </td>
+
   </tr>
 </table>

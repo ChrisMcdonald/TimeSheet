@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class Work < ApplicationRecord
+  resourcify
+
+  include Calculate
   belongs_to :time_sheet
   belongs_to :project
   belongs_to :invoice
-  resourcify
   validates_presence_of :hour
 
   def self.total_hours_for_project(project_id)
