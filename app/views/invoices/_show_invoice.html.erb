@@ -19,19 +19,24 @@
 </tr>
 <tr>
   <td colspan="2">
-    <div class="pull-right"><h1>Balance: $<%= @total %></h1></div>
-
+    <div class="pull-right">
+      <h1>Balance: $<%= @total %></h1>
+    </div>
+  </td>
+</tr>
+    <tr>
+      <td>
     <h2>Bill to: <%= @invoice.project.name %></h2>
-    <p><%= @invoce.customer_first_name rescue '' %> <%= @invoice.customer_last_name rescue '' %></p>
+        <p><%= @invoice.customer_first_name rescue '' %> <%= @invoice.customer_last_name rescue '' %></p>
     <p><%= @invoice.customer_address %> <br>
       ABN: <%= @invoice.customer_abn %></p>
 
-    <p>
-    <h2>From: <%= @invoice.owner_full_name %> </h2>
-    <%= @invoice.owner_address %> <br>
-    ABN: <%= @invoice.owner_abn %>
-    <p>
 
+    <h2>From: <%= @invoice.owner_full_name %> </h2>
+        <p> <%= @invoice.owner_address %> <br>
+          ABN: <%= @invoice.owner_abn %></p>
+      </td>
+    </tr>
 <tr>
   <td><p><strong>Payment details</strong>
     <strong> Bank: </strong>Suncorp
