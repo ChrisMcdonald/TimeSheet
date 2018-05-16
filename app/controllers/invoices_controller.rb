@@ -23,7 +23,7 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "#{@invoice.user.full_name} -invoice- #{@invoice.id}",
+        render pdf: "invoice_#{@invoice.id}_#{@invoice.user.first_name}_#{@invoice.user.last_name}_#{@works.first.time_sheet.time_period.strftime('%d-%m-%Y')}_#{@works.last.time_sheet.time_period.strftime("%d-%m-%Y")}",
                header: {right: '[page] of [topage]'},
                page_size: 'A4',
                dpi: 900,
@@ -112,7 +112,7 @@ class InvoicesController < ApplicationController
   def send_invoice
 
     invoice = params[:invoice]
-    InvoiceMailer.invoice_email(invoice).deliver_now
+    InvoiceMailer.invoice_email(invoice).deliver_later
     flash[:notice] = 'Invoice  sent!'
     redirect_to invoice_path(invoice)
   end

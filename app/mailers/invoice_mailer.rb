@@ -32,7 +32,7 @@ class InvoiceMailer < ApplicationMailer
         dpi: 300
     )
     #  # save PDF to disk
-    pdf_path = Tempfile.new("#{@invoice.id}_#{Date.today.iso8601}.pdf")
+    pdf_path = Tempfile.new("#{@invoice.id}_#{Date.today}.pdf")
     File.open(pdf_path, 'wb') do |file|
       file.write doc_pdf
       file.close
@@ -43,7 +43,7 @@ class InvoiceMailer < ApplicationMailer
     # The report has now been saved elsewhere using Paperclip; we don't need to store it locally
 
 
-    attachments["invoice.pdf"] = {mime_type: 'application/pdf', content: File.read(pdf_path)}
+    attachments["invoice_#{@invoice.id}_#{@invoice.user.first_name}_#{@invoice.user.last_name}_#{@works.first.time_sheet.time_period.strftime('%d-%m-%Y')}_#{@works.last.time_sheet.time_period.strftime("%d-%m-%Y")}.pdf"] = {mime_type: 'application/pdf', content: File.read(pdf_path)}
 
     mail(to: @customer.email, subject: "Invoice from #{@customer.user.full_name}")
     File.delete(pdf_path) if File.exist?(pdf_path)
