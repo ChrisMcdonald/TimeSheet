@@ -63,6 +63,7 @@ body {
 
   .day {
     height: 80px;
+
   }
 
   .wday-0 {
@@ -80,8 +81,8 @@ body {
   }
 
   .today {
-    background: lightgreen;
-    z-index: -1;
+    background-color: lightgreen;
+    z-index: -2;
   }
 
 
