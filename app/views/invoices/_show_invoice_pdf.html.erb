@@ -1,11 +1,11 @@
 <div class="alwaysbreak" style="padding: 10px">
   <table style="width: 100%; ">
-    <tr class=" ">
-      <td class="p"><h1>Tax Invoice</h1>
+    <tr class="pdf-tr ">
+      <td class="pdf-td"><h1>Tax Invoice</h1>
         <h2>For the <%= @invoice.project.name %> Project</h2>
 
       </td>
-      <td class="">
+      <td class="pdf-td">
         <div align="right">
           <h4>Invoice number#  <%= @invoice.id %></h4>
 
@@ -45,7 +45,7 @@
 </tr>
 
 <tr>
-  <td colspan="2" style="">
+  <td colspan="2" style="text-align: center; vertical-align: middle;">
     <%= render 'invoices/invoice_table.html.erb' %>
 <tr>
 
@@ -53,7 +53,7 @@
 </table>
 
 
-  <div class="">
+  <div class="footer">
     <hr>
     <p style="font-size: .5em ; padding-left: 10px; padding-right: 20px"> Please pay you invoice with in 2 week or men
       with guns will come to you house and take possession of you dog</p>
