@@ -44,12 +44,13 @@ class TimeSheetsController < ApplicationController
     options[:token] = current_user.identities.find_by(provider: 'github').token rescue ''
     day = @time_sheet.time_period
 
-    github = Github.new(options)
+    # github = Github.new(options)
 
-    @time_sheet.projects.each {|project| @github << {name: project.name, data: github.commit_on_day(day, project.gitname, project.branch, current_user.email)} if project.present?}
+    # @time_sheet.projects.each {|project| @github << {name: project.name, data: github.commit_on_day(day, project.gitname, project.branch, current_user.email)} if project.present?}
 
     # @github = @project.each { |project| Github.new(project.gitname, options).commit_on_day}
   end
+
   def current_day
     @time_sheet = TimeSheet.find_or_create_by(time_period: params[:time_period], user: current_user)
     if @time_sheet.id.nil?
