@@ -74,7 +74,7 @@
           <ul class="menu">
             <% current_user.chatrooms.each do |chatroom| %>
 
-                <li><%= link_to chatroom.title, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %></li>
+                <li><%= link_to chatroom.title, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id},class: 'no-decoration' %></li>
             <% end %>
           </ul>
         </div>
@@ -98,7 +98,9 @@
 <!-- Copyright Start  -->
 
 <script>
-
+    window.addEventListener("load", function() {
+        window.scrollTo(0, 1);
+    });
 </script>
 
 </html>
