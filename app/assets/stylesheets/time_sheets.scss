@@ -3,6 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
 }
+.no-decoration{
+  text-decoration: none;
+  pointer-events:none;
+
+}
 .simple-calendar {
    .calendar-heading {
      background-color: aquamarine;
@@ -16,11 +21,9 @@ body {
 
   }
 
-  .no-decoration{
-    text-decoration: none;
-    pointer-events:none;
 
-  }
+
+
 
   table {
     -webkit-border-horizontal-spacing: 0px;

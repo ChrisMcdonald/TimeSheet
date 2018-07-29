@@ -52,22 +52,22 @@
         <div id="menuhides" class="box menu-hide-mobile col-md-2 col-xs-0 sbar" style="height:100%;position: fixed; z-index: 2;">
           <ul class="menu">
             <% if can? :read, TimeSheet %>
-                <li><%= link_to 'My Timesheets', time_sheets_path(current_user) %></li>
+                <li><%= link_to 'My Timesheets', time_sheets_path(current_user), class: 'no-decoration' %></li>
             <% end %>
             <% if can? :read, Invoice %>
-                <li><%= link_to 'My Invoices', invoices_path(current_user) %></li>
+                <li><%= link_to 'My Invoices', invoices_path(current_user), class: 'no-decoration' %></li>
             <% end %>
             <% if can? :read, Project %>
-                <li><%= link_to 'My Projects', projects_path %></li>
+                <li><%= link_to 'My Projects', projects_path, class: 'no-decoration'%></li>
             <% end %>
             <% if can? :read, Customer %>
-                <li><%= link_to 'My Customers', customers_path %></li>
+                <li><%= link_to 'My Customers', customers_path , class: 'no-decoration'%></li>
             <% end %>
             <% if can? :read, User %>
-                <li><%= link_to 'My Users', users_path %></li>
+                <li><%= link_to 'My Users', users_path, class: 'no-decoration' %></li>
             <% end %>
-            <li><%= link_to 'Social Media Accounts', identities_path %></li>
-            <li><%= link_to 'Chat Rooms', chatrooms_path %></li>
+            <li><%= link_to 'Social Media Accounts', identities_path, class: 'no-decoration' %></li>
+            <li><%= link_to 'Chat Rooms', chatrooms_path , class: 'no-decoration'%></li>
           </ul>
 
           <h5>Chat Rooms </h5>
