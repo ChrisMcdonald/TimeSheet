@@ -41,14 +41,14 @@
             <% if timesheet.has_time_sheet? %>
 
               <% if Work.find_by(time_sheet: timesheet).invoice.present? %>
-                  <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-invoice'] do %>
+                  <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-invoice shadow'] do %>
                     <%= link_to current_day_path(day) do %>
                       <% block.call day, sorted_events.fetch(day, []) %>
                     <% end %>
                   <% end %>
               <% else %>
 
-                  <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-time-sheet'] do %>
+                  <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-time-sheet shadow'] do %>
                     <%= link_to current_day_path(day) do %>
                       <% block.call day, sorted_events.fetch(day, []) %>
                     <% end %>
@@ -57,7 +57,7 @@
               <% end %>
 
             <% else %>
-              <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <%= content_tag :td, class: [calendar.td_classes_for(day),'shadow'] do %>
                 <%= link_to current_day_path(day) do %>
                   <% block.call day, sorted_events.fetch(day, []) %>
 
