@@ -1,10 +1,27 @@
 <div class="simple-calendar ">
-  <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-    <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
-    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
-  </div>
-  <div class="table-responsive"></div>
+  <div class="calendar-heading row ">
+      <div  class='col-lg-4 col-md-4 col-sm-4 col-xs-4'>
+
+    <%= link_to  calendar.url_for_previous_view , style: ' text-align:center' do %>
+          <i class="fa fa-angle-left fa-lg"></i>
+
+          <%= t('simple_calendar.previous', default: 'Previous') %>
+        <% end %>
+      </div>
+    <span class="calendar-title col-lg-4 col-md-4 col-sm-4 col-xs-4" ><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
+      <div  class='col-lg-4 col-md-4 col-sm-4 col-xs-4'>
+
+      <%= link_to  calendar.url_for_next_view, style: 'float:right; text-align:right' do %>
+
+          <%= t('simple_calendar.next', default: 'Next') %>
+          <i class="fa fa-angle-right fa-lg"></i>
+
+      <% end %>
+      </div>
+    </div>
+  <div style="width: 100%;">
+  <h2>Time Sheets For <%= @time_sheets.first.user.full_name rescue '' %></h2>
+
   <table class="table ">
     <thead>
     <tr>
@@ -19,11 +36,11 @@
       <tr>
 
         <% week.each do |day| %>
-          <% t = @time_sheets.includes(:works).find_or_initialize_by(time_period: day) %>
+          <% timesheet = @time_sheets.includes(:works).find_or_initialize_by(time_period: day) %>
 
-            <% if t.has_time_sheet? %>
+            <% if timesheet.has_time_sheet? %>
 
-              <% if Work.find_by(time_sheet: t).invoice.present? %>
+              <% if Work.find_by(time_sheet: timesheet).invoice.present? %>
                   <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-invoice'] do %>
                     <%= link_to current_day_path(day) do %>
                       <% block.call day, sorted_events.fetch(day, []) %>
@@ -59,6 +76,7 @@
     <% end %>
     </tbody>
   </table>
+</div>
 </div>
 </div>
 <script>

@@ -1,13 +1,14 @@
-<h1>Time Sheets For <%= @time_sheets.first.user.full_name rescue '' %></h1>
-<% if can? :read, User %>
-  <%= form_tag '', method: :get,  class: 'form-group row' do %>
-  <div class="col-lg-4">
-    <%= select_tag(:user_id, options_for_select(User.select_attributes), class: ' btn btn-default form-control') %>
-  </div>
-    <%= submit_tag 'Search', class: 'btn btn-default' %>
-  <% end %>
-<% end %>
 
-<%= my_calendar do |date| %>
- <%= date.strftime("%d %a %b ") %>
-<%end %>
+<%# if can? :read, User %>
+  <%#= form_tag '', method: :get,  class: 'form-group row' do %>
+<!--  <div class="col-lg-4">-->
+    <%#= select_tag(:user_id, options_for_select(User.select_attributes), class: ' btn btn-default form-control') %>
+<!--  </div>-->
+    <%#= submit_tag 'Search', class: 'btn btn-default' %>
+  <%# end %>
+<%# end %>
+  <%= my_calendar do |date| %>
+    <%= date.strftime("%d %a %b ") %>
+  <%end %>
+
+
