@@ -69,7 +69,7 @@ gem 'redis', '~> 3.3'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'capistrano'
+gem 'capistrano', '~> 3.10.0'
 gem 'capistrano-passenger'
 gem 'capistrano-rails'
 gem 'capistrano-rails-console'
@@ -105,7 +105,7 @@ group :test do
   gem 'faker'
   gem 'selenium-webdriver'
   gem 'simplecov'
-  gem 'sqlite3'
+  # gem 'sqlite3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
