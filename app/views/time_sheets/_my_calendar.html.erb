@@ -53,19 +53,15 @@
                       <% block.call day, sorted_events.fetch(day, []) %>
                     <% end %>
                   <% end %>
-
               <% end %>
 
             <% else %>
               <%= content_tag :td, class: [calendar.td_classes_for(day),'shadow'] do %>
                 <%= link_to current_day_path(day), class: 'no-decoration' do %>
                   <% block.call day, sorted_events.fetch(day, []) %>
-
                  <% end %>
                <% end %>
-
             <% end %>
-
         <% end %>
         <%# if can? :read, User %>
 <!--          <td>-->

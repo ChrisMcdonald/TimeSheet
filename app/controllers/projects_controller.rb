@@ -122,9 +122,8 @@ class ProjectsController < ApplicationController
   #   redirect_to(request.referrer || root_path)
   # end
 
-  private
-
   def repos(auth)
+    repo_list = ['error']
     url = URI.parse("https://api.github.com/user/repos")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
@@ -133,8 +132,9 @@ class ProjectsController < ApplicationController
     req["Authorization"] = "token #{auth}" if auth.present?
     res = http.request(req)
 
-    repo_list = JSON.parse(res.body)
+    repo_list = JSON.parse(res.body) if res.message == "OK"
     repo_list
+    end
 
-  end
+
 end

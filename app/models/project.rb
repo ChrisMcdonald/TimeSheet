@@ -6,7 +6,7 @@ class Project < ApplicationRecord
   # has_many :invoices belongs_to :time_sheet
   attr_accessor :start_date, :end_date
   has_many :works, dependent: :destroy
-  belongs_to :customer, dependent: :destroy
+  belongs_to :customer
   belongs_to :user, dependent: :destroy
 
   def total_project_users(time)
