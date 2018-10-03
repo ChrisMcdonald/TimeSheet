@@ -44,16 +44,17 @@ class Github
     bra['Authorization'] = "token #{@auth}"
     branches = http.request(bra)
 
-    branches = JSON.parse(branches.body)
-    branch_attribues = ['Select a Branch']
-    # begin
-      branches.each do |b|
-      branch_attribues << b['name']
-
+    branches_json = JSON.parse(branches.body)
+     branch_attribues = ['Select a Branch']
+    begin
+      branches_json.each do |b|
+      branch_attribues << b['name'] if b['name'].present?
       end
-    # rescue
-    #   branch_attribues = ['401 Unauthorized']
-    # end
+
+
+    rescue
+      branch_attribues = ['401 Unauthorized']
+    end
     branch_attribues
   end
 
