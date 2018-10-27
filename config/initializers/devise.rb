@@ -260,7 +260,7 @@ Devise.setup do |config|
 
   config.omniauth :facebook, ENV['FACEBOOK_CLIENT_ID'], ENV['FACEBOOKE_CLIENT_SECRET'], redirect_uri:"#{ENV['server_url']}/admin/auth/facebook/callback", scope: ' email, user_friends'
   config.omniauth :github, ENV['GIT_CLIENT_ID'], ENV['GIT_CLIENT_SECRET'], redirect_uri:"#{ENV['server_url']}/admin/auth/github/callback", scope: 'admin:gpg_key, repo',name: 'github'
-  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'],ENV['GOOGLE_CLIENT_SECRET']  'XrK5tuirAdDS4cyJiR2zi_Mw',
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'],ENV['GOOGLE_CLIENT_SECRET'],
                   redirect_uri: ENV['google_callback_url'], name: 'google',
                   scope: 'email, https://www.googleapis.com/auth/plus.login'
   # #
