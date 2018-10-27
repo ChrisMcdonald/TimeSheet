@@ -15,7 +15,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'chris78323@gmail.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -258,10 +258,9 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   # config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
 
-  config.omniauth :facebook, '176711186401841', '46b41e89d1242c9a3fb5e96f072b4284', redirect_uri:"#{ENV['server_url']}/admin/auth/facebook/callback", scope: ' email, user_friends'
+  config.omniauth :facebook, ENV['FACEBOOK_CLIENT_ID'], ENV['FACEBOOKE_CLIENT_SECRET'], redirect_uri:"#{ENV['server_url']}/admin/auth/facebook/callback", scope: ' email, user_friends'
   config.omniauth :github, ENV['GIT_CLIENT_ID'], ENV['GIT_CLIENT_SECRET'], redirect_uri:"#{ENV['server_url']}/admin/auth/github/callback", scope: 'admin:gpg_key, repo',name: 'github'
-  config.omniauth :google_oauth2, '536781353623-c9ktfkho5qde96u55jb7l98pbddacu0s.apps.googleusercontent.com',
-                  'XrK5tuirAdDS4cyJiR2zi_Mw',
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'],ENV['GOOGLE_CLIENT_SECRET']  'XrK5tuirAdDS4cyJiR2zi_Mw',
                   redirect_uri: ENV['google_callback_url'], name: 'google',
                   scope: 'email, https://www.googleapis.com/auth/plus.login'
   # #
