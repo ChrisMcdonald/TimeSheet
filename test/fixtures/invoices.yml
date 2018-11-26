@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  project: one
+invoicesone:
+  user: usersone
+  project: projectsone
   owner_first_name: <%= Faker::Name.first_name %>
   owner_last_name: <%= Faker::Name.last_name %>
   owner_email: <%= Faker::Internet.email %>
@@ -24,9 +24,9 @@ one:
   customer_abn: <%= Faker::Number.number(10) %>
   invoice_date: <%= Date.today %>
 
-two:
-  user: two
-  project: two
+invoicestwo:
+  user: userstwo
+  project: projectstwo
   owner_first_name: <%= Faker::Name.first_name %>
   owner_last_name: <%= Faker::Name.last_name %>
   owner_email: <%= Faker::Internet.email %>
@@ -45,6 +45,5 @@ two:
   customer_state: <%= Faker::Address.state %>
   customer_country: <%= Faker::Address.country %>
   customer_post_code: <%= Faker::Address.postcode %>
-  customer_abn: <%= Faker.Number.number(10)
-  customer_id: 2
+  customer_abn: <%= Faker::Number.number(10) %>
 

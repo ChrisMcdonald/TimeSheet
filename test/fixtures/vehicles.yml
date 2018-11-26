@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+vehiclesone:
   rego_no: MyString
 
-two:
+vehiclestwo:
   rego_no: MyString

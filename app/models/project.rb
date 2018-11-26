@@ -5,9 +5,10 @@ class Project < ApplicationRecord
   include Calculate
   # has_many :invoices belongs_to :time_sheet
   attr_accessor :start_date, :end_date
-  has_many :works, dependent: :destroy
-  belongs_to :customer
+  has_many :time_sheets, dependent: :destroy
+  belongs_to :customer , dependent: :destroy
   belongs_to :user, dependent: :destroy
+
 
   def total_project_users(time)
     total = []
@@ -46,8 +47,7 @@ class Project < ApplicationRecord
   end
 
   def all_time_sheets
-    TimeSheet.joins(works: :project).select('works.hour', :project_id, :id, :user_id, :time_period)
-             .where('works.project_id = ?', id)
+    TimeSheet.where('project_id = ?', id)
     end
 
   def info_for_invoice

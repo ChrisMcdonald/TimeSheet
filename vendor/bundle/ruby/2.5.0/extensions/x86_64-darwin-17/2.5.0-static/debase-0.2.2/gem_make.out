@@ -1,0 +1,18 @@
+current directory: /Users/mrc/RubymineProjects/LogginTracker/vendor/bundle/ruby/2.5.0/gems/debase-0.2.2/ext/attach
+/Users/mrc/.rbenv/versions/2.5.0/bin/ruby -r ./siteconf20181004-47304-4dgycy.rb extconf.rb
+checking for vm_core.h... no
+checking for vm_core.h... no
+checking for vm_core.h... yes
+creating Makefile
+
+current directory: /Users/mrc/RubymineProjects/LogginTracker/vendor/bundle/ruby/2.5.0/gems/debase-0.2.2/ext/attach
+make "DESTDIR=" clean
+
+current directory: /Users/mrc/RubymineProjects/LogginTracker/vendor/bundle/ruby/2.5.0/gems/debase-0.2.2/ext/attach
+make "DESTDIR="
+compiling attach.c
+linking shared-object attach.bundle
+
+current directory: /Users/mrc/RubymineProjects/LogginTracker/vendor/bundle/ruby/2.5.0/gems/debase-0.2.2/ext/attach
+make "DESTDIR=" install
+/opt/local/bin/ginstall -c -m 0755 attach.bundle ./.gem.20181004-47304-j3al2a

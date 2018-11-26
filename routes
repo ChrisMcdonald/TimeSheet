@@ -47,7 +47,15 @@ projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:
                                   PATCH    /works/:id(.:format)                                   works#update
                                   PUT      /works/:id(.:format)                                   works#update
                                   DELETE   /works/:id(.:format)                                   works#destroy
-                     send_invoice GET      /send_invoice(.:format)                                invoice#send_invoice
+                     send_invoice GET      /send_invoice(.:format)                                invoices#send_invoice
+                social_info_index GET      /social_info(.:format)                                 social_info#index
+                                  POST     /social_info(.:format)                                 social_info#create
+                  new_social_info GET      /social_info/new(.:format)                             social_info#new
+                 edit_social_info GET      /social_info/:id/edit(.:format)                        social_info#edit
+                      social_info GET      /social_info/:id(.:format)                             social_info#show
+                                  PATCH    /social_info/:id(.:format)                             social_info#update
+                                  PUT      /social_info/:id(.:format)                             social_info#update
+                                  DELETE   /social_info/:id(.:format)                             social_info#destroy
       new_chatroom_chatroom_users GET      /chatrooms/:chatroom_id/chatroom_users/new(.:format)   chatroom_users#new
      edit_chatroom_chatroom_users GET      /chatrooms/:chatroom_id/chatroom_users/edit(.:format)  chatroom_users#edit
           chatroom_chatroom_users GET      /chatrooms/:chatroom_id/chatroom_users(.:format)       chatroom_users#show
@@ -88,7 +96,15 @@ projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:
                                   PATCH    /time_sheets/:id(.:format)                             time_sheets#update
                                   PUT      /time_sheets/:id(.:format)                             time_sheets#update
                                   DELETE   /time_sheets/:id(.:format)                             time_sheets#destroy
-                      current_day GET      /current_day/:time_period(.:format)                    time_sheets#current_day
+                      current_day GET      /day/:time_period/project/:project_id(.:format)        days#edit
+                current_day_index GET      /days(.:format)                                        days#index {:params=>[:time_period, :project_id]}
+                                  POST     /days(.:format)                                        days#create {:params=>[:time_period, :project_id]}
+                  new_current_day GET      /days/new(.:format)                                    days#new {:params=>[:time_period, :project_id]}
+                 edit_current_day GET      /days/:id/edit(.:format)                               days#edit {:params=>[:time_period, :project_id]}
+                                  GET      /days/:id(.:format)                                    days#show {:params=>[:time_period, :project_id]}
+                                  PATCH    /days/:id(.:format)                                    days#update {:params=>[:time_period, :project_id]}
+                                  PUT      /days/:id(.:format)                                    days#update {:params=>[:time_period, :project_id]}
+                                  DELETE   /days/:id(.:format)                                    days#destroy {:params=>[:time_period, :project_id]}
                  customer_details GET      /customers/:customer_id/details(.:format)              customers#details
                         customers GET      /customers(.:format)                                   customers#index
                                   POST     /customers(.:format)                                   customers#create
@@ -110,12 +126,14 @@ projects_time_sheet_for_week_show GET      /projects/time_sheet_for_week/show(.:
                                   PATCH    /projects/:id(.:format)                                projects#update
                                   PUT      /projects/:id(.:format)                                projects#update
                                   DELETE   /projects/:id(.:format)                                projects#destroy
-                                           /cable                                                 #<ActionCable::Server::Base:0x00007fd113f1f8d8 @mutex=#<Monitor:0x00007fd113f1f8b0 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x00007fd113f1f860>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
+                                           /cable                                                 #<ActionCable::Server::Base:0x00007fa542967a50 @mutex=#<Monitor:0x00007fa542967a00 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x00007fa542967848>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
                  new_user_session GET      /admin/sign_in(.:format)                               users/sessions#new
                      user_session POST     /admin/sign_in(.:format)                               users/sessions#create
              destroy_user_session DELETE   /admin/sign_out(.:format)                              users/sessions#destroy
  user_facebook_omniauth_authorize GET|POST /admin/auth/facebook(.:format)                         users/omniauth_callbacks#passthru
   user_facebook_omniauth_callback GET|POST /admin/auth/facebook/callback(.:format)                users/omniauth_callbacks#facebook
+   user_github_omniauth_authorize GET|POST /admin/auth/github(.:format)                           users/omniauth_callbacks#passthru
+    user_github_omniauth_callback GET|POST /admin/auth/github/callback(.:format)                  users/omniauth_callbacks#github
    user_google_omniauth_authorize GET|POST /admin/auth/google(.:format)                           users/omniauth_callbacks#passthru
     user_google_omniauth_callback GET|POST /admin/auth/google/callback(.:format)                  users/omniauth_callbacks#google
                 new_user_password GET      /admin/password/new(.:format)                          devise/passwords#new

@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+timesheetsone:
   time_period: <%=2.weeks.ago%>
-  user: one
+  user: usersone
 
-two:
+timesheetstwo:
   time_period: <%=Date.today %>
-  user: one
+  user: usersone

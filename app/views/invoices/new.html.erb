@@ -38,9 +38,9 @@
       </tr>
       <tr>
         <td colspan="2">
-          <h2>TO: <%= @project.customer.full_name %></h2>
-          <p><%= @project.customer.address %> <br>
-            ABN: <%= @project.customer.abn %></p>
+          <h2>TO: <%= @project.try(:customer).try(:full_name) %></h2>
+          <p><%= @project.try(:customer).try(:address) %> <br>
+            ABN: <%= @project.try(:customer).try(:abn) %></p>
 
           <p>
           <h2><%= current_user.full_name %> </h2>

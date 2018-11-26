@@ -2,10 +2,10 @@
 
 class Travel < ApplicationRecord
   resourcify
-  belongs_to :user
-  belongs_to :project
-  belongs_to :time_sheet
-  belongs_to :vehicle
+  belongs_to :user , dependent: :destroy
+  belongs_to :project , dependent: :destroy
+  belongs_to :time_sheet , dependent: :destroy
+  belongs_to :vehicle , dependent: :destroy
 
   validates_presence_of :od_finish, :od_start, :vehicle
   validate :od_start_cannot_be_greater_than_od_finish

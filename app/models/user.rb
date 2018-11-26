@@ -2,16 +2,18 @@ class User < ApplicationRecord
   resourcify
   rolify
   include Calculate
+  has_many :customers, dependent: :destroy
 
-  has_many :user_pay_obligations
-  has_many :travels
-  has_many :time_travel, through: :time_sheets, foreign_key: :user_id, source: :travels
-  has_many :projects
-  has_many :time_sheets
-  has_many :time_work, through: :time_sheets, foreign_key: :user_id, source: :works
-  has_many :project_work, through: :projects, foreign_key: :user_id, source: :works
-  has_many :chatroom_users
-  has_many :chatrooms, through: :chatroom_users
+  has_many :user_pay_obligations, dependent: :destroy, class_name: 'User::PayObligation'
+  has_many :travels , dependent: :destroy
+  has_many :projects , dependent: :destroy
+  has_many :time_sheets , dependent: :destroy
+  has_many :time_travel, through: :time_sheets, foreign_key: :user_id, source: :travels , dependent: :delete_all
+  has_many :works,dependent: :destroy
+  # has_many :time_works , dependent: :destroy
+  has_many :projects , dependent: :destroy
+  has_many :chatroom_users , dependent: :destroy
+  has_many :chatrooms, through: :chatroom_users , dependent: :destroy
   has_many :messages, dependent: :destroy
 
   # has_many :work_pro, through: :projects, source: :works
@@ -73,10 +75,6 @@ class User < ApplicationRecord
   def pay_per_project(project_id)
     # self.works.find_by project_id: project_id
     project_work.find_by project_id: project_id
-  end
-
-  def project
-    project_work
   end
 
   def pay_for_user

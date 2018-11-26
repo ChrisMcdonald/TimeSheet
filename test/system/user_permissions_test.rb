@@ -5,7 +5,7 @@ class UserPermissionTest < ApplicationSystemTestCase
 
   test 'user no permission' do
     reset!
-    user = users(:two)
+    user = users(:userstwo)
     user.remove_role :admin
     user.add_role(:read, TimeSheet)
     user.add_role(:edit, User)
@@ -15,6 +15,8 @@ class UserPermissionTest < ApplicationSystemTestCase
 
     # user2 = users(:two)
     visit user_path(user)
+    sleep 1
+    assert_current_path "/users/#{user.id}"
     find('.btn', text: 'USER PERMISSION').click
 
     assert user.has_role? :edit, User
@@ -61,16 +63,9 @@ class UserPermissionTest < ApplicationSystemTestCase
     assert user.has_role? :edit, User::PayObligation
   end
 
-  test 'user full permissions' do
-
-    visit root_path
-    menu_button = find('.btn', text: 'MENU')
-    assert menu_button
-  end
-
   test 'user no permission path' do
     reset!
-    user = users(:two)
+    user = users(:userstwo)
     user.remove_role :admin
     user.add_role(:read, TimeSheet)
     sign_in user
@@ -152,6 +147,12 @@ class UserPermissionTest < ApplicationSystemTestCase
     assert_selector('h1', text: 'You are not authorized to access this web page.')
     visit user_pay_obligation_path(user, User::PayObligation.first)
     assert_selector('h1', text: 'You are not authorized to access this web page.')
+    reset!
+    user = users(:usersone)
+
+    sign_in user
+    visit root_path
+
   end
   # test 'user with no permission redirected to 401' do
   #   text = 'You are not authorized to access this web page.'

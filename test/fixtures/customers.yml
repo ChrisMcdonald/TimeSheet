@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+customersone:
+
   first_name: <%= Faker::Name.first_name %>
   last_name: <%= Faker::Name.last_name %>
   street_no: <%= Faker::Number.number(2) %>
@@ -11,7 +12,8 @@ one:
   post_code: <%= Faker::Address.postcode %>
   abn: <%= Faker::Number.number(10) %>
 
-two:
+customestwo:
+
   first_name: <%= Faker::Name.first_name %>
   last_name: <%= Faker::Name.last_name %>
   street_no: <%= Faker::Number.number(2) %>

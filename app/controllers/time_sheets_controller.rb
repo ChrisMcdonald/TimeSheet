@@ -26,23 +26,27 @@ class TimeSheetsController < ApplicationController
 
   def index
     @user = current_user
+    @project = @user.projects.first
+    @time_sheets = if params[:project_id].present?
+                     @project = Project.find params[:project_id].to_i if params[:project_id].present?
 
-    @time_sheets = if params[:user_id].present?
-                     TimeSheet.where(user_id: params[:user_id])
+                     @project.time_sheets.where(user_id: @user.id)
                    else
-                     TimeSheet.where(user: current_user)
+                     @user.time_sheets.where(project_id: @project.id)
                    end
-    @time_sheets
+    # @time_sheets.where(project_id: params[:project_id])
+
   end
 
   # GET /time_sheets/1
   # GET /time_sheets/1.json
   def show
-    options = {}
-    @github = []
-    @time_sheet.works.build if @time_sheet.works.count < 1
-    options[:token] = current_user.identities.find_by(provider: 'github').token rescue ''
-    day = @time_sheet.time_period
+    @project = Project.find params[:project_id]
+    # options = {}
+    # @github = []
+    # @time_sheet.works.build if @time_sheet.works.count < 1
+    # options[:token] = current_user.identities.find_by(provider: 'github').token rescue ''
+    # day = @time_sheet.time_period
 
     # github = Github.new(options)
 
@@ -50,16 +54,16 @@ class TimeSheetsController < ApplicationController
 
     # @github = @project.each { |project| Github.new(project.gitname, options).commit_on_day}
   end
-
-  def current_day
-    @time_sheet = TimeSheet.find_or_create_by(time_period: params[:time_period], user: current_user)
-    if @time_sheet.id.nil?
-      @time_sheet.time_period = params[:time_period]
-      @time_sheet.user = current_user
-      @time_sheet.save!
-    end
-    redirect_to time_sheet_path(@time_sheet)
-  end
+  #
+  # def current_day
+  #   @time_sheet = TimeSheet.find_or_create_by(time_period: params[:time_period], user: current_user,project_id: params[:project_id])
+  #   if @time_sheet.id.nil?
+  #     @time_sheet.time_period = params[:time_period]
+  #     @time_sheet.user = current_user
+  #     @time_sheet.save!
+  #   end
+  #   redirect_to time_sheet_path(@time_sheet)
+  # end
 
   # GET /time_sheets/new
   def new
@@ -142,8 +146,8 @@ class TimeSheetsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def time_sheet_params
-    params.require(:time_sheet).permit(:time_period, :user_id,
-                                       works_attributes: %i[id date hour description project_id time_sheet_id _destroy],
+    params.require(:time_sheet).permit(:time_period, :user_id,:description, :hour,
+                                       # works_attributes: %i[id date hour description project_id time_sheet_id _destroy],
                                        travels_attributes: %i[id travel_date od_start od_finish purpose user_id project_id time_sheet_id vehicle_id])
   end
 end

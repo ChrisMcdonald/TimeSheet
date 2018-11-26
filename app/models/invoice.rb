@@ -6,7 +6,7 @@ class Invoice < ApplicationRecord
   belongs_to :user
   has_many :works, inverse_of: :invoice
   accepts_nested_attributes_for :works
-  belongs_to :project
+  belongs_to :project , dependent: :destroy
   validates_presence_of :works
 
   def save_invoice(project_id)

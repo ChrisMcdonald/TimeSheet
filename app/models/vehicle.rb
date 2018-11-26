@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Vehicle < ApplicationRecord
-  has_many :travels
+  has_many :travels , dependent: :destroy
 
   def self.select_attributes
     result = []

@@ -1,0 +1,85 @@
+<%= form_for(@day,url: days_path) do |f| %>
+    <div class="actions">
+    <% if @day.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(day.errors.count, "error") %> prohibited this time_sheet from being saved:</h2>
+
+          <ul>
+            <% @day.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Save", class: 'btn btn-default' %>
+
+      <%#= link_to_add_fields "Add Work Hours", f, :works, 'works' %>
+
+    </div>
+
+    <table class="outline table table-striped table-hover outline " style="  outline: 2px solid #ccc;">
+      <tr class="grey_background " id="hours">
+        <th class="col-xs-7 col-sm-4">Project</th>
+        <th class="col-xs-5 col-sm-2">Hours</th>
+        <th class="hidden-xs col-sm-6">Description</th>
+        <th class="col-sm-1 hidden-xs"> Invoiced</th>
+      </tr>
+      <tr style="padding: 0%;">
+        <% if @day.invoice_id? %>
+
+          <td colspan="3" style="padding: 0%; margin-bottom: 0px;" class="clickable " style="padding: 1%; margin-bottom: 0px; outline: 2px solid #ccc;">
+            <div>
+
+              <div class=" dropdown col-xs-7 col-sm-4 " style="padding: 0%;">
+                <%= f.project.name %>
+              </div>
+              <div class=" col-xs-5 col-sm-2" style="padding: 0%">
+                <%= f.hour %>
+              </div>
+              <div class="field col-xs-11 col-sm-4" style='padding: 0%'>
+                <%= f.description %>
+              </div>
+              <div class="field col-xs-1 col-sm-1">
+                <%= link_to "", invoice_path(f.invoice_id) %>
+              </div>
+          <td>
+            <%= image_tag('tick.png', size: "40x40") %>
+          </td>
+          </div>
+          </td>
+
+        <% else %>
+          <tr style="  outline: 2px solid #ccc;">
+            <td colspan="3">
+              <div class="dropdown col-xs-7 col-sm-4 " style="padding: 0%;">
+                <%= @day.project.name %>
+                <%#= f.select(:projects_id, options_for_select(Project.select_attributes, f.object.project_id), {}, class: ' btn btn-default form-control') %>
+              </div>
+              <div class=" col-xs-5 col-sm-2" style="padding: 0%">
+                <%= f.number_field :hour, min: 0, class: 'form-control hours-field', step: :any, placeholder: 'Hours', :autofocus => true %>
+              </div>
+              <div class="field col-xs-12 col-sm-5" style='padding: 0%'>
+                <%= f.text_area :description, cols: "60", rows: "1", class: 'form-control description-field', placeholder: 'Description' %>
+              </div>
+              <div class="field col-xs-1 col-sm-1">
+
+                <%= link_to "remove", '#', class: "remove_fields", style: 'text-overflow:hidden' %>
+                <%= f.check_box :_destroy %>
+            <td> <%= image_tag('redcross.png', size: "40x40") unless f.object.id.nil? %></td>
+
+            </div>
+
+            </td>
+        <% end %>
+
+      <%#= f.fields_for :works do |builder| %>
+        <%#= render 'works', f: builder %>
+      <%# end %>
+
+    </table>
+    </div>
+
+<% end %>

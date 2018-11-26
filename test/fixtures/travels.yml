@@ -1,21 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+travelsone:
   id: 1
   od_start: 1
   od_finish: 2
   purpose: MyString
-  user: one
-  project: one
-  time_sheet: one
-  vehicle: one
+  user: usersone
+  project: projectsone
+  time_sheet: timesheetsone
+  vehicle: vehiclesone
 
-two:
+travelstwo:
   id: 2
   od_start: 3
   od_finish: 4
   purpose: MyString
-  user: two
-  project: two
-  time_sheet: two
-  vehicle: one
+  user: userstwo
+  project: projectstwo
+  time_sheet: timesheetstwo
+  vehicle: vehiclesone

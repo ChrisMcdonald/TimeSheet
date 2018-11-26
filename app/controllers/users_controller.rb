@@ -129,6 +129,12 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    # @user.time_travel.destroy
+    # @user.time_work.destroy
+    @user.time_sheets.destroy
+    @user.travels.destroy
+    @user.customers.destroy
+    @user.project.destroy
     @user.destroy
     respond_to do |format|
       format.html {redirect_to users_url, notice: 'User was successfully destroyed.'}
