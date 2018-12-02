@@ -1,0 +1,27 @@
+<div class="row">
+  <% @vehicles.each do |vehicle| %>
+
+    <div class="col-sm-2">
+      <div class="card box">
+        <%= link_to new_vehicle_travel_path(vehicle, time_period: params[:time_period]), remote: true do %>
+          <div class="card-body">
+            <h2 class="card-title"><%= vehicle.rego_no %></h2>
+            <%= link_to edit_vehicle_path(vehicle) do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+
+            <%= link_to vehicle, method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
+<%= link_to 'New Vehicle', new_vehicle_path %>
+
+<div id="travel_form"></div>
+

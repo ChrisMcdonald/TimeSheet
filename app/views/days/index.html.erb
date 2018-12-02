@@ -1,25 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="box">
+  <h1>User:  <%= @time_sheet.user.full_name %></h1>
+  <h2>Date:   <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h2>
+  <h2>Project: <%= @time_sheet.project.name %></h2>
+</div>
+<%= render 'buttons' %>
+<div class="box">
+  <div id="day_form">
+    <%= render 'time_sheets/form' %>
+  </div>
+  <div class="box"><h1>Travel</h1>
+    <%= content_tag :div, id: "vehicle_index", class: "time_sheet_class" do %>
+      <script type="text/javascript" charset="utf-8">
+          $.ajax({url: "<%=  vehicles_path(time_period: params[:time_period]) %>"}).done(function (html) {
+              $('#vehicle_index').html(html);
+          });
 
-<h1>Days</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @days.each do |day| %>
-      <tr>
-        <td><%= link_to 'Show', day %></td>
-        <td><%= link_to 'Edit', edit_day_path(day) %></td>
-        <td><%= link_to 'Destroy', day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+          $.ajax({url: "<%=  travels_path(time_period: params[:time_period],) %>"}).done(function (html) {
+              $('#travel_index').html(html);
+          });
+      </script>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <div id="travel_index"></div>
 
-<%= link_to 'New Day', new_day_path %>
+  </div>

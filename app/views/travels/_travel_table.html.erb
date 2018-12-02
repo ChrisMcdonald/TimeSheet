@@ -1,0 +1,14 @@
+<table class="outline table table-striped table-hover outline " style="  outline: 2px solid #ccc;">
+  <tr class="grey_background " id="hours">
+    <th class="col-xs-12 col-sm-3">Vehicle</th>
+    <th class="hidden-xs col-sm-3">Odometer Start</th>
+    <th class="hidden-xs col-sm-3">Odometer Finish</th>
+    <th class="hidden-xs col-sm-3">Travel Purpose</th>
+  </tr>
+
+
+  <% travels.each do |travel| %>
+    <tr><%= render 'travel_fields', f: travel %></tr>
+  <% end %>
+</table>
+

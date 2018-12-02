@@ -12,15 +12,15 @@
       <th>Description</th>
       <th>Sub Total</th>
     </tr>
-    <% work.each_with_index do |work, i| %>
+    <% work.each_with_index do |time_sheet, i| %>
 
         <tr>
         <span>
-        <td><%= link_to "#{work.time_sheet.user.full_name}", time_sheet_path(work.time_sheet) %></td>
-        <td><%= work.time_sheet.time_period.strftime("%A %b %d ") %></td>
-        <td>  <%= work.hour %> </td>
-        <td><%= work.time_sheet.user.rate(work.time_sheet.time_period) %></td>
-          <td><%= work.description %></td>
+        <td><%= link_to "#{time_sheet.user.full_name}", time_sheet_path(time_sheet) %></td>
+        <td><%= time_sheet.time_period.strftime("%A %b %d ") %></td>
+        <td>  <%= time_sheet.hour %> </td>
+        <td><%= time_sheet.user.rate(time_sheet.time_period) %></td>
+          <td><%= time_sheet.description %></td>
         <td>$<%= @total_for_user[i] %></td></span></tr>
     <% end %>
     <td></td>

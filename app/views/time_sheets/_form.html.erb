@@ -1,11 +1,11 @@
-<%= form_for(@day,url: days_path) do |f| %>
+<%= form_for(@time_sheet, remote: true) do |f| %>
     <div class="actions">
-    <% if @day.errors.any? %>
+      <% if @time_sheet.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(day.errors.count, "error") %> prohibited this time_sheet from being saved:</h2>
+          <h2><%= pluralize(@time_sheet.errors.count, "error") %> prohibited this time_sheet from being saved:</h2>
 
           <ul>
-            <% @day.errors.full_messages.each do |message| %>
+            <% @time_sheet.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
             <% end %>
           </ul>
@@ -14,7 +14,10 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "Save", class: 'btn btn-default' %>
+      <%= button_tag :submit, class: 'btn btn-default' do %>
+        <i class="fa fa-save"></i>
+        Save
+      <% end %>
 
       <%#= link_to_add_fields "Add Work Hours", f, :works, 'works' %>
 
@@ -28,22 +31,22 @@
         <th class="col-sm-1 hidden-xs"> Invoiced</th>
       </tr>
       <tr style="padding: 0%;">
-        <% if @day.invoice_id? %>
+        <% if @time_sheet.invoice_id? %>
 
           <td colspan="3" style="padding: 0%; margin-bottom: 0px;" class="clickable " style="padding: 1%; margin-bottom: 0px; outline: 2px solid #ccc;">
             <div>
 
               <div class=" dropdown col-xs-7 col-sm-4 " style="padding: 0%;">
-                <%= f.project.name %>
+                <%= @time_sheet.project.name %>
               </div>
               <div class=" col-xs-5 col-sm-2" style="padding: 0%">
-                <%= f.hour %>
+                <%= @time_sheet.hour %>
               </div>
               <div class="field col-xs-11 col-sm-4" style='padding: 0%'>
-                <%= f.description %>
+                <%= @time_sheetdescription %>
               </div>
               <div class="field col-xs-1 col-sm-1">
-                <%= link_to "", invoice_path(f.invoice_id) %>
+                <%= link_to "", invoice_path(@time_sheet.invoice_id) %>
               </div>
           <td>
             <%= image_tag('tick.png', size: "40x40") %>
@@ -55,7 +58,7 @@
           <tr style="  outline: 2px solid #ccc;">
             <td colspan="3">
               <div class="dropdown col-xs-7 col-sm-4 " style="padding: 0%;">
-                <%= @day.project.name %>
+                <%= @time_sheet.project.name %>
                 <%#= f.select(:projects_id, options_for_select(Project.select_attributes, f.object.project_id), {}, class: ' btn btn-default form-control') %>
               </div>
               <div class=" col-xs-5 col-sm-2" style="padding: 0%">
@@ -64,11 +67,16 @@
               <div class="field col-xs-12 col-sm-5" style='padding: 0%'>
                 <%= f.text_area :description, cols: "60", rows: "1", class: 'form-control description-field', placeholder: 'Description' %>
               </div>
-              <div class="field col-xs-1 col-sm-1">
 
-                <%= link_to "remove", '#', class: "remove_fields", style: 'text-overflow:hidden' %>
-                <%= f.check_box :_destroy %>
-            <td> <%= image_tag('redcross.png', size: "40x40") unless f.object.id.nil? %></td>
+
+              <div class="field col-xs-1 col-sm-1">
+                <%= f.hidden_field :project_id, value: params[:project_id] %>
+                <%= f.hidden_field :time_period, value: params[:time_period] %>
+
+                <%= link_to "remove", time_sheet_path(@time_sheet), method: :delete, data: {confirm: 'Are you sure?'}, style: 'text-overflow:hidden' if @time_sheet.id? %>
+            <td>
+
+              <%= image_tag('redcross.png', size: "40x40") %></td>
 
             </div>
 

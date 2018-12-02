@@ -1,6 +1,6 @@
-<div class="box">
-  <h1>Travel for  <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h1>
-</div>
+<!--<div class="box">-->
+<!--  <h1>Travel for  <%#= @time_sheet.time_period.strftime("%d %A %B %Y") %></h1>-->
+<!--</div>-->
 <%= render 'buttons' %>
-<%= render 'form', travel: @travel %>
+<%= render 'vehicle_travel_form', travel: @travel %>
 

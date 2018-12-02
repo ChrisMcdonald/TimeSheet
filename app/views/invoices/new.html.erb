@@ -31,8 +31,8 @@
         <td class="pdf-td">
           <div align="right" style="padding: 10px">
             <h3>For time period</h3>
-            <%= @work.first.time_sheet.time_period.strftime("%A %b %d ") if @work.first.present? %>|
-            <%= @work.last.time_sheet.time_period.strftime("%A %b %d ") if @work.last.present? %>
+            <%= @work.first.time_period.strftime("%A %b %d ") if @work.first.present? %>|
+            <%= @work.last.time_period.strftime("%A %b %d ") if @work.last.present? %>
           </div>
         </td>
       </tr>

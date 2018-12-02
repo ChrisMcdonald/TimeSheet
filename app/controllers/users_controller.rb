@@ -33,15 +33,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
 
     if request.format.js? || request.format.html?
-      @user_table = @user.time_work.paginate(page: params[:page], per_page: 20)
+      @user_table = @user.time_sheets.paginate(page: params[:page], per_page: 20)
       @user_table = @user_table.where(project_id: params[:project_search]) unless params[:project_search].blank?
       @user_table = @user_table.filter_buy_date params[:start_date], params[:end_date] unless params[:start_date].blank? || params[:end_date].blank?
-      @sub_total = @user.sub_total(@user.time_work)
+      @sub_total = @user.sub_total(@user.time_sheets)
     else
-      @user_table = @user.time_work
+      @user_table = @user.time_sheets
       @user_table = @user_table.where(project_id: params[:project_search]) unless params[:project_search].blank?
       @user_table = @user_table.filter_buy_date params[:start_date], params[:end_date] unless params[:start_date].blank? || params[:end_date].blank?
-      @sub_total = @user.sub_total(@user.time_work)
+      @sub_total = @user.sub_total(@user.time_sheets)
     end
 
     respond_to do |format|

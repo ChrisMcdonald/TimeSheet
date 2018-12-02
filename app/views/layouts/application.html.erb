@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Time Sheet</title>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
   <%= csrf_meta_tags %>
   <%= action_cable_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -86,7 +88,10 @@
 <div id="user_content">
   <div class="container">
     <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
+      <!--      <div class="alert alert-primary" role="<%#= key %>">-->
+      <div class="alert alert-primary" role="alert">
+        <%= value %>
+      </div>
     <% end %>
   </div>
 </div>
@@ -98,9 +103,9 @@
 <!-- Copyright Start  -->
 
 <script>
-    window.addEventListener("load", function() {
-        document.documentElement.requestFullscreen();
-    });
+    // window.addEventListener("load", function() {
+    //     document.documentElement.requestFullscreen();
+    // });
 </script>
 
 </html>

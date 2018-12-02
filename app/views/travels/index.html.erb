@@ -1,21 +1,5 @@
-<p id="notice"><%= notice %></p>
-<div class="box">
-  <h1>Travel for  <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h1>
+<div id="travel_table">
+  <%= render 'travel_table', travels: @travels %>
 </div>
-<%= render 'buttons' %>
-<div class="box">
-<table class="outline table table-striped table-hover outline " style="  outline: 2px solid #ccc;">
-  <tr class="grey_background " id="hours">
-    <th class="col-xs-12 col-sm-3">Vehicle</th>
-    <th class="hidden-xs col-sm-3">Odometer Start</th>
-    <th class="hidden-xs col-sm-3">Odometer Finish</th>
-    <th class="hidden-xs col-sm-3">Travel Perpose</th>
-  </tr>
-  <% @travels.each do |travel| %>
-      <%= render 'travel_fields', f: travel %>
-  <% end %>
-</table>
-
 <br>
-</div>
-<%= link_to 'Add Travel', new_time_sheet_travel_path, class: 'btn btn-default' %>
+

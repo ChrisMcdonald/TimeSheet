@@ -85,7 +85,7 @@ class User < ApplicationRecord
     totals = []
     total = 0
     time.each do |t|
-      rate = self.rate(t.time_sheet.time_period.to_date)
+      rate = self.rate(t.time_period.to_date)
       sub_total = rate * t.hour
       totals << sub_total
       total += sub_total

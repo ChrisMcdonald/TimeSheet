@@ -35,7 +35,7 @@ class Project < ApplicationRecord
   end
 
   def hours_by_user_by_project
-    TimeSheet.select(:id, :user_id).group(:user_id).joins(:works).where(works: { project_id: id }).select(:hour).sum(:hour)
+    TimeSheet.select(:id, :user_id).group(:user_id).where(project_id: id).select(:hour).sum(:hour)
   end
 
   def hours_by_date_range(start_time, end_time)
@@ -43,7 +43,7 @@ class Project < ApplicationRecord
   end
 
   def hours_by_day
-    TimeSheet.joins(works: :project).group(:time_period).where('works.project_id = ?', id).sum(:hour)
+    TimeSheet.joins(:project).group(:time_period).where('project_id = ?', id).sum(:hour)
   end
 
   def all_time_sheets

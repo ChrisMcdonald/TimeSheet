@@ -40,6 +40,9 @@ $(document).on('click', 'li', function () {
 $(document).on('click', 'td.clickable', function () {
     Turbolinks.visit($(this).find("a").attr("href"));
 });
+$(document).on('click', 'div.clickable', function () {
+    Turbolinks.visit($(this).find("a").attr("href"));
+});
 
 $(document).on('turbolinks:load',function () {
     $("#menu-toggle").click(function (e) {

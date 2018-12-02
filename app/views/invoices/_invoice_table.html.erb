@@ -11,10 +11,10 @@
   </tr>
   <% @works.each_with_index do |work, i| %>
       <tr>
-        <td><%= work.time_sheet.user.full_name %></td>
-        <td><%= work.time_sheet.time_period.strftime("%A %b %d ") %></td>
+        <td><%= work.user.full_name %></td>
+        <td><%= work.time_period.strftime("%A %b %d ") %></td>
         <td><%= work.hour %></td>
-        <td>$<%= work.time_sheet.user.rate(work.time_sheet.time_period) %></td>
+        <td>$<%= work.user.rate(work.time_period) %></td>
         <td><%= work.description %></td>
         <td>$<%= @row_total[i] %></td>
       </tr>

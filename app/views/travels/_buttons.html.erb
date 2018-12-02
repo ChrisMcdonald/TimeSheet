@@ -1,5 +1,13 @@
 <div class="box">
-  <div class="btn-group"></div>
-  <%= link_to 'Back', root_path, class: 'btn btn-default' %>
-  <%= link_to 'Hours', time_sheet_path(@time_sheet), class: 'btn btn-default' %>
+  <div class="btn-group">
+    <%= link_to travels_path(time_period: params[:time_period]), class: 'btn btn-default', remote: true do %>
+      <i class="fa fa-ban"></i>
+      Cancel
+    <% end %>
+    <%= link_to new_travel_path(time_period: params[:time_period], project_id: params[:project_id]), class: 'btn btn-default', remote: true do %>
+      <i class="fa fa-car"></i>
+
+      Add Travel
+    <% end %>
+  </div>
 </div>

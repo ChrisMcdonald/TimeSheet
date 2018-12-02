@@ -19,11 +19,11 @@ class InvoicesController < ApplicationController
   def show
     @row_total = @invoice.total_for_user
     @total = @invoice.invoice_total(@row_total)
-    @works = @invoice.works.joins(:time_sheet).order('time_sheets.time_period')
+    @works = @invoice.time_sheets.order(:time_period)
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "invoice_#{@invoice.id}_#{@invoice.user.first_name}_#{@invoice.user.last_name}_#{@works.first.time_sheet.time_period.strftime('%d-%m-%Y')}_#{@works.last.time_sheet.time_period.strftime("%d-%m-%Y")}",
+        render pdf: "invoice_#{@invoice.id}_#{@invoice.user.first_name}_#{@invoice.user.last_name}_#{@works.first.time_period.strftime('%d-%m-%Y')}_#{@works.last.time_period.strftime("%d-%m-%Y")}",
                header: {right: '[page] of [topage]'},
                page_size: 'A4',
                dpi: 900,
@@ -43,7 +43,7 @@ class InvoicesController < ApplicationController
     if params[:search]
       @project = Project.find(params[:search])
       @invoice = Invoice.new
-      @work = Work.includes(:time_sheet).order('time_sheets.time_period').uninvoiced_work(@project.id)
+      @work = @project.time_sheets.order(:time_period).where(invoice_id: nil)
       @total_for_user = @invoice.total_for_users(@work)
       @total = @invoice.total(@total_for_user)
 
@@ -54,7 +54,7 @@ class InvoicesController < ApplicationController
 
     else
       @project = Project.first
-      @work = Work.uninvoiced_work(@project.id)
+      @work = TimeSheet.uninvoiced_work(@project.id)
       @total_for_user = @invoice.total_for_users(@work)
       @total = @invoice.total(@total_for_user)
 
