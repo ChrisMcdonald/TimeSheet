@@ -27,14 +27,8 @@ class TimeSheetsController < ApplicationController
   def index
     @user = current_user
     @project = @user.projects.first
-    @time_sheets = if params[:project_id].present?
-                     @project = Project.find params[:project_id].to_i if params[:project_id].present?
-
-                     @project.time_sheets.where(user_id: @user.id)
-                   else
-                     @user.time_sheets.where(project_id: @project.id)
-                   end
-    # @time_sheets.where(project_id: params[:project_id])
+    @project = Project.find(params[:project_id]) if params[:project_id].present?
+    @time_sheet = @user.time_sheets.where(project_id: @project.id)
 
   end
 
