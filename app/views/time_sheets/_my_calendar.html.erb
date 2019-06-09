@@ -40,7 +40,7 @@
 
             <% if timesheet.id? %>
 
-              <% if timesheet.invoice_id? %>
+            <% if timesheet.has_invoice? %>
                   <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-invoice shadow'] do %>
                 <%= link_to current_day_path(day, project_id: @project.id), class: 'no-decoration' do %>
                       <% block.call day, sorted_events.fetch(day, []) %>
