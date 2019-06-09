@@ -1,18 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+payratesone:
   rate: 9.99
   holiday: 9.99
   superannuation: 9.99
-  user: one
-  project: one
+  user: usersone
+  project: projectsone
   date: <%= Time.now %>
 
-two:
+payratestwo:
   rate: 9.99
   holiday: 9.99
   superannuation: 9.99
-  user: two
-  project: two
+  user: userstwo
+  project: projectstwo
   date: <%= Time.now %>
 

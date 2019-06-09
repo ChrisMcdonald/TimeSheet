@@ -1,0 +1,47 @@
+<h3>Vehicle: <%= @vehicle.rego_no %></h3>
+<%= form_with(model: [@vehicle, @travel]) do |form| %>
+  <% if @travel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@travel.errors.count, "error") %> prohibited this time_sheet from being saved:</h2>
+
+      <ul>
+        <% @travel.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table class="outline table table-striped table-hover outline " style="  outline: 2px solid #ccc;">
+    <tr class="grey_background " id="hours">
+      <th class="hidden-xs col-sm-3">Odometer Start</th>
+      <th class="hidden-xs col-sm-3">Odometer Finish</th>
+    </tr>
+
+
+    <tr>
+      <td class="col-xs-6 col-sm-3" style="padding: 0%">
+        <%= form.number_field :od_start, value: @vehicle.send('previous_od_finish'), class: 'form-control ', placeholder: 'Odometer Start', :autofocus => true %>
+      </td>
+      <td class="col-xs-6 col-sm-3" style="padding: 0%">
+        <%= form.number_field :od_finish, value: @vehicle.send('previous_od_finish'), class: 'form-control ', placeholder: 'Odometer Finish' %>
+      </td>
+    <tr>
+      <td></td>
+      <td>
+        <%= form.hidden_field :travel_date, value: params[:time_period] %>
+        <div class="actions">
+
+          <%= button_tag :submit, class: 'btn btn-default pull-right' do %>
+            <i class="fa fa-save"></i>
+            Save
+          <% end %>
+
+
+        </div>
+      </td>
+    </tr>
+
+    </tr>
+  </table>
+<% end %>
+

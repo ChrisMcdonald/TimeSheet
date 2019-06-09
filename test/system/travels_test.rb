@@ -8,7 +8,10 @@ class TravelsTest < ApplicationSystemTestCase
 
 
   test 'visiting the index' do
-    time_sheet = time_sheets(:one)
+    user = users(:usersone)
+
+    sign_in user
+    time_sheet = time_sheets(:timesheetsone)
     visit time_sheet_travels_path(time_sheet)
     find('.btn', text: 'ADD TRAVEL').click
     fill_in 'travel_od_start', with: 4

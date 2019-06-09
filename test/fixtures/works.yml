@@ -1,14 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+worksone:
   hour: 1
   description: 'this is a description'
-  project: one
-  time_sheet: one
+  project: projectsone
+  time_sheet: timesheetsone
 
-two:
+workstwo:
   hour: 1
   description: 'this is a description'
-  project: one
-  time_sheet: two
+  project: projectsone
+  time_sheet: timesheetstwo
 

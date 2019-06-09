@@ -1,7 +1,7 @@
 <tr>
   <td><%= @sub_total[:sub_totals][i] %></td>
   <td><%= u.hour %></td>
-  <td><%= @user.rate(u.time_sheet.time_period) %></td>
-  <td><%= u.time_sheet.time_period.strftime("%A %b %d ") %></td>
+  <td><%= @user.rate(u.time_period) %></td>
+  <td><%= u.time_period.strftime("%A %b %d ") %></td>
   <td><%= u.project.name %></td>
 </tr>

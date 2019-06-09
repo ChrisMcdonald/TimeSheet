@@ -11,8 +11,8 @@
 
           <h4>For Time Period</h4>
 
-          <%= @works.first.time_sheet.time_period.strftime("%A %b %d ") if @invoice.works.first.present? %>|
-          <%= @works.last.time_sheet.time_period.strftime("%A %b %d ") if @invoice.works.last.present? %>
+          <%= @works.first.time_period.strftime("%A %b %d ") if @invoice.time_sheets.first.present? %>|
+          <%= @works.last.time_period.strftime("%A %b %d ") if @invoice.time_sheets.last.present? %>
         </div>
 
 </td>

@@ -4,9 +4,9 @@ class Work < ApplicationRecord
   resourcify
 
   include Calculate
-  belongs_to :time_sheet
-  belongs_to :project
-  belongs_to :invoice
+  # belongs_to :time_sheet , dependent: :destroy
+  # belongs_to :project , dependent: :destroy
+  # belongs_to :invoice , dependent: :destroy
   validates_presence_of :hour
 
   def self.total_hours_for_project(project_id)

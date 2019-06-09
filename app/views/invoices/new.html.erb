@@ -31,16 +31,16 @@
         <td class="pdf-td">
           <div align="right" style="padding: 10px">
             <h3>For time period</h3>
-            <%= @work.first.time_sheet.time_period.strftime("%A %b %d ") if @work.first.present? %>|
-            <%= @work.last.time_sheet.time_period.strftime("%A %b %d ") if @work.last.present? %>
+            <%= @work.first.time_period.strftime("%A %b %d ") if @work.first.present? %>|
+            <%= @work.last.time_period.strftime("%A %b %d ") if @work.last.present? %>
           </div>
         </td>
       </tr>
       <tr>
         <td colspan="2">
-          <h2>TO: <%= @project.customer.full_name %></h2>
-          <p><%= @project.customer.address %> <br>
-            ABN: <%= @project.customer.abn %></p>
+          <h2>TO: <%= @project.try(:customer).try(:full_name) %></h2>
+          <p><%= @project.try(:customer).try(:address) %> <br>
+            ABN: <%= @project.try(:customer).try(:abn) %></p>
 
           <p>
           <h2><%= current_user.full_name %> </h2>

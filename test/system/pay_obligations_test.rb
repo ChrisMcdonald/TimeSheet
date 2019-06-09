@@ -5,7 +5,11 @@ class PayObligationsTest < ApplicationSystemTestCase
 
 
   test 'pay obligation' do
+    user = users(:usersone)
+
+    sign_in user
     visit user_pay_obligations_path @user.id
+    assert_current_path "/users/#{@user.id}/pay_obligations"
     find('.btn', text: 'NEW PAY RATE').click
 
     fill_in 'user_pay_obligation[superannuation]', with: 9.5

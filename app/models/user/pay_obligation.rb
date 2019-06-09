@@ -2,7 +2,7 @@
 
 class User::PayObligation < ApplicationRecord
   resourcify
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
 
   validates_presence_of :holiday, :superannuation, :hourly_rate
 

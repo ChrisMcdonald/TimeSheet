@@ -9,6 +9,15 @@ class TimeSheetTest < ActiveSupport::TestCase
     assert time_sheet.valid?
   end
 
+  test "timesheets for project" do
+    timesheet = time_sheets(:timesheetsone)
+    project = projects(:projectsone)
+    timesheet_for_project = timesheet.send('for_project', project)
+
+    assert(timesheet_for_project.count ,2)
+
+  end
+
   # test 'has time sheet' do
   # 	user = users(:one)
   # 	assert TimeSheet.has_time_sheet(Date.today, user)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Vehicle < ApplicationRecord
-  has_many :travels
+  has_many :travels , dependent: :destroy
 
   def self.select_attributes
     result = []
@@ -15,7 +15,7 @@ class Vehicle < ApplicationRecord
     self.class.where('id < ?', id).last
   end
 
-  def self.previous_od_finish
-    first.travels.pluck(:od_finish).last if first.present?
+  def previous_od_finish
+    travels.last.od_finish #if first.present?
   end
 end

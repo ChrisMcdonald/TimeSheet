@@ -4,13 +4,13 @@ class Invoice < ApplicationRecord
   resourcify
   include Calculate
   belongs_to :user
-  has_many :works, inverse_of: :invoice
-  accepts_nested_attributes_for :works
-  belongs_to :project
-  validates_presence_of :works
+  has_many :time_sheets #,  inverse_of: :invoice
+  accepts_nested_attributes_for :time_sheets
+  belongs_to :project , dependent: :destroy
+  validates_presence_of :time_sheets
 
   def save_invoice(project_id)
-    work = Work.uninvoiced_work(project_id)
+    time_sheets = TimeSheet.uninvoiced_work(project_id)
     project = Project.find(project_id)
     customer = project.customer
     owner = project.user
@@ -36,7 +36,7 @@ class Invoice < ApplicationRecord
                           customer_post_code: customer.post_code,
                           customer_abn: customer.abn,
                           invoice_date: Date.today)
-    invoice.works << work
+    invoice.time_sheets << time_sheets
 
     invoice
   end
@@ -81,9 +81,9 @@ class Invoice < ApplicationRecord
 
   def total_for_user
     total = []
-    works = self.works.includes(time_sheet: :user)
-    works.each do |work|
-      total << work.time_sheet.user.rate(work.date) * work.hour
+    time_sheets = self.time_sheets.includes(:user)
+    time_sheets.each do |timesheet|
+      total << timesheet.user.rate(timesheet.date) * timesheet.hour
     end
     total
   end

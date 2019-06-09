@@ -6,12 +6,23 @@ class RootTest < ApplicationSystemTestCase
   include Warden::Test::Helpers
 
   test 'root page' do
-    visit root_path
-    find_link(href: "/invoices.#{@user.id}").click
-    find_link(href: '/projects').click
-    find_link(href: '/customers').click
-    find_link(href: '/users').click
-    find_link(href: "/time_sheets.#{@user.id}").click
+    user = users(:usersone)
 
+    sign_in user
+    visit root_path
+    sleep 2
+
+    find('li', text: 'My Projects').click
+    assert_current_path "/projects"
+    find('li', text: 'My Timesheets').click
+    assert_current_path "/time_sheets.#{user.id}"
+    find('li', text: 'My Invoices').click
+    assert_current_path "/invoices.#{user.id}"
+    find('li', text: 'My Customers').click
+    assert_current_path '/customers'
+    find('li', text: 'My Users').click
+    assert_current_path '/users'
+    find('li', text: 'Chat Rooms').click
+    assert_current_path '/chatrooms'
   end
 end

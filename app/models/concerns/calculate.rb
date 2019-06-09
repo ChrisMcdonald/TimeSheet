@@ -10,7 +10,7 @@ module Calculate
   def total_for_users(work)
     total = []
     work.each do |w|
-      rate = w.time_sheet.user.rate(w.time_sheet.time_period.to_date)
+      rate = w.user.rate(w.time_period.to_date)
       total << rate * w.hour
     end
     total

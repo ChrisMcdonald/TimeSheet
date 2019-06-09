@@ -36,20 +36,20 @@
       <tr>
 
         <% week.each do |day| %>
-          <% timesheet = @time_sheets.includes(:works).find_or_initialize_by(time_period: day) %>
+          <% timesheet = @time_sheets.find_or_initialize_by(time_period: day) %>
 
-            <% if timesheet.has_time_sheet? %>
+            <% if timesheet.id? %>
 
-              <% if Work.find_by(time_sheet: timesheet).invoice.present? %>
+              <% if timesheet.invoice_id? %>
                   <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-invoice shadow'] do %>
-                    <%= link_to current_day_path(day), class: 'no-decoration' do %>
+                    <%= link_to current_day_path(day,@project), class: 'no-decoration' do %>
                       <% block.call day, sorted_events.fetch(day, []) %>
                     <% end %>
                   <% end %>
               <% else %>
 
                   <%= content_tag :td, class: [calendar.td_classes_for(day), 'has-time-sheet shadow'] do %>
-                    <%= link_to current_day_path(day), class: 'no-decoration' do %>
+                    <%= link_to current_day_path(day,@project), class: 'no-decoration' do %>
                       <% block.call day, sorted_events.fetch(day, []) %>
                     <% end %>
                   <% end %>
@@ -57,7 +57,7 @@
 
             <% else %>
               <%= content_tag :td, class: [calendar.td_classes_for(day),'shadow'] do %>
-                <%= link_to current_day_path(day), class: 'no-decoration' do %>
+                <%= link_to current_day_path(day,@project), class: 'no-decoration' do %>
                   <% block.call day, sorted_events.fetch(day, []) %>
                  <% end %>
                <% end %>

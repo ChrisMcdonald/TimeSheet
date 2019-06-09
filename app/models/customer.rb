@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Customer < ApplicationRecord
-  belongs_to :user
-  has_one :project
+  belongs_to :user, dependent: :destroy
+  has_one :project , dependent: :destroy
 
   resourcify
   def full_name

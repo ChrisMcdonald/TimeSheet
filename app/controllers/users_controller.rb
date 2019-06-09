@@ -33,15 +33,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
 
     if request.format.js? || request.format.html?
-      @user_table = @user.time_work.paginate(page: params[:page], per_page: 20)
+      @user_table = @user.time_sheets.paginate(page: params[:page], per_page: 20)
       @user_table = @user_table.where(project_id: params[:project_search]) unless params[:project_search].blank?
       @user_table = @user_table.filter_buy_date params[:start_date], params[:end_date] unless params[:start_date].blank? || params[:end_date].blank?
-      @sub_total = @user.sub_total(@user.time_work)
+      @sub_total = @user.sub_total(@user.time_sheets)
     else
-      @user_table = @user.time_work
+      @user_table = @user.time_sheets
       @user_table = @user_table.where(project_id: params[:project_search]) unless params[:project_search].blank?
       @user_table = @user_table.filter_buy_date params[:start_date], params[:end_date] unless params[:start_date].blank? || params[:end_date].blank?
-      @sub_total = @user.sub_total(@user.time_work)
+      @sub_total = @user.sub_total(@user.time_sheets)
     end
 
     respond_to do |format|
@@ -129,6 +129,12 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    # @user.time_travel.destroy
+    # @user.time_work.destroy
+    @user.time_sheets.destroy
+    @user.travels.destroy
+    @user.customers.destroy
+    @user.project.destroy
     @user.destroy
     respond_to do |format|
       format.html {redirect_to users_url, notice: 'User was successfully destroyed.'}

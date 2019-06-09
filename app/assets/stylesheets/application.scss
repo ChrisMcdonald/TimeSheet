@@ -130,7 +130,13 @@ td.background {
   .button:focus, .button.active, .button.active:focus {
     color: white !important;
   }
-  a:link {
+
+a:-webkit-any-link {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+a:link:active {
     text-decoration: none;
   }
   hidden {

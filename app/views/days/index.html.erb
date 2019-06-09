@@ -1,0 +1,26 @@
+<div class="box">
+  <h1>User:  <%= @time_sheet.user.full_name %></h1>
+  <h2>Date:   <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h2>
+  <h2>Project: <%= @time_sheet.project.name %></h2>
+</div>
+<%= render 'buttons' %>
+<div class="box">
+  <div id="day_form">
+    <%= render 'time_sheets/form' %>
+  </div>
+  <div class="box"><h1>Travel</h1>
+    <%= content_tag :div, id: "vehicle_index", class: "time_sheet_class" do %>
+      <script type="text/javascript" charset="utf-8">
+          $.ajax({url: "<%=  vehicles_path(time_period: params[:time_period]) %>"}).done(function (html) {
+              $('#vehicle_index').html(html);
+          });
+
+          $.ajax({url: "<%=  travels_path(time_period: params[:time_period],) %>"}).done(function (html) {
+              $('#travel_index').html(html);
+          });
+      </script>
+    <% end %>
+
+    <div id="travel_index"></div>
+
+  </div>

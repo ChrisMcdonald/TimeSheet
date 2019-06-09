@@ -6,7 +6,9 @@ class CustomerTest < ApplicationSystemTestCase
   include Warden::Test::Helpers
 
   test 'create a new customer' do
+    user = users(:usersone)
 
+    sign_in user
     visit customers_path
 
     find('#new-project').click

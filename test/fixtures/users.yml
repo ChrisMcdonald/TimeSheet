@@ -4,7 +4,7 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
+usersone:
     email: email@email.com
     encrypted_password: <%= User.new.send(:password_digest, 'Passw0rd') %>
     first_name:  <%= Faker::Name.first_name %>
@@ -16,12 +16,13 @@ one:
     country: <%= Faker::Address.country %>
     post_code: <%= Faker::Address.postcode %>
     abn: <%= Faker::Number.number(10) %>
+#    projects: projectsone
 
 
 
 
 #    email: Faker::Internet.email
-two:
+userstwo:
     email: <%= Faker::Internet.email %>
     encrypted_password: <%= User.new.send(:password_digest, 'Passw0rd') %>
     first_name: <%=Faker::Name.first_name  %>
@@ -33,5 +34,6 @@ two:
     country: <%= Faker::Address.country %>
     post_code: <%= Faker::Address.postcode %>
     abn: <%= Faker::Number.number(10) %>
+#    projects: projectsone
 
 

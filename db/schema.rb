@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180425075608) do
+ActiveRecord::Schema.define(version: 20181124065802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,13 @@ ActiveRecord::Schema.define(version: 20180425075608) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "hour"
+    t.string "description"
+    t.datetime "date"
+    t.bigint "project_id"
+    t.bigint "invoice_id"
+    t.index ["invoice_id"], name: "index_time_sheets_on_invoice_id"
+    t.index ["project_id"], name: "index_time_sheets_on_project_id"
     t.index ["user_id"], name: "index_time_sheets_on_user_id"
   end
 
@@ -245,6 +252,8 @@ ActiveRecord::Schema.define(version: 20180425075608) do
   add_foreign_key "pay_rates", "users"
   add_foreign_key "projects", "customers"
   add_foreign_key "projects", "users"
+  add_foreign_key "time_sheets", "invoices"
+  add_foreign_key "time_sheets", "projects"
   add_foreign_key "time_sheets", "users"
   add_foreign_key "travels", "projects"
   add_foreign_key "travels", "time_sheets"

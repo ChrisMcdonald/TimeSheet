@@ -1,0 +1,3 @@
+$('#travel_form').html("")
+$("#notice").html("<%= flash[:notice] %>")
+$('#travel_table').html("<%= j render 'travel_table' ,travels:  Travel.where(user: current_user, travel_date: @travel.travel_date) %>")
