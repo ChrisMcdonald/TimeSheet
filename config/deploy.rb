@@ -20,10 +20,9 @@ set :deploy_to, '/home/chris/TimeSheet'
 # set :ssh_options, { :forward_agent => true, :port => 4321 }
 # set :keep_releases, 5
 
-append :linked_files, 'config/database.yml', 'config/secrets.yml'
+append :linked_files, 'config/database.yml', 'config/application.yml', 'config/secrets.yml'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
 
-set :scm_passphrase, 'monsterhelpgose'
 
 desc 'Restart Passenger app'
 task :restart do

@@ -8,7 +8,6 @@ class CustomerTest < ApplicationSystemTestCase
   test 'create a new customer' do
     user = users(:usersone)
 
-    sign_in user
     visit customers_path
 
     find('#new-project').click
@@ -25,6 +24,5 @@ class CustomerTest < ApplicationSystemTestCase
     end
 
     find('input[name="commit"]').click
-    sleep 1
   end
 end

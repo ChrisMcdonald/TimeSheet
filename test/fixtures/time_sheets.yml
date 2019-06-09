@@ -3,7 +3,11 @@
 timesheetsone:
   time_period: <%=2.weeks.ago%>
   user: usersone
+  hour: 1
+  project: projectsone
 
 timesheetstwo:
   time_period: <%=Date.today %>
   user: usersone
+  hour: 2
+  project: projectstwo

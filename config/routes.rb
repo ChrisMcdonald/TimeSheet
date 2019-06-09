@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :projects do
     get 'time_sheet_for_week/show'
   end
+  resource :vehicles
   resources :pay_rates
   resources :identities
   resources :projects
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/current_day/:time_period', to: 'time_sheets#current_day', as: :current_day
+  get '/current_day/:time_period', to: 'days#index', as: :current_day
   resources :customers do
     get :details
   end

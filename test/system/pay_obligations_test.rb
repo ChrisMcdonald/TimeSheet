@@ -7,7 +7,6 @@ class PayObligationsTest < ApplicationSystemTestCase
   test 'pay obligation' do
     user = users(:usersone)
 
-    sign_in user
     visit user_pay_obligations_path @user.id
     assert_current_path "/users/#{@user.id}/pay_obligations"
     find('.btn', text: 'NEW PAY RATE').click
@@ -36,6 +35,7 @@ class PayObligationsTest < ApplicationSystemTestCase
     fill_in 'user_pay_obligation[hourly_rate]', with: ''
     fill_in 'user_pay_obligation[holiday]', with: ''
     find('input[name="commit"]').click
+    sleep 1
     # find('h2', text:'3 errors prohibited this users_pay_obligation from being saved:')
 
   end

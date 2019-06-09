@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     Time.zone = 'Australia/Brisbane'
   end
 
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || welcome_path
+  end
+
   protected
 
   # def authenticate_user!
