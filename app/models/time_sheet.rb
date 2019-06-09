@@ -25,7 +25,7 @@ class TimeSheet < ApplicationRecord
   end
 
   def has_invoice?
-    self.invoice_id.present?
+    self.invoices_id.present?
   end
 
   def self.uninvoiced_work(project_id)
