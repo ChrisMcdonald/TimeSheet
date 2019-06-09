@@ -6,20 +6,21 @@ class InvoiceTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
   include Warden::Test::Helpers
 
-  # test 'blank  invoice' do
-  #
-  #   visit root_path
-  #   visit("/invoices.#{@user.id}")
-  #   find_link(href: '/invoices/new').click
-  #   find('input[name="commit"]').click
-  #   find('li', text: 'My Invoices').click
-  # end
+  test 'blank  invoice' do
+    user = users(:usersone)
+    # visit root_path
+    visit("/invoices.#{user.id}")
+    find_link(href: '/invoices/new').click
+    find('input[name="commit"]').click
+    page.driver.browser.switch_to.alert.accept
+
+    # find('li', text: 'My Invoices').click
+  end
 
   test 'valid  invoice' do
 
     user = users(:usersone)
 
-    sign_in user
     visit root_path
     sleep 1
     # find_link(href: "/current_day/#{Date.today}").click
@@ -38,6 +39,7 @@ class InvoiceTest < ApplicationSystemTestCase
     find('input[name="commit"]').click
     page.driver.browser.switch_to.alert.accept
     find('button', text: 'DOWNLOAD INVOICE').click
+    sleep 1
 
   end
 end

@@ -8,13 +8,12 @@ class UsersTest < ApplicationSystemTestCase
   test 'user income ' do
     user = users(:usersone)
 
-    sign_in user
 
     visit user_path(@user)
     find('.btn', text: 'USER INCOME').click
     sleep 1
-    fill_in 'start_date', with: 1.week.ago.to_s
-    fill_in 'end_date', with: Date.tomorrow.to_s
+    fill_in 'start_date', with: 1.week.ago
+    fill_in 'end_date', with: Date.tomorrow
     find('.btn', text: 'SEARCH').click
 
   end

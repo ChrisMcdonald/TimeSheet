@@ -58,7 +58,7 @@
           <tr style="  outline: 2px solid #ccc;">
             <td colspan="3">
               <div class="dropdown col-xs-7 col-sm-4 " style="padding: 0%;">
-                <%= @time_sheet.project.name %>
+                <%= @time_sheet&.project&.name %>
                 <%#= f.select(:projects_id, options_for_select(Project.select_attributes, f.object.project_id), {}, class: ' btn btn-default form-control') %>
               </div>
               <div class=" col-xs-5 col-sm-2" style="padding: 0%">

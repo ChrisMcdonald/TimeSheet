@@ -7,11 +7,7 @@ class RootTest < ApplicationSystemTestCase
 
   test 'root page' do
     user = users(:usersone)
-
-    sign_in user
     visit root_path
-    sleep 2
-
     find('li', text: 'My Projects').click
     assert_current_path "/projects"
     find('li', text: 'My Timesheets').click

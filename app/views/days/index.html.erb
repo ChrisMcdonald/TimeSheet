@@ -1,7 +1,7 @@
 <div class="box">
   <h1>User:  <%= @time_sheet.user.full_name %></h1>
   <h2>Date:   <%= @time_sheet.time_period.strftime("%d %A %B %Y") %></h2>
-  <h2>Project: <%= @time_sheet.project.name %></h2>
+  <h2>Project: <%= @time_sheet&.project&.name %></h2>
 </div>
 <%= render 'buttons' %>
 <div class="box">

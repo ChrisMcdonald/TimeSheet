@@ -8,9 +8,7 @@ class ProjectTest < ApplicationSystemTestCase
   test 'create a new project' do
     user = users(:usersone)
 
-    sign_in user
     visit projects_path
-    sleep 1
     find('#new-project').click
     within('#NewProject') do
       fill_in 'project_name', with: 'Projectone'
@@ -20,20 +18,26 @@ class ProjectTest < ApplicationSystemTestCase
     project2 = projects(:projectstwo)
     project1 = projects(:projectsone)
     assert_equal project1.name, 'Projectone'
-    find(".project-#{project2.id}").click
-    find('a', text: 'BACK').click
-    find(".project-#{project1.id}").click
-    find('button', text: 'CSV').click
+    find("li.project-#{project2.id}").click
+    sleep 1
+    # sleep 1
+    # find('a', text: 'BACK').click
+    # find("li.project-#{project1.id}").click
+    # sleep 1
+    # find('button', text: 'CSV').click
   end
 
   test 'project csv' do
     project = projects(:projectsone)
     visit project_path(project)
+    sleep 1
     find('button', text: 'CSV').click
   end
   test 'project excel' do
     project = projects(:projectsone)
     visit project_path(project)
+    sleep 1
     find('button', text: 'EXCEL').click
+    sleep 1
   end
 end

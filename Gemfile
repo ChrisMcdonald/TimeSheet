@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
+ruby '2.5.0'
 gem 'rack', '>= 2.0.6'
 gem 'figaro'
 gem 'active_median'
@@ -45,7 +46,7 @@ gem 'zip-zip'
 # gem 'airbrake'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.1.3'
+gem 'rails', '~> 5.2.1', '>= 5.2.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
@@ -90,19 +91,21 @@ group :development, :test do
 end
 
 group :development do
+  gem 'yard'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen'
   gem 'web-console'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'minitest-rails'
-  gem 'minitest-reporters', '>= 0.5.0'
+
   gem 'spring'
   gem 'spring-watcher-listen'
 end
 
 group :test do
-  gem 'capybara'
+  gem "minitest-rails-capybara"
+
+  # gem 'capybara'
   gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'faker'
