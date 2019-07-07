@@ -85,7 +85,7 @@ class TimeSheetsController < ApplicationController
 
     respond_to do |format|
       if @time_sheet.save
-        format.html { redirect_to time_sheets_path @time_sheet, notice: 'Time sheet was successfully created.' }
+        format.html {redirect_to root_path(project_id: @time_sheet.project_id), notice: 'Time sheet was successfully created.'}
         format.json { render :index, status: :created, location: @time_sheet }
         format.js {redirect_to root_path, notice: 'Time sheet was successfully created.'}
       else
@@ -102,7 +102,7 @@ class TimeSheetsController < ApplicationController
   def update
     respond_to do |format|
       if @time_sheet.update(time_sheet_params)
-        format.html { redirect_to time_sheets_path @time_sheet, notice: 'Time sheet was successfully updated.' }
+        format.html {redirect_to root_path(project_id: @time_sheet.project_id), notice: 'Time sheet was successfully updated.'}
         format.json { render :show, status: :ok, location: @time_sheet }
 
       else
