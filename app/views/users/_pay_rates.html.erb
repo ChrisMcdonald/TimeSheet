@@ -2,6 +2,8 @@
   <td>
     <div class="field">
       <%= f.number_field :rate, class: 'pay_rate', step: '0.01' %>
+      <%= f.select :project_id, options_from_collection_for_select(@user.projects, :id, :name, params[:project_id]), class: ' btn btn-default form-control', onchange: "$('#project_form').submit()" %>
+
       <p>This will update the users pay rate from today. All previous records will retain the same pay rate</p>
 
     </div>
