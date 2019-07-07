@@ -11,7 +11,8 @@ module Calculate
     total = []
     work.each do |w|
       rate = w.user.rate(w.time_period.to_date)
-      total << rate * w.hour
+      rate = 0.0 unless rate.present?
+      total << w.hour * rate
     end
     total
   end
