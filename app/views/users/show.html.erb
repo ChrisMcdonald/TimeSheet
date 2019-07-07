@@ -66,6 +66,7 @@
 
       <tr>
         <td><%= u.rate %></td>
+        <td><%= u.project&.name %></td>
         <td><%= u.created_at.strftime("%A %b %d") %></td>
       </tr>
     <% end %>

@@ -11,7 +11,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all.paginate(page: params[:page], per_page: 10).reverse_order
+    @invoices = Invoice.where(user_id: current_user.id).paginate(page: params[:page], per_page: 10).reverse_order
   end
 
   # GET /invoices/1

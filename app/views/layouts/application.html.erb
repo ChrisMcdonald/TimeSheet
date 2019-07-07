@@ -54,10 +54,10 @@
         <div id="menuhides" class="box menu-hide-mobile col-md-2 col-xs-0 sbar" style="height:100%;position: fixed; z-index: 2;">
           <ul class="menu">
             <% if can? :read, TimeSheet %>
-                <li><%= link_to 'My Timesheets', time_sheets_path(current_user), class: 'no-decoration' %></li>
+              <li><%= link_to 'My Timesheets', time_sheets_path, class: 'no-decoration' %></li>
             <% end %>
             <% if can? :read, Invoice %>
-                <li><%= link_to 'My Invoices', invoices_path(current_user), class: 'no-decoration' %></li>
+              <li><%= link_to 'My Invoices', invoices_path, class: 'no-decoration' %></li>
             <% end %>
             <% if can? :read, Project %>
                 <li><%= link_to 'My Projects', projects_path, class: 'no-decoration'%></li>
