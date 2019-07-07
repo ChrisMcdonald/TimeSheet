@@ -59,7 +59,8 @@ td.has-time-sheet:active {
 }
 
 .has-time-sheet {
-  background-image: url('redcross.png');
+  //background-image: image('redcross.png');
+  background: image-url('redcross.png');
   background-position: 50% 80%;
   background-size: 70% 60%;
   background-repeat: no-repeat;
