@@ -73,7 +73,7 @@ gem 'redis', '~> 3.3'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'capistrano', '~> 3.10.0'
+gem 'capistrano'
 gem 'capistrano-passenger'
 gem 'capistrano-rails'
 gem 'capistrano-rails-console'
