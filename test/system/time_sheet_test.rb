@@ -10,8 +10,13 @@ class CustomerTest < ApplicationSystemTestCase
 
     visit root_path
     sleep 1
-    find('td', text: Date.today.strftime("%d %b")).click
+    # expect(page).to have_field("Username", with: "Joe")
+    page.has_css?('.navbar')
+    page.has_text?('Time Sheet')
 
+    find('td', text: Date.today.strftime("%d %b")).click
+    page.has_css?('.navbar')
+    page.has_text?('Time Sheet')
     find('#time_sheet_hour', class: 'hours-field').set(5)
     find('textarea', class: 'description-field').set('this is the description')
     find('.btn', text: 'SAVE').click

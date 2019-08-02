@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181124065802) do
+ActiveRecord::Schema.define(version: 2018_11_24_065802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,13 @@ ActiveRecord::Schema.define(version: 20181124065802) do
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
+  create_table "loggintracker_public_ar_internal_metadata", id: false, force: :cascade do |t|
+    t.text "key"
+    t.text "value"
+    t.text "created_at"
+    t.text "updated_at"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.bigint "user_id"
@@ -154,8 +161,8 @@ ActiveRecord::Schema.define(version: 20181124065802) do
     t.datetime "date"
     t.bigint "project_id"
     t.bigint "invoice_id"
-    t.index ["invoice_id"], name: "index_time_sheets_on_invoice_id"
-    t.index ["project_id"], name: "index_time_sheets_on_project_id"
+    t.index ["invoice_id"], name: "index_time_sheets_on_invoices_id"
+    t.index ["project_id"], name: "index_time_sheets_on_projects_id"
     t.index ["user_id"], name: "index_time_sheets_on_user_id"
   end
 

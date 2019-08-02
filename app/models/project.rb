@@ -29,9 +29,13 @@ class Project < ApplicationRecord
   end
 
   def time_sheets_for_week(start_time, end_time)
-    TimeSheet.where(time_period: start_time..end_time)
-             .joins(:works).select('works.hour', 'works.project_id', :user_id, :time_period, :id, :invoice_id)
-             .where('works.project_id = ?', id)
+
+    # work.where()
+
+    TimeSheet.includes(:works).where(time_period: start_time..end_time)
+        .joins(:works).where('works.project_id = ?', id)
+        .select('works.hour', 'works.project_id', :user_id, :time_period, :id, :invoice_id)
+
   end
 
   def hours_by_user_by_project
@@ -43,7 +47,7 @@ class Project < ApplicationRecord
   end
 
   def hours_by_day
-    TimeSheet.joins(:project).group(:time_period).where('project_id = ?', id).sum(:hour)
+    TimeSheet.includes(:project).group(:time_period).where('project_id = ?', id).sum(:hour)
   end
 
   def all_time_sheets
@@ -51,13 +55,13 @@ class Project < ApplicationRecord
     end
 
   def info_for_invoice
-    time = TimeSheet.joins(:works).select(:id)
+    TimeSheet.includes(:work).select(:id)
                     .where('works.project_id = ?', id)
   end
 
   def info_for_invoice_range(start_time, end_time)
     TimeSheet.where(time_period: start_time..end_time)
-             .joins(:works).group(:time_period)
+        .joins(:work).group(:time_period)
              .where('works.project_id = ?', id)
              .sum(:hour)
   end

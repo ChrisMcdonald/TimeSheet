@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'csv'
 class TimeSheet < ApplicationRecord
   include Calculate
   resourcify
@@ -12,11 +12,11 @@ class TimeSheet < ApplicationRecord
   # accepts_nested_attributes_for :works, allow_destroy: true, :reject_if => lambda {|a| a[:hour].blank?}
   # validates_presence_of :time_period
   belongs_to :user
-
+  has_many :works
   scope :date_range, ->(start_date, end_date) { where(time_period: start_date..end_date) }
   scope :for_project,->(project) { where(projects: project) }
   def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
+    ::CSV.generate(options) do |csv|
       csv << ['user_name', 'date Worked', 'hours', 'rate']
       all.each do |p|
         csv << [p.user.full_name, p.time_period, p.hour, p.user.rate(p.time_period)]
