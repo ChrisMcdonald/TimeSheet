@@ -87,7 +87,6 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'rubocop'
-  gem 'ruby-debug-ide', '~> 0.6.0'
 end
 
 group :development do
