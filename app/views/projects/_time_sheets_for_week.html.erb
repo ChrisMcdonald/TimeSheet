@@ -1,7 +1,7 @@
 <div class="table-responsive">
   <table class="table outline table-striped table-hover">
     <div id="page_links">
-      <%= will_paginate @time %>
+      <%#= will_paginate @time %>
     </div>
     <tr class=" grey_background">
       <th>User Name</th>
@@ -20,7 +20,7 @@
         <td><%= time.time_period.strftime("%A %b %d ") %></td>
         <td><%= time.user.rate(time.time_period) %></td>
         <td><%= time.hour %> </td>
-        <td><%= Project.find(time.project_id).name %> </td>
+        <td><%= time&.project&.name %> </td>
         <td>$<%= @total_for_user[i] %></td></span></tr>
     <% end %>
     <td></td>

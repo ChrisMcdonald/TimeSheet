@@ -386,7 +386,7 @@ DEPENDENCIES
   awesome_print
   axlsx!
   axlsx_rails
-  bootstrap-sass (~> 3.3.7)
+  bootstrap-sass
   breadcrumbs_on_rails
   bullet
   byebug
@@ -410,11 +410,11 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   listen
-  loofah (>= 2.2.3)
+  loofah
   loofah-activerecord
   mini_racer
   minitest-rails-capybara
-  nokogiri (~> 1.6, >= 1.7.0.1)
+  nokogiri
   oj
   omniauth
   omniauth-facebook
@@ -427,15 +427,15 @@ DEPENDENCIES
   pry-nav
   puma
   pundit
-  rack (>= 2.0.6)
-  rails (~> 5.2.1, >= 5.2.1.1)
+  rack
+  rails (~> 5.2.3)
   redis (~> 3.3)
   remotipart
   rolify
   rubocop
   ruby-debug-ide (~> 0.6.0)
   rubyzip
-  sass-rails (>= 3.2)
+  sass-rails
   selenium-webdriver
   simple_calendar
   simplecov
@@ -452,7 +452,7 @@ DEPENDENCIES
   zip-zip
 
 RUBY VERSION
-   ruby 2.5.0p0
+   ruby 2.6.3p62
 
 BUNDLED WITH
-   1.16.1
+   2.0.2
