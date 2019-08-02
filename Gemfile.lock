@@ -391,7 +391,7 @@ DEPENDENCIES
   bullet
   byebug
   cancancan
-  capistrano (~> 3.10.0)
+  capistrano
   capistrano-passenger
   capistrano-rails
   capistrano-rails-console
