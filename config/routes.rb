@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resource :vehicles
   resources :pay_rates
   resources :identities
-  resources :projects
+  resources :projects do
+    resources :invoices, except: [:edit], controller: 'projects/invoices'
+  end
   resources :invoices, except: [:edit]
   resources :works
   get '/send_invoice' , to: 'invoices#send_invoice', as: :send_invoice
