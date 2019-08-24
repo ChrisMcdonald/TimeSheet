@@ -1,0 +1,15 @@
+<li class="shadow invoice-<%= invoice.id %>">
+  <div class="row">
+    <div class="col-xs-5 col-md-5">
+      <h5> <%= invoice.id %></h5>
+    </div>
+    <div class="col-xs-5 col-md-5">
+      <h5>
+        <%= invoice.customer_full_name %>
+      </h5>
+      <%= link_to 'Show', invoice, class: "hidden" %>
+    </div>
+  </div>
+</li>
+
+

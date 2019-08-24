@@ -16,7 +16,7 @@
 
         <tr>
         <span>
-        <td><%= link_to "#{time_sheet.user.full_name}", time_sheet_path(time_sheet) %></td>
+        <td><%= link_to "#{time_sheet.user.full_name}", current_day_path(time_sheet.time_period, project_id: @project.id) %></td>
         <td><%= time_sheet.time_period.strftime("%A %b %d ") %></td>
         <td>  <%= time_sheet.hour %> </td>
         <td><%= time_sheet.user.rate(time_sheet.time_period) %></td>

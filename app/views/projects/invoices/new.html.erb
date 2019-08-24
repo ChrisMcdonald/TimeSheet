@@ -1,0 +1,70 @@
+<div class="box">
+  <p id="notice"><%= notice %></p>
+  <h1>New Invoice</h1>
+  <div style="padding:10px">
+    <div class="row">
+      <div class="col-lg-4">
+        <%= form_for Invoice.new, class: 'form-group  ' do |f| %>
+
+
+          <%= f.hidden_field :project, value: @project.id %>
+          <%= f.submit "Save Invoice", class: 'btn btn-success', data: {confirm: 'are you sure?'} %>
+
+          <%= link_to 'Back', invoices_path, class: 'btn btn-default' %>
+
+        <% end %>
+      </div>
+      <div class="col-lg-4 pull-right">
+        <%= form_tag new_invoice_url, class: 'form-group ', method: :get do %>
+
+          <%= select_tag(:search, options_for_select(Project.select_attributes, params[:search]), :onchange => "this.form.submit();", class: 'btn btn-default form-control col-lg-4 ') %>
+
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+  <table style="width: 100%; ">
+    <tr class="pdf-tr ">
+      <td class="pdf-td"><h1>Tax Invoice</h1>
+      </td>
+      <td class="pdf-td">
+        <div align="right" style="padding: 10px">
+          <h3>For time period</h3>
+          <%= @work.first.time_period.strftime("%A %b %d ") if @work.first.present? %>|
+          <%= @work.last.time_period.strftime("%A %b %d ") if @work.last.present? %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <h2>TO: <%= @project.try(:customer).try(:full_name) %></h2>
+        <p><%= @project.try(:customer).try(:address) %> <br>
+          ABN: <%= @project.try(:customer).try(:abn) %></p>
+
+        <p>
+        <h2><%= current_user.full_name %> </h2>
+        <%= current_user.address %> <br>
+        ABN: <%= current_user.abn %></p>
+    <tr>
+      <td><p><strong>Payment details</strong>
+        <strong> Bank: </strong>Suncorp
+        <strong>Account No: </strong> 000490121 <strong>bsb:</strong> 484 799
+      </p></td>
+    </tr>
+    <h1>For the <%= @project.name %> Project</h1>
+    </td>
+    </tr>
+
+  </table>
+  <div id="invoice-partial">
+    <%= render 'shared/time_sheets_for_week', work: @work %>
+  </div>
+  <div class="btn-group">
+
+
+  </div>
+</div>
+
+</div>
+</div>

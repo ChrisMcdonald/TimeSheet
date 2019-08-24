@@ -3,16 +3,16 @@ require 'csv'
 class TimeSheet < ApplicationRecord
   include Calculate
   resourcify
-  validates_presence_of :time_period, :hour
+  # validates_presence_of :time_period, :hour
   has_many :travels, dependent: :destroy
   accepts_nested_attributes_for :travels, allow_destroy: true
   # has_many :works, dependent: :destroy
   belongs_to :project
-  belongs_to :invoices, required: false
+  belongs_to :invoice, required: false
   # accepts_nested_attributes_for :works, allow_destroy: true, :reject_if => lambda {|a| a[:hour].blank?}
   # validates_presence_of :time_period
   belongs_to :user
-  has_many :works
+  has_many :works, dependent: :destroy
   scope :date_range, ->(start_date, end_date) { where(time_period: start_date..end_date) }
   scope :for_project,->(project) { where(projects: project) }
   def self.to_csv(options = {})
