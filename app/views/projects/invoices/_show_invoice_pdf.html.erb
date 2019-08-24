@@ -1,0 +1,62 @@
+<div class="alwaysbreak" style="padding: 10px">
+  <table style="width: 100%; ">
+    <tr class="pdf-tr ">
+      <td class="pdf-td"><h1>Tax Invoice</h1>
+        <h2>For the <%= @invoice.project.name %> Project</h2>
+
+      </td>
+      <td class="pdf-td">
+        <div align="right">
+          <h4>Invoice number#  <%= @invoice.id %></h4>
+
+          <h4>For Time Period</h4>
+
+          <%= @works.first.time_sheet.time_period.strftime("%A %b %d ") if @invoice.works.first.present? %>|
+          <%= @works.last.time_sheet.time_period.strftime("%A %b %d ") if @invoice.works.last.present? %>
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div class="pull-right">
+          <h1>Balance: $<%= @total %></h1>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2>Bill to: <%= @invoice.project.name %></h2>
+        <p><%= @invoice.customer_first_name rescue '' %> <%= @invoice.customer_last_name rescue '' %></p>
+        <p><%= @invoice.customer_address %> <br>
+          ABN: <%= @invoice.customer_abn %></p>
+
+
+        <h2>From: <%= @invoice.owner_full_name %> </h2>
+        <p> <%= @invoice.owner_address %> <br>
+          ABN: <%= @invoice.owner_abn %></p>
+      </td>
+    </tr>
+    <tr>
+      <td><p><strong>Payment details</strong>
+        <strong> Bank: </strong>Suncorp
+        <strong>Account No: </strong> 000490121 <strong>bsb:</strong> 484 799
+      </p></td>
+    </tr>
+
+    <tr>
+      <td colspan="2" style="text-align: center; vertical-align: middle;">
+        <%= render 'invoices/invoice_table.html.erb' %>
+    <tr>
+
+    </tr>
+  </table>
+
+
+  <div class="footer">
+    <hr>
+    <p style="font-size: .5em ; padding-left: 10px; padding-right: 20px"> Please pay you invoice with in 2 week or men
+      with guns will come to you house and take possession of you dog</p>
+    <hr>
+  </div>
+</div>

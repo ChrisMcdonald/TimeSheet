@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.11.0'
+# lock '~> 3.11.0'
 
 set :application, 'TimeSheet'
 set :repo_url, 'https://github.com/ChrisMcdonald/TimeSheet.git'
 set :user, 'chris'
 set :branch, 'timesheet'
+set :ruby_version, '/home/chris/.rbenv/shims/ruby'
+set :default_env, -> {{ path: [fetch(:ruby_version), "#{release_path}/bin", "$PATH"].join(":") }}
+
 API = {}
 
 

@@ -1,0 +1,32 @@
+<table class="table table-sm table-striped  work-table center" style="width: 90%;  ">
+  <tr class="grey_background">
+    <th>Employee</th>
+    <th>Date worked</th>
+    <th>Hours</th>
+    <th>Rate</th>
+    <th>Description</th>
+    <th>Sub Total</th>
+
+
+  </tr>
+  <% @works.each_with_index do |work, i| %>
+    <tr>
+      <td><%= work.user.full_name %></td>
+      <td><%= work.time_period.strftime("%A %b %d ") %></td>
+      <td><%= work.hour %></td>
+      <td>$<%= work.user.rate(work.time_period) %></td>
+      <td><%= work.description %></td>
+      <td>$<%= @row_total[i] %></td>
+    </tr>
+
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>total hours <%= @works.sum(:hour) %></td>
+    <td></td>
+    <td></td>
+    <td>total $<%= @total %> </td>
+
+  </tr>
+</table>

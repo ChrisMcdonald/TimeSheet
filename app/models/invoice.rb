@@ -4,7 +4,7 @@ class Invoice < ApplicationRecord
   resourcify
   include Calculate
   belongs_to :user
-  has_many :time_sheets #,  inverse_of: :invoice
+  has_many :time_sheets, inverse_of: :invoice
   accepts_nested_attributes_for :time_sheets
   belongs_to :project , dependent: :destroy
   validates_presence_of :time_sheets
