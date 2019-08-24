@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class InvoicesController < ProjectsController
+class Projects::InvoicesController < ProjectsController
 
 
   before_action :set_invoice, only: %i[show edit update destroy]
@@ -11,7 +11,7 @@ class InvoicesController < ProjectsController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.where(user_id: current_user.id).paginate(page: params[:page], per_page: 10).reverse_order
+    @invoices = Invoice.where(project_id: params[:project_id], user_id: current_user.id).paginate(page: params[:page], per_page: 10).reverse_order
   end
 
   # GET /invoices/1
