@@ -6,22 +6,22 @@ invoicesone:
   owner_first_name: <%= Faker::Name.first_name %>
   owner_last_name: <%= Faker::Name.last_name %>
   owner_email: <%= Faker::Internet.email %>
-  owner_street_no: <%= Faker::Number.number(2) %>
+  owner_street_no: <%= Faker::Number.number(digits:  2) %>
   owner_street: <%= Faker::Address.street_name %>
   owner_city: <%= Faker::Address.city %>
   owner_state: <%= Faker::Address.state %>
   owner_country: <%= Faker::Address.country %>
   owner_post_code: <%= Faker::Address.postcode %>
-  owner_abn: <%= Faker::Number.number(10) %>
+  owner_abn: <%= Faker::Number.number(digits: 10) %>
   customer_first_name:  <%= Faker::Name.first_name %>
   customer_last_name: <%= Faker::Name.last_name %>
-  customer_street_no: <%= Faker::Number.number(2) %>
+  customer_street_no: <%= Faker::Number.number(digits: 2) %>
   customer_street: <%= Faker::Address.street_name %>
   customer_city: <%= Faker::Address.city %>
   customer_state: <%= Faker::Address.state %>
   customer_country: <%= Faker::Address.country %>
   customer_post_code: <%= Faker::Address.postcode %>
-  customer_abn: <%= Faker::Number.number(10) %>
+  customer_abn: <%= Faker::Number.number(digits: 10) %>
   invoice_date: <%= Date.today %>
 
 invoicestwo:
@@ -30,20 +30,20 @@ invoicestwo:
   owner_first_name: <%= Faker::Name.first_name %>
   owner_last_name: <%= Faker::Name.last_name %>
   owner_email: <%= Faker::Internet.email %>
-  owner_street_no: <%= Faker::Number.number(2) %>
+  owner_street_no: <%= Faker::Number.number(digits: 2) %>
   owner_street: <%= Faker::Address.street_name %>
   owner_city: <%= Faker::Address.city %>
   owner_state: <%= Faker::Address.state %>
   owner_country: <%= Faker::Address.country %>
   owner_post_code: <%= Faker::Address.postcode %>
-  owner_abn: <%= Faker::Number.number(10) %>
+  owner_abn: <%= Faker::Number.number(digits: 10) %>
   customer_first_name:  <%= Faker::Name.first_name %>
   customer_last_name: <%= Faker::Name.last_name %>
-  customer_street_no: <%= Faker::Number.number(2) %>
+  customer_street_no: <%= Faker::Number.number(digits: 2) %>
   customer_street: <%= Faker::Address.street_name %>
   customer_city: <%= Faker::Address.city %>
   customer_state: <%= Faker::Address.state %>
   customer_country: <%= Faker::Address.country %>
   customer_post_code: <%= Faker::Address.postcode %>
-  customer_abn: <%= Faker::Number.number(10) %>
+  customer_abn: <%= Faker::Number.number(digits: 10) %>
 

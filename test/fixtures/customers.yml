@@ -1,25 +1,20 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 customersone:
-
   first_name: <%= Faker::Name.first_name %>
   last_name: <%= Faker::Name.last_name %>
-  street_no: <%= Faker::Number.number(2) %>
+  street_no: <%= Faker::Number.number(digits: 2) %>
   street: <%= Faker::Address.street_name %>
   city: <%= Faker::Address.city %>
   state: <%= Faker::Address.state %>
   country: <%= Faker::Address.country %>
   post_code: <%= Faker::Address.postcode %>
-  abn: <%= Faker::Number.number(10) %>
-
+  abn: 888
 customestwo:
-
   first_name: <%= Faker::Name.first_name %>
   last_name: <%= Faker::Name.last_name %>
-  street_no: <%= Faker::Number.number(2) %>
+  street_no: <%= Faker::Number.number(digits:  2) %>
   street: <%= Faker::Address.street_name %>
   city: <%= Faker::Address.city %>
   state: <%= Faker::Address.state %>
   country: <%= Faker::Address.country %>
   post_code: <%= Faker::Address.postcode %>
-  abn: <%= Faker::Number.number(10) %>
+  abn: 888888
