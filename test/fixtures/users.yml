@@ -15,7 +15,7 @@ usersone:
     state: <%= Faker::Address.state %>
     country: <%= Faker::Address.country %>
     post_code: <%= Faker::Address.postcode %>
-    abn: <%= Faker::Number.number(10) %>
+    abn: <%= Faker::Number.number(digits: 10) %>
 #    projects: projectsone, projectstwo
 #    projects: projectsone
 
@@ -34,7 +34,7 @@ userstwo:
     state: <%= Faker::Address.state %>
     country: <%= Faker::Address.country %>
     post_code: <%= Faker::Address.postcode %>
-    abn: <%= Faker::Number.number(10) %>
+    abn: <%= Faker::Number.number(digits: 10) %>
 #    projects: projectsone, projectstwo
 
 #    projects: projectsone
