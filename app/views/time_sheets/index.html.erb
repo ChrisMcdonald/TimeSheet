@@ -8,7 +8,8 @@
   <%# end %>
 <%# end %>
 <%= form_tag '',method: :get ,id: "project_form" do  %>
-  <%= select_tag :project_id, options_from_collection_for_select(@user.projects , :id, :name,params[:project_id]), class: ' btn btn-default form-control' , onchange: "$('#project_form').submit()" %>
+  <% project = params[:project_id].present? ? params[:project_id] : @user&.time_sheets&.last&.project_id %>
+  <%= select_tag :project_id, options_from_collection_for_select(@user.projects, :id, :name, project), class: 'btn btn-default form-control', onchange: "$('#project_form').submit()" %>
 <% end %>
   <%= my_calendar do |date| %>
     <%= date.strftime("%d  %b") %>
