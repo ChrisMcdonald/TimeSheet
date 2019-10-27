@@ -14,7 +14,7 @@ class Project < ApplicationRecord
     total = []
     time.each do |t|
       rate = t.user.rate(t.time_period.to_date)
-      total << rate * t.hour
+      total << rate * t.hour rescue 0
     end
     total
   end
