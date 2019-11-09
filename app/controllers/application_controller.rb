@@ -20,9 +20,9 @@ class ApplicationController < ActionController::Base
     Time.zone = 'Australia/Brisbane'
   end
 
-  def after_sign_in_path_for(resource)
-    stored_location_for(resource) || welcome_path
-  end
+  # def after_sign_in_path_for(resource)
+  #   stored_location_for(resource) || welcome_path
+  # end
 
   protected
 
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   # end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :username, :first_name, :last_name, :street_no, :street, :city, :state,
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:password, :password_confirmation, :current_password, :email, :username, :first_name, :last_name, :street_no, :street, :city, :state,
                                                        :country, :post_code, :abn, :project_search, pay_rates_attributes: %i[id rate project_id _destroy]])
     # devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end

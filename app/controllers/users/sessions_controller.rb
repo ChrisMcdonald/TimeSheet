@@ -10,6 +10,10 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
+  def edit
+    # super
+  end
+
   # POST /resource/sign_in
   def create
     self.resource = warden.authenticate!(auth_options)

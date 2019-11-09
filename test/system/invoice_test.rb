@@ -10,7 +10,7 @@ class InvoiceTest < ApplicationSystemTestCase
     user = users(:usersone)
     # visit root_path
     visit("/invoices.#{user.id}")
-    find_link(href: '/invoices/new').click
+    find('.btn', text: 'NEW INVOICE').click
     find('input[name="commit"]').click
     page.driver.browser.switch_to.alert.accept
 
@@ -31,7 +31,7 @@ class InvoiceTest < ApplicationSystemTestCase
     find('li', text: 'My Invoices').click
     find('.btn' , text: 'NEW INVOICE').click
     # find_link(href: '/invoices/new').click
-    assert_current_path '/invoices/new'
+    assert_current_path "/invoices/new.#{user.id}"
     find('select').click
     find('option', text: 'PROJECTTWO').click
     find('select').click
