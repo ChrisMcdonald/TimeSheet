@@ -1,4 +1,4 @@
-<%= form_with(url: '/user', scope: :user) do |f| %>
+<%= form_with(url: '/current_user', model: current_user, scope: :user) do |f| %>
 
   <div class="field">
     <%= f.label :first_name %><br/>
@@ -29,10 +29,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+  <!--  <div class="field">-->
+  <!--    <%#= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>-->
+  <%#= f.password_field :current_password, autocomplete: "off" %>
+  <!--  </div>-->
 
   <div class="actions">
     <%= f.submit "Update" %>
