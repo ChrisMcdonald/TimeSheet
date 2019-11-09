@@ -11,9 +11,9 @@ class RootTest < ApplicationSystemTestCase
     find('li', text: 'My Projects').click
     assert_current_path "/projects"
     find('li', text: 'My Timesheets').click
-    assert_current_path "/time_sheets.#{user.id}"
+    assert_current_path "/time_sheets"
     find('li', text: 'My Invoices').click
-    assert_current_path "/invoices.#{user.id}"
+    assert_current_path "/invoices"
     find('li', text: 'My Customers').click
     assert_current_path '/customers'
     find('li', text: 'My Users').click

@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
+  get 'user' ,to: 'user#edit'
+  put 'user', to: 'user#update'
   resources :travels
   namespace :projects do
     get 'time_sheet_for_week/show'
   end
-  resource :vehicles
+  resources :vehicles do
+    resources :travels
+  end
   resources :pay_rates
   resources :identities
   resources :projects do
@@ -47,9 +50,10 @@ Rails.application.routes.draw do
 
   devise_for :users, path: :admin,
                      controllers: {
-                       registrations: 'users/registrations',
+                         registrations: 'users/registrations',
                        sessions: 'users/sessions',
-                       omniauth_callbacks: 'users/omniauth_callbacks'
+                       omniauth_callbacks: 'users/omniauth_callbacks',
+                       # passwords: 'users/passwords'
                      }
   get 'auth/:provider/callback', to: 'time_sheet#index'
 

@@ -16,6 +16,6 @@ class Vehicle < ApplicationRecord
   end
 
   def previous_od_finish
-    travels.last.od_finish #if first.present?
+    travels&.last&.od_finish #if first.present?
   end
 end

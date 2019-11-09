@@ -86,7 +86,7 @@ class User < ApplicationRecord
     total = 0
     time.each do |t|
       rate = self.rate(t.time_period.to_date)
-      sub_total = rate * t.hour
+      sub_total = rate * t.hour rescue 0
       totals << sub_total
       total += sub_total
     end
