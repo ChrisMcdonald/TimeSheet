@@ -39,7 +39,7 @@
           <div id="navbar" class="navbar-collapse collapse">
             <p class="navbar-text pull-right" style="color: white">
               <% if user_signed_in? %>
-                <%= link_to 'user', class: 'user_link' do %>
+                <%= link_to 'current_user', class: 'user_link' do %>
                 <%= image_tag current_user.avatar, width: 26 %>
                   Logged in as <strong><%= current_user.full_name %></strong>
                 <% end %>

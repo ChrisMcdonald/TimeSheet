@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'user' ,to: 'user#edit'
-  put 'user', to: 'user#update'
+  get 'current_user' ,to: 'user#edit'
+  put 'current_user', to: 'user#update'
   resources :travels
   namespace :projects do
     get 'time_sheet_for_week/show'
