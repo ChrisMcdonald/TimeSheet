@@ -23,7 +23,7 @@ class Travel < ApplicationRecord
   private
 
   def od_start_greater_than_previous_od_finish
-    if od_start.present? && od_finish.present?
+    if od_start_changed? && od_start.present? && od_finish.present?
       if od_start < previous_od_finish
         errors.add(:od_start, 'odometer start must be greater then the previous finish odometer reading')
       end
@@ -31,7 +31,7 @@ class Travel < ApplicationRecord
   end
 
   def od_start_cannot_be_greater_than_od_finish
-    if od_start.present? && od_finish.present?
+    if od_start_changed? && od_start.present? && od_finish.present?
       if od_start > od_finish
         errors.add(:od_finish, 'od finish should be greater than od start ')
       end

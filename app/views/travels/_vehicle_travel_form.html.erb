@@ -1,4 +1,4 @@
-<h3>Vehicle: <%= @vehicle.rego_no %></h3>
+<h3>Vehicle: <%= @vehicle&.rego_no %></h3>
 <%= form_with(model: [@vehicle, @travel], local: false) do |form| %>
   <%= form.hidden_field :project_id %>
   <% if @travel.errors.any? %>
@@ -16,20 +16,24 @@
     <tr class="grey_background " id="hours">
       <th class="hidden-xs col-sm-3">Odometer Start</th>
       <th class="hidden-xs col-sm-3">Odometer Finish</th>
+      <th class="hidden-xs col-sm-3">Travel Purpose</th>
     </tr>
 
 
     <tr>
       <td class="col-xs-6 col-sm-3" style="padding: 0%">
-        <%= form.number_field :od_start, value: @vehicle.send('previous_od_finish'), class: 'form-control ', placeholder: 'Odometer Start', :autofocus => true %>
+        <%= form.number_field :od_start, class: 'form-control ', placeholder: 'Odometer Start', :autofocus => true %>
       </td>
       <td class="col-xs-6 col-sm-3" style="padding: 0%">
-        <%= form.number_field :od_finish, value: @vehicle.send('previous_od_finish'), class: 'form-control ', placeholder: 'Odometer Finish' %>
+        <%= form.number_field :od_finish, class: 'form-control ', placeholder: 'Odometer Finish' %>
+      </td>
+      <td class="col-xs-6 col-sm-3" style="padding: 0%">
+        <%= form.text_field :purpose, class: 'form-control ', placeholder: 'Travel Purpose' %>
       </td>
     <tr>
       <td></td>
       <td>
-        <%= form.hidden_field :travel_date, value: params[:time_period] %>
+        <%= form.hidden_field :travel_date %>
         <div class="actions">
 
           <%= button_tag :submit, class: 'btn btn-default pull-right' do %>

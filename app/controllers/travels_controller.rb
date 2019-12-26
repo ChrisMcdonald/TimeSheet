@@ -27,8 +27,8 @@ class TravelsController < ApplicationController
 
   # GET /travels/new
   def new
-    @travel = Travel.new(project_id: params[:project_id], travel_date: params[:time_period],)
     @vehicle = Vehicle.find params[:vehicle_id]
+    @travel = Travel.new(project_id: params[:project_id], travel_date: params[:time_period], od_start: @vehicle.send('previous_od_finish'), od_finish: @vehicle.send('previous_od_finish'))
     # @time_sheet = TimeSheet.find(params[:time_sheet_id])
     respond_to do |format|
       format.html
@@ -38,6 +38,7 @@ class TravelsController < ApplicationController
 
   # GET /travels/1/edit
   def edit
+    @vehicle = @travel.vehicle
     respond_to do |format|
       format.html
       format.js
@@ -71,11 +72,13 @@ class TravelsController < ApplicationController
   # PATCH/PUT /travels/1.json
   def update
     respond_to do |format|
-      if @travel.update(travel_params)
+      if @travel.update!(travel_params)
         format.html {redirect_to travels_path(time_period: @travel.travel_date, project_id: @travel.project_id), notice: 'Travel was successfully updated.'}
         format.json { render :show, status: :ok, location: @travel }
         format.js {flash[:notice] = 'Travel was successfully updated.'}
       else
+        format.js {render :edit}
+
         format.html { render :edit }
         format.json { render json: @travel.errors, status: :unprocessable_entity }
       end
@@ -101,6 +104,6 @@ class TravelsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def travel_params
-    params.require(:travel).permit(:travel_date, :od_start, :od_finish, :purpose, :user_id, :project_id)
+    params.require(:travel).permit(:travel_date, :od_start, :od_finish, :purpose, :user_id, :project_id,)
   end
 end
