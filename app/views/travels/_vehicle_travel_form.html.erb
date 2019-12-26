@@ -1,5 +1,6 @@
 <h3>Vehicle: <%= @vehicle.rego_no %></h3>
 <%= form_with(model: [@vehicle, @travel]) do |form| %>
+  <%= form.hidden_field :project_id %>
   <% if @travel.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@travel.errors.count, "error") %> prohibited this time_sheet from being saved:</h2>

@@ -9,10 +9,10 @@ class TravelsController < ApplicationController
   # GET /travels.json
   def index
     # @time_sheet = TimeSheet.find(params[:time_sheet_id  ])
-    @travels = Travel.where(user: current_user)
+    @travels = Travel.where(user: current_user, project_id: params[:project_id])
     @travels = @travels.where(travel_date: params[:time_period]) if !params[:time_period].nil?
-    travel = Travel.new(travel_date: params[:time_period])
-    @travel_date = travel.travel_date
+    # travel = Travel.new(travel_date: params[:time_period])
+    @travel_date = params[:time_period]
     respond_to do |format|
       format.html
       format.js
@@ -27,7 +27,7 @@ class TravelsController < ApplicationController
 
   # GET /travels/new
   def new
-    @travel = Travel.new
+    @travel = Travel.new(project_id: params[:project_id], travel_date: params[:time_period],)
     @vehicle = Vehicle.find params[:vehicle_id]
     # @time_sheet = TimeSheet.find(params[:time_sheet_id])
     respond_to do |format|

@@ -11,16 +11,19 @@
   <div class="box"><h1>Travel</h1>
     <%= content_tag :div, id: "vehicle_index", class: "time_sheet_class" do %>
       <script type="text/javascript" charset="utf-8">
-          $.ajax({url: "<%=  vehicles_path(time_period: params[:time_period]) %>"}).done(function (html) {
-              $('#vehicle_index').html(html);
+          $.get({
+              url: "<%=  vehicles_path(time_period: params[:time_period],
+              project_id: params[:project_id]) %>",
+              dataType: 'script'
           });
 
-          <!--          $.ajax({url: "<%#=  travels_path(time_period: params[:time_period],) %>"}).done(function (html) {-->
-          <!--              $('#travel_index').html(html);-->
-          <!--          });-->
+          $.get({
+              url: "<%=  travels_path(time_period: params[:time_period],project_id: params[:project_id])%>",
+              dataType: 'script'
+          })
       </script>
     <% end %>
-
+    <div id="travel_table"></div>
     <div id="travel_index"></div>
 
   </div>
