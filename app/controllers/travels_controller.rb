@@ -9,8 +9,8 @@ class TravelsController < ApplicationController
   # GET /travels.json
   def index
     # @time_sheet = TimeSheet.find(params[:time_sheet_id  ])
-    @travels = Travel.where(user: current_user, project_id: params[:project_id])
-    @travels = @travels.where(travel_date: params[:time_period]) if !params[:time_period].nil?
+    @travels = Travel.where(user: current_user, project_id: params[:project_id], travel_date: params[:time_period])
+    # @travels = @travels.where(travel_date: params[:time_period]) if !params[:time_period].nil?
     # travel = Travel.new(travel_date: params[:time_period])
     @travel_date = params[:time_period]
     respond_to do |format|
@@ -55,14 +55,11 @@ class TravelsController < ApplicationController
     respond_to do |format|
       if @travel.save
         format.html {redirect_to travels_path(time_period: @travel.travel_date, project_id: @travel.project_id), notice: 'Travel was successfully created.'}
-        format.json { render :show, status: :created, location: @travel }
 
         format.js {flash[:notice] = 'Travel was successfully created.'}
 
       else
         format.html {redirect_to edit_vehicle_travel_path(id: @travel.id, vehicle_id: @travel.vehicle_id)}
-
-        format.json { render json: @travel.errors, status: :unprocessable_entity }
         format.js {render :edit}
       end
     end
