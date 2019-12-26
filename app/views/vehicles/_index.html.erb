@@ -3,7 +3,7 @@
 
     <div class="col-sm-2">
       <div class="card box">
-        <%= link_to new_vehicle_travel_path(vehicle, time_period: params[:time_period]), remote: true do %>
+        <%= link_to new_vehicle_travel_path(vehicle, time_period: params[:time_period], project_id: params[:project_id]), remote: true do %>
           <div class="card-body">
             <h2 class="card-title"><%= vehicle.rego_no %></h2>
             <%= link_to edit_vehicle_path(vehicle) do %>

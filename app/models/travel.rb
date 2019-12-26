@@ -4,7 +4,7 @@ class Travel < ApplicationRecord
   resourcify
   belongs_to :user , dependent: :destroy
   belongs_to :project , dependent: :destroy
-  belongs_to :time_sheet , dependent: :destroy
+  belongs_to :time_sheet, dependent: :destroy, optional: true
   belongs_to :vehicle, dependent: :destroy
 
   validates_presence_of :od_finish, :od_start, :vehicle
