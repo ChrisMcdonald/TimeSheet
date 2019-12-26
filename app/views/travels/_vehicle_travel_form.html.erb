@@ -1,5 +1,5 @@
 <h3>Vehicle: <%= @vehicle.rego_no %></h3>
-<%= form_with(model: [@vehicle, @travel]) do |form| %>
+<%= form_with(model: [@vehicle, @travel], local: false) do |form| %>
   <%= form.hidden_field :project_id %>
   <% if @travel.errors.any? %>
     <div id="error_explanation">
