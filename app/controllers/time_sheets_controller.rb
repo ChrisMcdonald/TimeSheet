@@ -87,7 +87,7 @@ class TimeSheetsController < ApplicationController
       if @time_sheet.save
         format.html {redirect_to root_path(project_id: @time_sheet.project_id), notice: 'Time sheet was successfully created.'}
         format.json { render :index, status: :created, location: @time_sheet }
-        format.js {redirect_to root_path, notice: 'Time sheet was successfully created.'}
+        format.js {redirect_to root_path(project_id: @time_sheet.project), notice: 'Time sheet was successfully created.'}
       else
         # format.html { redirect_to current_day_path(@time_sheet.time_period,@time_sheet.project ) }
         format.json { render json: @time_sheet.errors, status: :unprocessable_entity }
