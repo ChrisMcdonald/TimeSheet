@@ -12,12 +12,11 @@ gem 'rack'
 gem 'figaro'
 gem 'active_median'
 gem 'autoprefixer-rails'
-gem 'awesome_print'
-gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
-gem 'axlsx_rails'
+gem 'axlsx'
+# gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+# gem 'axlsx_rails'
 gem 'bootstrap-sass'
 gem 'breadcrumbs_on_rails'
-gem 'bullet', group: 'development'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'chartkick'
@@ -96,6 +95,8 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen'
   gem 'web-console'
+  gem 'awesome_print'
+
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 
