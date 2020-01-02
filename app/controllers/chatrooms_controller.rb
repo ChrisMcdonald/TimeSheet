@@ -14,7 +14,7 @@ class ChatroomsController < ApplicationController
 
   def show
     @messages = @chatroom.messages.last(20)
-    @chatroom_user = current_user.chatroom_users.find_by(chatroom_id: @chatroom.id)
+    @chatroom_user = current_user #.chatroom_users.find_by(chatroom_id: @chatroom.id)
   end
 
   def create
@@ -38,7 +38,7 @@ class ChatroomsController < ApplicationController
   private
 
   def set_chatroom
-    @chatroom = Chatroom.find(params[:id])
+    @chatroom = current_user.chatrooms.find(params[:id])
   end
 
   def chatroom_params

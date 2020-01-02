@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   get 'current_user' ,to: 'user#edit'
   patch 'current_user', to: 'user#update'
