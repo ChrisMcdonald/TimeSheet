@@ -122,3 +122,10 @@ test/jobs/
 !/db/migrate/20180209021357_add_travel_date_to_travels.rb
 /config/deploy.rb
 /config/application.rb
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

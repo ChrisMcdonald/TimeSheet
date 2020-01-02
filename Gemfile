@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
+gem 'rails', '6.0.0'
 ruby '2.6.3'
 gem 'rack'
 gem 'figaro'
@@ -41,12 +42,13 @@ gem 'simple_calendar'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'zip-zip'
+gem 'webpacker'
+
 # gem "uniform_notifier"
 # gem 'honeybadger'
 # gem 'airbrake'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18.4'
 # Use Puma as the app server

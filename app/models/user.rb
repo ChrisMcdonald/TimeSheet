@@ -13,7 +13,7 @@ class User < ApplicationRecord
   # has_many :time_works , dependent: :destroy
   has_many :projects , dependent: :destroy
   has_many :chatroom_users , dependent: :destroy
-  has_many :chatrooms, through: :chatroom_users , dependent: :destroy
+  has_many :chatrooms, through: :chatroom_users, dependent: :destroy
   has_many :messages, dependent: :destroy
 
   # has_many :work_pro, through: :projects, source: :works
